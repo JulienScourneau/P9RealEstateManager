@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     tools:context="com.openclassrooms.realestatemanager.MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -14,8 +13,6 @@
         android:layout_height="match_parent"
         android:clipToPadding="false"
         android:padding="4dp"
-
-        />
-
+        tools:listitem="@layout/property_item" />
 
 </RelativeLayout>
