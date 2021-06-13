@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class PropertyAdapter(
-        private val propertyList: List<PropertyRecyclerview>,
+        private val propertyList: List<PropertyItem>,
         private val listener: OnItemClickListener
 ) : RecyclerView.Adapter<PropertyAdapter.PropertyViewHolder>() {
 
