@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- PROPERTY DETAILS RESOURCES -->
+    <dimen name="text_size_20sp">20sp</dimen>
+    <dimen name="details_icon_padding">2dp</dimen>
+
+</resources>

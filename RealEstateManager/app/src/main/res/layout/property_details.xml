@@ -1,84 +1,235 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="8dp"
-    android:scrollbarAlwaysDrawVerticalTrack="true">
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/details_image"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="8dp"
-        android:src="@mipmap/ic_launcher"
-        tools:srcCompat="@mipmap/ic_launcher" />
+        android:padding="8dp">
 
-    <TextView
-        android:id="@+id/details_type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/details_image"
-        tools:text="Fake Type" />
-
-    <TextView
-        android:id="@+id/details_location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/details_type"
-        android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/details_image"
-        tools:text="Fake Location" />
-
-    <TextView
-        android:id="@+id/details_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/details_location"
-        android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/details_image"
-        tools:text="Fake price" />
-
-    <TextView
-        android:id="@+id/details_media_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/details_image"
-        tools:text="Media" />
-
-    <HorizontalScrollView
-        android:id="@+id/details_scrollview_media"
-        android:layout_width="0dp"
-        android:layout_height="120dp"
-        android:layout_below="@id/details_media_text"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true">
-
-        <LinearLayout
-            android:id="@+id/gallery"
+        <ImageView
+            android:id="@+id/details_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="8dp"
+            android:src="@mipmap/ic_launcher"
+            tools:srcCompat="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/details_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/details_image"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@+id/details_image"
+            android:text="Fake Type"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/details_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/details_type"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@+id/details_image"
+            android:text="Fake Location"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/details_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignBottom="@+id/details_image"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@+id/details_image"
+            android:text="Fake price"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/details_media_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/details_image"
+            android:layout_margin="4dp"
+            android:text="Media"
+            android:textSize="@dimen/text_size_20sp"
+            android:textStyle="bold" />
+
+        <HorizontalScrollView
+            android:id="@+id/details_scrollview_media"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_below="@id/details_media_text"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="4dp">
+
+            <LinearLayout
+                android:id="@+id/gallery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/details_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/details_scrollview_media"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:text="Description"
+            android:textSize="@dimen/text_size_20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/details_description_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/details_description"
+            android:layout_margin="4dp"
+            android:text="@string/descriptions_text" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/details_description_text"
+            android:layout_margin="4dp"
+            android:baselineAligned="false"
+            android:gravity="center"
             android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3">
+
+                <ImageView
+                    android:id="@+id/details_area_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/details_icon_padding"
+                    android:src="@drawable/baseline_settings_overscan_black_36" />
+
+                <TextView
+                    android:id="@+id/details_area_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_toEndOf="@+id/details_area_img"
+                    android:text="Surface" />
+
+                <TextView
+                    android:id="@+id/details_area_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/details_area_text"
+                    android:layout_alignStart="@+id/details_area_text"
+                    android:layout_marginStart="4dp"
+                    android:text="8" />
+
+                <ImageView
+                    android:id="@+id/details_room_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/details_area_data"
+                    android:padding="@dimen/details_icon_padding"
+                    android:src="@drawable/baseline_home_black_36" />
+
+                <TextView
+                    android:id="@+id/details_room_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/details_area_img"
+                    android:layout_alignStart="@+id/details_area_text"
+                    android:layout_toEndOf="@+id/details_area_img"
+                    android:text="Room" />
+
+                <TextView
+                    android:id="@+id/details_room_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/details_room_text"
+                    android:layout_alignStart="@+id/details_area_text"
+                    android:layout_marginStart="4dp"
+                    android:text="8" />
+
+                <ImageView
+                    android:id="@+id/details_bathroom_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/details_room_img"
+                    android:padding="@dimen/details_icon_padding"
+                    android:src="@drawable/baseline_hot_tub_black_36" />
+
+                <TextView
+                    android:id="@+id/details_bathroom_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/details_room_img"
+                    android:layout_alignStart="@+id/details_area_text"
+                    android:layout_toEndOf="@+id/details_area_img"
+                    android:text="Bathroom" />
+
+                <TextView
+                    android:id="@+id/details_bathroom_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/details_bathroom_text"
+                    android:layout_alignStart="@+id/details_area_text"
+                    android:layout_marginStart="4dp"
+                    android:text="8" />
+
+                <ImageView
+                    android:id="@+id/details_bedroom_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/details_bathroom_img"
+                    android:padding="@dimen/details_icon_padding"
+                    android:src="@drawable/baseline_hotel_black_36" />
+
+                <TextView
+                    android:id="@+id/details_bedroom_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/details_bathroom_img"
+                    android:layout_alignStart="@+id/details_area_text"
+                    android:layout_toEndOf="@+id/details_area_img"
+                    android:text="Bedroom" />
+
+                <TextView
+                    android:id="@+id/details_bedroom_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/details_bedroom_text"
+                    android:layout_alignStart="@+id/details_area_text"
+                    android:layout_marginStart="4dp"
+                    android:text="8" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/details_icon_padding"
+                    android:src="@drawable/baseline_place_black_36" />
+
+            </RelativeLayout>
 
         </LinearLayout>
 
-    </HorizontalScrollView>
+    </RelativeLayout>
 
-    <TextView
-        android:id="@+id/details_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/details_scrollview_media"
-        tools:text="Description" />
-
-    <TextView
-        android:id="@+id/details_description_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/details_description"
-        tools:text="Description Text" />
-
-
-</RelativeLayout>
+</ScrollView>
