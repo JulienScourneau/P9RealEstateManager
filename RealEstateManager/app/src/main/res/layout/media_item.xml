@@ -4,12 +4,12 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="8dp">
+    android:padding="@dimen/padding_linear_layout">
 
     <ImageView
         android:id="@+id/media_item_image"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="@dimen/media_item"
+        android:layout_height="@dimen/media_item"
         app:srcCompat="@mipmap/ic_launcher" />
 
 </LinearLayout>

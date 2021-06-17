@@ -3,18 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp">
+    android:layout_margin="@dimen/property_item_margin">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp"
-        >
+        android:padding="@dimen/property_item_padding">
 
         <ImageView
             android:id="@+id/property_item_image"
-            android:layout_width="62dp"
-            android:layout_height="62dp"
+            android:layout_width="@dimen/property_image_width"
+            android:layout_height="@dimen/property_image_height"
             android:layout_alignParentStart="true"
             android:contentDescription="@string/property_image"
             android:src="@mipmap/ic_launcher"
@@ -25,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/property_item_image"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="@dimen/property_text_marginStart"
             android:layout_toEndOf="@+id/property_item_image"
             android:text="fake_category"
             tools:text="Fake_category" />
@@ -35,9 +34,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/property_item_category"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="@dimen/property_text_marginStart"
             android:layout_toEndOf="@+id/property_item_image"
-            android:text="fake_type"
+            android:text="fake_Location"
             tools:text="Fake_location" />
 
         <TextView
@@ -45,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/property_item_location"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="@dimen/property_text_marginStart"
             android:layout_toEndOf="@+id/property_item_image"
             android:text="fake_type"
             tools:text="Fake_price" />

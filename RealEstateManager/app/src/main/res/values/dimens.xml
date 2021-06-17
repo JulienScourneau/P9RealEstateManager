@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- MEDIA ITEM RESOURCES -->
+    <dimen name="media_item">60dp</dimen>
+    <dimen name="padding_linear_layout">8dp</dimen>
+
+    <!-- MAIN ACTIVITY RESOURCES -->
+    <dimen name="padding_recyclerview">4dp</dimen>
+
+    <!-- PROPERTY DETAILS RESOURCES -->
+    <dimen name="text_size_title">20sp</dimen>
+    <dimen name="details_icon_padding">2dp</dimen>
+    <dimen name="padding_layout_details">8dp</dimen>
+    <dimen name="margin_image_details">8dp</dimen>
+    <dimen name="margin_media_text">4dp</dimen>
+    <dimen name="scrollView_width">0dp</dimen>
+    <dimen name="scrollView_height">80dp</dimen>
+    <dimen name="scrollView_media_margin">4dp</dimen>
+    <dimen name="description_text_margin">4dp</dimen>
+    <dimen name="information_layout_margin">4dp</dimen>
+    <dimen name="icon_title_text_marginStart">8dp</dimen>
+    <dimen name="icon_text_marginStart">4dp</dimen>
+    <dimen name="icon_title_text_marginTop">4dp</dimen>
+
+    <!-- PROPERTY ITEM RESOURCES -->
+    <dimen name="property_item_margin">4dp</dimen>
+    <dimen name="property_item_padding">8dp</dimen>
+    <dimen name="property_image_width">62dp</dimen>
+    <dimen name="property_image_height">62dp</dimen>
+    <dimen name="property_text_marginStart">8dp</dimen>
+
+</resources>

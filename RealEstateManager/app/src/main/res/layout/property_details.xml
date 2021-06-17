@@ -2,20 +2,21 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:id="@+id/relative_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:padding="@dimen/padding_layout_details">
 
         <ImageView
             android:id="@+id/details_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_margin="8dp"
+            android:layout_margin="@dimen/margin_image_details"
+            android:contentDescription="@string/property_image"
             android:src="@mipmap/ic_launcher"
             tools:srcCompat="@mipmap/ic_launcher" />
 
@@ -59,19 +60,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/details_image"
-            android:layout_margin="4dp"
-            android:text="Media"
-            android:textSize="@dimen/text_size_20sp"
+            android:layout_margin="@dimen/margin_media_text"
+            android:text="@string/media_text"
+            android:textSize="@dimen/text_size_title"
             android:textStyle="bold" />
 
         <HorizontalScrollView
             android:id="@+id/details_scrollview_media"
-            android:layout_width="0dp"
-            android:layout_height="80dp"
+            android:layout_width="@dimen/scrollView_width"
+            android:layout_height="@dimen/scrollView_height"
             android:layout_below="@id/details_media_text"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_margin="4dp">
+            android:layout_margin="@dimen/scrollView_media_margin">
 
             <LinearLayout
                 android:id="@+id/gallery"
@@ -87,11 +88,10 @@
             android:id="@+id/details_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/details_scrollview_media"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
-            android:text="Description"
-            android:textSize="@dimen/text_size_20sp"
+            android:layout_below="@+id/global_information"
+            android:layout_margin="4dp"
+            android:text="@string/description_text_details"
+            android:textSize="@dimen/text_size_title"
             android:textStyle="bold" />
 
         <TextView
@@ -99,22 +99,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/details_description"
-            android:layout_margin="4dp"
+            android:layout_margin="@dimen/description_text_margin"
             android:text="@string/descriptions_text" />
 
         <LinearLayout
+            android:id="@+id/global_information"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/details_description_text"
-            android:layout_margin="4dp"
+            android:layout_below="@+id/details_scrollview_media"
+            android:layout_margin="@dimen/information_layout_margin"
             android:baselineAligned="false"
-            android:gravity="center"
             android:orientation="horizontal">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="3">
+                android:layout_weight="1">
 
                 <ImageView
                     android:id="@+id/details_area_img"
@@ -127,7 +127,7 @@
                     android:id="@+id/details_area_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="@dimen/icon_title_text_marginStart"
                     android:layout_toEndOf="@+id/details_area_img"
                     android:text="Surface" />
 
@@ -137,8 +137,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/details_area_text"
                     android:layout_alignStart="@+id/details_area_text"
-                    android:layout_marginStart="4dp"
-                    android:text="8" />
+                    android:layout_marginStart="@dimen/icon_text_marginStart"
+                    android:text="600 m²" />
 
                 <ImageView
                     android:id="@+id/details_room_img"
@@ -152,8 +152,9 @@
                     android:id="@+id/details_room_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/details_area_img"
+                    android:layout_below="@id/details_area_data"
                     android:layout_alignStart="@+id/details_area_text"
+                    android:layout_marginTop="@dimen/icon_title_text_marginTop"
                     android:layout_toEndOf="@+id/details_area_img"
                     android:text="Room" />
 
@@ -163,14 +164,14 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/details_room_text"
                     android:layout_alignStart="@+id/details_area_text"
-                    android:layout_marginStart="4dp"
-                    android:text="8" />
+                    android:layout_marginStart="@dimen/icon_text_marginStart"
+                    android:text="6" />
 
                 <ImageView
                     android:id="@+id/details_bathroom_img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/details_room_img"
+                    android:layout_below="@+id/details_room_data"
                     android:padding="@dimen/details_icon_padding"
                     android:src="@drawable/baseline_hot_tub_black_36" />
 
@@ -178,8 +179,9 @@
                     android:id="@+id/details_bathroom_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/details_room_img"
+                    android:layout_below="@id/details_room_data"
                     android:layout_alignStart="@+id/details_area_text"
+                    android:layout_marginTop="@dimen/icon_title_text_marginTop"
                     android:layout_toEndOf="@+id/details_area_img"
                     android:text="Bathroom" />
 
@@ -189,14 +191,14 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/details_bathroom_text"
                     android:layout_alignStart="@+id/details_area_text"
-                    android:layout_marginStart="4dp"
-                    android:text="8" />
+                    android:layout_marginStart="@dimen/icon_text_marginStart"
+                    android:text="1" />
 
                 <ImageView
                     android:id="@+id/details_bedroom_img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/details_bathroom_img"
+                    android:layout_below="@+id/details_bathroom_data"
                     android:padding="@dimen/details_icon_padding"
                     android:src="@drawable/baseline_hotel_black_36" />
 
@@ -204,8 +206,9 @@
                     android:id="@+id/details_bedroom_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/details_bathroom_img"
+                    android:layout_below="@id/details_bathroom_data"
                     android:layout_alignStart="@+id/details_area_text"
+                    android:layout_marginTop="4dp"
                     android:layout_toEndOf="@+id/details_area_img"
                     android:text="Bedroom" />
 
@@ -215,21 +218,123 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/details_bedroom_text"
                     android:layout_alignStart="@+id/details_area_text"
-                    android:layout_marginStart="4dp"
-                    android:text="8" />
+                    android:layout_marginStart="@dimen/icon_text_marginStart"
+                    android:text="2" />
+
+                <ImageView
+                    android:id="@+id/details_sale_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/details_bedroom_data"
+                    android:padding="@dimen/details_icon_padding"
+                    android:src="@drawable/baseline_event_black_36" />
+
+                <TextView
+                    android:id="@+id/details_sale_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/details_bedroom_data"
+                    android:layout_alignStart="@+id/details_area_text"
+                    android:layout_marginTop="@dimen/icon_title_text_marginTop"
+                    android:layout_toEndOf="@+id/details_area_img"
+                    android:text="On sale since:" />
+
+                <TextView
+                    android:id="@+id/details_sale_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/details_sale_text"
+                    android:layout_alignStart="@+id/details_area_text"
+                    android:layout_marginStart="@dimen/icon_text_marginStart"
+                    android:text="00/00/00" />
 
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="2">
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
 
                 <ImageView
+                    android:id="@+id/details_location_img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/details_icon_padding"
                     android:src="@drawable/baseline_place_black_36" />
+
+                <TextView
+                    android:id="@+id/details_location_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/icon_title_text_marginStart"
+                    android:layout_toEndOf="@+id/details_location_img"
+                    android:text="@string/location_text"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/details_location_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/details_location_text"
+                    android:layout_alignStart="@+id/details_location_text"
+                    android:layout_marginStart="@dimen/icon_text_marginStart"
+                    android:text="@string/location_data" />
+
+                <ImageView
+                    android:id="@+id/details_poe_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/details_location_data"
+                    android:padding="@dimen/details_icon_padding"
+                    android:src="@drawable/baseline_local_activity_black_36" />
+
+                <TextView
+                    android:id="@+id/details_poe_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/details_location_data"
+                    android:layout_marginStart="@dimen/icon_title_text_marginStart"
+                    android:layout_marginTop="@dimen/icon_title_text_marginTop"
+                    android:layout_toEndOf="@+id/details_poe_img"
+                    android:text="Points of interest"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/details_poe_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/details_poe_text"
+                    android:layout_alignStart="@+id/details_location_text"
+                    android:layout_marginStart="@dimen/icon_text_marginStart"
+                    android:text="Fake point" />
+
+                <ImageView
+                    android:id="@+id/details_contact_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/details_poe_data"
+                    android:padding="@dimen/details_icon_padding"
+                    android:src="@drawable/baseline_person_black_36" />
+
+                <TextView
+                    android:id="@+id/details_contact_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/details_poe_data"
+                    android:layout_marginStart="@dimen/icon_title_text_marginStart"
+                    android:layout_marginTop="@dimen/icon_title_text_marginTop"
+                    android:layout_toEndOf="@+id/details_poe_img"
+                    android:text="Contact"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/details_contact_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/details_contact_text"
+                    android:layout_alignStart="@+id/details_location_text"
+                    android:layout_marginStart="@dimen/icon_text_marginStart"
+                    android:text="000.000.000" />
 
             </RelativeLayout>
 

@@ -31,10 +31,11 @@ class MainActivity : AppCompatActivity(), PropertyAdapter.OnItemClickListener {
     }
 
     override fun onItemClick(position: Int) {
-        val intent = Intent(this, SecondActivity::class.java)
-        startActivity(intent)
+        setContentView(R.layout.property_details)
+        prepopulateScrollView()
 
         Toast.makeText(this, "Click: $position", Toast.LENGTH_SHORT).show()
+
     }
 
     private fun generateDummyList(size: Int): ArrayList<PropertyItem> {
@@ -47,6 +48,27 @@ class MainActivity : AppCompatActivity(), PropertyAdapter.OnItemClickListener {
         }
 
         return list
+    }
+
+    private fun prepopulateScrollView() {
+        val gallery: LinearLayout = findViewById(R.id.gallery)
+
+        val inflater = LayoutInflater.from(this)
+
+        for (i in 0 until 3) {
+            val view = inflater.inflate(R.layout.media_item, gallery, false)
+
+            val drawable = when (i % 3) {
+                0 -> R.drawable.image_unavailable
+                1 -> R.drawable.baseline_home_black_48
+                else -> R.drawable.baseline_hotel_black_48
+            }
+
+            val imageView: ImageView = view.findViewById(R.id.media_item_image)
+            imageView.setImageResource(drawable)
+
+            gallery.addView(view)
+        }
     }
 
 }
