@@ -1,15 +1,16 @@
 package com.openclassrooms.realestatemanager
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import kotlinx.android.synthetic.main.property_details.*
 
 
 class MainActivity : AppCompatActivity(), PropertyAdapter.OnItemClickListener {
@@ -17,6 +18,8 @@ class MainActivity : AppCompatActivity(), PropertyAdapter.OnItemClickListener {
     private lateinit var recyclerView: RecyclerView
     private val testList = generateDummyList(20)
     private val adapter = PropertyAdapter(testList, this)
+    private lateinit var images: ArrayList<Int>
+    private lateinit var mediaAdapter: MediaAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,8 +34,7 @@ class MainActivity : AppCompatActivity(), PropertyAdapter.OnItemClickListener {
     }
 
     override fun onItemClick(position: Int) {
-        setContentView(R.layout.property_details)
-        prepopulateScrollView()
+        setupViewPager()
 
         Toast.makeText(this, "Click: $position", Toast.LENGTH_SHORT).show()
 
@@ -42,33 +44,33 @@ class MainActivity : AppCompatActivity(), PropertyAdapter.OnItemClickListener {
         val list = ArrayList<PropertyItem>()
 
         for (i in 0 until size) {
-            val drawable = R.mipmap.ic_launcher
-            val item = PropertyItem(drawable, "Fake category: $i", "fake category: $i", "fake price: $i")
+
+            val drawable = R.drawable.house
+            val item = PropertyItem(
+                drawable,
+                "Fake category: $i with longer text",
+                "fake category: $i",
+                "fake price: $i"
+            )
             list += item
         }
 
         return list
     }
 
-    private fun prepopulateScrollView() {
-        val gallery: LinearLayout = findViewById(R.id.gallery)
+    private fun setupViewPager(){
+        setContentView(R.layout.property_details)
+        images = ArrayList()
 
-        val inflater = LayoutInflater.from(this)
+        images.add(R.drawable.house)
+        images.add(R.drawable.bleu)
+        images.add(R.drawable.rouge)
+        images.add(R.drawable.orange)
+        images.add(R.drawable.vert)
 
-        for (i in 0 until 3) {
-            val view = inflater.inflate(R.layout.media_item, gallery, false)
+        mediaAdapter = MediaAdapter(this,images)
+        viewpager.adapter = mediaAdapter
 
-            val drawable = when (i % 3) {
-                0 -> R.drawable.image_unavailable
-                1 -> R.drawable.baseline_home_black_48
-                else -> R.drawable.baseline_hotel_black_48
-            }
-
-            val imageView: ImageView = view.findViewById(R.id.media_item_image)
-            imageView.setImageResource(drawable)
-
-            gallery.addView(view)
-        }
     }
 
 }

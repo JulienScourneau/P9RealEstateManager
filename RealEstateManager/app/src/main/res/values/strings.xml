@@ -4,6 +4,9 @@
     <!-- PROPERTY ITEM RESOURCES -->
     <string name="property_image">property_image</string>
 
+    <!-- MEDIA ITEM RESOURCES -->
+    <string name="media_image">media_image</string>
+
     <!-- PROPERTY DETAILS RESOURCES -->
     <string name="descriptions_text">Anchored by a bast marble gallery with sweeping staircase, the entertaining floor includes a baronial living room facing Park Avenue,
         handsome library with original paneling, and tremendous dining room; all of which enjoy fireplaces.
@@ -14,5 +17,6 @@
     <string name="location_text">Location</string>
     <string name="media_text">Media</string>
     <string name="description_text_details">Description</string>
+
 
 </resources>

@@ -1,32 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/property_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/property_item_margin">
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginBottom="4dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/property_item_padding">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/property_item_image"
-            android:layout_width="@dimen/property_image_width"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/property_image_height"
             android:layout_alignParentStart="true"
+            android:layout_marginStart="2dp"
             android:contentDescription="@string/property_image"
             android:src="@mipmap/ic_launcher"
-            tools:srcCompat="@mipmap/ic_launcher" />
+            android:scaleType="centerCrop"/>
 
         <TextView
             android:id="@+id/property_item_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/property_item_image"
-            android:layout_marginStart="@dimen/property_text_marginStart"
-            android:layout_toEndOf="@+id/property_item_image"
-            android:text="fake_category"
+            android:layout_below="@id/property_item_image"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/property_text_margin"
+            android:textSize="16sp"
             tools:text="Fake_category" />
 
         <TextView
@@ -34,9 +39,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/property_item_category"
-            android:layout_marginStart="@dimen/property_text_marginStart"
-            android:layout_toEndOf="@+id/property_item_image"
-            android:text="fake_Location"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/property_text_margin"
+            android:textSize="16sp"
             tools:text="Fake_location" />
 
         <TextView
@@ -44,9 +50,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/property_item_location"
-            android:layout_marginStart="@dimen/property_text_marginStart"
-            android:layout_toEndOf="@+id/property_item_image"
-            android:text="fake_type"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/property_text_margin"
+            android:textSize="16sp"
             tools:text="Fake_price" />
 
     </RelativeLayout>
