@@ -1,10 +1,11 @@
-package com.openclassrooms.realestatemanager
+package com.openclassrooms.realestatemanager.view
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.PagerAdapter
+import com.openclassrooms.realestatemanager.R
 import kotlinx.android.synthetic.main.media_item.view.*
 
 class MediaAdapter(private val context: Context, private val mediaList: ArrayList<Int>) :

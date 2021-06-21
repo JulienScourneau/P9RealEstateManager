@@ -1,4 +1,4 @@
-package com.openclassrooms.realestatemanager
+package com.openclassrooms.realestatemanager.view
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,14 +6,17 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.openclassrooms.realestatemanager.models.PropertyItem
+import com.openclassrooms.realestatemanager.R
 
 class PropertyAdapter(
-        private val propertyList: List<PropertyItem>,
-        private val listener: OnItemClickListener
+    private val propertyList: List<PropertyItem>,
+    private val listener: OnItemClickListener
 ) : RecyclerView.Adapter<PropertyAdapter.PropertyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PropertyViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.property_item,
+        val itemView = LayoutInflater.from(parent.context).inflate(
+            R.layout.property_item,
                 parent, false)
 
         return PropertyViewHolder(itemView)
