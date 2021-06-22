@@ -7,7 +7,7 @@
     <!-- MAIN ACTIVITY RESOURCES -->
     <dimen name="padding_recyclerview">4dp</dimen>
 
-    <!-- PROPERTY DETAILS RESOURCES -->
+    <!-- ESTATE DETAILS RESOURCES -->
     <dimen name="text_size_title">20sp</dimen>
     <dimen name="details_icon_padding">2dp</dimen>
     <dimen name="padding_layout_details">8dp</dimen>
@@ -22,9 +22,9 @@
     <dimen name="icon_text_marginStart">4dp</dimen>
     <dimen name="icon_title_text_marginTop">4dp</dimen>
 
-    <!-- PROPERTY ITEM RESOURCES -->
-    <dimen name="property_item_margin">4dp</dimen>
-    <dimen name="property_image_height">120dp</dimen>
-    <dimen name="property_text_margin">4dp</dimen>
+    <!-- ESTATE ITEM RESOURCES -->
+    <dimen name="estate_item_margin">4dp</dimen>
+    <dimen name="estate_image_height">120dp</dimen>
+    <dimen name="estate_text_margin">4dp</dimen>
 
 </resources>

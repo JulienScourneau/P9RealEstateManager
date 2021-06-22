@@ -7,12 +7,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.models.PropertyItem
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.estate_list.*
-import kotlinx.android.synthetic.main.property_details.*
 
 class ListFragment : Fragment(), EstateAdapter.OnItemClickListener {
 

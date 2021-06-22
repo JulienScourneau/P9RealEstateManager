@@ -6,29 +6,27 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.openclassrooms.realestatemanager.models.PropertyItem
 import com.openclassrooms.realestatemanager.R
-import kotlin.coroutines.coroutineContext
 
 class EstateAdapter(
     private val propertyList: List<PropertyItem>,
     private val listener: OnItemClickListener,
     private val context: Context
-) : RecyclerView.Adapter<EstateAdapter.PropertyViewHolder>() {
+) : RecyclerView.Adapter<EstateAdapter.EstateViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PropertyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EstateViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(
-            R.layout.property_item,
+            R.layout.estate_item,
             parent, false
         )
 
-        return PropertyViewHolder(itemView)
+        return EstateViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: PropertyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: EstateViewHolder, position: Int) {
         val currentItem = propertyList[position]
 
         holder.propertyImage.setImageResource(currentItem.imageResource)
@@ -47,7 +45,7 @@ class EstateAdapter(
     override fun getItemCount() = propertyList.size
 
 
-    inner class PropertyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
+    inner class EstateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnClickListener {
         val propertyImage: ImageView = itemView.findViewById(R.id.property_item_image)
         val categoryText: TextView = itemView.findViewById(R.id.property_item_category)

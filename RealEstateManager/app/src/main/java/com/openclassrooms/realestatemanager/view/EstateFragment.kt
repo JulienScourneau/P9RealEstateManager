@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.openclassrooms.realestatemanager.R
-import kotlinx.android.synthetic.main.property_details.*
+import kotlinx.android.synthetic.main.estate_details.*
 
 class EstateFragment : Fragment() {
 
@@ -18,7 +18,7 @@ class EstateFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.property_details, container, false)
+        return inflater.inflate(R.layout.estate_details, container, false)
 
     }
 
