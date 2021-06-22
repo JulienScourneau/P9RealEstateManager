@@ -9,10 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.openclassrooms.realestatemanager.models.PropertyItem
 import com.openclassrooms.realestatemanager.R
 
-class PropertyAdapter(
+class EstateAdapter(
     private val propertyList: List<PropertyItem>,
     private val listener: OnItemClickListener
-) : RecyclerView.Adapter<PropertyAdapter.PropertyViewHolder>() {
+) : RecyclerView.Adapter<EstateAdapter.PropertyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PropertyViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(
