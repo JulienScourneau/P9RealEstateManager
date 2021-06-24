@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.openclassrooms.realestatemanager.R
+import com.openclassrooms.realestatemanager.databinding.EstateItemBinding
 import com.openclassrooms.realestatemanager.models.Estate
 import com.openclassrooms.realestatemanager.view.EstateFragment
 
@@ -19,44 +20,39 @@ class EstateAdapter(
 ) : RecyclerView.Adapter<EstateAdapter.EstateViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EstateViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(
-            R.layout.estate_item,
-            parent, false
-        )
+        val binding = EstateItemBinding
+            .inflate(LayoutInflater.from(parent.context), parent, false)
 
-        return EstateViewHolder(itemView)
+        return EstateViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: EstateViewHolder, position: Int) {
-        val currentItem = estateList[position]
+        with(holder) {
+            with(estateList[position]) {
+                binding.propertyItemImage.setImageResource(this.photos[0])
+                binding.propertyItemCategory.text = this.category
+                binding.propertyItemLocation.text = this.address.street
+                binding.propertyItemPrice.text = this.price
 
-        holder.propertyImage.setImageResource(currentItem.photos[0])
-        holder.categoryText.text = currentItem.category
-        holder.locationText.text = currentItem.address.street
-        holder.priceText.text = currentItem.price
-
-        holder.itemView.setOnClickListener {
-            val activity = context as AppCompatActivity
-            val fragment = EstateFragment()
-            activity.supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, fragment).commit()
+                holder.itemView.setOnClickListener {
+                    val activity = context as AppCompatActivity
+                    val fragment = EstateFragment()
+                    activity.supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, fragment).commit()
+                }
+            }
         }
+
 
     }
 
     override fun getItemCount() = estateList.size
 
 
-    inner class EstateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
+    inner class EstateViewHolder(val binding: EstateItemBinding) :
+        RecyclerView.ViewHolder(binding.root),
         View.OnClickListener {
-        val propertyImage: ImageView = itemView.findViewById(R.id.property_item_image)
-        val categoryText: TextView = itemView.findViewById(R.id.property_item_category)
-        val locationText: TextView = itemView.findViewById(R.id.property_item_location)
-        val priceText: TextView = itemView.findViewById(R.id.property_item_price)
 
-        init {
-            itemView.setOnClickListener(this)
-        }
 
         override fun onClick(v: View?) {
             val position: Int = absoluteAdapterPosition
