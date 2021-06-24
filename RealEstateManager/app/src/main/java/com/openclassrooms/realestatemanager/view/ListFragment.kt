@@ -9,22 +9,20 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.TestList
-import com.openclassrooms.realestatemanager.models.PropertyItem
+import com.openclassrooms.realestatemanager.databinding.EstateListBinding
 import com.openclassrooms.realestatemanager.view.adapter.EstateAdapter
-import kotlinx.android.synthetic.main.estate_list.*
 
 class ListFragment : Fragment(), EstateAdapter.OnItemClickListener {
 
-    private val testList = generateDummyList(20)
-
+    private var binding: EstateListBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-
-        return inflater.inflate(R.layout.estate_list, container, false)
+    ): View {
+        binding = EstateListBinding.inflate(inflater, container, false)
+        return binding!!.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,28 +31,10 @@ class ListFragment : Fragment(), EstateAdapter.OnItemClickListener {
     }
 
     private fun setUpRecyclerview() {
-        recyclerview.adapter = EstateAdapter(TestList.getTestList, this, requireContext())
-        recyclerview.layoutManager = LinearLayoutManager(context)
-        recyclerview.setHasFixedSize(true)
+        binding!!.recyclerview.adapter = EstateAdapter(TestList.getTestList, this, requireContext())
+        binding!!.recyclerview.layoutManager = LinearLayoutManager(context)
+        binding!!.recyclerview.setHasFixedSize(true)
 
-    }
-
-    private fun generateDummyList(size: Int): ArrayList<PropertyItem> {
-        val list = ArrayList<PropertyItem>()
-
-        for (i in 0 until size) {
-
-            val drawable = R.drawable.house
-            val item = PropertyItem(
-                drawable,
-                "Fake category: $i with longer text",
-                "fake category: $i",
-                "fake price: $i"
-            )
-            list += item
-        }
-
-        return list
     }
 
     override fun onItemClick(position: Int) {
@@ -62,5 +42,4 @@ class ListFragment : Fragment(), EstateAdapter.OnItemClickListener {
         Toast.makeText(context, "Click: $position", Toast.LENGTH_SHORT).show()
 
     }
-
 }

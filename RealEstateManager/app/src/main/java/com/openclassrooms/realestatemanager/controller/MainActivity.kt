@@ -3,17 +3,19 @@ package com.openclassrooms.realestatemanager.controller
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.openclassrooms.realestatemanager.R
+import com.openclassrooms.realestatemanager.databinding.ActivityMainBinding
 import com.openclassrooms.realestatemanager.view.ListFragment
-import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
 
     private val fm = supportFragmentManager
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         displayListFragment(ListFragment())
         initView()
@@ -21,7 +23,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initView() {
-        setSupportActionBar(toolbar)
+        setSupportActionBar(binding.toolbar)
     }
 
     private fun displayListFragment(fragment: ListFragment) {

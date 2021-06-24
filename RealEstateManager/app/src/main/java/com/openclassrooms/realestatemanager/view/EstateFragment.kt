@@ -6,20 +6,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.openclassrooms.realestatemanager.R
+import com.openclassrooms.realestatemanager.databinding.EstateDetailsBinding
 import com.openclassrooms.realestatemanager.view.adapter.MediaAdapter
-import kotlinx.android.synthetic.main.estate_details.*
 
 class EstateFragment : Fragment() {
 
     private lateinit var mediaAdapter: MediaAdapter
     private var images: ArrayList<Int> = ArrayList()
+    private var binding: EstateDetailsBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.estate_details, container, false)
+    ): View {
+        binding = EstateDetailsBinding.inflate(inflater, container, false)
+        return binding!!.root
 
     }
 
@@ -37,8 +39,11 @@ class EstateFragment : Fragment() {
         images.add(R.drawable.orange)
         images.add(R.drawable.vert)
 
-        viewpager.adapter = mediaAdapter
-
+        binding?.viewpager?.adapter = mediaAdapter
     }
 
+    override fun onDestroyView() {
+        binding = null
+        super.onDestroyView()
+    }
 }
