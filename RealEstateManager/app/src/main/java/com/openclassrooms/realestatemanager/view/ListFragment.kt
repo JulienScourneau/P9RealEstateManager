@@ -8,7 +8,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.openclassrooms.realestatemanager.R
+import com.openclassrooms.realestatemanager.TestList
 import com.openclassrooms.realestatemanager.models.PropertyItem
+import com.openclassrooms.realestatemanager.view.adapter.EstateAdapter
 import kotlinx.android.synthetic.main.estate_list.*
 
 class ListFragment : Fragment(), EstateAdapter.OnItemClickListener {
@@ -31,7 +33,7 @@ class ListFragment : Fragment(), EstateAdapter.OnItemClickListener {
     }
 
     private fun setUpRecyclerview() {
-        recyclerview.adapter = EstateAdapter(testList, this, requireContext())
+        recyclerview.adapter = EstateAdapter(TestList.getTestList, this, requireContext())
         recyclerview.layoutManager = LinearLayoutManager(context)
         recyclerview.setHasFixedSize(true)
 

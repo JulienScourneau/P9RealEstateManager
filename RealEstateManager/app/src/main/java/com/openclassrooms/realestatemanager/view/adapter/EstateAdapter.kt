@@ -1,4 +1,4 @@
-package com.openclassrooms.realestatemanager.view
+package com.openclassrooms.realestatemanager.view.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,11 +8,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.openclassrooms.realestatemanager.models.PropertyItem
 import com.openclassrooms.realestatemanager.R
+import com.openclassrooms.realestatemanager.models.Estate
+import com.openclassrooms.realestatemanager.view.EstateFragment
 
 class EstateAdapter(
-    private val propertyList: List<PropertyItem>,
+    private val estateList: ArrayList<Estate>,
     private val listener: OnItemClickListener,
     private val context: Context
 ) : RecyclerView.Adapter<EstateAdapter.EstateViewHolder>() {
@@ -27,22 +28,23 @@ class EstateAdapter(
     }
 
     override fun onBindViewHolder(holder: EstateViewHolder, position: Int) {
-        val currentItem = propertyList[position]
+        val currentItem = estateList[position]
 
-        holder.propertyImage.setImageResource(currentItem.imageResource)
+        holder.propertyImage.setImageResource(currentItem.photos[0])
         holder.categoryText.text = currentItem.category
-        holder.locationText.text = currentItem.location
+        holder.locationText.text = currentItem.address.street
         holder.priceText.text = currentItem.price
 
         holder.itemView.setOnClickListener {
             val activity = context as AppCompatActivity
-            val fragment= EstateFragment()
-            activity.supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit()
+            val fragment = EstateFragment()
+            activity.supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragment).commit()
         }
 
     }
 
-    override fun getItemCount() = propertyList.size
+    override fun getItemCount() = estateList.size
 
 
     inner class EstateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),

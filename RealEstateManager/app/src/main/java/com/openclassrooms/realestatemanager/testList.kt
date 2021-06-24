@@ -6,8 +6,16 @@ import kotlin.collections.ArrayList
 
 
 object TestList {
-    private val photos = mutableListOf<Int>(
+    private val photosApartment = mutableListOf(
         R.drawable.apartment,
+        R.drawable.living_room,
+        R.drawable.kitchen,
+        R.drawable.bathroom,
+        R.drawable.bedroom
+    )
+
+    private val photosHouse = mutableListOf(
+        R.drawable.house,
         R.drawable.living_room,
         R.drawable.kitchen,
         R.drawable.bathroom,
@@ -18,8 +26,15 @@ object TestList {
         Address(100, "Fake Street", "Additional Address", "Fake Country", "000000")
 
     private val estateList = mutableListOf<Estate>(
-        Estate(photos, "Fake_category 1", "700 000 €", "Fake Description", 600, 8, 1, 2, address),
-        Estate(photos, "Fake Category 2", "800 000 €", "Fake_Description", 800, 9, 2, 3, address)
+        Estate(photosApartment, "Fake_category 1", "700 000 €", "Fake Description", 600, 8, 1, 2, address),
+        Estate(photosHouse, "Fake Category 2", "800 000 €", "Fake_Description", 800, 9, 2, 3, address),
+        Estate(photosApartment, "Fake_category 3", "707 000 €", "Fake Description", 600, 8, 1, 2, address),
+        Estate(photosHouse, "Fake Category 4", "990 000 €", "Fake_Description", 800, 9, 2, 3, address),
+        Estate(photosApartment, "Fake_category 5", "550 000 €", "Fake Description", 600, 8, 1, 2, address),
+        Estate(photosHouse, "Fake Category 6", "650 000 €", "Fake_Description", 800, 9, 2, 3, address),
+        Estate(photosApartment, "Fake_category 7", "500 000 €", "Fake Description", 600, 8, 1, 2, address),
+        Estate(photosHouse, "Fake Category 8", "900 000 €", "Fake_Description", 800, 9, 2, 3, address)
+
     )
     val getTestList: ArrayList<Estate>
         get() = ArrayList(estateList)

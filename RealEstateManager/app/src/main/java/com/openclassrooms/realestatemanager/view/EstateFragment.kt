@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.openclassrooms.realestatemanager.R
+import com.openclassrooms.realestatemanager.view.adapter.MediaAdapter
 import kotlinx.android.synthetic.main.estate_details.*
 
 class EstateFragment : Fragment() {
