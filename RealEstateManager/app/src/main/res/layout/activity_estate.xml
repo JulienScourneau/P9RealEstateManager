@@ -1,11 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".controller.EstateActivity">
 
+    <TextView
+        android:id="@+id/category_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Categorie" />
 
+    <Spinner
+        android:id="@+id/category_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/category_text" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <View
+        android:id="@+id/divider_line_category"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/category_spinner"
+        android:layout_margin="12dp"
+        android:background="@android:color/darker_gray" />
+
+    <TextView
+        android:id="@+id/address_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/divider_line_category"
+        android:text="Adresse" />
+
+    <EditText
+        android:id="@+id/address_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/address_text" />
+
+    <View
+        android:id="@+id/top_address_divider"
+        style="@style/Divider"
+        android:layout_below="@+id/address_edit_text" />
+
+    <TextView
+        android:id="@+id/street_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/top_address_divider"
+        android:text="Rue" />
+
+    <EditText
+        android:id="@+id/street_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/street_text" />
+
+    <TextView
+        android:id="@+id/number_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/street_edit_text"
+        android:text="Numéro" />
+
+    <EditText
+        android:id="@+id/number_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/number_text" />
+
+    <TextView
+        android:id="@+id/city_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/number_edit_text"
+        android:text="Ville" />
+
+    <EditText
+        android:id="@+id/city_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/city_text" />
+
+    <TextView
+        android:id="@+id/country_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/city_edit_text"
+        android:text="Pays" />
+
+    <EditText
+        android:id="@+id/country_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/country_text" />
+
+    <TextView
+        android:id="@+id/postal_code_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/country_edit_text"
+        android:text="Code Postal" />
+
+    <EditText
+        android:id="@+id/postal_code_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/postal_code_text" />
+
+    <View
+        android:id="@+id/bottom_address_divider"
+        style="@style/Divider"
+        android:layout_below="@+id/postal_code_edit_text" />
+
+    <TextView
+        android:id="@+id/price_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bottom_address_divider"
+        android:text="Prix" />
+
+    <EditText
+        android:id="@+id/price_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/price_text" />
+
+    <View
+        android:id="@+id/price_divider"
+        style="@style/Divider"
+        android:layout_below="@+id/price_edit_text" />
+
+    <TextView
+        android:id="@+id/area_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/price_divider"
+        android:text="Surface" />
+
+    <EditText
+        android:id="@+id/area_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/area_text" />
+
+    <View
+        android:id="@+id/area_divider"
+        style="@style/Divider"
+        android:layout_below="@+id/area_edit_text" />
+
+    <TextView
+        android:id="@+id/room_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/area_edit_text"
+        android:text="Pièce" />
+
+    <EditText
+        android:id="@+id/room_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/room_text" />
+
+    <View
+        android:id="@+id/room_divider"
+        style="@style/Divider"
+        android:layout_below="@+id/room_edit_text" />
+
+    <TextView
+        android:id="@+id/bathroom_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/room_divider"
+        android:text="Salle de bain" />
+
+    <EditText
+        android:id="@+id/bathroom_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bathroom_text" />
+
+    <View
+        android:id="@+id/bathroom_divider"
+        style="@style/Divider"
+        android:layout_below="@+id/bathroom_edit_text" />
+
+    <TextView
+        android:id="@+id/bedroom_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bathroom_divider"
+        android:text="Chambre" />
+
+    <EditText
+        android:id="@+id/bedroom_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bedroom_text" />
+
+</RelativeLayout>

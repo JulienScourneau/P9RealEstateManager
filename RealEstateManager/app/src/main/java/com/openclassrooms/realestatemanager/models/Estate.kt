@@ -5,7 +5,7 @@ class Estate(
     var category: String,
     var price: String,
     var description: String,
-    var surface: Int,
+    var area: Int,
     var room: Int,
     var bathrooms: Int,
     var bedrooms: Int,

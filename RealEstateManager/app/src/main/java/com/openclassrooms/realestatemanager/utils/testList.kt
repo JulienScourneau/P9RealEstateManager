@@ -1,5 +1,6 @@
-package com.openclassrooms.realestatemanager
+package com.openclassrooms.realestatemanager.utils
 
+import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.models.Address
 import com.openclassrooms.realestatemanager.models.Estate
 import kotlin.collections.ArrayList
@@ -23,7 +24,7 @@ object TestList {
     )
 
     private val address =
-        Address(100, "Fake Street", "Additional Address", "Fake Country", "000000")
+        Address(100, "Fake Street", "Fake City", "Fake Country", "000000")
 
     private val estateList = mutableListOf<Estate>(
         Estate(photosApartment, "Fake_category 1", "700 000 €", "Fake Description", 600, 8, 1, 2, address),
