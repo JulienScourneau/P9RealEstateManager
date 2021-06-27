@@ -2,7 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary">
 
     <RelativeLayout
         android:id="@+id/relative_layout"
@@ -18,13 +19,14 @@
 
         <LinearLayout
             android:id="@+id/linear_layout"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/viewpager"
             android:layout_alignParentStart="true"
-            android:layout_margin="8dp"
+            android:layout_margin="4dp"
+            android:background="@drawable/rounded_corner"
             android:orientation="vertical"
-            android:padding="4dp">
+            android:padding="8dp">
 
             <TextView
                 android:id="@+id/details_type"
@@ -60,8 +62,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/linear_layout"
             android:layout_margin="@dimen/information_layout_margin"
+            android:background="@drawable/rounded_corner"
             android:baselineAligned="false"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="8dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -210,28 +214,39 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/details_description"
+        <LinearLayout
+            android:id="@id/details_description_layout"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/global_information"
-            android:layout_margin="4dp"
-            android:text="@string/description_text_details"
-            android:textSize="@dimen/text_size_title"
-            android:textStyle="bold" />
+            android:layout_height="match_parent"
+            android:layout_below="@id/global_information"
+            android:layout_margin="@dimen/information_layout_margin"
+            android:background="@drawable/rounded_corner"
+            android:orientation="vertical"
+            android:padding="4dp">
 
-        <TextView
-            android:id="@+id/details_description_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/details_description"
-            android:layout_margin="@dimen/description_text_margin"
-            android:text="@string/descriptions_text" />
+            <TextView
+                android:id="@+id/details_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="@string/description_text_details"
+                android:textSize="@dimen/text_size_title"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/details_description_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/description_text_margin"
+                android:text="@string/descriptions_text" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/details_description_text">
+            android:layout_below="@+id/details_description_layout"
+            android:background="@drawable/rounded_corner">
 
             <ImageView
                 android:id="@+id/details_sale_img"
@@ -318,7 +333,6 @@
 
 
         </LinearLayout>
-
 
     </RelativeLayout>
 

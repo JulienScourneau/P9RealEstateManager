@@ -13,7 +13,7 @@ import com.openclassrooms.realestatemanager.view.adapter.EstateAdapter
 
 class ListFragment : Fragment(), EstateAdapter.OnItemClickListener {
 
-    private var binding: EstateListBinding? = null
+    private lateinit var binding: EstateListBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,7 +21,7 @@ class ListFragment : Fragment(), EstateAdapter.OnItemClickListener {
         savedInstanceState: Bundle?
     ): View {
         binding = EstateListBinding.inflate(inflater, container, false)
-        return binding!!.root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -30,9 +30,9 @@ class ListFragment : Fragment(), EstateAdapter.OnItemClickListener {
     }
 
     private fun setUpRecyclerview() {
-        binding!!.recyclerview.adapter = EstateAdapter(TestList.getTestList, this, requireContext())
-        binding!!.recyclerview.layoutManager = LinearLayoutManager(context)
-        binding!!.recyclerview.setHasFixedSize(true)
+        binding.recyclerview.adapter = EstateAdapter(TestList.getTestList, this, requireContext())
+        binding.recyclerview.layoutManager = LinearLayoutManager(context)
+        binding.recyclerview.setHasFixedSize(true)
 
     }
 

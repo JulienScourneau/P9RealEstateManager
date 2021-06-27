@@ -13,7 +13,7 @@ class EstateFragment : Fragment() {
 
     private lateinit var mediaAdapter: MediaAdapter
     private var images: ArrayList<Int> = ArrayList()
-    private var binding: EstateDetailsBinding? = null
+    private lateinit var binding: EstateDetailsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,7 +21,7 @@ class EstateFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = EstateDetailsBinding.inflate(inflater, container, false)
-        return binding!!.root
+        return binding.root
 
     }
 
@@ -29,6 +29,7 @@ class EstateFragment : Fragment() {
 
         mediaAdapter = MediaAdapter(requireContext(), images)
         setupViewPager()
+
     }
 
     private fun setupViewPager() {
@@ -39,11 +40,8 @@ class EstateFragment : Fragment() {
         images.add(R.drawable.orange)
         images.add(R.drawable.vert)
 
-        binding?.viewpager?.adapter = mediaAdapter
+        binding.viewpager.adapter = mediaAdapter
     }
 
-    override fun onDestroyView() {
-        binding = null
-        super.onDestroyView()
-    }
+
 }

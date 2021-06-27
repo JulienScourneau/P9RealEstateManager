@@ -1,6 +1,8 @@
 package com.openclassrooms.realestatemanager.controller
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.databinding.ActivityMainBinding
@@ -24,6 +26,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun initView() {
         setSupportActionBar(binding.toolbar)
+        binding.floatingActionButton.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this, EstateActivity::class.java)
+            startActivity(intent)
+        })
     }
 
     private fun displayListFragment(fragment: ListFragment) {
