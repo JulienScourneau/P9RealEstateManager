@@ -1,6 +1,6 @@
 package com.openclassrooms.realestatemanager.models
 
-class Estate(
+data class Estate(
     var photos: List<Int>,
     var category: String,
     var price: String,

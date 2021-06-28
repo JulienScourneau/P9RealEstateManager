@@ -1,11 +1,8 @@
 package com.openclassrooms.realestatemanager.controller
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
-import com.openclassrooms.realestatemanager.R
+import androidx.appcompat.app.AppCompatActivity
 import com.openclassrooms.realestatemanager.databinding.ActivityEstateBinding
-import com.openclassrooms.realestatemanager.databinding.EstateListBinding
 
 class EstateActivity : AppCompatActivity() {
 

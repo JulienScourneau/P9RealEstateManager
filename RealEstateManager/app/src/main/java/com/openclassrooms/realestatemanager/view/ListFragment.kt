@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.openclassrooms.realestatemanager.utils.TestList
@@ -30,7 +29,7 @@ class ListFragment : Fragment(), EstateAdapter.OnItemClickListener {
     }
 
     private fun setUpRecyclerview() {
-        binding.recyclerview.adapter = EstateAdapter(TestList.getTestList, this, requireContext())
+        binding.recyclerview.adapter = EstateAdapter(TestList.getTestList, this)
         binding.recyclerview.layoutManager = LinearLayoutManager(context)
         binding.recyclerview.setHasFixedSize(true)
 
@@ -38,7 +37,7 @@ class ListFragment : Fragment(), EstateAdapter.OnItemClickListener {
 
     override fun onItemClick(position: Int) {
 
-        Toast.makeText(context, "Click: $position", Toast.LENGTH_SHORT).show()
+
 
     }
 }
