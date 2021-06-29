@@ -37,7 +37,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun displayListFragment() {
         listFragment = ListFragment()
-        fm.beginTransaction().add(R.id.fragment_container_main, listFragment).commit()
+        fm.beginTransaction()
+            .replace(R.id.fragment_container_main, listFragment)
+            .setReorderingAllowed(true)
+
+            .commit()
 
     }
 
