@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.databinding.EstateDetailsBinding
@@ -14,6 +15,7 @@ class EstateFragment : Fragment() {
     private lateinit var mediaAdapter: MediaAdapter
     private var images: ArrayList<Int> = ArrayList()
     private lateinit var binding: EstateDetailsBinding
+    private lateinit var fragmentContainer: LinearLayout
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,6 +29,7 @@ class EstateFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
+
         mediaAdapter = MediaAdapter(requireContext(), images)
         setupViewPager()
 
@@ -35,10 +38,10 @@ class EstateFragment : Fragment() {
     private fun setupViewPager() {
 
         images.add(R.drawable.house)
-        images.add(R.drawable.bleu)
-        images.add(R.drawable.rouge)
-        images.add(R.drawable.orange)
-        images.add(R.drawable.vert)
+        images.add(R.drawable.kitchen)
+        images.add(R.drawable.bathroom)
+        images.add(R.drawable.bedroom)
+        images.add(R.drawable.living_room)
 
         binding.viewpager.adapter = mediaAdapter
     }
