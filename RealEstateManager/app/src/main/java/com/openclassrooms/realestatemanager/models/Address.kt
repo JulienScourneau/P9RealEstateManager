@@ -1,6 +1,6 @@
 package com.openclassrooms.realestatemanager.models
 
-class Address(
+data class Address(
     var number: Int,
     var street: String,
     var city: String,

@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun displayListFragment() {
 
-        //binding.fragmentContainerDetails?.visibility = View.GONE
+        //binding.fragmentContainerDetails?.visibility = View.INVISIBLE
         listFragment = ListFragment()
         fm.beginTransaction()
             .replace(R.id.fragment_container_main, listFragment)
