@@ -26,7 +26,7 @@ object TestList {
     private val address =
         Address(100, "Fake Street", "Fake City", "Fake Country", "000000")
 
-    private val estateList = mutableListOf<Estate>(
+    private val estateList = mutableListOf(
         Estate(0,photosApartment, "Fake_category 1", "700 000 €", "Fake Description", 600, 8, 1, 2, address),
         Estate(1,photosHouse, "Fake Category 2", "800 000 €", "Fake_Description", 800, 9, 2, 3, address),
         Estate(2,photosApartment, "Fake_category 3", "707 000 €", "Fake Description", 600, 8, 1, 2, address),
