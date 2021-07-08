@@ -10,7 +10,7 @@ import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.databinding.EstateDetailsBinding
 import com.openclassrooms.realestatemanager.view.adapter.MediaAdapter
 
-class EstateFragment : Fragment() {
+class EstateFragment : Fragment(R.layout.estate_details) {
 
     private lateinit var mediaAdapter: MediaAdapter
     private var images: ArrayList<Int> = ArrayList()

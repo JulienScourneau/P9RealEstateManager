@@ -1,14 +1,19 @@
 package com.openclassrooms.realestatemanager.viewmodel
 
 import androidx.lifecycle.*
-import com.openclassrooms.realestatemanager.models.Estate
+import com.openclassrooms.realestatemanager.data.Estate
 import com.openclassrooms.realestatemanager.repository.EstateRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.lang.IllegalArgumentException
+import javax.inject.Inject
 
-class EstateViewModel(private val repository: EstateRepository) : ViewModel() {
+@HiltViewModel
+class EstateViewModel @Inject constructor(
+    private val repository: EstateRepository
+) : ViewModel() {
 
-    val allEstate: LiveData<ArrayList<Estate>> = repository.allEstate.asLiveData()
+    val allEstate: LiveData<List<Estate>> = repository.allEstate.asLiveData()
 
     fun insert(estate: Estate) = viewModelScope.launch {
         repository.insert(estate)
@@ -22,14 +27,4 @@ class EstateViewModel(private val repository: EstateRepository) : ViewModel() {
         repository.delete(estate)
     }
 
-    class EstateViewModelFactory(private val repository: EstateRepository) :
-        ViewModelProvider.Factory {
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(EstateViewModel::class.java)) {
-                @Suppress("UNCHECKED_CAST")
-                return EstateViewModel(repository) as T
-            }
-            throw  IllegalArgumentException("Unknown ViewModel class")
-        }
-    }
 }

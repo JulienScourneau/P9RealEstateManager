@@ -1,14 +1,14 @@
-package com.openclassrooms.realestatemanager.database
+package com.openclassrooms.realestatemanager.data
 
 import androidx.room.*
-import com.openclassrooms.realestatemanager.models.Estate
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface EstateDao {
 
+    @Transaction
     @Query("SELECT * FROM estate_table")
-    fun getEstateList(): Flow<ArrayList<Estate>>
+    fun getEstateList(): Flow<List<Estate>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(estate: Estate)
@@ -16,7 +16,7 @@ interface EstateDao {
     @Update
     suspend fun update(estate: Estate)
 
-    @Delete
-    suspend fun delete(estate: Estate)
+    @Query("DELETE FROM estate_table WHERE id = :estateId")
+    suspend fun delete(estateId: Int)
 
 }

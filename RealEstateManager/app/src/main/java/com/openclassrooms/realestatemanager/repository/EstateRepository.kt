@@ -1,12 +1,13 @@
 package com.openclassrooms.realestatemanager.repository
 
-import com.openclassrooms.realestatemanager.database.EstateDao
-import com.openclassrooms.realestatemanager.models.Estate
+import com.openclassrooms.realestatemanager.data.EstateDao
+import com.openclassrooms.realestatemanager.data.Estate
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class EstateRepository(private val estateDao: EstateDao) {
+class EstateRepository @Inject constructor(private val estateDao: EstateDao) {
 
-    val allEstate: Flow<ArrayList<Estate>> = estateDao.getEstateList()
+    val allEstate: Flow<List<Estate>> = estateDao.getEstateList()
 
     suspend fun insert(estate: Estate) {
         estateDao.insert(estate)
@@ -17,6 +18,6 @@ class EstateRepository(private val estateDao: EstateDao) {
     }
 
     suspend fun delete(estate: Estate) {
-        estateDao.delete(estate)
+        estateDao.delete(estate.id)
     }
 }
