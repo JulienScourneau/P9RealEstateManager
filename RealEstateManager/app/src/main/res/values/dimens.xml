@@ -9,6 +9,9 @@
     <dimen name="floating_action_button_margin">20dp</dimen>
 
     <!-- ESTATE DETAILS RESOURCES -->
+    <dimen name="estate_details_viewpager">160dp</dimen>
+    <dimen name="estate_details_linearlayout_margin">12dp</dimen>
+
     <dimen name="text_size_title">20sp</dimen>
     <dimen name="details_icon_padding">2dp</dimen>
     <dimen name="padding_layout_details">8dp</dimen>
@@ -18,15 +21,16 @@
     <dimen name="scrollView_height">80dp</dimen>
     <dimen name="scrollView_media_margin">4dp</dimen>
     <dimen name="description_text_margin">4dp</dimen>
-    <dimen name="information_layout_margin">4dp</dimen>
     <dimen name="icon_title_text_marginStart">8dp</dimen>
     <dimen name="icon_text_marginStart">4dp</dimen>
     <dimen name="icon_title_text_marginTop">4dp</dimen>
 
     <!-- ESTATE ITEM RESOURCES -->
     <dimen name="estate_item_margin">4dp</dimen>
-    <dimen name="estate_image_height">120dp</dimen>
-    <dimen name="estate_text_margin">4dp</dimen>
+    <dimen name="estate_item_image_height">120dp</dimen>
+    <dimen name="estate_item_text_margin_start">8dp</dimen>
+    <dimen name="estate_item_text_margin_top_bottom">4dp</dimen>
+
 
 
 </resources>

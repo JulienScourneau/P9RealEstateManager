@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.openclassrooms.realestatemanager.databinding.ActivityEstateBinding
 
-class EstateActivity : AppCompatActivity() {
+class AddEditEstateActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityEstateBinding
     override fun onCreate(savedInstanceState: Bundle?) {

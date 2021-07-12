@@ -5,4 +5,6 @@
     <color name="colorSecondary">#5AB7E7</color>
     <color name="colorSecondaryDark">#267cbc</color>
     <color name="colorAccent">#ff5833</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
 </resources>

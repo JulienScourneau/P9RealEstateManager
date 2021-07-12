@@ -14,325 +14,348 @@
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
-            android:layout_height="160dp" />
+            android:layout_height="@dimen/estate_details_viewpager" />
 
-
-        <LinearLayout
-            android:id="@+id/linear_layout"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/viewpager"
-            android:layout_alignParentStart="true"
-            android:layout_margin="4dp"
-            android:background="@drawable/rounded_corner"
-            android:orientation="vertical"
-            android:padding="8dp">
+            android:layout_margin="12dp">
 
-            <TextView
-                android:id="@+id/details_type"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Maison"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/details_location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp"
-                android:layout_weight="1"
-                android:text="Bruxelles"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/details_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="599 500 €"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/global_information"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/linear_layout"
-            android:layout_margin="@dimen/information_layout_margin"
-            android:background="@drawable/rounded_corner"
-            android:baselineAligned="false"
-            android:orientation="horizontal"
-            android:padding="8dp">
-
-            <RelativeLayout
+            <LinearLayout
+                android:id="@+id/linear_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
-
-                <ImageView
-                    android:id="@+id/details_area_img"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/details_icon_padding"
-                    android:src="@drawable/baseline_settings_overscan_black_24" />
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="@dimen/estate_details_linearlayout_margin"
+                android:background="@drawable/rounded_corner"
+                android:orientation="vertical"
+                android:padding="8dp">
 
                 <TextView
-                    android:id="@+id/details_area_text"
+                    android:id="@+id/details_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/icon_title_text_marginStart"
-                    android:layout_toEndOf="@+id/details_area_img"
-                    android:text="Surface" />
+                    android:layout_weight="1"
+                    android:text="Maison"
 
-                <TextView
-                    android:id="@+id/details_area_data"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/details_area_text"
-                    android:layout_alignStart="@+id/details_area_text"
-                    android:layout_marginStart="@dimen/icon_text_marginStart"
-                    android:text="600 m²" />
-
-                <ImageView
-                    android:id="@+id/details_room_img"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/details_area_data"
-                    android:padding="@dimen/details_icon_padding"
-                    android:src="@drawable/baseline_home_black_24" />
-
-                <TextView
-                    android:id="@+id/details_room_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/details_area_data"
-                    android:layout_alignStart="@+id/details_area_text"
-                    android:layout_marginTop="@dimen/icon_title_text_marginTop"
-                    android:layout_toEndOf="@+id/details_area_img"
-                    android:text="Room" />
-
-                <TextView
-                    android:id="@+id/details_room_data"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/details_room_text"
-                    android:layout_alignStart="@+id/details_area_text"
-                    android:layout_marginStart="@dimen/icon_text_marginStart"
-                    android:text="6" />
-
-                <ImageView
-                    android:id="@+id/details_bathroom_img"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/details_room_data"
-                    android:padding="@dimen/details_icon_padding"
-                    android:src="@drawable/baseline_hot_tub_black_24" />
-
-                <TextView
-                    android:id="@+id/details_bathroom_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/details_room_data"
-                    android:layout_alignStart="@+id/details_area_text"
-                    android:layout_marginTop="@dimen/icon_title_text_marginTop"
-                    android:layout_toEndOf="@+id/details_area_img"
-                    android:text="Bathroom" />
-
-                <TextView
-                    android:id="@+id/details_bathroom_data"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/details_bathroom_text"
-                    android:layout_alignStart="@+id/details_area_text"
-                    android:layout_marginStart="@dimen/icon_text_marginStart"
-                    android:text="1" />
-
-                <ImageView
-                    android:id="@+id/details_bedroom_img"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/details_bathroom_data"
-                    android:padding="@dimen/details_icon_padding"
-                    android:src="@drawable/baseline_hotel_black_24" />
-
-                <TextView
-                    android:id="@+id/details_bedroom_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/details_bathroom_data"
-                    android:layout_alignStart="@+id/details_area_text"
-                    android:layout_marginTop="4dp"
-                    android:layout_toEndOf="@+id/details_area_img"
-                    android:text="Bedroom" />
-
-                <TextView
-                    android:id="@+id/details_bedroom_data"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/details_bedroom_text"
-                    android:layout_alignStart="@+id/details_area_text"
-                    android:layout_marginStart="@dimen/icon_text_marginStart"
-                    android:text="2" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-
-                <ImageView
-                    android:id="@+id/details_location_img"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/details_icon_padding"
-                    android:src="@drawable/baseline_place_black_36" />
-
-                <TextView
-                    android:id="@+id/details_location_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/icon_title_text_marginStart"
-                    android:layout_toEndOf="@+id/details_location_img"
-                    android:text="@string/location_text"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/details_location_data"
+                    android:id="@+id/details_location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/details_location_text"
-                    android:layout_alignStart="@+id/details_location_text"
-                    android:layout_marginStart="@dimen/icon_text_marginStart"
-                    android:text="@string/location_data" />
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_weight="1"
+                    android:text="Bruxelles"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/details_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="599 500 €"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
 
-            </RelativeLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@id/details_description_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_below="@id/global_information"
-            android:layout_margin="@dimen/information_layout_margin"
-            android:background="@drawable/rounded_corner"
-            android:orientation="vertical"
-            android:padding="4dp">
-
-            <TextView
-                android:id="@+id/details_description"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/global_information"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:text="@string/description_text_details"
-                android:textSize="@dimen/text_size_title"
-                android:textStyle="bold" />
+                android:layout_below="@+id/linear_layout"
+                android:layout_marginBottom="@dimen/estate_details_linearlayout_margin"
+                android:background="@drawable/rounded_corner"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:padding="8dp">
 
-            <TextView
-                android:id="@+id/details_description_text"
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/details_area_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/details_icon_padding"
+                        android:src="@drawable/baseline_settings_overscan_black_24" />
+
+                    <TextView
+                        android:id="@+id/details_area_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/icon_title_text_marginStart"
+                        android:layout_toEndOf="@+id/details_area_img"
+                        android:text="Surface"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/details_area_data"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/details_area_text"
+                        android:layout_alignStart="@+id/details_area_text"
+                        android:layout_marginStart="@dimen/icon_text_marginStart"
+                        android:text="600 m²" />
+
+                    <ImageView
+                        android:id="@+id/details_room_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/details_area_data"
+                        android:padding="@dimen/details_icon_padding"
+                        android:src="@drawable/baseline_home_black_24" />
+
+                    <TextView
+                        android:id="@+id/details_room_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/details_area_data"
+                        android:layout_alignStart="@+id/details_area_text"
+                        android:layout_marginTop="@dimen/icon_title_text_marginTop"
+                        android:layout_toEndOf="@+id/details_area_img"
+                        android:text="Room"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/details_room_data"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/details_room_text"
+                        android:layout_alignStart="@+id/details_area_text"
+                        android:layout_marginStart="@dimen/icon_text_marginStart"
+                        android:text="6" />
+
+                    <ImageView
+                        android:id="@+id/details_bathroom_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/details_room_data"
+                        android:padding="@dimen/details_icon_padding"
+                        android:src="@drawable/baseline_hot_tub_black_24" />
+
+                    <TextView
+                        android:id="@+id/details_bathroom_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/details_room_data"
+                        android:layout_alignStart="@+id/details_area_text"
+                        android:layout_marginTop="@dimen/icon_title_text_marginTop"
+                        android:layout_toEndOf="@+id/details_area_img"
+                        android:text="Bathroom"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/details_bathroom_data"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/details_bathroom_text"
+                        android:layout_alignStart="@+id/details_area_text"
+                        android:layout_marginStart="@dimen/icon_text_marginStart"
+                        android:text="1" />
+
+                    <ImageView
+                        android:id="@+id/details_bedroom_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/details_bathroom_data"
+                        android:padding="@dimen/details_icon_padding"
+                        android:src="@drawable/baseline_hotel_black_24" />
+
+                    <TextView
+                        android:id="@+id/details_bedroom_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/details_bathroom_data"
+                        android:layout_alignStart="@+id/details_area_text"
+                        android:layout_marginTop="4dp"
+                        android:layout_toEndOf="@+id/details_area_img"
+                        android:text="Bedroom"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/details_bedroom_data"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/details_bedroom_text"
+                        android:layout_alignStart="@+id/details_area_text"
+                        android:layout_marginStart="@dimen/icon_text_marginStart"
+                        android:text="2" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/details_location_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/details_icon_padding"
+                        android:src="@drawable/baseline_place_black_24" />
+
+                    <TextView
+                        android:id="@+id/details_location_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/icon_title_text_marginStart"
+                        android:layout_toEndOf="@+id/details_location_img"
+                        android:text="@string/location_text"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/details_location_data"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/details_location_text"
+                        android:layout_alignStart="@+id/details_location_text"
+                        android:layout_marginStart="@dimen/icon_text_marginStart"
+                        android:text="@string/location_data" />
+
+                    <ImageView
+                        android:id="@+id/details_contact_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/details_location_data"
+                        android:padding="@dimen/details_icon_padding"
+                        android:src="@drawable/baseline_person_black_24" />
+
+                    <TextView
+                        android:id="@+id/details_contact_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/details_location_data"
+                        android:layout_marginStart="@dimen/icon_title_text_marginStart"
+                        android:layout_marginTop="@dimen/icon_title_text_marginTop"
+                        android:layout_toEndOf="@+id/details_contact_img"
+                        android:text="Contact"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/details_contact_data"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/details_contact_text"
+                        android:layout_alignStart="@+id/details_contact_text"
+                        android:layout_marginStart="@dimen/icon_text_marginStart"
+                        android:text="000.000.000" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@id/details_description_layout"
                 android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_below="@id/global_information"
+                android:layout_marginBottom="@dimen/estate_details_linearlayout_margin"
+                android:background="@drawable/rounded_corner"
+                android:orientation="vertical"
+                android:padding="4dp">
+
+                <TextView
+                    android:id="@+id/details_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:text="@string/description_text_details"
+                    android:textSize="@dimen/text_size_title"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/details_description_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/description_text_margin"
+                    android:text="@string/descriptions_text" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/description_text_margin"
-                android:text="@string/descriptions_text" />
+                android:layout_below="@+id/details_description_layout"
 
-        </LinearLayout>
+                android:background="@drawable/rounded_corner"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/details_description_layout"
-            android:background="@drawable/rounded_corner">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
 
-            <ImageView
-                android:id="@+id/details_sale_img"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/details_bedroom_data"
-                android:padding="@dimen/details_icon_padding"
-                android:src="@drawable/baseline_event_black_36" />
+                    <ImageView
+                        android:id="@+id/details_sale_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/details_icon_padding"
+                        android:src="@drawable/baseline_event_black_24" />
 
-            <TextView
-                android:id="@+id/details_sale_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/details_bedroom_data"
-                android:layout_alignStart="@+id/details_area_text"
-                android:layout_marginTop="@dimen/icon_title_text_marginTop"
-                android:layout_toEndOf="@+id/details_area_img"
-                android:text="On sale since:" />
+                    <TextView
+                        android:id="@+id/details_sale_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/estate_item_text_margin_start"
+                        android:layout_marginTop="@dimen/icon_title_text_marginTop"
+                        android:layout_toEndOf="@+id/details_sale_img"
+                        android:text="On sale since:"
+                        android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/details_sale_data"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/details_sale_text"
-                android:layout_alignStart="@+id/details_area_text"
-                android:layout_marginStart="@dimen/icon_text_marginStart"
-                android:text="00/00/00" />
+                    <TextView
+                        android:id="@+id/details_sale_data"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/details_sale_text"
+                        android:layout_alignStart="@+id/details_sale_text"
+                        android:layout_marginStart="@dimen/icon_text_marginStart"
+                        android:text="00/00/00" />
 
-            <ImageView
-                android:id="@+id/details_poe_img"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/details_location_data"
-                android:padding="@dimen/details_icon_padding"
-                android:src="@drawable/baseline_local_activity_black_36" />
+                </RelativeLayout>
 
-            <TextView
-                android:id="@+id/details_poe_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/details_location_data"
-                android:layout_marginStart="@dimen/icon_title_text_marginStart"
-                android:layout_marginTop="@dimen/icon_title_text_marginTop"
-                android:layout_toEndOf="@+id/details_poe_img"
-                android:text="Points of interest"
-                android:textStyle="bold" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
 
-            <TextView
-                android:id="@+id/details_poe_data"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/details_poe_text"
-                android:layout_alignStart="@+id/details_location_text"
-                android:layout_marginStart="@dimen/icon_text_marginStart"
-                android:text="Fake point" />
+                    <ImageView
+                        android:id="@+id/details_poe_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/details_icon_padding"
+                        android:src="@drawable/baseline_local_activity_black_24" />
 
-            <ImageView
-                android:id="@+id/details_contact_img"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/details_poe_data"
-                android:padding="@dimen/details_icon_padding"
-                android:src="@drawable/baseline_person_black_36" />
+                    <TextView
+                        android:id="@+id/details_poe_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/icon_title_text_marginStart"
+                        android:layout_marginTop="@dimen/icon_title_text_marginTop"
+                        android:layout_toEndOf="@+id/details_poe_img"
+                        android:text="Points of interest"
+                        android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/details_contact_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/details_poe_data"
-                android:layout_marginStart="@dimen/icon_title_text_marginStart"
-                android:layout_marginTop="@dimen/icon_title_text_marginTop"
-                android:layout_toEndOf="@+id/details_poe_img"
-                android:text="Contact"
-                android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/details_poe_data"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/details_poe_text"
+                        android:layout_alignStart="@+id/details_poe_text"
+                        android:layout_marginStart="@dimen/icon_text_marginStart"
+                        android:text="Fake point" />
 
-            <TextView
-                android:id="@+id/details_contact_data"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/details_contact_text"
-                android:layout_alignStart="@+id/details_location_text"
-                android:layout_marginStart="@dimen/icon_text_marginStart"
-                android:text="000.000.000" />
+                </RelativeLayout>
 
 
-        </LinearLayout>
+            </LinearLayout>
+
+        </RelativeLayout>
 
     </RelativeLayout>
 

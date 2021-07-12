@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorSecondary"
-    android:padding="12dp"
-    tools:context=".controller.EstateActivity">
+    tools:context=".controller.AddEditEstateActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="12dp"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -46,14 +46,17 @@
                 android:id="@+id/address_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Adresse" />
+                android:text="Adresse"
+                android:textSize="@dimen/text_size_title"
+                android:textStyle="bold" />
 
 
             <View
-                android:layout_margin="4dp"
                 android:id="@+id/top_address_divider"
                 style="@style/Divider"
-                android:layout_below="@+id/address_text" />
+                android:layout_below="@+id/address_text"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp" />
 
             <TextView
                 android:id="@+id/street_text"
@@ -124,8 +127,11 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/rounded_corner"
             android:padding="12dp">
 

@@ -4,7 +4,8 @@
     android:id="@+id/property_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="8dp">
+    android:layout_marginBottom="8dp"
+    android:background="@drawable/rounded_corner">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -13,7 +14,7 @@
         <ImageView
             android:id="@+id/property_item_image"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/estate_image_height"
+            android:layout_height="@dimen/estate_item_image_height"
             android:layout_alignParentStart="true"
             android:contentDescription="@string/property_image"
             android:scaleType="centerCrop"
@@ -26,8 +27,14 @@
             android:layout_below="@id/property_item_image"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_margin="@dimen/estate_text_margin"
-            android:textSize="16sp"
+            android:layout_marginStart="@dimen/estate_item_text_margin_start"
+            android:layout_marginTop="@dimen/estate_item_text_margin_top_bottom"
+            android:layout_marginBottom="@dimen/estate_item_text_margin_top_bottom"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textSize="18sp"
             tools:text="Fake_category" />
 
         <TextView
@@ -37,8 +44,14 @@
             android:layout_below="@id/property_item_category"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_margin="@dimen/estate_text_margin"
-            android:textSize="16sp"
+            android:layout_marginStart="@dimen/estate_item_text_margin_start"
+            android:layout_marginTop="@dimen/estate_item_text_margin_top_bottom"
+            android:layout_marginBottom="@dimen/estate_item_text_margin_top_bottom"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textSize="18sp"
             tools:text="Fake_location" />
 
         <TextView
@@ -48,8 +61,15 @@
             android:layout_below="@id/property_item_location"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_margin="@dimen/estate_text_margin"
-            android:textSize="16sp"
+            android:layout_marginStart="@dimen/estate_item_text_margin_start"
+            android:layout_marginTop="@dimen/estate_item_text_margin_top_bottom"
+            android:layout_marginBottom="@dimen/estate_item_text_margin_top_bottom"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
             tools:text="Fake_price" />
 
     </RelativeLayout>

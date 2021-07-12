@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.openclassrooms.realestatemanager.controller.MainActivity">
+    tools:context="com.openclassrooms.realestatemanager.view.ListFragment">
 
     <androidx.recyclerview.widget.RecyclerView
 
@@ -11,8 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:paddingStart="4dp"
-        android:paddingEnd="4dp"
+        android:padding="8dp"
         tools:listitem="@layout/estate_item" />
 
 </LinearLayout>

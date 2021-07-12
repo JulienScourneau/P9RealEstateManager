@@ -25,20 +25,24 @@ object TestList {
 
     private val address =
         Address(100, "Fake Street", "Fake City", "Fake Country", 123456)
+    private val address1 =
+        Address(100, "New Street", "New City", "New Country", 654321)
+    private val address2 =
+        Address(100, "Super Street", "Super City", "Super Country", 456123)
 
-    private val estateList = mutableListOf(
-        Estate("Fake_category 1", "700 000 €", "Fake Description", 600, 8, 1, 2, address),
-        Estate("Fake Category 2", "800 000 €", "Fake_Description", 800, 9, 2, 3, address),
-        Estate("Fake_category 3", "707 000 €", "Fake Description", 600, 8, 1, 2, address),
-        Estate("Fake Category 4", "990 000 €", "Fake_Description", 800, 9, 2, 3, address),
-        Estate("Fake_category 5", "550 000 €", "Fake Description", 600, 8, 1, 2, address),
-        Estate("Fake Category 6", "650 000 €", "Fake_Description", 800, 9, 2, 3, address),
-        Estate("Fake_category 7", "500 000 €", "Fake Description", 600, 8, 1, 2, address),
-        Estate("Fake Category 8", "900 000 €", "Fake_Description", 800, 9, 2, 3, address)
-
-    )
-    val getTestList: ArrayList<Estate>
-        get() = ArrayList(estateList)
+    //private val estateList = mutableListOf(
+    //    Estate("Fake_category 1", "700 000 €", "Fake Description", 600, 8, 1, 2, address),
+    //    Estate("Fake Category 2", "800 000 €", "Fake_Description", 800, 9, 2, 3, address),
+    //    Estate("Fake_category 3", "707 000 €", "Fake Description", 600, 8, 1, 2, address),
+    //    Estate("Fake Category 4", "990 000 €", "Fake_Description", 800, 9, 2, 3, address),
+    //    Estate("Fake_category 5", "550 000 €", "Fake Description", 600, 8, 1, 2, address),
+    //    Estate("Fake Category 6", "650 000 €", "Fake_Description", 800, 9, 2, 3, address),
+    //    Estate("Fake_category 7", "500 000 €", "Fake Description", 600, 8, 1, 2, address),
+    //    Estate("Fake Category 8", "900 000 €", "Fake_Description", 800, 9, 2, 3, address)
+//
+    //)
+    //val getTestList: ArrayList<Estate>
+    //    get() = ArrayList(estateList)
 
     val getApartmentPhoto: ArrayList<Int>
         get() = ArrayList(photosApartment)
@@ -48,6 +52,12 @@ object TestList {
 
     val getAddress: Address
         get() = address
+
+    val getAddress1: Address
+        get() = address1
+
+    val getAddress2: Address
+        get() = address2
 }
 
 

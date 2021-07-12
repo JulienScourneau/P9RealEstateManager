@@ -14,25 +14,15 @@ class EstateFragment : Fragment(R.layout.estate_details) {
 
     private lateinit var mediaAdapter: MediaAdapter
     private var images: ArrayList<Int> = ArrayList()
-    private lateinit var binding: EstateDetailsBinding
     private lateinit var fragmentContainer: LinearLayout
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = EstateDetailsBinding.inflate(inflater, container, false)
-        return binding.root
-
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
+        val binding = EstateDetailsBinding.bind(view)
 
         mediaAdapter = MediaAdapter(requireContext(), images)
         setupViewPager()
-
+        binding.viewpager.adapter = mediaAdapter
     }
 
     private fun setupViewPager() {
@@ -43,7 +33,7 @@ class EstateFragment : Fragment(R.layout.estate_details) {
         images.add(R.drawable.bedroom)
         images.add(R.drawable.living_room)
 
-        binding.viewpager.adapter = mediaAdapter
+
     }
 
 

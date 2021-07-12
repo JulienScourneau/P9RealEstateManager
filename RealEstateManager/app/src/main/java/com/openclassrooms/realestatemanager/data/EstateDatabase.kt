@@ -30,25 +30,25 @@ abstract class EstateDatabase : RoomDatabase() {
                     600, 8, 1, 2, TestList.getAddress))
 
                 dao.insert(Estate("Fake Category 2", "800 000 €", "Fake_Description",
-                    800, 9, 2, 3, TestList.getAddress))
+                    800, 9, 2, 3, TestList.getAddress1))
 
                 dao.insert(Estate("Fake_category 3", "707 000 €", "Fake Description",
-                    600, 8, 1, 2, TestList.getAddress))
+                    600, 8, 1, 2, TestList.getAddress2))
 
                 dao.insert(Estate("Fake Category 4", "990 000 €", "Fake_Description",
                     800, 9, 2, 3, TestList.getAddress))
 
                 dao.insert(Estate("Fake_category 5", "550 000 €", "Fake Description",
-                    600, 8, 1, 2, TestList.getAddress))
+                    600, 8, 1, 2, TestList.getAddress1))
 
                 dao.insert(Estate("Fake Category 6", "650 000 €", "Fake_Description",
-                    800, 9, 2, 3, TestList.getAddress))
+                    800, 9, 2, 3, TestList.getAddress2))
 
                 dao.insert(Estate("Fake_category 7", "500 000 €", "Fake Description",
                     600, 8, 1, 2, TestList.getAddress))
 
                 dao.insert(Estate("Fake Category 8", "900 000 €", "Fake_Description",
-                    800, 9, 2, 3, TestList.getAddress))
+                    800, 9, 2, 3, TestList.getAddress1))
             }
         }
     }

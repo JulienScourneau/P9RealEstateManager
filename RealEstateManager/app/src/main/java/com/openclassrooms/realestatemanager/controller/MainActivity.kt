@@ -2,13 +2,9 @@ package com.openclassrooms.realestatemanager.controller
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.databinding.ActivityMainBinding
-import com.openclassrooms.realestatemanager.view.EstateFragment
 import com.openclassrooms.realestatemanager.view.ListFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -29,9 +25,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initView() {
-        setSupportActionBar(binding.toolbar)
         binding.floatingActionButton.setOnClickListener {
-            val intent = Intent(this, EstateActivity::class.java)
+            val intent = Intent(this, AddEditEstateActivity::class.java)
             startActivity(intent)
         }
         displayListFragment()
@@ -39,7 +34,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun displayListFragment() {
 
-        //binding.fragmentContainerDetails?.visibility = View.INVISIBLE
         listFragment = ListFragment()
         fm.beginTransaction()
             .replace(R.id.fragment_container_main, listFragment)
