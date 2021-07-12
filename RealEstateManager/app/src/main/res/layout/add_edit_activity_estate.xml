@@ -25,13 +25,23 @@
                 android:id="@+id/category_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Catégorie" />
+                android:layout_marginBottom="4dp"
+                android:text="@string/add_edit_activity_category_text"
+                android:textSize="@dimen/text_size_title"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/category_spinner_divider"
+                style="@style/Divider"
+                android:layout_below="@+id/category_text"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp" />
 
             <Spinner
                 android:id="@+id/category_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/category_text" />
+                android:layout_below="@id/category_spinner_divider" />
 
         </RelativeLayout>
 
@@ -46,7 +56,7 @@
                 android:id="@+id/address_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Adresse"
+                android:text="@string/add_edit_activity_address_text"
                 android:textSize="@dimen/text_size_title"
                 android:textStyle="bold" />
 
@@ -63,65 +73,77 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/top_address_divider"
-                android:text="Rue" />
+                android:text="@string/add_edit_activity_street_text"
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/street_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/street_text" />
+                android:layout_below="@id/street_text"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/number_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/street_edit_text"
-                android:text="Numéro" />
+                android:text="@string/add_edit_activity_number_text"
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/number_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/number_text" />
+                android:layout_below="@+id/number_text"
+                android:inputType="number"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/city_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/number_edit_text"
-                android:text="Ville" />
+                android:text="@string/add_edit_activity_city_text"
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/city_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/city_text" />
+                android:layout_below="@+id/city_text"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/country_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/city_edit_text"
-                android:text="Pays" />
+                android:text="@string/add_edit_activity_country_text"
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/country_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/country_text" />
+                android:layout_below="@+id/country_text"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/postal_code_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/country_edit_text"
-                android:text="Code Postal" />
+                android:text="@string/add_edit_activity_postal_code_text"
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/postal_code_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/postal_code_text" />
+                android:layout_below="@id/postal_code_text"
+                android:inputType="number"
+                android:textSize="16sp" />
 
         </RelativeLayout>
 
@@ -139,69 +161,83 @@
                 android:id="@+id/price_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Prix" />
+                android:text="@string/add_edit_activity_price_text"
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/price_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/price_text" />
+                android:layout_below="@+id/price_text"
+                android:inputType="number"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/area_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/price_edit_text"
-                android:text="Surface" />
+                android:text="@string/add_edit_activity_area_text"
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/area_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/area_text" />
+                android:layout_below="@id/area_text"
+                android:inputType="number"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/room_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/area_edit_text"
-                android:text="Pièce" />
+                android:text="@string/add_edit_activity_room_text"
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/room_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/room_text" />
+                android:layout_below="@id/room_text"
+                android:inputType="number"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/bathroom_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/room_edit_text"
-                android:text="Salle de bain" />
+                android:text="@string/add_edit_activity_bathroom_text"
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/bathroom_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/bathroom_text" />
+                android:layout_below="@id/bathroom_text"
+                android:inputType="number"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/bedroom_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/bathroom_edit_text"
-                android:text="Chambre" />
+                android:text="@string/add_edit_activity_bedroom_text"
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/bedroom_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/bedroom_text" />
+                android:layout_below="@+id/bedroom_text"
+                android:inputType="number"
+                android:textSize="16sp" />
 
         </RelativeLayout>
 
     </LinearLayout>
-
 
 </ScrollView>

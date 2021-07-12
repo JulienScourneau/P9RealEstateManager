@@ -18,6 +18,19 @@
     <string name="media_text">Media</string>
     <string name="description_text_details">Description</string>
 
+    <!-- ADD EDIT ESTATE ACTIVITY RESOURCES -->
+    <string name="add_edit_activity_address_text">Adresse</string>
+    <string name="add_edit_activity_category_text">Catégorie</string>
+    <string name="add_edit_activity_street_text">Rue</string>
+    <string name="add_edit_activity_number_text">Numéro</string>
+    <string name="add_edit_activity_city_text">Ville</string>
+    <string name="add_edit_activity_country_text">Pays</string>
+    <string name="add_edit_activity_postal_code_text">Code Postal</string>
+    <string name="add_edit_activity_price_text">Prix</string>
+    <string name="add_edit_activity_area_text">Surface</string>
+    <string name="add_edit_activity_room_text">Pièce</string>
+    <string name="add_edit_activity_bathroom_text">Salle de bain</string>
+    <string name="add_edit_activity_bedroom_text">Chambre</string>
     <string-array name="category_spinner">
         <item>Appartement</item>
         <item>Maison</item>
