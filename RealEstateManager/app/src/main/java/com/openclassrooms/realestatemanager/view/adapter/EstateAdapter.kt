@@ -6,13 +6,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.databinding.EstateItemBinding
-import com.openclassrooms.realestatemanager.data.Estate
+import com.openclassrooms.realestatemanager.data.EstateWithPhoto
 
 
 class EstateAdapter(private val listener: OnItemClickListener) :
-    ListAdapter<Estate, EstateAdapter.EstateViewHolder>(DiffCallback()) {
+    ListAdapter<EstateWithPhoto, EstateAdapter.EstateViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EstateViewHolder {
         val binding = EstateItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -37,12 +38,14 @@ class EstateAdapter(private val listener: OnItemClickListener) :
             listener.onItemClick(position)
         }
 
-        fun bind(estate: Estate) {
+        fun bind(estate: EstateWithPhoto) {
+            Glide.with(itemView)
+                .load(estate.photos.first())
+                .into(binding.propertyItemImage)
             binding.apply {
-                propertyItemImage.setImageResource(R.drawable.house)
-                propertyItemCategory.text = estate.category
-                propertyItemLocation.text = estate.address.street
-                propertyItemPrice.text = estate.price
+                propertyItemCategory.text = estate.estate.category
+                propertyItemLocation.text = estate.estate.address.street
+                propertyItemPrice.text = estate.estate.price
             }
         }
     }
@@ -52,11 +55,11 @@ class EstateAdapter(private val listener: OnItemClickListener) :
         fun onItemClick(position: Int)
     }
 
-    class DiffCallback : DiffUtil.ItemCallback<Estate>() {
-        override fun areItemsTheSame(oldItem: Estate, newItem: Estate) =
-            oldItem.id == newItem.id
+    class DiffCallback : DiffUtil.ItemCallback<EstateWithPhoto>() {
+        override fun areItemsTheSame(oldItem: EstateWithPhoto, newItem: EstateWithPhoto) =
+            oldItem.estate.id == newItem.estate.id
 
-        override fun areContentsTheSame(oldItem: Estate, newItem: Estate) =
+        override fun areContentsTheSame(oldItem: EstateWithPhoto, newItem: EstateWithPhoto) =
             oldItem == newItem
     }
 
