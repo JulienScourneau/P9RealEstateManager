@@ -2,6 +2,7 @@ package com.openclassrooms.realestatemanager.utils;
 
 import android.content.Context;
 import android.net.wifi.WifiManager;
+import android.widget.Spinner;
 
 import com.openclassrooms.realestatemanager.viewmodel.EstateViewModel;
 
@@ -47,6 +48,17 @@ public class Utils {
     public static Boolean isInternetAvailable(Context context) {
         WifiManager wifi = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
         return wifi.isWifiEnabled();
+    }
+
+    public static int getIndex(Spinner spinner, String category) {
+        int index = 0;
+
+        for (int i = 0; i < spinner.getCount(); i++) {
+            if (spinner.getItemAtPosition(i).equals(category)) {
+                index = i;
+            }
+        }
+        return index;
     }
 
 }
