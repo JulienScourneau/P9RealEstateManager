@@ -24,8 +24,8 @@ data class Estate(
     var description: String,
     var area: Int,
     var room: Int,
-    var bathrooms: Int,
-    var bedrooms: Int,
+    var bathroom: Int,
+    var bedroom: Int,
     @Embedded var address: Address,
     @PrimaryKey(autoGenerate = true) val id: Int = 0
 )
