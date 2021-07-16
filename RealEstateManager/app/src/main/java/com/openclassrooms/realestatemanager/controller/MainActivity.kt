@@ -2,6 +2,7 @@ package com.openclassrooms.realestatemanager.controller
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.databinding.ActivityMainBinding
@@ -13,6 +14,7 @@ class MainActivity : AppCompatActivity() {
 
     private val fm = supportFragmentManager
     private lateinit var listFragment: ListFragment
+    private lateinit var addEditEstateFragment: AddEditEstateFragment
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,9 +27,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initView() {
+        addEditEstateFragment = AddEditEstateFragment()
         binding.floatingActionButton.setOnClickListener {
-            val intent = Intent(this, AddEditEstateActivity::class.java)
-            startActivity(intent)
+            if (!addEditEstateFragment.isVisible)
+                binding.floatingActionButton.setImageResource(R.drawable.ic_baseline_check_24)
+                if (binding.fragmentContainerDetails == null)
+                    fm.beginTransaction()
+                        .replace(R.id.fragment_container_main, addEditEstateFragment)
+                        .setReorderingAllowed(true)
+                        .addToBackStack(null)
+                        .commit()
+            Log.d("visibility", "fragment isVisible: " + addEditEstateFragment.isVisible)
         }
         displayListFragment()
     }
