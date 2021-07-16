@@ -39,9 +39,7 @@ class EstateAdapter(private val listener: OnItemClickListener) :
         }
 
         fun bind(estate: EstateWithPhoto) {
-            Glide.with(itemView)
-                .load(estate.photos.first())
-                .into(binding.propertyItemImage)
+
             binding.apply {
                 propertyItemCategory.text = estate.estate.category
                 propertyItemLocation.text = estate.estate.address.street

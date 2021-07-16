@@ -1,37 +1,83 @@
 package com.openclassrooms.realestatemanager.viewmodel
 
-import android.provider.Settings.Global.getString
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.openclassrooms.realestatemanager.R
+import com.openclassrooms.realestatemanager.data.Address
 import com.openclassrooms.realestatemanager.data.Estate
-import com.openclassrooms.realestatemanager.data.EstateDao
+import com.openclassrooms.realestatemanager.repository.EstateRepository
 import com.openclassrooms.realestatemanager.utils.ADD_ESTATE_RESULT_OK
 import dagger.assisted.Assisted
+import dagger.assisted.AssistedInject
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class AddEditEstateViewModel @Inject constructor(
-    private val estateDao: EstateDao,
-    @Assisted private val state: SavedStateHandle
+    private val repository: EstateRepository,
+    private val state: SavedStateHandle
 ) : ViewModel() {
 
     val estate = state.get<Estate>("estate")
 
-
     private fun createEstate(estate: Estate) = viewModelScope.launch {
-        estateDao.insertEstate(estate)
+        repository.insertEstate(estate)
         addEditEstateChannel.send(AddEditEstateEvent.NavigationBackWithResult(ADD_ESTATE_RESULT_OK))
     }
 
     private val addEditEstateChannel = Channel<AddEditEstateEvent>()
     val addEditEstateEvent = addEditEstateChannel.receiveAsFlow()
 
-    private fun showInvalidInputMessage ( text: String) = viewModelScope.launch {
+    private fun showInvalidInputMessage(text: String) = viewModelScope.launch {
         addEditEstateChannel.send(AddEditEstateEvent.ShowInvalidInputMessage(text))
+    }
+
+    fun onSaveClick() {
+        if (estateAddressStreet.isBlank()) {
+            showInvalidInputMessage(R.string.add_edit_estate_on_save_click_street.toString())
+            return
+        }
+
+        if (estate != null) {
+            val updateEstate = estate.copy(
+                category = estateCategory,
+                price = estatePrice,
+                description = estateDescription,
+                area = estateArea,
+                room = estateRoom,
+                bathroom = estateBathroom,
+                bedroom = estateBedroom,
+                address = Address(
+                    number = estateAddressNumber,
+                    street = estateAddressStreet,
+                    city = estateAddressCity,
+                    country = estateAddressCountry,
+                    postalCode = estateAddressPostalCode
+                )
+            )
+        } else {
+            val newEstate = Estate(
+                category = estateCategory,
+                price = estatePrice,
+                description = estateDescription,
+                area = estateArea,
+                room = estateRoom,
+                bathroom = estateBathroom,
+                bedroom = estateBedroom,
+                address = Address(
+                    number = estateAddressNumber,
+                    street = estateAddressStreet,
+                    city = estateAddressCity,
+                    country = estateAddressCountry,
+                    postalCode = estateAddressPostalCode
+                )
+            )
+            createEstate(newEstate)
+        }
     }
 
     sealed class AddEditEstateEvent {
@@ -39,11 +85,6 @@ class AddEditEstateViewModel @Inject constructor(
         data class NavigationBackWithResult(val result: Int) : AddEditEstateEvent()
     }
 
-    fun onSaveClick() {
-        if (estateAddressStreet.isBlank()) {
-            showInvalidInputMessage(R.string.AddEditEstateOnSaveClick.toString())
-        }
-    }
 
     var estateCategory = state.get<String>("estateCategory") ?: estate?.category ?: ""
         set(value) {
@@ -91,28 +132,34 @@ class AddEditEstateViewModel @Inject constructor(
             state.set("estatePrice", value)
         }
 
-    var estateArea = state.get<Int>("estateArea") ?: estate?.area ?: ""
+    var estateArea = state.get<String>("estateArea") ?: estate?.area ?: ""
         set(value) {
             field = value
             state.set("estateArea", value)
         }
 
-    var estateRoom = state.get<Int>("estateRoom") ?: estate?.room ?: ""
+    var estateRoom = state.get<String>("estateRoom") ?: estate?.room ?: ""
         set(value) {
             field = value
             state.set("estateRoom", value)
         }
 
-    var estateBathroom = state.get<Int>("estateBathroom") ?: estate?.bathroom ?: ""
+    var estateBathroom = state.get<String>("estateBathroom") ?: estate?.bathroom ?: ""
         set(value) {
             field = value
             state.set("estateBathroom", value)
         }
 
-    var estateBedroom = state.get<Int>("estateBedroom") ?: estate?.bedroom ?: ""
+    var estateBedroom = state.get<String>("estateBedroom") ?: estate?.bedroom ?: ""
         set(value) {
             field = value
             state.set("estateBedroom", value)
+        }
+
+    var estateDescription = state.get<String>("estateDescription") ?: estate?.description ?: ""
+        set(value) {
+            field = value
+            state.set("estateDescription", value)
         }
 }
 
