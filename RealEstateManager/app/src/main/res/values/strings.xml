@@ -31,6 +31,7 @@
     <string name="add_edit_activity_room_text">Pièce</string>
     <string name="add_edit_activity_bathroom_text">Salle de bain</string>
     <string name="add_edit_activity_bedroom_text">Chambre</string>
+    <string name="add_edit_activity_description_text">Description</string>
 
     <string-array name="category_spinner">
         <item>Appartement</item>

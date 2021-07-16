@@ -10,7 +10,7 @@ class EstateRepository @Inject constructor(private val estateDao: EstateDao) {
 
     val allEstate: Flow<List<EstateWithPhoto>> = estateDao.getEstateList()
 
-    suspend fun insert(estate: Estate) {
+    suspend fun insertEstate(estate: Estate) {
         estateDao.insertEstate(estate)
     }
 

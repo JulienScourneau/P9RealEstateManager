@@ -22,10 +22,10 @@ data class Estate(
     var category: String,
     var price: String,
     var description: String,
-    var area: Int,
-    var room: Int,
-    var bathroom: Int,
-    var bedroom: Int,
+    var area: String,
+    var room: String,
+    var bathroom: String,
+    var bedroom: String,
     @Embedded var address: Address,
     @PrimaryKey(autoGenerate = true) val id: Int = 0
 )
@@ -37,9 +37,9 @@ data class Photo(
 )
 
 data class Address(
-    var number: Int,
+    var number: String,
     var street: String,
     var city: String,
     var country: String,
-    var postalCode: Int
+    var postalCode: String
 )

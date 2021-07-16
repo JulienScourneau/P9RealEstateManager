@@ -17,7 +17,7 @@ class EstateViewModel @Inject constructor(
     val allEstate: LiveData<List<EstateWithPhoto>> = repository.allEstate.asLiveData()
 
     fun insert(estate: Estate) = viewModelScope.launch {
-        repository.insert(estate)
+        repository.insertEstate(estate)
     }
 
     fun update(estate: Estate) = viewModelScope.launch {
