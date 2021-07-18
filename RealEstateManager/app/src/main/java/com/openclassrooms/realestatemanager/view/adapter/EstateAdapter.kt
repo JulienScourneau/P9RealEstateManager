@@ -7,10 +7,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.openclassrooms.realestatemanager.R
-import com.openclassrooms.realestatemanager.databinding.EstateItemBinding
 import com.openclassrooms.realestatemanager.data.EstateWithPhoto
-
+import com.openclassrooms.realestatemanager.databinding.EstateItemBinding
 
 class EstateAdapter(private val listener: OnItemClickListener) :
     ListAdapter<EstateWithPhoto, EstateAdapter.EstateViewHolder>(DiffCallback()) {
@@ -19,7 +19,6 @@ class EstateAdapter(private val listener: OnItemClickListener) :
         val binding = EstateItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return EstateViewHolder(binding)
     }
-
 
     override fun onBindViewHolder(holder: EstateViewHolder, position: Int) {
         val currentEstate = getItem(position)
@@ -39,15 +38,25 @@ class EstateAdapter(private val listener: OnItemClickListener) :
         }
 
         fun bind(estate: EstateWithPhoto) {
-
             binding.apply {
+                if (estate.photos.isEmpty()) {
+                    Glide.with(itemView)
+                        .load(R.drawable.image_unavailable)
+                        .apply(RequestOptions.centerCropTransform())
+                        .into(propertyItemImage)
+                } else {
+                    Glide.with(itemView)
+                        .load(estate.photos[0])
+                        .apply(RequestOptions.centerCropTransform())
+                        .into(propertyItemImage)
+                }
+
                 propertyItemCategory.text = estate.estate.category
                 propertyItemLocation.text = estate.estate.address.street
                 propertyItemPrice.text = estate.estate.price
             }
         }
     }
-
 
     interface OnItemClickListener {
         fun onItemClick(position: Int)
@@ -62,4 +71,3 @@ class EstateAdapter(private val listener: OnItemClickListener) :
     }
 
 }
-

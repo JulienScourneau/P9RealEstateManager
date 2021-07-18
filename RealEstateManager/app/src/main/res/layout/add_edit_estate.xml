@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorSecondary"
+    tools:context=".controller.AddEditEstate">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/category_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:background="@drawable/rounded_corner"
+                android:padding="12dp">
+
+                <TextView
+                    android:id="@+id/category_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:text="@string/add_edit_activity_category_text"
+                    android:textSize="@dimen/text_size_title"
+                    android:textStyle="bold" />
+
+                <View
+                    android:id="@+id/category_spinner_divider"
+                    style="@style/Divider"
+                    android:layout_below="@+id/category_text"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp" />
+
+                <Spinner
+                    android:id="@+id/category_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/category_spinner_divider" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:background="@drawable/rounded_corner"
+                android:padding="12dp">
+
+                <TextView
+                    android:id="@+id/address_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_edit_activity_address_text"
+                    android:textSize="@dimen/text_size_title"
+                    android:textStyle="bold" />
+
+
+                <View
+                    android:id="@+id/top_address_divider"
+                    style="@style/Divider"
+                    android:layout_below="@+id/address_text"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:id="@+id/street_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/top_address_divider"
+                    android:text="@string/add_edit_activity_street_text"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/street_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/street_text"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/number_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/street_edit_text"
+                    android:text="@string/add_edit_activity_number_text"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/number_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/number_text"
+                    android:inputType="number"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/city_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/number_edit_text"
+                    android:text="@string/add_edit_activity_city_text"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/city_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/city_text"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/country_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/city_edit_text"
+                    android:text="@string/add_edit_activity_country_text"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/country_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/country_text"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/postal_code_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/country_edit_text"
+                    android:text="@string/add_edit_activity_postal_code_text"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/postal_code_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/postal_code_text"
+                    android:inputType="number"
+                    android:textSize="16sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/rounded_corner"
+                android:padding="12dp">
+
+                <TextView
+                    android:id="@+id/price_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_edit_activity_price_text"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/price_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/price_text"
+                    android:inputType="number"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/area_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/price_edit_text"
+                    android:text="@string/add_edit_activity_area_text"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/area_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/area_text"
+                    android:inputType="number"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/room_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/area_edit_text"
+                    android:text="@string/add_edit_activity_room_text"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/room_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/room_text"
+                    android:inputType="number"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/bathroom_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/room_edit_text"
+                    android:text="@string/add_edit_activity_bathroom_text"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/bathroom_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/bathroom_text"
+                    android:inputType="number"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/bedroom_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/bathroom_edit_text"
+                    android:text="@string/add_edit_activity_bedroom_text"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/bedroom_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/bedroom_text"
+                    android:inputType="number"
+                    android:textSize="16sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/rounded_corner"
+                android:padding="12dp">
+
+                <TextView
+                    android:id="@+id/description_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_edit_activity_description_text"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/description_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/description_text"
+                    android:ellipsize="end"
+                    android:inputType="textMultiLine"
+                    android:textSize="16sp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_edit_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="@dimen/floating_action_button_margin"
+        android:layout_marginBottom="@dimen/floating_action_button_margin"
+        android:background="@color/colorAccent"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/ic_baseline_add"
+        android:tint="@android:color/background_light" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

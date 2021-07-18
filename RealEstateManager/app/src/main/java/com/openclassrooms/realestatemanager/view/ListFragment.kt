@@ -22,7 +22,6 @@ class ListFragment : Fragment(R.layout.estate_list), EstateAdapter.OnItemClickLi
     private lateinit var activityBinding: ActivityMainBinding
     private val viewModel: EstateViewModel by viewModels()
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
