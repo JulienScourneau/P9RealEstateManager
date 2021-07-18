@@ -1,39 +1,36 @@
 package com.openclassrooms.realestatemanager.controller
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResult
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
 import com.openclassrooms.realestatemanager.R
-import com.openclassrooms.realestatemanager.databinding.ActivityMainBinding
-import com.openclassrooms.realestatemanager.databinding.AddEditActivityEstateBinding
+import com.openclassrooms.realestatemanager.databinding.AddEditEstateBinding
 import com.openclassrooms.realestatemanager.utils.Utils
 import com.openclassrooms.realestatemanager.viewmodel.AddEditEstateViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
-class AddEditEstateFragment : Fragment(R.layout.add_edit_activity_estate) {
+class AddEditEstate : AppCompatActivity() {
 
     private val viewModel: AddEditEstateViewModel by viewModels()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val binding = AddEditActivityEstateBinding.bind(view)
-        val activityBinding = ActivityMainBinding.inflate(layoutInflater)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val binding = AddEditEstateBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val spinner: Spinner = binding.categorySpinner
         ArrayAdapter.createFromResource(
-            requireContext(), R.array.category_spinner, android.R.layout.simple_spinner_item
+            applicationContext, R.array.category_spinner, android.R.layout.simple_spinner_item
         ).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinner.adapter = adapter
@@ -95,11 +92,11 @@ class AddEditEstateFragment : Fragment(R.layout.add_edit_activity_estate) {
                 viewModel.estateDescription = it.toString()
             }
 
-            addEditButton.setOnClickListener {
+            addEditFab.setOnClickListener {
                 viewModel.onSaveClick()
             }
         }
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+        lifecycleScope.launchWhenStarted {
             viewModel.addEditEstateEvent.collect { event ->
                 when (event) {
                     is AddEditEstateViewModel.AddEditEstateEvent.NavigationBackWithResult -> {
@@ -116,18 +113,14 @@ class AddEditEstateFragment : Fragment(R.layout.add_edit_activity_estate) {
                             bedroomEditText.clearFocus()
                             descriptionEditText.clearFocus()
                         }
-                        setFragmentResult(
-                            "add_edit_request",
-                            bundleOf("add_edit_result" to event.result)
-                        )
-                        parentFragmentManager.popBackStack()
+                        (bundleOf("add_edit_request" to event.result))
+                        finish()
                     }
                     is AddEditEstateViewModel.AddEditEstateEvent.ShowInvalidInputMessage -> {
-                        Snackbar.make(requireView(), event.message, Snackbar.LENGTH_LONG).show()
+                        Snackbar.make(binding.root, event.message, Snackbar.LENGTH_LONG).show()
                     }
                 }
             }
         }
     }
-
 }

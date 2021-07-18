@@ -1,5 +1,8 @@
 package com.openclassrooms.realestatemanager.viewmodel
 
+import android.content.res.Resources
+import android.provider.Settings.Global.getString
+import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -37,9 +40,51 @@ class AddEditEstateViewModel @Inject constructor(
     }
 
     fun onSaveClick() {
-        if (estateAddressStreet.isBlank()) {
-            showInvalidInputMessage(R.string.add_edit_estate_on_save_click_street.toString())
-            return
+        when {
+            estateAddressStreet.isBlank() -> {
+                showInvalidInputMessage("Street cannot be empty")
+                return
+            }
+            estateAddressNumber.isBlank() -> {
+                showInvalidInputMessage("Number cannot be empty")
+                return
+            }
+            estateAddressCity.isBlank() -> {
+                showInvalidInputMessage("City cannot be empty")
+                return
+            }
+            estateAddressCountry.isBlank() -> {
+                showInvalidInputMessage("Country cannot be empty")
+                return
+            }
+            estateAddressPostalCode.isBlank() -> {
+                showInvalidInputMessage("PostalCode cannot be empty")
+                return
+            }
+            estatePrice.isBlank() -> {
+                showInvalidInputMessage("Price cannot be empty")
+                return
+            }
+            estateArea.isBlank() -> {
+                showInvalidInputMessage("Area cannot be empty")
+                return
+            }
+            estateRoom.isBlank() -> {
+                showInvalidInputMessage("Number of room cannot be empty")
+                return
+            }
+            estateBathroom.isBlank() -> {
+                showInvalidInputMessage("Number of bathroom cannot be empty")
+                return
+            }
+            estateBedroom.isBlank() -> {
+                showInvalidInputMessage("Number of bedroom cannot be empty")
+                return
+            }
+            estateDescription.isBlank() -> {
+                showInvalidInputMessage("Description cannot be empty")
+                return
+            }
         }
 
         if (estate != null) {
