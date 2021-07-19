@@ -1,7 +1,7 @@
 package com.openclassrooms.realestatemanager.view.adapter
 
 import android.view.LayoutInflater
-import android.view.View
+
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -26,16 +26,20 @@ class EstateAdapter(private val listener: OnItemClickListener) :
     }
 
     inner class EstateViewHolder(private val binding: EstateItemBinding) :
-        RecyclerView.ViewHolder(binding.root), View.OnClickListener {
+        RecyclerView.ViewHolder(binding.root) {
 
         init {
-            binding.propertyItem.setOnClickListener(this)
+            binding.apply {
+                root.setOnClickListener {
+                    val position = absoluteAdapterPosition
+                    if (position != RecyclerView.NO_POSITION) {
+                        val estate = getItem(position)
+                        listener.onItemClick(estate)
+                    }
+                }
+            }
         }
 
-        override fun onClick(v: View?) {
-            val position: Int = absoluteAdapterPosition
-            listener.onItemClick(position)
-        }
 
         fun bind(estate: EstateWithPhoto) {
             binding.apply {
@@ -59,7 +63,7 @@ class EstateAdapter(private val listener: OnItemClickListener) :
     }
 
     interface OnItemClickListener {
-        fun onItemClick(position: Int)
+        fun onItemClick(estate: EstateWithPhoto)
     }
 
     class DiffCallback : DiffUtil.ItemCallback<EstateWithPhoto>() {
