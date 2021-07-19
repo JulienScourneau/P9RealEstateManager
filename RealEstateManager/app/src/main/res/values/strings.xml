@@ -32,6 +32,7 @@
     <string name="add_edit_activity_bathroom_text">Salle de bain</string>
     <string name="add_edit_activity_bedroom_text">Chambre</string>
     <string name="add_edit_activity_description_text">Description</string>
+    <string name="menu_edit_estate">Edit</string>
 
     <string-array name="category_spinner">
         <item>Appartement</item>
@@ -42,6 +43,6 @@
     </string-array>
 
     <!-- ADD EDIT ESTATE ACTIVITY RESOURCES -->
-    <string name="add_edit_estate_on_save_click_street">Street cannot be empty</string>
+
 
 </resources>
