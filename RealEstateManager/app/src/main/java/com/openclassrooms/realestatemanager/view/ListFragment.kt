@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.openclassrooms.realestatemanager.R
+import com.openclassrooms.realestatemanager.data.EstateWithPhoto
 import com.openclassrooms.realestatemanager.databinding.ActivityMainBinding
 import com.openclassrooms.realestatemanager.databinding.EstateListBinding
 import com.openclassrooms.realestatemanager.view.adapter.EstateAdapter
@@ -49,21 +50,25 @@ class ListFragment : Fragment(R.layout.estate_list), EstateAdapter.OnItemClickLi
         }
     }
 
-    override fun onItemClick(position: Int) {
-
+    override fun onItemClick(estate: EstateWithPhoto) {
         if (activityBinding.fragmentContainerDetails == null) {
-            displayEstateFragment(R.id.fragment_container_main)
+            displayEstateFragment(R.id.fragment_container_main, estate.estate.id)
             Log.d("onItemClick", "if condition:")
         } else {
             activityBinding.fragmentContainerDetails?.visibility = View.VISIBLE
-            displayEstateFragment(R.id.fragment_container_details)
+            displayEstateFragment(R.id.fragment_container_details, estate.estate.id)
             Log.d("onItemClick", "else condition:")
         }
     }
 
-    private fun displayEstateFragment(container: Int) {
+    private fun displayEstateFragment(container: Int, id: Int) {
+        val bundle = Bundle()
+        bundle.putInt("estate_id", id)
+        val fragment = EstateFragment()
+        fragment.arguments = bundle
+
         parentFragmentManager.beginTransaction()
-            .add(container, EstateFragment(), null)
+            .add(container, fragment, null)
             .setReorderingAllowed(true)
             .addToBackStack(null)
             .commit()
