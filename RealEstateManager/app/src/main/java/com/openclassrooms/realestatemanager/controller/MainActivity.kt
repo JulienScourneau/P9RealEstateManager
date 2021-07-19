@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity() {
 
     private val fm = supportFragmentManager
     private lateinit var listFragment: ListFragment
+
     //private lateinit var addEditEstateFragment: AddEditEstateFragment
     private lateinit var binding: ActivityMainBinding
 
@@ -29,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         //addEditEstateFragment = AddEditEstateFragment()
         binding.floatingActionButton.setOnClickListener {
 
-            var intent: Intent = Intent(this, AddEditEstate::class.java)
+            val intent = Intent(this, AddEditEstate::class.java)
             startActivity(intent)
             //if (!addEditEstateFragment.isVisible)
             //    if (binding.fragmentContainerDetails == null)

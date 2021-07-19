@@ -10,6 +10,10 @@ interface EstateDao {
     @Query("SELECT * FROM estate_table")
     fun getEstateList(): Flow<List<EstateWithPhoto>>
 
+    @Transaction
+    @Query("SELECT * FROM estate_table WHERE id = :estateId")
+    fun getEstateById(estateId: Long): Flow<EstateWithPhoto>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertEstate(estate: Estate)
 
