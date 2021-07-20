@@ -4,7 +4,7 @@ import android.content.Context;
 import android.net.wifi.WifiManager;
 import android.widget.Spinner;
 
-import com.openclassrooms.realestatemanager.viewmodel.EstateViewModel;
+import com.openclassrooms.realestatemanager.data.Address;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -61,4 +61,19 @@ public class Utils {
         return index;
     }
 
+    public static String formatAddress(Address address) {
+        String location;
+
+        location = (address.getNumber() +
+                System.lineSeparator() +
+                address.getStreet() +
+                System.lineSeparator() +
+                address.getCity() +
+                System.lineSeparator() +
+                address.getPostalCode() +
+                System.lineSeparator() +
+                address.getCountry()
+        );
+        return location;
+    }
 }
