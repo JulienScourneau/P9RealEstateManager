@@ -1,6 +1,7 @@
 package com.openclassrooms.realestatemanager.controller
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -12,6 +13,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
 import com.openclassrooms.realestatemanager.R
+import com.openclassrooms.realestatemanager.data.EstateWithPhoto
 import com.openclassrooms.realestatemanager.databinding.AddEditEstateBinding
 import com.openclassrooms.realestatemanager.utils.Utils
 import com.openclassrooms.realestatemanager.viewmodel.AddEditEstateViewModel
@@ -27,6 +29,9 @@ class AddEditEstate : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = AddEditEstateBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val estate = intent.getSerializableExtra("extra_object") as? EstateWithPhoto
+        Log.d("AddEditEstate", "Estate id is: ${estate?.estate?.id}")
 
         val spinner: Spinner = binding.categorySpinner
         ArrayAdapter.createFromResource(

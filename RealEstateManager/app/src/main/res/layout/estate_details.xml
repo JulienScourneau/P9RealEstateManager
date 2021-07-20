@@ -257,7 +257,7 @@
                 android:layout_marginBottom="@dimen/estate_details_linearlayout_margin"
                 android:background="@drawable/rounded_corner"
                 android:orientation="vertical"
-                android:padding="4dp">
+                android:padding="8dp">
 
                 <TextView
                     android:id="@+id/details_description"
@@ -281,10 +281,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/details_description_layout"
-
                 android:background="@drawable/rounded_corner"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="8dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"

@@ -4,6 +4,7 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.Relation
+import java.io.Serializable
 
 data class EstateWithPhoto(
     @Embedded val estate: Estate,
@@ -13,7 +14,7 @@ data class EstateWithPhoto(
         entityColumn = "estateId"
     )
     val photos: List<Photo> = emptyList()
-)
+) : Serializable
 
 
 @Entity(tableName = "estate_table")
@@ -28,13 +29,13 @@ data class Estate(
     var bedroom: String,
     @Embedded var address: Address,
     @PrimaryKey(autoGenerate = true) val id: Int = 0
-)
+) : Serializable
 
 @Entity(tableName = "estate_photo")
 data class Photo(
     @PrimaryKey var photo: String,
     var estateId: Int
-)
+) : Serializable
 
 data class Address(
     var number: String,
@@ -42,4 +43,4 @@ data class Address(
     var city: String,
     var country: String,
     var postalCode: String
-)
+) : Serializable

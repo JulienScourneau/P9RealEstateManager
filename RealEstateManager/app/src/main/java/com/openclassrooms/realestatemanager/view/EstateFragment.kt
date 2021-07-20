@@ -16,6 +16,7 @@ import com.openclassrooms.realestatemanager.utils.Utils
 import com.openclassrooms.realestatemanager.view.adapter.MediaAdapter
 import com.openclassrooms.realestatemanager.viewmodel.DetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.io.Serializable
 import java.text.NumberFormat
 
 @AndroidEntryPoint
@@ -25,6 +26,7 @@ class EstateFragment : Fragment(R.layout.estate_details) {
     private lateinit var mediaAdapter: MediaAdapter
     private var images: ArrayList<Int> = ArrayList()
     private lateinit var binding: EstateDetailsBinding
+    private lateinit var estate: EstateWithPhoto
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
@@ -36,6 +38,7 @@ class EstateFragment : Fragment(R.layout.estate_details) {
         viewModel.getEstateById(id).observe(viewLifecycleOwner) { estateWithPhoto ->
             if (estateWithPhoto != null) {
                 updateUI(estateWithPhoto)
+                estate = estateWithPhoto
             }
         }
 
@@ -54,7 +57,10 @@ class EstateFragment : Fragment(R.layout.estate_details) {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_edit_estate -> {
+
+                val estate = this.estate
                 val intent = Intent(requireContext(), AddEditEstate::class.java)
+                intent.putExtra("extra_object", estate)
                 startActivity(intent)
                 true
             }
