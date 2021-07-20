@@ -9,6 +9,7 @@ import com.openclassrooms.realestatemanager.data.Address;
 import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.Currency;
 import java.util.Date;
 
 /**
@@ -60,6 +61,15 @@ public class Utils {
             }
         }
         return index;
+    }
+
+    public static String formatPrice(String string) {
+        Long i = Long.valueOf(string);
+        NumberFormat format = NumberFormat.getCurrencyInstance();
+        format.setMaximumFractionDigits(0);
+        format.setCurrency(Currency.getInstance("EUR"));
+        return format.format(i);
+
     }
 
     public static String formatAddress(Address address) {

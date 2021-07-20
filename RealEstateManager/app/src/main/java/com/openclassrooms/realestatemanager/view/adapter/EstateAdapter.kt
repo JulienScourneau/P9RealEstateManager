@@ -10,6 +10,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.data.EstateWithPhoto
 import com.openclassrooms.realestatemanager.databinding.EstateItemBinding
+import com.openclassrooms.realestatemanager.utils.Utils
 import java.text.NumberFormat
 import java.util.*
 
@@ -58,11 +59,7 @@ class EstateAdapter(private val listener: OnItemClickListener) :
 
                 propertyItemCategory.text = estate.estate.category
                 propertyItemLocation.text = estate.estate.address.street
-                val format = NumberFormat.getCurrencyInstance()
-                format.maximumFractionDigits = 0
-                format.currency = Currency.getInstance("EUR")
-                propertyItemPrice.text = format.format(estate.estate.price.toLong())
-
+                propertyItemPrice.text = Utils.formatPrice(estate.estate.price)
 
             }
         }

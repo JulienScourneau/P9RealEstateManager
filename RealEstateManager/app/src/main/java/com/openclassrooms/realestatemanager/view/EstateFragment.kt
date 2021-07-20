@@ -16,6 +16,7 @@ import com.openclassrooms.realestatemanager.utils.Utils
 import com.openclassrooms.realestatemanager.view.adapter.MediaAdapter
 import com.openclassrooms.realestatemanager.viewmodel.DetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.NumberFormat
 
 @AndroidEntryPoint
 class EstateFragment : Fragment(R.layout.estate_details) {
@@ -65,7 +66,7 @@ class EstateFragment : Fragment(R.layout.estate_details) {
         binding.apply {
             detailsCategory.text = estate.estate.category
             detailsLocation.text = estate.estate.address.city
-            detailsPrice.text = estate.estate.price
+            detailsPrice.text = Utils.formatPrice(estate.estate.price)
             detailsAreaData.text = estate.estate.area
             detailsRoomData.text = estate.estate.room
             detailsBathroomData.text = estate.estate.bathroom
