@@ -251,7 +251,7 @@
 
             <LinearLayout
                 android:id="@id/details_description_layout"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/global_information"
                 android:layout_marginBottom="@dimen/estate_details_linearlayout_margin"
