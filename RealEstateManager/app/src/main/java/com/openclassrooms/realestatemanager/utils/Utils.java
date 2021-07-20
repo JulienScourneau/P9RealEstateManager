@@ -7,6 +7,7 @@ import android.widget.Spinner;
 import com.openclassrooms.realestatemanager.data.Address;
 
 import java.text.DateFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
