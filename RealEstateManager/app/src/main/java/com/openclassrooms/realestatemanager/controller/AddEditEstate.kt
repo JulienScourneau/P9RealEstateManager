@@ -24,15 +24,48 @@ import kotlinx.coroutines.flow.collect
 class AddEditEstate : AppCompatActivity() {
 
     private val viewModel: AddEditEstateViewModel by viewModels()
+    private lateinit var binding: AddEditEstateBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = AddEditEstateBinding.inflate(layoutInflater)
+        binding = AddEditEstateBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val estate = intent.getSerializableExtra("extra_object") as? EstateWithPhoto
         Log.d("AddEditEstate", "Estate id is: ${estate?.estate?.id}")
 
+        setUpUI()
+        addTextChangedListener()
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.addEditEstateEvent.collect { event ->
+                when (event) {
+                    is AddEditEstateViewModel.AddEditEstateEvent.NavigationBackWithResult -> {
+                        binding.apply {
+                            priceEditText.clearFocus()
+                            streetEditText.clearFocus()
+                            numberEditText.clearFocus()
+                            cityEditText.clearFocus()
+                            countryEditText.clearFocus()
+                            postalCodeEditText.clearFocus()
+                            areaEditText.clearFocus()
+                            roomEditText.clearFocus()
+                            bathroomEditText.clearFocus()
+                            bedroomEditText.clearFocus()
+                            descriptionEditText.clearFocus()
+                        }
+
+                        finish()
+                    }
+                    is AddEditEstateViewModel.AddEditEstateEvent.ShowInvalidInputMessage -> {
+                        Snackbar.make(binding.root, event.message, Snackbar.LENGTH_LONG).show()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun setUpUI() {
         val spinner: Spinner = binding.categorySpinner
         ArrayAdapter.createFromResource(
             applicationContext, R.array.category_spinner, android.R.layout.simple_spinner_item
@@ -63,6 +96,16 @@ class AddEditEstate : AppCompatActivity() {
                 override fun onNothingSelected(p0: AdapterView<*>?) {}
             }
 
+            addTextChangedListener()
+
+            addEditFab.setOnClickListener {
+                viewModel.onSaveClick()
+            }
+        }
+    }
+
+    private fun addTextChangedListener() {
+        binding.apply {
             priceEditText.addTextChangedListener {
                 viewModel.estatePrice = it.toString()
             }
@@ -96,36 +139,7 @@ class AddEditEstate : AppCompatActivity() {
             descriptionEditText.addTextChangedListener {
                 viewModel.estateDescription = it.toString()
             }
+        }
 
-            addEditFab.setOnClickListener {
-                viewModel.onSaveClick()
-            }
-        }
-        lifecycleScope.launchWhenStarted {
-            viewModel.addEditEstateEvent.collect { event ->
-                when (event) {
-                    is AddEditEstateViewModel.AddEditEstateEvent.NavigationBackWithResult -> {
-                        binding.apply {
-                            priceEditText.clearFocus()
-                            streetEditText.clearFocus()
-                            numberEditText.clearFocus()
-                            cityEditText.clearFocus()
-                            countryEditText.clearFocus()
-                            postalCodeEditText.clearFocus()
-                            areaEditText.clearFocus()
-                            roomEditText.clearFocus()
-                            bathroomEditText.clearFocus()
-                            bedroomEditText.clearFocus()
-                            descriptionEditText.clearFocus()
-                        }
-                        (bundleOf("add_edit_request" to event.result))
-                        finish()
-                    }
-                    is AddEditEstateViewModel.AddEditEstateEvent.ShowInvalidInputMessage -> {
-                        Snackbar.make(binding.root, event.message, Snackbar.LENGTH_LONG).show()
-                    }
-                }
-            }
-        }
     }
 }
