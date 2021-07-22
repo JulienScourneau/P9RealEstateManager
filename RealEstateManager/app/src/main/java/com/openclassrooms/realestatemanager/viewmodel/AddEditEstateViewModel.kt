@@ -1,18 +1,13 @@
 package com.openclassrooms.realestatemanager.viewmodel
 
-import android.content.res.Resources
-import android.provider.Settings.Global.getString
-import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.data.Address
 import com.openclassrooms.realestatemanager.data.Estate
 import com.openclassrooms.realestatemanager.repository.EstateRepository
 import com.openclassrooms.realestatemanager.utils.ADD_ESTATE_RESULT_OK
-import dagger.assisted.Assisted
-import dagger.assisted.AssistedInject
+import com.openclassrooms.realestatemanager.utils.EDIT_ESTATE_RESULT_OK
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -30,6 +25,11 @@ class AddEditEstateViewModel @Inject constructor(
     private fun createEstate(estate: Estate) = viewModelScope.launch {
         repository.insertEstate(estate)
         addEditEstateChannel.send(AddEditEstateEvent.NavigationBackWithResult(ADD_ESTATE_RESULT_OK))
+    }
+
+    private fun updateEstate(estate: Estate) = viewModelScope.launch {
+        repository.update(estate)
+        addEditEstateChannel.send(AddEditEstateEvent.NavigationBackWithResult(EDIT_ESTATE_RESULT_OK))
     }
 
     private val addEditEstateChannel = Channel<AddEditEstateEvent>()
@@ -58,7 +58,7 @@ class AddEditEstateViewModel @Inject constructor(
                 return
             }
             estateAddressPostalCode.isBlank() -> {
-                showInvalidInputMessage("PostalCode cannot be empty")
+                showInvalidInputMessage("Postal Code cannot be empty")
                 return
             }
             estatePrice.isBlank() -> {
@@ -104,6 +104,7 @@ class AddEditEstateViewModel @Inject constructor(
                     postalCode = estateAddressPostalCode
                 )
             )
+            updateEstate(updateEstate)
         } else {
             val newEstate = Estate(
                 category = estateCategory,

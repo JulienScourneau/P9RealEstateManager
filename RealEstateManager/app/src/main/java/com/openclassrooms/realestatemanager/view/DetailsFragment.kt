@@ -7,6 +7,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.controller.AddEditEstate
@@ -20,7 +21,7 @@ import java.io.Serializable
 import java.text.NumberFormat
 
 @AndroidEntryPoint
-class EstateFragment : Fragment(R.layout.estate_details) {
+class DetailsFragment : Fragment(R.layout.estate_details) {
 
     private val viewModel: DetailsViewModel by viewModels()
     private lateinit var mediaAdapter: MediaAdapter

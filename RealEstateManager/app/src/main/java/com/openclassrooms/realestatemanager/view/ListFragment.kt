@@ -64,7 +64,7 @@ class ListFragment : Fragment(R.layout.estate_list), EstateAdapter.OnItemClickLi
     private fun displayEstateFragment(container: Int, id: Int) {
         val bundle = Bundle()
         bundle.putLong("estate_id", id.toLong())
-        val fragment = EstateFragment()
+        val fragment = DetailsFragment()
         fragment.arguments = bundle
 
         parentFragmentManager.beginTransaction()
