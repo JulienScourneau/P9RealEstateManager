@@ -1,26 +1,28 @@
 package com.openclassrooms.realestatemanager.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.data.EstateWithPhoto
-import com.openclassrooms.realestatemanager.databinding.ActivityMainBinding
-import com.openclassrooms.realestatemanager.databinding.EstateListBinding
+import com.openclassrooms.realestatemanager.databinding.FragmentListEstateBinding
 import com.openclassrooms.realestatemanager.view.adapter.EstateAdapter
 import com.openclassrooms.realestatemanager.viewmodel.EstateViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
-class ListFragment : Fragment(R.layout.estate_list), EstateAdapter.OnItemClickListener {
+class ListFragment : Fragment(R.layout.fragment_list_estate), EstateAdapter.OnItemClickListener {
 
-    private lateinit var binding: EstateListBinding
-    private lateinit var activityBinding: ActivityMainBinding
+    private lateinit var binding: FragmentListEstateBinding
     private val viewModel: EstateViewModel by viewModels()
 
     override fun onCreateView(
@@ -28,8 +30,7 @@ class ListFragment : Fragment(R.layout.estate_list), EstateAdapter.OnItemClickLi
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = EstateListBinding.inflate(inflater, container, false)
-        activityBinding = ActivityMainBinding.inflate(inflater, container, false)
+        binding = FragmentListEstateBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -48,29 +49,34 @@ class ListFragment : Fragment(R.layout.estate_list), EstateAdapter.OnItemClickLi
         viewModel.allEstate.observe(viewLifecycleOwner) {
             estateAdapter.submitList(it)
         }
-    }
 
-    override fun onItemClick(estate: EstateWithPhoto) {
-        if (activityBinding.fragmentContainerDetails == null) {
-            displayEstateFragment(R.id.fragment_container_main, estate.estate.id)
-            Log.d("onItemClick", "if condition:")
-        } else {
-            activityBinding.fragmentContainerDetails?.visibility = View.VISIBLE
-            displayEstateFragment(R.id.fragment_container_details, estate.estate.id)
-            Log.d("onItemClick", "else condition:")
+        setFragmentResultListener("add_edit_request") { _, bundle ->
+            val result = bundle.getInt("add_edit_result")
+            viewModel.onAddResult(result, "Estate Added")
+        }
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.estateEvent.collect { event ->
+                when (event) {
+                    is EstateViewModel.EstateEvent.NavigateToAddEstateScreen -> {
+                        val action =
+                            ListFragmentDirections.actionListFragmentToAddEditEstateFragment(null)
+                        findNavController().navigate(action)
+                    }
+                    is EstateViewModel.EstateEvent.NavigateToDetailsScreen -> {
+                        val action =
+                            ListFragmentDirections.actionListFragmentToDetailsFragment(event.estate)
+                        findNavController().navigate(action)
+                    }
+                    is EstateViewModel.EstateEvent.ShowEstateAddedConfirmationMessage -> {
+                        Snackbar.make(requireView(), event.msg, Snackbar.LENGTH_SHORT).show()
+                    }
+                }
+            }
         }
     }
 
-    private fun displayEstateFragment(container: Int, id: Int) {
-        val bundle = Bundle()
-        bundle.putLong("estate_id", id.toLong())
-        val fragment = DetailsFragment()
-        fragment.arguments = bundle
-
-        parentFragmentManager.beginTransaction()
-            .add(container, fragment, null)
-            .setReorderingAllowed(true)
-            .addToBackStack(null)
-            .commit()
+    override fun onItemClick(estate: EstateWithPhoto) {
+        viewModel.onEstateSelected(estate)
     }
 }

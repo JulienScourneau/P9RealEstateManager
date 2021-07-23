@@ -7,31 +7,27 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import com.openclassrooms.realestatemanager.R
-import com.openclassrooms.realestatemanager.controller.AddEditEstate
 import com.openclassrooms.realestatemanager.data.EstateWithPhoto
-import com.openclassrooms.realestatemanager.databinding.EstateDetailsBinding
+import com.openclassrooms.realestatemanager.databinding.FragmentDetailsEstateBinding
 import com.openclassrooms.realestatemanager.utils.Utils
 import com.openclassrooms.realestatemanager.view.adapter.MediaAdapter
 import com.openclassrooms.realestatemanager.viewmodel.DetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import java.io.Serializable
-import java.text.NumberFormat
 
 @AndroidEntryPoint
-class DetailsFragment : Fragment(R.layout.estate_details) {
+class DetailsFragment : Fragment(R.layout.fragment_details_estate) {
 
     private val viewModel: DetailsViewModel by viewModels()
     private lateinit var mediaAdapter: MediaAdapter
     private var images: ArrayList<Int> = ArrayList()
-    private lateinit var binding: EstateDetailsBinding
+    private lateinit var binding: FragmentDetailsEstateBinding
     private lateinit var estate: EstateWithPhoto
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        binding = EstateDetailsBinding.bind(view)
+        binding = FragmentDetailsEstateBinding.bind(view)
 
         val args = this.arguments
         val id: Long = args?.get("estate_id") as Long
@@ -42,6 +38,7 @@ class DetailsFragment : Fragment(R.layout.estate_details) {
                 estate = estateWithPhoto
             }
         }
+
 
         mediaAdapter = MediaAdapter(requireContext(), images)
         setupViewPager()
@@ -60,7 +57,7 @@ class DetailsFragment : Fragment(R.layout.estate_details) {
             R.id.action_edit_estate -> {
 
                 val estate = this.estate
-                val intent = Intent(requireContext(), AddEditEstate::class.java)
+                val intent = Intent(requireContext(), AddEditEstateFragment::class.java)
                 intent.putExtra("extra_object", estate)
                 startActivity(intent)
                 true
