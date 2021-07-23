@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.data.EstateWithPhoto
 import com.openclassrooms.realestatemanager.databinding.FragmentDetailsEstateBinding
@@ -29,16 +30,17 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate) {
 
         binding = FragmentDetailsEstateBinding.bind(view)
 
-        val args = this.arguments
-        val id: Long = args?.get("estate_id") as Long
-
-        viewModel.getEstateById(id).observe(viewLifecycleOwner) { estateWithPhoto ->
-            if (estateWithPhoto != null) {
-                updateUI(estateWithPhoto)
-                estate = estateWithPhoto
-            }
-        }
-
+        //if (arguments != null){
+        //    val args = this.arguments
+        //    val id: Long = args?.get("estate_id") as Long
+        //
+        //    viewModel.getEstateById(id).observe(viewLifecycleOwner) { estateWithPhoto ->
+        //        if (estateWithPhoto != null) {
+        //            updateUI(estateWithPhoto)
+        //            estate = estateWithPhoto
+        //        }
+        //    }
+        //}
 
         mediaAdapter = MediaAdapter(requireContext(), images)
         setupViewPager()
@@ -55,11 +57,8 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate) {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_edit_estate -> {
-
-                val estate = this.estate
-                val intent = Intent(requireContext(), AddEditEstateFragment::class.java)
-                intent.putExtra("extra_object", estate)
-                startActivity(intent)
+                val action = DetailsFragmentDirections.actionDetailsFragmentToAddEditEstateFragment(null)
+                findNavController().navigate(action)
                 true
             }
             else -> super.onOptionsItemSelected(item)
