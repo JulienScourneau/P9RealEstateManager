@@ -1,4 +1,4 @@
-package com.openclassrooms.realestatemanager.controller
+package com.openclassrooms.realestatemanager.view
 
 import android.os.Bundle
 import android.util.Log
@@ -8,31 +8,28 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.data.EstateWithPhoto
-import com.openclassrooms.realestatemanager.databinding.AddEditEstateBinding
+import com.openclassrooms.realestatemanager.databinding.FragmentAddEditEstateBinding
 import com.openclassrooms.realestatemanager.utils.Utils
 import com.openclassrooms.realestatemanager.viewmodel.AddEditEstateViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
-class AddEditEstate : AppCompatActivity() {
+class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate) {
 
     private val viewModel: AddEditEstateViewModel by viewModels()
-    private lateinit var binding: AddEditEstateBinding
+    private lateinit var binding: FragmentAddEditEstateBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = AddEditEstateBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        val estate = intent.getSerializableExtra("extra_object") as? EstateWithPhoto
-        Log.d("AddEditEstate", "Estate id is: ${estate?.estate?.id}")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding = FragmentAddEditEstateBinding.inflate(layoutInflater)
 
         setUpUI()
         addTextChangedListener()
@@ -55,7 +52,6 @@ class AddEditEstate : AppCompatActivity() {
                             descriptionEditText.clearFocus()
                         }
 
-                        finish()
                     }
                     is AddEditEstateViewModel.AddEditEstateEvent.ShowInvalidInputMessage -> {
                         Snackbar.make(binding.root, event.message, Snackbar.LENGTH_LONG).show()
@@ -68,7 +64,7 @@ class AddEditEstate : AppCompatActivity() {
     private fun setUpUI() {
         val spinner: Spinner = binding.categorySpinner
         ArrayAdapter.createFromResource(
-            applicationContext, R.array.category_spinner, android.R.layout.simple_spinner_item
+            requireContext(), R.array.category_spinner, android.R.layout.simple_spinner_item
         ).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinner.adapter = adapter
@@ -142,4 +138,5 @@ class AddEditEstate : AppCompatActivity() {
         }
 
     }
+
 }
