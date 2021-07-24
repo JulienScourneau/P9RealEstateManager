@@ -65,7 +65,7 @@ class ListFragment : Fragment(R.layout.fragment_list_estate), EstateAdapter.OnIt
                     }
                     is EstateViewModel.EstateEvent.NavigateToDetailsScreen -> {
                         val action =
-                            ListFragmentDirections.actionListFragmentToDetailsFragment(event.estate)
+                            ListFragmentDirections.actionListFragmentToDetailsFragment(event.estate.estate.id.toLong())
                         findNavController().navigate(action)
                     }
                     is EstateViewModel.EstateEvent.ShowEstateAddedConfirmationMessage -> {
