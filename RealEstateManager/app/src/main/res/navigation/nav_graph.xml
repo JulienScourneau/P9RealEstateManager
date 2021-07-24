@@ -22,12 +22,12 @@
         android:name="com.openclassrooms.realestatemanager.view.DetailsFragment"
         android:label="fragment_details_estate"
         tools:layout="@layout/fragment_details_estate" >
-        <argument
-            android:name="estate"
-            app:argType="com.openclassrooms.realestatemanager.data.EstateWithPhoto" />
         <action
             android:id="@+id/action_detailsFragment_to_addEditEstateFragment"
             app:destination="@id/addEditEstateFragment" />
+        <argument
+            android:name="id"
+            app:argType="long" />
     </fragment>
     <fragment
         android:id="@+id/addEditEstateFragment"
