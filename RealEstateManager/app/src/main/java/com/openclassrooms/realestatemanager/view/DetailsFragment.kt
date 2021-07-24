@@ -30,17 +30,15 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate) {
 
         binding = FragmentDetailsEstateBinding.bind(view)
 
-        //if (arguments != null){
-        //    val args = this.arguments
-        //    val id: Long = args?.get("estate_id") as Long
-        //
-        //    viewModel.getEstateById(id).observe(viewLifecycleOwner) { estateWithPhoto ->
-        //        if (estateWithPhoto != null) {
-        //            updateUI(estateWithPhoto)
-        //            estate = estateWithPhoto
-        //        }
-        //    }
-        //}
+        viewModel.estateId?.let {
+            viewModel.getEstateById(it).observe(viewLifecycleOwner) { estateWithPhoto ->
+                if (estateWithPhoto != null) {
+                    updateUI(estateWithPhoto)
+                    estate = estateWithPhoto
+                }
+            }
+        }
+
 
         mediaAdapter = MediaAdapter(requireContext(), images)
         setupViewPager()
@@ -57,7 +55,8 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate) {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_edit_estate -> {
-                val action = DetailsFragmentDirections.actionDetailsFragmentToAddEditEstateFragment(null)
+                val action =
+                    DetailsFragmentDirections.actionDetailsFragmentToAddEditEstateFragment(null)
                 findNavController().navigate(action)
                 true
             }
