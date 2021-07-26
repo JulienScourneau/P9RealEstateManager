@@ -45,7 +45,8 @@
                     android:id="@+id/category_spinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/category_spinner_divider" />
+                    android:layout_below="@id/category_spinner_divider"
+                    android:entries="@array/category_spinner" />
 
             </RelativeLayout>
 
