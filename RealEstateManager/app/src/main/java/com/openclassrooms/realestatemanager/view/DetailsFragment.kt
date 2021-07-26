@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.data.EstateWithPhoto
@@ -16,6 +17,7 @@ import com.openclassrooms.realestatemanager.utils.Utils
 import com.openclassrooms.realestatemanager.view.adapter.MediaAdapter
 import com.openclassrooms.realestatemanager.viewmodel.DetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class DetailsFragment : Fragment(R.layout.fragment_details_estate) {
@@ -39,6 +41,16 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate) {
             }
         }
 
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.estateEvent.collect { event ->
+                when(event) {
+                    is DetailsViewModel.DetailsEstateEvent.NavigateToEditEstateScreen -> {
+                        val action = DetailsFragmentDirections.actionDetailsFragmentToAddEditEstateFragment(event.estate)
+                        findNavController().navigate(action)
+                    }
+                }
+            }
+        }
 
         mediaAdapter = MediaAdapter(requireContext(), images)
         setupViewPager()
@@ -55,9 +67,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate) {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_edit_estate -> {
-                val action =
-                    DetailsFragmentDirections.actionDetailsFragmentToAddEditEstateFragment(null)
-                findNavController().navigate(action)
+                viewModel.onEditEstateSelected(estate)
                 true
             }
             else -> super.onOptionsItemSelected(item)
