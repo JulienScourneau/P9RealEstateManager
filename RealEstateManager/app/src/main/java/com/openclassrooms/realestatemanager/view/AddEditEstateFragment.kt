@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.databinding.FragmentAddEditEstateBinding
+import com.openclassrooms.realestatemanager.utils.Utils
 import com.openclassrooms.realestatemanager.viewmodel.AddEditEstateViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -34,19 +35,7 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate) {
             viewModel.addEditEstateEvent.collect { event ->
                 when (event) {
                     is AddEditEstateViewModel.AddEditEstateEvent.NavigationBackWithResult -> {
-                        binding.apply {
-                            priceEditText.clearFocus()
-                            streetEditText.clearFocus()
-                            numberEditText.clearFocus()
-                            cityEditText.clearFocus()
-                            countryEditText.clearFocus()
-                            postalCodeEditText.clearFocus()
-                            areaEditText.clearFocus()
-                            roomEditText.clearFocus()
-                            bathroomEditText.clearFocus()
-                            bedroomEditText.clearFocus()
-                            descriptionEditText.clearFocus()
-                        }
+                        clearFocusOnSaveClick()
                         setFragmentResult(
                             "add_edit_request",
                             bundleOf("add_edit_result" to event.result)
@@ -85,7 +74,7 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate) {
 
                 override fun onNothingSelected(p0: AdapterView<*>?) {}
             }
-
+            categorySpinner.setSelection(Utils.getIndex(categorySpinner, viewModel.estateCategory))
             priceEditText.setText(viewModel.estatePrice)
             streetEditText.setText(viewModel.estateAddressStreet)
             numberEditText.setText(viewModel.estateAddressNumber)
@@ -101,6 +90,22 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate) {
             addEditFab.setOnClickListener {
                 viewModel.onSaveClick()
             }
+        }
+    }
+
+    private fun clearFocusOnSaveClick() {
+        binding.apply {
+            priceEditText.clearFocus()
+            streetEditText.clearFocus()
+            numberEditText.clearFocus()
+            cityEditText.clearFocus()
+            countryEditText.clearFocus()
+            postalCodeEditText.clearFocus()
+            areaEditText.clearFocus()
+            roomEditText.clearFocus()
+            bathroomEditText.clearFocus()
+            bedroomEditText.clearFocus()
+            descriptionEditText.clearFocus()
         }
     }
 
