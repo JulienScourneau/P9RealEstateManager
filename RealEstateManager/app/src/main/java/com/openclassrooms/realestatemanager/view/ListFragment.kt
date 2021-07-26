@@ -44,6 +44,9 @@ class ListFragment : Fragment(R.layout.fragment_list_estate), EstateAdapter.OnIt
                 adapter = estateAdapter
                 setHasFixedSize(true)
             }
+            fabAddEstate.setOnClickListener {
+                viewModel.onAddNewEstateClick()
+            }
         }
 
         viewModel.allEstate.observe(viewLifecycleOwner) {
@@ -55,6 +58,8 @@ class ListFragment : Fragment(R.layout.fragment_list_estate), EstateAdapter.OnIt
             viewModel.onAddResult(result, "Estate Added")
         }
 
+
+
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.estateEvent.collect { event ->
                 when (event) {
@@ -65,18 +70,19 @@ class ListFragment : Fragment(R.layout.fragment_list_estate), EstateAdapter.OnIt
                     }
                     is EstateViewModel.EstateEvent.NavigateToDetailsScreen -> {
                         val action =
-                            ListFragmentDirections.actionListFragmentToDetailsFragment(event.estate.estate.id.toLong())
+                            ListFragmentDirections.actionListFragmentToDetailsFragment(event.id)
                         findNavController().navigate(action)
                     }
                     is EstateViewModel.EstateEvent.ShowEstateAddedConfirmationMessage -> {
                         Snackbar.make(requireView(), event.msg, Snackbar.LENGTH_SHORT).show()
                     }
+
                 }
             }
         }
     }
 
     override fun onItemClick(estate: EstateWithPhoto) {
-        viewModel.onEstateSelected(estate)
+        viewModel.onEstateSelected(estate.estate.id.toLong())
     }
 }
