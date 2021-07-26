@@ -32,8 +32,8 @@ class EstateViewModel @Inject constructor(
         repository.delete(estate)
     }
 
-    fun onEstateSelected(estate: EstateWithPhoto) = viewModelScope.launch {
-        estateEventChannel.send(EstateEvent.NavigateToDetailsScreen(estate))
+    fun onEstateSelected(id: Long) = viewModelScope.launch {
+        estateEventChannel.send(EstateEvent.NavigateToDetailsScreen(id))
     }
 
     fun onAddNewEstateClick() = viewModelScope.launch {
@@ -52,7 +52,7 @@ class EstateViewModel @Inject constructor(
 
     sealed class EstateEvent {
         object NavigateToAddEstateScreen : EstateEvent()
-        data class NavigateToDetailsScreen(val estate: EstateWithPhoto) : EstateEvent()
+        data class NavigateToDetailsScreen(val id: Long) : EstateEvent()
         data class ShowEstateAddedConfirmationMessage(val msg: String) : EstateEvent()
     }
 
