@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.openclassrooms.realestatemanager.data.Address
 import com.openclassrooms.realestatemanager.data.Estate
+import com.openclassrooms.realestatemanager.data.EstateWithPhoto
 import com.openclassrooms.realestatemanager.repository.EstateRepository
 import com.openclassrooms.realestatemanager.utils.ADD_ESTATE_RESULT_OK
 import com.openclassrooms.realestatemanager.utils.EDIT_ESTATE_RESULT_OK
@@ -20,7 +21,7 @@ class AddEditEstateViewModel @Inject constructor(
     private val state: SavedStateHandle
 ) : ViewModel() {
 
-    val estate = state.get<Estate>("estate")
+    val estateWithPhoto = state.get<EstateWithPhoto>("estate")
 
     private fun createEstate(estate: Estate) = viewModelScope.launch {
         repository.insertEstate(estate)
@@ -87,8 +88,8 @@ class AddEditEstateViewModel @Inject constructor(
             }
         }
 
-        if (estate != null) {
-            val updateEstate = estate.copy(
+        if (estateWithPhoto != null) {
+            val updateEstate = estateWithPhoto.estate.copy(
                 category = estateCategory,
                 price = estatePrice,
                 description = estateDescription,
@@ -132,77 +133,77 @@ class AddEditEstateViewModel @Inject constructor(
     }
 
 
-    var estateCategory = state.get<String>("estateCategory") ?: estate?.category ?: ""
+    var estateCategory = state.get<String>("estateCategory") ?: estateWithPhoto?.estate?.category ?: ""
         set(value) {
             field = value
             state.set("estateCategory", value)
         }
 
     var estateAddressStreet =
-        state.get<String>("estateAddressStreet") ?: estate?.address?.street ?: ""
+        state.get<String>("estateAddressStreet") ?: estateWithPhoto?.estate?.address?.street ?: ""
         set(value) {
             field = value
             state.set("estateAddressStreet", value)
         }
 
     var estateAddressNumber =
-        state.get<String>("estateAddressNumber") ?: estate?.address?.number ?: ""
+        state.get<String>("estateAddressNumber") ?: estateWithPhoto?.estate?.address?.number ?: ""
         set(value) {
             field = value
             state.set("estateAddressNumber", value)
         }
 
-    var estateAddressCity = state.get<String>("estateAddressCity") ?: estate?.address?.city ?: ""
+    var estateAddressCity = state.get<String>("estateAddressCity") ?: estateWithPhoto?.estate?.address?.city ?: ""
         set(value) {
             field = value
             state.set("estateAddressCity", value)
         }
 
     var estateAddressCountry =
-        state.get<String>("estateAddressCountry") ?: estate?.address?.country ?: ""
+        state.get<String>("estateAddressCountry") ?: estateWithPhoto?.estate?.address?.country ?: ""
         set(value) {
             field = value
             state.set("estateAddressCountry", value)
         }
 
     var estateAddressPostalCode =
-        state.get<String>("estateAddressPostalCode") ?: estate?.address?.postalCode ?: ""
+        state.get<String>("estateAddressPostalCode") ?: estateWithPhoto?.estate?.address?.postalCode ?: ""
         set(value) {
             field = value
             state.set("estateAddressPostalCode", value)
         }
 
-    var estatePrice = state.get<String>("estatePrice") ?: estate?.price ?: ""
+    var estatePrice = state.get<String>("estatePrice") ?: estateWithPhoto?.estate?.price ?: ""
         set(value) {
             field = value
             state.set("estatePrice", value)
         }
 
-    var estateArea = state.get<String>("estateArea") ?: estate?.area ?: ""
+    var estateArea = state.get<String>("estateArea") ?: estateWithPhoto?.estate?.area ?: ""
         set(value) {
             field = value
             state.set("estateArea", value)
         }
 
-    var estateRoom = state.get<String>("estateRoom") ?: estate?.room ?: ""
+    var estateRoom = state.get<String>("estateRoom") ?: estateWithPhoto?.estate?.room ?: ""
         set(value) {
             field = value
             state.set("estateRoom", value)
         }
 
-    var estateBathroom = state.get<String>("estateBathroom") ?: estate?.bathroom ?: ""
+    var estateBathroom = state.get<String>("estateBathroom") ?: estateWithPhoto?.estate?.bathroom ?: ""
         set(value) {
             field = value
             state.set("estateBathroom", value)
         }
 
-    var estateBedroom = state.get<String>("estateBedroom") ?: estate?.bedroom ?: ""
+    var estateBedroom = state.get<String>("estateBedroom") ?: estateWithPhoto?.estate?.bedroom ?: ""
         set(value) {
             field = value
             state.set("estateBedroom", value)
         }
 
-    var estateDescription = state.get<String>("estateDescription") ?: estate?.description ?: ""
+    var estateDescription = state.get<String>("estateDescription") ?: estateWithPhoto?.estate?.description ?: ""
         set(value) {
             field = value
             state.set("estateDescription", value)
