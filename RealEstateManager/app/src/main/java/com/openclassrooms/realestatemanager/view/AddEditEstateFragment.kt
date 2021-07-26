@@ -1,22 +1,19 @@
 package com.openclassrooms.realestatemanager.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Spinner
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.openclassrooms.realestatemanager.R
-import com.openclassrooms.realestatemanager.data.EstateWithPhoto
 import com.openclassrooms.realestatemanager.databinding.FragmentAddEditEstateBinding
-import com.openclassrooms.realestatemanager.utils.Utils
 import com.openclassrooms.realestatemanager.viewmodel.AddEditEstateViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -29,10 +26,9 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentAddEditEstateBinding.inflate(layoutInflater)
+        binding = FragmentAddEditEstateBinding.bind(view)
 
         setUpUI()
-        addTextChangedListener()
 
         lifecycleScope.launchWhenStarted {
             viewModel.addEditEstateEvent.collect { event ->
@@ -51,7 +47,11 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate) {
                             bedroomEditText.clearFocus()
                             descriptionEditText.clearFocus()
                         }
-
+                        setFragmentResult(
+                            "add_edit_request",
+                            bundleOf("add_edit_result" to event.result)
+                        )
+                        findNavController().popBackStack()
                     }
                     is AddEditEstateViewModel.AddEditEstateEvent.ShowInvalidInputMessage -> {
                         Snackbar.make(binding.root, event.message, Snackbar.LENGTH_LONG).show()
@@ -62,16 +62,30 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate) {
     }
 
     private fun setUpUI() {
-        val spinner: Spinner = binding.categorySpinner
-        ArrayAdapter.createFromResource(
-            requireContext(), R.array.category_spinner, android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            spinner.adapter = adapter
-        }
+
+        val adapter = ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.category_spinner,
+            android.R.layout.simple_spinner_dropdown_item
+        )
+        addTextChangedListener()
 
         binding.apply {
-            categorySpinner.setSelection(Utils.getIndex(spinner, viewModel.estateCategory))
+
+            categorySpinner.adapter = adapter
+            categorySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    adapter: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    viewModel.estateCategory = adapter?.getItemAtPosition(position).toString()
+                }
+
+                override fun onNothingSelected(p0: AdapterView<*>?) {}
+            }
+
             priceEditText.setText(viewModel.estatePrice)
             streetEditText.setText(viewModel.estateAddressStreet)
             numberEditText.setText(viewModel.estateAddressNumber)
@@ -83,16 +97,6 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate) {
             bathroomEditText.setText(viewModel.estateBathroom)
             bedroomEditText.setText(viewModel.estateBedroom)
             descriptionEditText.setText(viewModel.estateDescription)
-
-            categorySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                    viewModel.estateCategory = p0?.getItemAtPosition(p2).toString()
-                }
-
-                override fun onNothingSelected(p0: AdapterView<*>?) {}
-            }
-
-            addTextChangedListener()
 
             addEditFab.setOnClickListener {
                 viewModel.onSaveClick()
