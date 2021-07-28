@@ -13,14 +13,14 @@
 
 
         <androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewpager"
+            android:id="@+id/details_viewpager"
             android:layout_width="match_parent"
             android:layout_height="@dimen/estate_details_viewpager" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/viewpager"
+            android:layout_below="@id/details_viewpager"
             android:layout_margin="12dp">
 
             <LinearLayout

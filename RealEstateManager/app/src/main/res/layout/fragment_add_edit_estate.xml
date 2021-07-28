@@ -271,6 +271,61 @@
 
             </RelativeLayout>
 
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/rounded_corner"
+                android:padding="12dp">
+
+                <TextView
+                    android:id="@+id/photo_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Photo"
+                    android:textSize="@dimen/text_size_title"
+                    android:textStyle="bold" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:layout_weight="1"
+                        android:id="@+id/add_image_gallery_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_baseline_add_image_24"
+                        android:layout_gravity="center"/>
+
+                    <ImageButton
+                        android:layout_weight="1"
+                        android:id="@+id/add_picture_photo_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_baseline_add_a_photo_24"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/photo_divider"
+                    style="@style/Divider"
+                    android:layout_below="@+id/photo_text"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp" />
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/add_edit_viewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/estate_details_viewpager" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
     </ScrollView>
