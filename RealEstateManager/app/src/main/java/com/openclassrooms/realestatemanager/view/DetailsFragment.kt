@@ -1,7 +1,8 @@
 package com.openclassrooms.realestatemanager.view
 
-import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -24,7 +25,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate) {
 
     private val viewModel: DetailsViewModel by viewModels()
     private lateinit var mediaAdapter: MediaAdapter
-    private var images: ArrayList<Int> = ArrayList()
+    private var images: ArrayList<Uri> = ArrayList()
     private lateinit var binding: FragmentDetailsEstateBinding
     private lateinit var estate: EstateWithPhoto
 
@@ -43,18 +44,20 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate) {
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.estateEvent.collect { event ->
-                when(event) {
+                when (event) {
                     is DetailsViewModel.DetailsEstateEvent.NavigateToEditEstateScreen -> {
-                        val action = DetailsFragmentDirections.actionDetailsFragmentToAddEditEstateFragment(event.estate)
+                        val action =
+                            DetailsFragmentDirections.actionDetailsFragmentToAddEditEstateFragment(
+                                event.estate
+                            )
                         findNavController().navigate(action)
                     }
                 }
             }
         }
-
-        mediaAdapter = MediaAdapter(requireContext(), images)
         setupViewPager()
-        binding.viewpager.adapter = mediaAdapter
+        mediaAdapter = MediaAdapter(requireContext(), images)
+        binding.detailsViewpager.adapter = mediaAdapter
         setHasOptionsMenu(true)
 
     }
@@ -90,12 +93,14 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate) {
     }
 
     private fun setupViewPager() {
+        val uri = Uri.parse("android.resources://com.openclassrooms.realestatemanager/drawable/house")
+        images.add(uri)
+        //images.add(Uri.parse(R.drawable.house.toString()))
+        //images.add(Uri.parse(R.drawable.kitchen.toString()))
+        //images.add(Uri.parse(R.drawable.bathroom.toString()))
+        //images.add(Uri.parse(R.drawable.bedroom.toString()))
+        //images.add(Uri.parse(R.drawable.living_room.toString()))
+        Log.d("setupViewpager","uri: $uri")
 
-        images.add(R.drawable.house)
-        images.add(R.drawable.kitchen)
-        images.add(R.drawable.bathroom)
-        images.add(R.drawable.bedroom)
-        images.add(R.drawable.living_room)
     }
-
 }

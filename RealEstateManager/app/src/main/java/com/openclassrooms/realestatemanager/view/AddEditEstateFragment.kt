@@ -1,9 +1,14 @@
 package com.openclassrooms.realestatemanager.view
 
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
@@ -15,6 +20,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.databinding.FragmentAddEditEstateBinding
 import com.openclassrooms.realestatemanager.utils.Utils
+import com.openclassrooms.realestatemanager.view.adapter.MediaAdapter
 import com.openclassrooms.realestatemanager.viewmodel.AddEditEstateViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -23,13 +29,14 @@ import kotlinx.coroutines.flow.collect
 class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate) {
 
     private val viewModel: AddEditEstateViewModel by viewModels()
+    private var images: ArrayList<Uri> = ArrayList()
     private lateinit var binding: FragmentAddEditEstateBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentAddEditEstateBinding.bind(view)
 
-        setUpUI()
+        setupUI()
 
         lifecycleScope.launchWhenStarted {
             viewModel.addEditEstateEvent.collect { event ->
@@ -50,8 +57,7 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate) {
         }
     }
 
-    private fun setUpUI() {
-
+    private fun setupUI() {
         val adapter = ArrayAdapter.createFromResource(
             requireContext(),
             R.array.category_spinner,
@@ -90,7 +96,40 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate) {
             addEditFab.setOnClickListener {
                 viewModel.onSaveClick()
             }
+
+            val pickImages =
+                registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+                    Log.d("pickImage", "uri: $uri")
+                }
+
+            val pickPicture =
+                registerForActivityResult(ActivityResultContracts.TakePicture()) { succes ->
+
+                }
+
+            val requestPermissionsLauncher =
+                registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+                    if (isGranted) {
+
+                    }
+                }
+
+            addImageGalleryButton.setOnClickListener {
+                pickImages.launch("image/*")
+
+            }
         }
+    }
+
+    private fun checkPermission() = ContextCompat.checkSelfPermission(
+        requireContext(),
+        android.Manifest.permission.CAMERA
+    ) == PackageManager.PERMISSION_GRANTED
+
+    private fun setupAdapter() {
+        //val mediaAdapter = MediaAdapter(requireContext(), images)
+        //binding.addEditViewpager.adapter = mediaAdapter
+        //setHasOptionsMenu(true)
     }
 
     private fun clearFocusOnSaveClick() {
@@ -145,7 +184,6 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate) {
                 viewModel.estateDescription = it.toString()
             }
         }
-
     }
 
 }

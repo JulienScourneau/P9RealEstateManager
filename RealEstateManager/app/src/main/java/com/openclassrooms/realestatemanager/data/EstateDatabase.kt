@@ -1,5 +1,7 @@
 package com.openclassrooms.realestatemanager.data
 
+import android.content.ContentResolver
+import android.net.Uri
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
@@ -10,6 +12,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Provider
+
 
 @Database(entities = [Estate::class, Photo::class], version = 1, exportSchema = false)
 abstract class EstateDatabase : RoomDatabase() {
@@ -30,12 +33,14 @@ abstract class EstateDatabase : RoomDatabase() {
                 dao.insertEstate(TestList.getEstate)
                 dao.insertEstate(TestList.getEstate1)
                 dao.insertEstate(TestList.getEstate2)
-                dao.insertPhoto(Photo(R.drawable.house.toString(), 0))
-                dao.insertPhoto(Photo(R.drawable.apartment.toString(), 1))
+                val uri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE
+                + "://com.openclassrooms.realestatemanager/drawable/house" )
+                dao.insertPhoto(Photo(uri.toString(), 1))
                 dao.insertPhoto(Photo(R.drawable.house.toString(), 2))
-                dao.insertPhoto(Photo(R.drawable.living_room.toString(), 0))
-                dao.insertPhoto(Photo(R.drawable.bedroom.toString(), 1))
-                dao.insertPhoto(Photo(R.drawable.kitchen.toString(), 2))
+                dao.insertPhoto(Photo(uri.toString(), 3))
+                dao.insertPhoto(Photo(R.drawable.living_room.toString(), 1))
+                dao.insertPhoto(Photo(R.drawable.bedroom.toString(), 2))
+                dao.insertPhoto(Photo(R.drawable.kitchen.toString(), 3))
 //
                 //dao.insert(Estate("Fake Category 2", "800 000 €", "Fake_Description",
                 //    800, 9, 2, 3, TestList.getAddress1))

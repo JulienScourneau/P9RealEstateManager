@@ -42,7 +42,6 @@ class EstateAdapter(private val listener: OnItemClickListener) :
             }
         }
 
-
         fun bind(estate: EstateWithPhoto) {
             binding.apply {
                 if (estate.photos.isEmpty()) {
@@ -76,5 +75,4 @@ class EstateAdapter(private val listener: OnItemClickListener) :
         override fun areContentsTheSame(oldItem: EstateWithPhoto, newItem: EstateWithPhoto) =
             oldItem == newItem
     }
-
 }
