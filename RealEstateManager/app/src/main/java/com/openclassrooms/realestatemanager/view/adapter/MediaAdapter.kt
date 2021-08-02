@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.openclassrooms.realestatemanager.databinding.MediaItemBinding
 
-class MediaAdapter(private val context: Context, private val mediaList: ArrayList<Uri>) :
+class MediaAdapter(private val context: Context, private val mediaList: List<Uri>) :
     PagerAdapter() {
 
     override fun getCount(): Int {
@@ -26,7 +26,12 @@ class MediaAdapter(private val context: Context, private val mediaList: ArrayLis
         val binding = MediaItemBinding.inflate(LayoutInflater.from(context), container, false)
         val media = mediaList[position]
 
-        binding.mediaItemImg.setImageURI(media)
+        binding.apply {
+            Glide.with(mediaItemImg)
+                .load(media)
+                .apply(RequestOptions.centerInsideTransform())
+                .into(mediaItemImg)
+        }
         container.addView(binding.root)
 
         return binding.root
