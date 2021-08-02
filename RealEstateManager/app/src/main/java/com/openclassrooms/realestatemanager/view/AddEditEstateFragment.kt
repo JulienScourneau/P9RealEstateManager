@@ -21,6 +21,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.databinding.FragmentAddEditEstateBinding
 import com.openclassrooms.realestatemanager.utils.Utils
+import com.openclassrooms.realestatemanager.view.adapter.MediaAdapter
 import com.openclassrooms.realestatemanager.viewmodel.AddEditEstateViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -66,6 +67,7 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate) {
             android.R.layout.simple_spinner_dropdown_item
         )
         addTextChangedListener()
+        setupPagerAdapter()
 
         binding.apply {
 
@@ -112,13 +114,18 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate) {
 
             val pickImages =
                 registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
-                    addEditViewpager.setImageURI(uri)
+                    images.add(uri)
+                    addEditViewpager.adapter?.notifyDataSetChanged()
+                    Log.d("pickImage", "uri is: $uri")
+                    Log.d("PagerAdapter", "images size: ${images.size}")
                 }
 
             val takePicture =
                 registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
-                    addEditViewpager.setImageURI(uri)
-                    Log.d("pickPicture", "success is: $success")
+                    images.add(uri)
+                    addEditViewpager.adapter?.notifyDataSetChanged()
+                    Log.d("pickPicture", "success is: $success and uri is $uri")
+                    Log.d("PagerAdapter", "images size: ${images.size}")
                 }
 
             val requestImagesPermissions =
@@ -150,9 +157,9 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate) {
     }
 
     private fun setupPagerAdapter() {
-        //val mediaAdapter = MediaAdapter(requireContext(), images)
-        //binding.addEditViewpager.adapter = mediaAdapter
-        //setHasOptionsMenu(true)
+        val mediaAdapter = MediaAdapter(requireContext(), images)
+        binding.addEditViewpager.adapter = mediaAdapter
+        setHasOptionsMenu(true)
     }
 
     private fun clearFocusOnSaveClick() {
