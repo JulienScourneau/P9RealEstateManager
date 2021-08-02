@@ -1,5 +1,7 @@
 package com.openclassrooms.realestatemanager.view.adapter
 
+import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -51,7 +53,7 @@ class EstateAdapter(private val listener: OnItemClickListener) :
                         .into(propertyItemImage)
                 } else {
                     Glide.with(itemView)
-                        .load(estate.photos[0])
+                        .load(estate.photos[0].photoReference)
                         .apply(RequestOptions.centerCropTransform())
                         .into(propertyItemImage)
                 }
