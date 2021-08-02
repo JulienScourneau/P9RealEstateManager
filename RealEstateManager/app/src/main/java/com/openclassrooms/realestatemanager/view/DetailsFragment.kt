@@ -2,7 +2,6 @@ package com.openclassrooms.realestatemanager.view
 
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -24,7 +23,6 @@ import kotlinx.coroutines.flow.collect
 class DetailsFragment : Fragment(R.layout.fragment_details_estate) {
 
     private val viewModel: DetailsViewModel by viewModels()
-    private lateinit var mediaAdapter: MediaAdapter
     private var images: ArrayList<Uri> = ArrayList()
     private lateinit var binding: FragmentDetailsEstateBinding
     private lateinit var estate: EstateWithPhoto
@@ -41,7 +39,6 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate) {
                 }
             }
         }
-
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.estateEvent.collect { event ->
                 when (event) {
@@ -55,11 +52,6 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate) {
                 }
             }
         }
-        setupViewPager()
-        mediaAdapter = MediaAdapter(requireContext(), images)
-        binding.detailsViewpager.adapter = mediaAdapter
-        setHasOptionsMenu(true)
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -88,19 +80,14 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate) {
             detailsBedroomData.text = estate.estate.bedroom
             detailsLocationData.text = Utils.formatAddress(estate.estate.address)
             detailsDescriptionText.text = estate.estate.description
-
         }
-    }
 
-    private fun setupViewPager() {
-        val uri = Uri.parse("android.resources://com.openclassrooms.realestatemanager/drawable/house")
-        images.add(uri)
-        //images.add(Uri.parse(R.drawable.house.toString()))
-        //images.add(Uri.parse(R.drawable.kitchen.toString()))
-        //images.add(Uri.parse(R.drawable.bathroom.toString()))
-        //images.add(Uri.parse(R.drawable.bedroom.toString()))
-        //images.add(Uri.parse(R.drawable.living_room.toString()))
-        Log.d("setupViewpager","uri: $uri")
+        for (i in estate.photos.indices) {
+            images.add(Uri.parse(estate.photos[i].photoReference))
+        }
 
+        val mediaAdapter = MediaAdapter(requireContext(),images)
+        binding.detailsViewpager.adapter = mediaAdapter
+        setHasOptionsMenu(true)
     }
 }

@@ -74,10 +74,8 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate) {
             categorySpinner.adapter = adapter
             categorySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
-                    adapter: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
+                    adapter: AdapterView<*>?, view: View?,
+                    position: Int, id: Long
                 ) {
                     viewModel.estateCategory = adapter?.getItemAtPosition(position).toString()
                 }
@@ -102,13 +100,12 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate) {
             }
 
             val photoFile: File = File.createTempFile(
-                "IMG_",
-                ".jpg",
+                "IMG_", ".jpg",
                 requireContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES)
             )
-            val uri: Uri = FileProvider.getUriForFile(
-                requireContext(),
-                "${requireContext().packageName}.provider",
+
+            val imageUri: Uri = FileProvider.getUriForFile(
+                requireContext(), "${requireContext().packageName}.provider",
                 photoFile
             )
 
@@ -116,16 +113,12 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate) {
                 registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
                     images.add(uri)
                     addEditViewpager.adapter?.notifyDataSetChanged()
-                    Log.d("pickImage", "uri is: $uri")
-                    Log.d("PagerAdapter", "images size: ${images.size}")
                 }
 
             val takePicture =
                 registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
-                    images.add(uri)
+                    images.add(imageUri)
                     addEditViewpager.adapter?.notifyDataSetChanged()
-                    Log.d("pickPicture", "success is: $success and uri is $uri")
-                    Log.d("PagerAdapter", "images size: ${images.size}")
                 }
 
             val requestImagesPermissions =
@@ -133,25 +126,21 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate) {
                     if (isGranted) {
                         pickImages.launch("image/*")
                     }
-                    Log.d("requestPermissions", "permissions: $isGranted")
                 }
 
             val requestCameraPermissionsLauncher =
                 registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
                     if (isGranted) {
-
-                        takePicture.launch(uri)
+                        takePicture.launch(imageUri)
                     }
                 }
 
             addImageGalleryButton.setOnClickListener {
                 requestImagesPermissions.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
-                Log.d("ClickImage", "get permissions")
-
             }
+
             addPicturePhotoButton.setOnClickListener {
                 requestCameraPermissionsLauncher.launch(Manifest.permission.CAMERA)
-
             }
         }
     }
@@ -215,5 +204,4 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate) {
             }
         }
     }
-
 }
