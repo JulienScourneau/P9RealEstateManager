@@ -1,14 +1,15 @@
 package com.openclassrooms.realestatemanager.view
 
-import android.content.pm.PackageManager
+import android.Manifest
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
@@ -20,10 +21,10 @@ import com.google.android.material.snackbar.Snackbar
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.databinding.FragmentAddEditEstateBinding
 import com.openclassrooms.realestatemanager.utils.Utils
-import com.openclassrooms.realestatemanager.view.adapter.MediaAdapter
 import com.openclassrooms.realestatemanager.viewmodel.AddEditEstateViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import java.io.File
 
 @AndroidEntryPoint
 class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate) {
@@ -31,6 +32,7 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate) {
     private val viewModel: AddEditEstateViewModel by viewModels()
     private var images: ArrayList<Uri> = ArrayList()
     private lateinit var binding: FragmentAddEditEstateBinding
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -97,36 +99,57 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate) {
                 viewModel.onSaveClick()
             }
 
+            val photoFile: File = File.createTempFile(
+                "IMG_",
+                ".jpg",
+                requireContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+            )
+            val uri: Uri = FileProvider.getUriForFile(
+                requireContext(),
+                "${requireContext().packageName}.provider",
+                photoFile
+            )
+
             val pickImages =
                 registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
-                    Log.d("pickImage", "uri: $uri")
+                    addEditViewpager.setImageURI(uri)
                 }
 
-            val pickPicture =
-                registerForActivityResult(ActivityResultContracts.TakePicture()) { succes ->
-
+            val takePicture =
+                registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
+                    addEditViewpager.setImageURI(uri)
+                    Log.d("pickPicture", "success is: $success")
                 }
 
-            val requestPermissionsLauncher =
+            val requestImagesPermissions =
+                registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+                    if (isGranted) {
+                        pickImages.launch("image/*")
+                    }
+                    Log.d("requestPermissions", "permissions: $isGranted")
+                }
+
+            val requestCameraPermissionsLauncher =
                 registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
                     if (isGranted) {
 
+                        takePicture.launch(uri)
                     }
                 }
 
             addImageGalleryButton.setOnClickListener {
-                pickImages.launch("image/*")
+                requestImagesPermissions.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
+                Log.d("ClickImage", "get permissions")
+
+            }
+            addPicturePhotoButton.setOnClickListener {
+                requestCameraPermissionsLauncher.launch(Manifest.permission.CAMERA)
 
             }
         }
     }
 
-    private fun checkPermission() = ContextCompat.checkSelfPermission(
-        requireContext(),
-        android.Manifest.permission.CAMERA
-    ) == PackageManager.PERMISSION_GRANTED
-
-    private fun setupAdapter() {
+    private fun setupPagerAdapter() {
         //val mediaAdapter = MediaAdapter(requireContext(), images)
         //binding.addEditViewpager.adapter = mediaAdapter
         //setHasOptionsMenu(true)
