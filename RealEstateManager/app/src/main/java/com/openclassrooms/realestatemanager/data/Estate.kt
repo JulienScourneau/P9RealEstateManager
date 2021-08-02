@@ -33,8 +33,9 @@ data class Estate(
 
 @Entity(tableName = "estate_photo")
 data class Photo(
-    @PrimaryKey var photo: String,
-    var estateId: Int
+    var photoReference: String,
+    var estateId: Int,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0
 ) : Serializable
 
 data class Address(
