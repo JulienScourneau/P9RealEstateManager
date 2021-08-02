@@ -33,35 +33,14 @@ abstract class EstateDatabase : RoomDatabase() {
                 dao.insertEstate(TestList.getEstate)
                 dao.insertEstate(TestList.getEstate1)
                 dao.insertEstate(TestList.getEstate2)
-                val uri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE
-                + "://com.openclassrooms.realestatemanager/drawable/house" )
-                dao.insertPhoto(Photo(uri.toString(), 1))
-                dao.insertPhoto(Photo(R.drawable.house.toString(), 2))
-                dao.insertPhoto(Photo(uri.toString(), 3))
-                dao.insertPhoto(Photo(R.drawable.living_room.toString(), 1))
-                dao.insertPhoto(Photo(R.drawable.bedroom.toString(), 2))
-                dao.insertPhoto(Photo(R.drawable.kitchen.toString(), 3))
-//
-                //dao.insert(Estate("Fake Category 2", "800 000 €", "Fake_Description",
-                //    800, 9, 2, 3, TestList.getAddress1))
-//
-                //dao.insert(Estate("Fake_category 3", "707 000 €", "Fake Description",
-                //    600, 8, 1, 2, TestList.getAddress2))
-//
-                //dao.insert(Estate("Fake Category 4", "990 000 €", "Fake_Description",
-                //    800, 9, 2, 3, TestList.getAddress))
-//
-                //dao.insert(Estate("Fake_category 5", "550 000 €", "Fake Description",
-                //    600, 8, 1, 2, TestList.getAddress1))
-//
-                //dao.insert(Estate("Fake Category 6", "650 000 €", "Fake_Description",
-                //    800, 9, 2, 3, TestList.getAddress2))
-//
-                //dao.insert(Estate("Fake_category 7", "500 000 €", "Fake Description",
-                //    600, 8, 1, 2, TestList.getAddress))
-//
-                //dao.insert(Estate("Fake Category 8", "900 000 €", "Fake_Description",
-                //    800, 9, 2, 3, TestList.getAddress1))
+
+                dao.insertPhoto(Photo("android.resource://com.openclassrooms.realestatemanager/drawable/house", 1))
+                dao.insertPhoto(Photo("android.resource://com.openclassrooms.realestatemanager/drawable/apartment", 2))
+                dao.insertPhoto(Photo("android.resource://com.openclassrooms.realestatemanager/drawable/house", 3))
+                dao.insertPhoto(Photo("android.resource://com.openclassrooms.realestatemanager/drawable/living_room", 1))
+                dao.insertPhoto(Photo("android.resource://com.openclassrooms.realestatemanager/drawable/bedroom", 2))
+                dao.insertPhoto(Photo("android.resource://com.openclassrooms.realestatemanager/drawable/kitchen", 3))
+
             }
         }
     }
