@@ -13,7 +13,7 @@ data class EstateWithPhoto(
         parentColumn = "id",
         entityColumn = "estateId"
     )
-    val photos: List<Photo> = emptyList()
+    val photosList: List<Photo> = emptyList()
 ) : Serializable
 
 
