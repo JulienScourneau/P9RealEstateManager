@@ -10,7 +10,11 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.openclassrooms.realestatemanager.databinding.MediaItemBinding
 
-class MediaAdapter(private val context: Context, private val mediaList: List<Uri>) :
+class MediaAdapter(
+    private val context: Context,
+    private val mediaList: List<Uri>,
+    private val hideDeleteButton: Boolean
+) :
     PagerAdapter() {
 
     override fun getCount(): Int {
@@ -31,9 +35,12 @@ class MediaAdapter(private val context: Context, private val mediaList: List<Uri
                 .load(media)
                 .apply(RequestOptions.centerInsideTransform())
                 .into(mediaItemImg)
+            if (hideDeleteButton) {
+                mediaItemDeleteBtn.visibility = View.GONE
+            }
+
         }
         container.addView(binding.root)
-
         return binding.root
     }
 

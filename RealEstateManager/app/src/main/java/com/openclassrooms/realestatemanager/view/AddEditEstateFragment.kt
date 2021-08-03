@@ -151,7 +151,7 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate) {
     }
 
     private fun setupPagerAdapter() {
-        val mediaAdapter = MediaAdapter(requireContext(), images)
+        val mediaAdapter = MediaAdapter(requireContext(), images, false)
         binding.addEditViewpager.adapter = mediaAdapter
         setHasOptionsMenu(true)
     }
