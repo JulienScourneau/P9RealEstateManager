@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <ImageView
         android:id="@+id/media_item_img"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scaleType="centerCrop"
         android:contentDescription="@string/media_image"
-        tools:src="@drawable/house"/>
+        android:scaleType="centerCrop"
+        tools:src="@drawable/house" />
 
-    <ImageButton
+    <ImageView
+        android:layout_margin="12dp"
+        android:id="@+id/media_item_delete_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="top|end"
-        android:src="@drawable/ic_baseline_delete_24"/>
+        android:src="@drawable/ic_baseline_delete_24"
+        android:background="@color/white"
+        tools:viewBindingIgnore="true" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
