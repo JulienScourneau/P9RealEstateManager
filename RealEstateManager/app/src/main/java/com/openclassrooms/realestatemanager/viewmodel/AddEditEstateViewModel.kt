@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.openclassrooms.realestatemanager.data.Address
 import com.openclassrooms.realestatemanager.data.Estate
 import com.openclassrooms.realestatemanager.data.EstateWithPhoto
+import com.openclassrooms.realestatemanager.data.Photo
 import com.openclassrooms.realestatemanager.repository.EstateRepository
 import com.openclassrooms.realestatemanager.utils.ADD_ESTATE_RESULT_OK
 import com.openclassrooms.realestatemanager.utils.EDIT_ESTATE_RESULT_OK
@@ -26,6 +27,10 @@ class AddEditEstateViewModel @Inject constructor(
     private fun createEstate(estate: Estate) = viewModelScope.launch {
         repository.insertEstate(estate)
         addEditEstateChannel.send(AddEditEstateEvent.NavigationBackWithResult(ADD_ESTATE_RESULT_OK))
+    }
+
+    private fun createPhoto(photo: Photo) = viewModelScope.launch {
+        repository.insertPhoto(photo)
     }
 
     private fun updateEstate(estate: Estate) = viewModelScope.launch {
@@ -106,6 +111,7 @@ class AddEditEstateViewModel @Inject constructor(
                 )
             )
             updateEstate(updateEstate)
+
         } else {
             val newEstate = Estate(
                 category = estateCategory,
@@ -123,7 +129,19 @@ class AddEditEstateViewModel @Inject constructor(
                     postalCode = estateAddressPostalCode
                 )
             )
+
+            if (estatePhoto.isNotEmpty()) {
+                for (i in estatePhoto.indices) {
+                    createPhoto(
+                        Photo(
+                            estateId = newEstate.id,
+                            photoReference = estatePhoto[i].photoReference
+                        )
+                    )
+                }
+            }
             createEstate(newEstate)
+
         }
     }
 
@@ -132,8 +150,8 @@ class AddEditEstateViewModel @Inject constructor(
         data class NavigationBackWithResult(val result: Int) : AddEditEstateEvent()
     }
 
-
-    var estateCategory = state.get<String>("estateCategory") ?: estateWithPhoto?.estate?.category ?: ""
+    var estateCategory =
+        state.get<String>("estateCategory") ?: estateWithPhoto?.estate?.category ?: ""
         set(value) {
             field = value
             state.set("estateCategory", value)
@@ -153,7 +171,8 @@ class AddEditEstateViewModel @Inject constructor(
             state.set("estateAddressNumber", value)
         }
 
-    var estateAddressCity = state.get<String>("estateAddressCity") ?: estateWithPhoto?.estate?.address?.city ?: ""
+    var estateAddressCity =
+        state.get<String>("estateAddressCity") ?: estateWithPhoto?.estate?.address?.city ?: ""
         set(value) {
             field = value
             state.set("estateAddressCity", value)
@@ -167,7 +186,8 @@ class AddEditEstateViewModel @Inject constructor(
         }
 
     var estateAddressPostalCode =
-        state.get<String>("estateAddressPostalCode") ?: estateWithPhoto?.estate?.address?.postalCode ?: ""
+        state.get<String>("estateAddressPostalCode") ?: estateWithPhoto?.estate?.address?.postalCode
+        ?: ""
         set(value) {
             field = value
             state.set("estateAddressPostalCode", value)
@@ -191,7 +211,8 @@ class AddEditEstateViewModel @Inject constructor(
             state.set("estateRoom", value)
         }
 
-    var estateBathroom = state.get<String>("estateBathroom") ?: estateWithPhoto?.estate?.bathroom ?: ""
+    var estateBathroom =
+        state.get<String>("estateBathroom") ?: estateWithPhoto?.estate?.bathroom ?: ""
         set(value) {
             field = value
             state.set("estateBathroom", value)
@@ -203,10 +224,17 @@ class AddEditEstateViewModel @Inject constructor(
             state.set("estateBedroom", value)
         }
 
-    var estateDescription = state.get<String>("estateDescription") ?: estateWithPhoto?.estate?.description ?: ""
+    var estateDescription =
+        state.get<String>("estateDescription") ?: estateWithPhoto?.estate?.description ?: ""
         set(value) {
             field = value
             state.set("estateDescription", value)
         }
-}
 
+    var estatePhoto =
+        state.get<ArrayList<Photo>>("estatePhoto") ?: estateWithPhoto?.photosList ?: emptyList()
+        set(value) {
+            field = value
+            state.set("estatePhoto", value)
+        }
+}
