@@ -82,8 +82,8 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate) {
             detailsDescriptionText.text = estate.estate.description
         }
 
-        for (i in estate.photos.indices) {
-            images.add(Uri.parse(estate.photos[i].photoReference))
+        for (i in estate.photosList.indices) {
+            images.add(Uri.parse(estate.photosList[i].photoReference))
         }
 
         val mediaAdapter = MediaAdapter(requireContext(),images)
