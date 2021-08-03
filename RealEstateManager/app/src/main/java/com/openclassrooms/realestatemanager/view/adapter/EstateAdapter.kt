@@ -1,7 +1,5 @@
 package com.openclassrooms.realestatemanager.view.adapter
 
-import android.net.Uri
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -13,8 +11,6 @@ import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.data.EstateWithPhoto
 import com.openclassrooms.realestatemanager.databinding.EstateItemBinding
 import com.openclassrooms.realestatemanager.utils.Utils
-import java.text.NumberFormat
-import java.util.*
 
 class EstateAdapter(private val listener: OnItemClickListener) :
     ListAdapter<EstateWithPhoto, EstateAdapter.EstateViewHolder>(DiffCallback()) {
@@ -46,14 +42,14 @@ class EstateAdapter(private val listener: OnItemClickListener) :
 
         fun bind(estate: EstateWithPhoto) {
             binding.apply {
-                if (estate.photos.isEmpty()) {
+                if (estate.photosList.isEmpty()) {
                     Glide.with(itemView)
                         .load(R.drawable.image_unavailable)
                         .apply(RequestOptions.centerCropTransform())
                         .into(propertyItemImage)
                 } else {
                     Glide.with(itemView)
-                        .load(estate.photos[0].photoReference)
+                        .load(estate.photosList[0].photoReference)
                         .apply(RequestOptions.centerCropTransform())
                         .into(propertyItemImage)
                 }

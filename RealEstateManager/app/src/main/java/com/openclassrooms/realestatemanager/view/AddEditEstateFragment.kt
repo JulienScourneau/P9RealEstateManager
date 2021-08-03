@@ -94,6 +94,11 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate) {
             bathroomEditText.setText(viewModel.estateBathroom)
             bedroomEditText.setText(viewModel.estateBedroom)
             descriptionEditText.setText(viewModel.estateDescription)
+            images.clear()
+            for (item in viewModel.estatePhoto.indices){
+                images.add(Uri.parse(viewModel.estatePhoto[item].photoReference))
+                addEditViewpager.adapter?.notifyDataSetChanged()
+            }
 
             addEditFab.setOnClickListener {
                 viewModel.onSaveClick()
