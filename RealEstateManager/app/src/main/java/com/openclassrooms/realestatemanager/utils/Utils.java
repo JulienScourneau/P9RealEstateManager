@@ -1,14 +1,21 @@
 package com.openclassrooms.realestatemanager.utils;
 
 import android.content.Context;
+import android.net.Uri;
 import android.net.wifi.WifiManager;
 import android.widget.Spinner;
 
+import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
+
 import com.openclassrooms.realestatemanager.data.Address;
+import com.openclassrooms.realestatemanager.data.Estate;
+import com.openclassrooms.realestatemanager.data.Photo;
 
 import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Currency;
 import java.util.Date;
 
@@ -87,4 +94,15 @@ public class Utils {
         );
         return location;
     }
+
+    public static ArrayList<Photo> uriToPhoto(ArrayList<Uri> uriList) {
+        ArrayList<Photo> photoList = new ArrayList<>();
+
+        for (int i = 0; i < uriList.size(); i++) {
+            photoList.add(new Photo( uriList.get(i).toString(),0,0));
+        }
+        return photoList;
+    }
+
+
 }
