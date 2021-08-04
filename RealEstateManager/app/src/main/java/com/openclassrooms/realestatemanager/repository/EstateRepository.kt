@@ -15,8 +15,8 @@ class EstateRepository @Inject constructor(private val estateDao: EstateDao) {
         return estateDao.getEstateById(id)
     }
 
-    suspend fun insertEstate(estate: Estate) {
-        estateDao.insertEstate(estate)
+    suspend fun insertEstate(estate: Estate): Long {
+        return estateDao.insertEstate(estate)
     }
 
     suspend fun insertPhoto(photo: Photo) {
