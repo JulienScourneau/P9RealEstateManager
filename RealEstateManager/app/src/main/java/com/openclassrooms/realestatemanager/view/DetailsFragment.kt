@@ -80,14 +80,14 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate) {
             detailsBedroomData.text = estate.estate.bedroom
             detailsLocationData.text = Utils.formatAddress(estate.estate.address)
             detailsDescriptionText.text = estate.estate.description
-        }
 
-        for (i in estate.photosList.indices) {
-            images.add(Uri.parse(estate.photosList[i].photoReference))
+            images.clear()
+            for (i in estate.photosList.indices) {
+                images.add(Uri.parse(estate.photosList[i].photoReference))
+            }
+            val mediaAdapter = MediaAdapter(requireContext(), images, true)
+            detailsViewpager.adapter = mediaAdapter
+            setHasOptionsMenu(true)
         }
-
-        val mediaAdapter = MediaAdapter(requireContext(), images, true)
-        binding.detailsViewpager.adapter = mediaAdapter
-        setHasOptionsMenu(true)
     }
 }
