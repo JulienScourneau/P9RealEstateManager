@@ -1,5 +1,6 @@
 package com.openclassrooms.realestatemanager.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,9 +12,11 @@ import com.openclassrooms.realestatemanager.repository.EstateRepository
 import com.openclassrooms.realestatemanager.utils.ADD_ESTATE_RESULT_OK
 import com.openclassrooms.realestatemanager.utils.EDIT_ESTATE_RESULT_OK
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 @HiltViewModel
@@ -24,13 +27,19 @@ class AddEditEstateViewModel @Inject constructor(
 
     val estateWithPhoto = state.get<EstateWithPhoto>("estate")
 
-    private fun createEstate(estate: Estate) = viewModelScope.launch {
-        repository.insertEstate(estate)
-        addEditEstateChannel.send(AddEditEstateEvent.NavigationBackWithResult(ADD_ESTATE_RESULT_OK))
+    private var newId: Long = 0
+    private var job: Job? = null
+
+    private fun createEstate(estate: Estate) {
+        job = viewModelScope.launch {
+            newId = repository.insertEstate(estate)
+            Log.d("createEstate", "launch")
+        }
     }
 
     private fun createPhoto(photo: Photo) = viewModelScope.launch {
         repository.insertPhoto(photo)
+        Log.d("createPhoto", "newId: $newId")
     }
 
     private fun updateEstate(estate: Estate) = viewModelScope.launch {
@@ -41,8 +50,69 @@ class AddEditEstateViewModel @Inject constructor(
     private val addEditEstateChannel = Channel<AddEditEstateEvent>()
     val addEditEstateEvent = addEditEstateChannel.receiveAsFlow()
 
+    private fun navigationBack() = viewModelScope.launch {
+        addEditEstateChannel.send(AddEditEstateEvent.NavigationBackWithResult(ADD_ESTATE_RESULT_OK))
+    }
+
     private fun showInvalidInputMessage(text: String) = viewModelScope.launch {
         addEditEstateChannel.send(AddEditEstateEvent.ShowInvalidInputMessage(text))
+    }
+
+    private fun createEstateOnSaveClick() {
+        val newEstate = Estate(
+            category = estateCategory,
+            price = estatePrice,
+            description = estateDescription,
+            area = estateArea,
+            room = estateRoom,
+            bathroom = estateBathroom,
+            bedroom = estateBedroom,
+            address = Address(
+                number = estateAddressNumber,
+                street = estateAddressStreet,
+                city = estateAddressCity,
+                country = estateAddressCountry,
+                postalCode = estateAddressPostalCode
+            )
+        )
+        createEstate(newEstate)
+    }
+
+    private fun updateEstateOnSaveClick() {
+        if (estateWithPhoto != null) {
+            val updateEstate = estateWithPhoto.estate.copy(
+                category = estateCategory,
+                price = estatePrice,
+                description = estateDescription,
+                area = estateArea,
+                room = estateRoom,
+                bathroom = estateBathroom,
+                bedroom = estateBedroom,
+                address = Address(
+                    number = estateAddressNumber,
+                    street = estateAddressStreet,
+                    city = estateAddressCity,
+                    country = estateAddressCountry,
+                    postalCode = estateAddressPostalCode
+                )
+            )
+            updateEstate(updateEstate)
+        }
+    }
+
+    private suspend fun createPhotoOnSaveClick() {
+        if (estatePhoto.isNotEmpty()) {
+            job?.join()
+            Log.d("estatePhoto", "estatePhoto: ${estatePhoto.size}")
+            for (i in estatePhoto.indices) {
+                val newPhoto = Photo(
+                    estateId = newId.toInt(),
+                    photoReference = estatePhoto[i].toString()
+                )
+                Log.d("estatePhoto", "estatePhotoId: $newId")
+                createPhoto(newPhoto)
+            }
+        }
     }
 
     fun onSaveClick() {
@@ -94,55 +164,13 @@ class AddEditEstateViewModel @Inject constructor(
         }
 
         if (estateWithPhoto != null) {
-            val updateEstate = estateWithPhoto.estate.copy(
-                category = estateCategory,
-                price = estatePrice,
-                description = estateDescription,
-                area = estateArea,
-                room = estateRoom,
-                bathroom = estateBathroom,
-                bedroom = estateBedroom,
-                address = Address(
-                    number = estateAddressNumber,
-                    street = estateAddressStreet,
-                    city = estateAddressCity,
-                    country = estateAddressCountry,
-                    postalCode = estateAddressPostalCode
-                )
-            )
-            updateEstate(updateEstate)
+            updateEstateOnSaveClick()
 
         } else {
-            val newEstate = Estate(
-                category = estateCategory,
-                price = estatePrice,
-                description = estateDescription,
-                area = estateArea,
-                room = estateRoom,
-                bathroom = estateBathroom,
-                bedroom = estateBedroom,
-                address = Address(
-                    number = estateAddressNumber,
-                    street = estateAddressStreet,
-                    city = estateAddressCity,
-                    country = estateAddressCountry,
-                    postalCode = estateAddressPostalCode
-                )
-            )
-
-            if (estatePhoto.isNotEmpty()) {
-                for (i in estatePhoto.indices) {
-                    createPhoto(
-                        Photo(
-                            estateId = newEstate.id,
-                            photoReference = estatePhoto[i].photoReference
-                        )
-                    )
-                }
-            }
-            createEstate(newEstate)
-
+            createEstateOnSaveClick()
+            viewModelScope.launch { createPhotoOnSaveClick() }
         }
+        navigationBack()
     }
 
     sealed class AddEditEstateEvent {

@@ -3,6 +3,7 @@ package com.openclassrooms.realestatemanager.utils;
 import android.content.Context;
 import android.net.Uri;
 import android.net.wifi.WifiManager;
+import android.util.Log;
 import android.widget.Spinner;
 
 import androidx.room.Insert;
@@ -100,7 +101,9 @@ public class Utils {
 
         for (int i = 0; i < uriList.size(); i++) {
             photoList.add(new Photo( uriList.get(i).toString(),0,0));
+            Log.d("uriToPhoto", "photoList Reference: " + photoList.get(0).getPhotoReference());
         }
+
         return photoList;
     }
 

@@ -4,7 +4,6 @@ import android.Manifest
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -95,12 +94,13 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate) {
             bedroomEditText.setText(viewModel.estateBedroom)
             descriptionEditText.setText(viewModel.estateDescription)
             images.clear()
-            for (item in viewModel.estatePhoto.indices){
+            for (item in viewModel.estatePhoto.indices) {
                 images.add(Uri.parse(viewModel.estatePhoto[item].photoReference))
                 addEditViewpager.adapter?.notifyDataSetChanged()
             }
 
             addEditFab.setOnClickListener {
+                viewModel.estatePhoto = Utils.uriToPhoto(images)
                 viewModel.onSaveClick()
             }
 
@@ -122,8 +122,10 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate) {
 
             val takePicture =
                 registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
-                    images.add(imageUri)
-                    addEditViewpager.adapter?.notifyDataSetChanged()
+                    if (success) {
+                        images.add(imageUri)
+                        addEditViewpager.adapter?.notifyDataSetChanged()
+                    }
                 }
 
             val requestImagesPermissions =
