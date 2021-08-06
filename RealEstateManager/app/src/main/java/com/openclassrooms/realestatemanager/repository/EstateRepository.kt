@@ -23,11 +23,13 @@ class EstateRepository @Inject constructor(private val estateDao: EstateDao) {
         estateDao.insertPhoto(photo)
     }
 
-    suspend fun update(estate: Estate) {
-        estateDao.update(estate)
+    suspend fun updateEstate(estate: Estate) {
+        estateDao.updateEstate(estate)
     }
 
-    suspend fun delete(estate: Estate) {
-        estateDao.delete(estate.id)
+    suspend fun updatePhoto(id: Long) {
+        estateDao.deleteAllPhoto(id)
     }
+
+
 }

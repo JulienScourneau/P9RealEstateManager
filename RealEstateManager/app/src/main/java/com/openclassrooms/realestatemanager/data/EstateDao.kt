@@ -21,9 +21,9 @@ interface EstateDao {
     suspend fun insertPhoto(photo: Photo)
 
     @Update
-    suspend fun update(estate: Estate)
+    suspend fun updateEstate(estate: Estate)
 
-    @Query("DELETE FROM estate_table WHERE id = :estateId ")
-    suspend fun delete(estateId: Int)
+    @Query("DELETE FROM estate_photo WHERE estateId = :id")
+    suspend fun deleteAllPhoto(id: Long)
 
 }
