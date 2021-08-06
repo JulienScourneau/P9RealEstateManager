@@ -107,7 +107,7 @@ class AddEditEstateViewModel @Inject constructor(
             for (i in estatePhoto.indices) {
                 val newPhoto = Photo(
                     estateId = newId.toInt(),
-                    photoReference = estatePhoto[i].toString()
+                    photoReference = estatePhoto[i].photoReference
                 )
                 Log.d("estatePhoto", "estatePhotoId: $newId")
                 createPhoto(newPhoto)
