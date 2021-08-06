@@ -16,6 +16,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 @HiltViewModel
@@ -44,6 +45,12 @@ class AddEditEstateViewModel @Inject constructor(
     private fun updateEstate(estate: Estate) = viewModelScope.launch {
         repository.updateEstate(estate)
         addEditEstateChannel.send(AddEditEstateEvent.NavigationBackWithResult(EDIT_ESTATE_RESULT_OK))
+    }
+
+    private fun deletePhoto(id: Long) {
+        job = viewModelScope.launch {
+            repository.deletePhoto(id)
+        }
     }
 
     private val addEditEstateChannel = Channel<AddEditEstateEvent>()
@@ -114,7 +121,7 @@ class AddEditEstateViewModel @Inject constructor(
 
     private suspend fun updatePhotoOnSaveClick() {
         if (estateWithPhoto != null) {
-            repository.updatePhoto(estateWithPhoto.estate.id.toLong())
+            job?.join()
             for (i in estatePhoto.indices) {
                 val newPhoto = Photo(
                     estateId = estateWithPhoto.estate.id,
@@ -122,6 +129,12 @@ class AddEditEstateViewModel @Inject constructor(
                 )
                 createPhoto(newPhoto)
             }
+        }
+    }
+
+    private fun deletePhotoOnSaveClick() {
+        if (estateWithPhoto != null && estateWithPhoto.photosList.isNotEmpty()) {
+            deletePhoto(estateWithPhoto.estate.id.toLong())
         }
     }
 
@@ -172,9 +185,9 @@ class AddEditEstateViewModel @Inject constructor(
                 return
             }
         }
-
         if (estateWithPhoto != null) {
             updateEstateOnSaveClick()
+            deletePhotoOnSaveClick()
             viewModelScope.launch {
                 updatePhotoOnSaveClick()
             }
@@ -186,12 +199,6 @@ class AddEditEstateViewModel @Inject constructor(
         }
         navigationBack()
     }
-
-    sealed class AddEditEstateEvent {
-        data class ShowInvalidInputMessage(val message: String) : AddEditEstateEvent()
-        data class NavigationBackWithResult(val result: Int) : AddEditEstateEvent()
-    }
-
     var estateCategory =
         state.get<String>("estateCategory") ?: estateWithPhoto?.estate?.category ?: ""
         set(value) {
@@ -279,4 +286,9 @@ class AddEditEstateViewModel @Inject constructor(
             field = value
             state.set("estatePhoto", value)
         }
+
+    sealed class AddEditEstateEvent {
+        data class ShowInvalidInputMessage(val message: String) : AddEditEstateEvent()
+        data class NavigationBackWithResult(val result: Int) : AddEditEstateEvent()
+    }
 }

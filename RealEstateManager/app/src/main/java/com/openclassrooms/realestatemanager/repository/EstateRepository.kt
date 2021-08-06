@@ -27,9 +27,7 @@ class EstateRepository @Inject constructor(private val estateDao: EstateDao) {
         estateDao.updateEstate(estate)
     }
 
-    suspend fun updatePhoto(id: Long) {
-        estateDao.deleteAllPhoto(id)
+    suspend fun deletePhoto(id: Long) {
+        estateDao.deletePhoto(id)
     }
-
-
 }

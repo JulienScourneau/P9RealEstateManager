@@ -15,7 +15,7 @@ interface EstateDao {
     fun getEstateById(estateId: Long): Flow<EstateWithPhoto>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertEstate(estate: Estate) :Long
+    suspend fun insertEstate(estate: Estate): Long
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPhoto(photo: Photo)
@@ -23,7 +23,7 @@ interface EstateDao {
     @Update
     suspend fun updateEstate(estate: Estate)
 
-    @Query("DELETE FROM estate_photo WHERE estateId = :id")
-    suspend fun deleteAllPhoto(id: Long)
+    @Query("DELETE FROM estate_photo WHERE estateId =:id")
+    suspend fun deletePhoto(id: Long)
 
 }
