@@ -20,18 +20,6 @@ class EstateViewModel @Inject constructor(
     val estateEvent = estateEventChannel.receiveAsFlow()
     val allEstate: LiveData<List<EstateWithPhoto>> = repository.allEstate.asLiveData()
 
-    fun insert(estate: Estate) = viewModelScope.launch {
-        repository.insertEstate(estate)
-    }
-
-    fun update(estate: Estate) = viewModelScope.launch {
-        repository.update(estate)
-    }
-
-    fun delete(estate: Estate) = viewModelScope.launch {
-        repository.delete(estate)
-    }
-
     fun onEstateSelected(id: Long) = viewModelScope.launch {
         estateEventChannel.send(EstateEvent.NavigateToDetailsScreen(id))
     }

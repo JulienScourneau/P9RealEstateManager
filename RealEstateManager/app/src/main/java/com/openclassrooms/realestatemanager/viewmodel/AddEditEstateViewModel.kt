@@ -16,7 +16,6 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 @HiltViewModel
@@ -43,7 +42,7 @@ class AddEditEstateViewModel @Inject constructor(
     }
 
     private fun updateEstate(estate: Estate) = viewModelScope.launch {
-        repository.update(estate)
+        repository.updateEstate(estate)
         addEditEstateChannel.send(AddEditEstateEvent.NavigationBackWithResult(EDIT_ESTATE_RESULT_OK))
     }
 
@@ -103,13 +102,24 @@ class AddEditEstateViewModel @Inject constructor(
     private suspend fun createPhotoOnSaveClick() {
         if (estatePhoto.isNotEmpty()) {
             job?.join()
-            Log.d("estatePhoto", "estatePhoto: ${estatePhoto.size}")
             for (i in estatePhoto.indices) {
                 val newPhoto = Photo(
                     estateId = newId.toInt(),
                     photoReference = estatePhoto[i].photoReference
                 )
-                Log.d("estatePhoto", "estatePhotoId: $newId")
+                createPhoto(newPhoto)
+            }
+        }
+    }
+
+    private suspend fun updatePhotoOnSaveClick() {
+        if (estateWithPhoto != null) {
+            repository.updatePhoto(estateWithPhoto.estate.id.toLong())
+            for (i in estatePhoto.indices) {
+                val newPhoto = Photo(
+                    estateId = estateWithPhoto.estate.id,
+                    photoReference = estatePhoto[i].photoReference
+                )
                 createPhoto(newPhoto)
             }
         }
@@ -165,10 +175,14 @@ class AddEditEstateViewModel @Inject constructor(
 
         if (estateWithPhoto != null) {
             updateEstateOnSaveClick()
-
+            viewModelScope.launch {
+                updatePhotoOnSaveClick()
+            }
         } else {
             createEstateOnSaveClick()
-            viewModelScope.launch { createPhotoOnSaveClick() }
+            viewModelScope.launch {
+                createPhotoOnSaveClick()
+            }
         }
         navigationBack()
     }
