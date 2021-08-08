@@ -1,18 +1,19 @@
 package com.openclassrooms.realestatemanager.view.adapter
 
 import android.content.Context
-import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.PagerAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.openclassrooms.realestatemanager.data.Photo
 import com.openclassrooms.realestatemanager.databinding.MediaItemBinding
 
 class MediaAdapter(
     private val context: Context,
-    private val mediaList: List<Uri>,
+    private val mediaList: List<Photo>,
     private val hideDeleteButton: Boolean
 ) :
     PagerAdapter() {
@@ -32,12 +33,13 @@ class MediaAdapter(
 
         binding.apply {
             Glide.with(mediaItemImg)
-                .load(media)
+                .load(media.photoReference)
                 .apply(RequestOptions.centerInsideTransform())
                 .into(mediaItemImg)
             if (hideDeleteButton) {
                 mediaItemDeleteBtn.visibility = View.GONE
             }
+            Log.d("mediaAdapter","PhotoRef: ${media.photoReference}")
 
         }
         container.addView(binding.root)

@@ -85,7 +85,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate) {
             for (i in estate.photosList.indices) {
                 images.add(Uri.parse(estate.photosList[i].photoReference))
             }
-            val mediaAdapter = MediaAdapter(requireContext(), images, true)
+            val mediaAdapter = MediaAdapter(requireContext(), estate.photosList, true)
             detailsViewpager.adapter = mediaAdapter
             setHasOptionsMenu(true)
         }
