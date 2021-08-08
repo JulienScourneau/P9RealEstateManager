@@ -1,8 +1,13 @@
 package com.openclassrooms.realestatemanager.view
 
 import android.os.Bundle
-import android.view.*
+import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
@@ -12,8 +17,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.data.EstateWithPhoto
-import com.openclassrooms.realestatemanager.databinding.FragmentAddEditEstateBinding
 import com.openclassrooms.realestatemanager.databinding.FragmentListEstateBinding
+import com.openclassrooms.realestatemanager.utils.onQueryTextChanger
 import com.openclassrooms.realestatemanager.view.adapter.EstateAdapter
 import com.openclassrooms.realestatemanager.viewmodel.EstateViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -50,9 +55,7 @@ class ListFragment : Fragment(R.layout.fragment_list_estate), EstateAdapter.OnIt
             val result = bundle.getInt("add_edit_result")
             viewModel.onAddResult(result, "Estate Added")
         }
-
-
-
+        
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.estateEvent.collect { event ->
                 when (event) {
@@ -73,11 +76,19 @@ class ListFragment : Fragment(R.layout.fragment_list_estate), EstateAdapter.OnIt
                 }
             }
         }
+        setHasOptionsMenu(true)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_fragment_list, menu)
-        super.onCreateOptionsMenu(menu, inflater)
+        Log.d("OptionsMenu", "createOptionsMenu")
+
+        val searchItem = menu.findItem(R.id.action_search_estate)
+        val searchView = searchItem.actionView as SearchView
+
+        searchView.onQueryTextChanger { search ->
+            viewModel.searchQuery.value = search
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

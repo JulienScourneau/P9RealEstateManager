@@ -33,6 +33,7 @@
     <string name="add_edit_activity_bedroom_text">Chambre</string>
     <string name="add_edit_activity_description_text">Description</string>
     <string name="menu_edit_estate">Edit</string>
+    <string name="menu_search_estate">Search</string>
 
     <string-array name="category_spinner">
         <item>Appartement</item>
