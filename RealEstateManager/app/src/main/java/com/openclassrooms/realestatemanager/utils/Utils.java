@@ -96,16 +96,7 @@ public class Utils {
         return location;
     }
 
-    public static ArrayList<Photo> uriToPhoto(ArrayList<Uri> uriList) {
-        ArrayList<Photo> photoList = new ArrayList<>();
-
-        for (int i = 0; i < uriList.size(); i++) {
-            photoList.add(new Photo( uriList.get(i).toString(),0,0));
-            Log.d("uriToPhoto", "photoList Reference: " + photoList.get(0).getPhotoReference());
-        }
-
-        return photoList;
+    public static Photo uriToPhoto(Uri uri) {
+        return new Photo(uri.toString(), 0, 0);
     }
-
-
 }
