@@ -7,6 +7,7 @@ import android.os.Environment
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import androidx.core.os.bundleOf
@@ -18,6 +19,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.openclassrooms.realestatemanager.R
+import com.openclassrooms.realestatemanager.data.Photo
 import com.openclassrooms.realestatemanager.databinding.FragmentAddEditEstateBinding
 import com.openclassrooms.realestatemanager.utils.Utils
 import com.openclassrooms.realestatemanager.view.adapter.MediaAdapter
@@ -27,10 +29,10 @@ import kotlinx.coroutines.flow.collect
 import java.io.File
 
 @AndroidEntryPoint
-class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate) {
+class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate), MediaAdapter.OnItemClickListener {
 
     private val viewModel: AddEditEstateViewModel by viewModels()
-    private var images: ArrayList<Uri> = ArrayList()
+    private var images: ArrayList<Photo> = ArrayList()
     private lateinit var binding: FragmentAddEditEstateBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -64,8 +66,7 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate) {
             R.array.category_spinner,
             android.R.layout.simple_spinner_dropdown_item
         )
-        addTextChangedListener()
-        setupPagerAdapter()
+
 
         binding.apply {
 
@@ -77,6 +78,7 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate) {
                 ) {
                     viewModel.estateCategory = adapter?.getItemAtPosition(position).toString()
                 }
+
                 override fun onNothingSelected(p0: AdapterView<*>?) {}
             }
             categorySpinner.setSelection(Utils.getIndex(categorySpinner, viewModel.estateCategory))
@@ -92,15 +94,20 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate) {
             bedroomEditText.setText(viewModel.estateBedroom)
             descriptionEditText.setText(viewModel.estateDescription)
             images.clear()
-            for (item in viewModel.estatePhoto.indices) {
-                images.add(Uri.parse(viewModel.estatePhoto[item].photoReference))
-            }
+            images = viewModel.estatePhoto as ArrayList<Photo>
+            setupPagerAdapter()
             addEditViewpager.adapter?.notifyDataSetChanged()
 
             addEditFab.setOnClickListener {
-
                 viewModel.onSaveClick()
             }
+        }
+        setupAddPhotoListener()
+        addTextChangedListener()
+    }
+
+    private fun setupAddPhotoListener() {
+        binding.apply {
 
             val photoFile: File = File.createTempFile(
                 "IMG_", ".jpg",
@@ -115,8 +122,8 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate) {
             val pickImages =
                 registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
                     if (uri != null) {
-                        images.add(uri)
-                        viewModel.estatePhoto = Utils.uriToPhoto(images)
+                        images.add(Utils.uriToPhoto(uri))
+                        viewModel.estatePhoto = images
                         addEditViewpager.adapter?.notifyDataSetChanged()
                     }
                 }
@@ -124,8 +131,8 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate) {
             val takePicture =
                 registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
                     if (success) {
-                        images.add(imageUri)
-                        viewModel.estatePhoto = Utils.uriToPhoto(images)
+                        images.add(Utils.uriToPhoto(imageUri))
+                        viewModel.estatePhoto = images
                         addEditViewpager.adapter?.notifyDataSetChanged()
                     }
                 }
@@ -155,9 +162,15 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate) {
     }
 
     private fun setupPagerAdapter() {
-        val mediaAdapter = MediaAdapter(requireContext(), viewModel.estatePhoto, false)
+        val mediaAdapter = MediaAdapter( this,viewModel.estatePhoto, false)
         binding.addEditViewpager.adapter = mediaAdapter
         setHasOptionsMenu(true)
+    }
+
+    override fun onItemClick(photo: Photo) {
+        images.remove(photo)
+        binding.addEditViewpager.adapter?.notifyDataSetChanged()
+        Toast.makeText(requireContext(),"Click in fragment",Toast.LENGTH_SHORT).show()
     }
 
     private fun clearFocusOnSaveClick() {
@@ -178,38 +191,40 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate) {
 
     private fun addTextChangedListener() {
         binding.apply {
-            priceEditText.addTextChangedListener {
-                viewModel.estatePrice = it.toString()
-            }
-            streetEditText.addTextChangedListener {
-                viewModel.estateAddressStreet = it.toString()
-            }
-            numberEditText.addTextChangedListener {
-                viewModel.estateAddressNumber = it.toString()
-            }
-            cityEditText.addTextChangedListener {
-                viewModel.estateAddressCity = it.toString()
-            }
-            countryEditText.addTextChangedListener {
-                viewModel.estateAddressCountry = it.toString()
-            }
-            postalCodeEditText.addTextChangedListener {
-                viewModel.estateAddressPostalCode = it.toString()
-            }
-            areaEditText.addTextChangedListener {
-                viewModel.estateArea = it.toString()
-            }
-            roomEditText.addTextChangedListener {
-                viewModel.estateRoom = it.toString()
-            }
-            bathroomEditText.addTextChangedListener {
-                viewModel.estateBathroom = it.toString()
-            }
-            bedroomEditText.addTextChangedListener {
-                viewModel.estateBedroom = it.toString()
-            }
-            descriptionEditText.addTextChangedListener {
-                viewModel.estateDescription = it.toString()
+            viewModel.apply {
+                priceEditText.addTextChangedListener {
+                    estatePrice = it.toString()
+                }
+                streetEditText.addTextChangedListener {
+                    estateAddressStreet = it.toString()
+                }
+                numberEditText.addTextChangedListener {
+                    estateAddressNumber = it.toString()
+                }
+                cityEditText.addTextChangedListener {
+                    estateAddressCity = it.toString()
+                }
+                countryEditText.addTextChangedListener {
+                    estateAddressCountry = it.toString()
+                }
+                postalCodeEditText.addTextChangedListener {
+                    estateAddressPostalCode = it.toString()
+                }
+                areaEditText.addTextChangedListener {
+                    estateArea = it.toString()
+                }
+                roomEditText.addTextChangedListener {
+                    estateRoom = it.toString()
+                }
+                bathroomEditText.addTextChangedListener {
+                    estateBathroom = it.toString()
+                }
+                bedroomEditText.addTextChangedListener {
+                    estateBedroom = it.toString()
+                }
+                descriptionEditText.addTextChangedListener {
+                    estateDescription = it.toString()
+                }
             }
         }
     }

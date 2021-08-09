@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.data.EstateWithPhoto
+import com.openclassrooms.realestatemanager.data.Photo
 import com.openclassrooms.realestatemanager.databinding.FragmentDetailsEstateBinding
 import com.openclassrooms.realestatemanager.utils.Utils
 import com.openclassrooms.realestatemanager.view.adapter.MediaAdapter
@@ -20,7 +21,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
-class DetailsFragment : Fragment(R.layout.fragment_details_estate) {
+class DetailsFragment : Fragment(R.layout.fragment_details_estate),
+    MediaAdapter.OnItemClickListener {
 
     private val viewModel: DetailsViewModel by viewModels()
     private var images: ArrayList<Uri> = ArrayList()
@@ -85,9 +87,11 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate) {
             for (i in estate.photosList.indices) {
                 images.add(Uri.parse(estate.photosList[i].photoReference))
             }
-            val mediaAdapter = MediaAdapter(requireContext(), estate.photosList, true)
+            val mediaAdapter = MediaAdapter(this@DetailsFragment,estate.photosList, true)
             detailsViewpager.adapter = mediaAdapter
             setHasOptionsMenu(true)
         }
     }
+
+    override fun onItemClick(photo: Photo) {}
 }

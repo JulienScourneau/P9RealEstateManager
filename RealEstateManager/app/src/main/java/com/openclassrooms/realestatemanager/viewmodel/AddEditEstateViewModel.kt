@@ -10,13 +10,12 @@ import com.openclassrooms.realestatemanager.data.EstateWithPhoto
 import com.openclassrooms.realestatemanager.data.Photo
 import com.openclassrooms.realestatemanager.repository.EstateRepository
 import com.openclassrooms.realestatemanager.utils.ADD_ESTATE_RESULT_OK
-import com.openclassrooms.realestatemanager.utils.EDIT_ESTATE_RESULT_OK
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 @HiltViewModel
@@ -35,7 +34,7 @@ class AddEditEstateViewModel @Inject constructor(
         }
     }
 
-    private fun createPhoto(photo: Photo) = viewModelScope.launch {
+    private suspend fun createPhoto(photo: Photo) = viewModelScope.launch {
         repository.insertPhoto(photo)
     }
 
@@ -43,10 +42,8 @@ class AddEditEstateViewModel @Inject constructor(
         repository.updateEstate(estate)
     }
 
-    private fun deletePhoto(id: Long) {
-        job = viewModelScope.launch {
-            repository.deletePhoto(id)
-        }
+    private suspend fun deletePhoto(id: Long) {
+        repository.deletePhoto(id)
     }
 
     private val addEditEstateChannel = Channel<AddEditEstateEvent>()
@@ -118,7 +115,6 @@ class AddEditEstateViewModel @Inject constructor(
     private suspend fun updatePhotoOnSaveClick() {
         if (estateWithPhoto != null) {
             try {
-                job?.join()
                 if (estatePhoto.isNotEmpty()) {
                     for (i in estatePhoto.indices) {
                         val newPhoto = Photo(
@@ -129,12 +125,13 @@ class AddEditEstateViewModel @Inject constructor(
                     }
                 }
             } catch (e: Exception) {
-                Log.d("updatePhotoException", "Exception detected")
+                e.stackTrace
+                Log.d("updatePhotoException", "$e")
             }
         }
     }
 
-    private fun deletePhotoOnSaveClick() {
+    private suspend fun deletePhotoOnSaveClick() {
         if (estateWithPhoto != null && estateWithPhoto.photosList.isNotEmpty()) {
             deletePhoto(estateWithPhoto.estate.id.toLong())
         }
@@ -189,8 +186,8 @@ class AddEditEstateViewModel @Inject constructor(
         }
         if (estateWithPhoto != null) {
             updateEstateOnSaveClick()
-            deletePhotoOnSaveClick()
             viewModelScope.launch {
+                deletePhotoOnSaveClick()
                 updatePhotoOnSaveClick()
             }
         } else {
