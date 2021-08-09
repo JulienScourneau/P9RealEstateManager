@@ -319,7 +319,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp" />
 
-                <androidx.viewpager2.widget.ViewPager2
+                <androidx.viewpager.widget.ViewPager
                     android:id="@+id/add_edit_viewpager"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/estate_details_viewpager" />
