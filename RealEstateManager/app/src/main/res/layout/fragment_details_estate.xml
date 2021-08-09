@@ -13,7 +13,7 @@
         android:background="@color/colorSecondaryDark">
 
 
-        <androidx.viewpager.widget.ViewPager
+        <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/details_viewpager"
             android:layout_width="match_parent"
             android:layout_height="@dimen/estate_details_viewpager" />
