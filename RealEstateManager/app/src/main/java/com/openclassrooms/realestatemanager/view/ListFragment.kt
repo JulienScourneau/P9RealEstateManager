@@ -86,8 +86,8 @@ class ListFragment : Fragment(R.layout.fragment_list_estate), EstateAdapter.OnIt
         val searchItem = menu.findItem(R.id.action_search_estate)
         val searchView = searchItem.actionView as SearchView
 
-        searchView.onQueryTextChanger { search ->
-            viewModel.searchQuery.value = search
+        searchView.onQueryTextChanger {
+
         }
     }
 

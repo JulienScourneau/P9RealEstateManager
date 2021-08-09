@@ -33,7 +33,6 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate) {
     private var images: ArrayList<Uri> = ArrayList()
     private lateinit var binding: FragmentAddEditEstateBinding
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentAddEditEstateBinding.bind(view)
@@ -78,7 +77,6 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate) {
                 ) {
                     viewModel.estateCategory = adapter?.getItemAtPosition(position).toString()
                 }
-
                 override fun onNothingSelected(p0: AdapterView<*>?) {}
             }
             categorySpinner.setSelection(Utils.getIndex(categorySpinner, viewModel.estateCategory))
@@ -96,11 +94,11 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate) {
             images.clear()
             for (item in viewModel.estatePhoto.indices) {
                 images.add(Uri.parse(viewModel.estatePhoto[item].photoReference))
-                addEditViewpager.adapter?.notifyDataSetChanged()
             }
+            addEditViewpager.adapter?.notifyDataSetChanged()
 
             addEditFab.setOnClickListener {
-                viewModel.estatePhoto = Utils.uriToPhoto(images)
+
                 viewModel.onSaveClick()
             }
 
@@ -116,14 +114,18 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate) {
 
             val pickImages =
                 registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
-                    images.add(uri)
-                    addEditViewpager.adapter?.notifyDataSetChanged()
+                    if (uri != null) {
+                        images.add(uri)
+                        viewModel.estatePhoto = Utils.uriToPhoto(images)
+                        addEditViewpager.adapter?.notifyDataSetChanged()
+                    }
                 }
 
             val takePicture =
                 registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
                     if (success) {
                         images.add(imageUri)
+                        viewModel.estatePhoto = Utils.uriToPhoto(images)
                         addEditViewpager.adapter?.notifyDataSetChanged()
                     }
                 }
@@ -153,7 +155,7 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate) {
     }
 
     private fun setupPagerAdapter() {
-        val mediaAdapter = MediaAdapter(requireContext(), images, false)
+        val mediaAdapter = MediaAdapter(requireContext(), viewModel.estatePhoto, false)
         binding.addEditViewpager.adapter = mediaAdapter
         setHasOptionsMenu(true)
     }

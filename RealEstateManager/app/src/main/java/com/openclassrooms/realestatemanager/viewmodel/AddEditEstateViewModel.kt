@@ -26,7 +26,6 @@ class AddEditEstateViewModel @Inject constructor(
 ) : ViewModel() {
 
     val estateWithPhoto = state.get<EstateWithPhoto>("estate")
-
     private var newId: Long = 0
     private var job: Job? = null
 
@@ -38,12 +37,10 @@ class AddEditEstateViewModel @Inject constructor(
 
     private fun createPhoto(photo: Photo) = viewModelScope.launch {
         repository.insertPhoto(photo)
-        Log.d("createPhoto", "newId: $newId")
     }
 
     private fun updateEstate(estate: Estate) = viewModelScope.launch {
         repository.updateEstate(estate)
-        addEditEstateChannel.send(AddEditEstateEvent.NavigationBackWithResult(EDIT_ESTATE_RESULT_OK))
     }
 
     private fun deletePhoto(id: Long) {
@@ -122,17 +119,17 @@ class AddEditEstateViewModel @Inject constructor(
         if (estateWithPhoto != null) {
             try {
                 job?.join()
-            } catch (e: Exception){
-                Log.d("updatePhoto","Exception detected")
-            }
-            if (estatePhoto.isNotEmpty()) {
-                for (i in estatePhoto.indices) {
-                    val newPhoto = Photo(
-                        estateId = estateWithPhoto.estate.id,
-                        photoReference = estatePhoto[i].photoReference
-                    )
-                    createPhoto(newPhoto)
+                if (estatePhoto.isNotEmpty()) {
+                    for (i in estatePhoto.indices) {
+                        val newPhoto = Photo(
+                            estateId = estateWithPhoto.estate.id,
+                            photoReference = estatePhoto[i].photoReference
+                        )
+                        createPhoto(newPhoto)
+                    }
                 }
+            } catch (e: Exception) {
+                Log.d("updatePhotoException", "Exception detected")
             }
         }
     }
