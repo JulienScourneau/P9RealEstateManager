@@ -55,13 +55,17 @@ class ListFragment : Fragment(R.layout.fragment_list_estate), EstateAdapter.OnIt
             val result = bundle.getInt("add_edit_result")
             viewModel.onAddResult(result, "Estate Added")
         }
-        
+
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.estateEvent.collect { event ->
                 when (event) {
                     is EstateViewModel.EstateEvent.NavigateToAddEstateScreen -> {
                         val action =
                             ListFragmentDirections.actionListFragmentToAddEditEstateFragment(null)
+                        findNavController().navigate(action)
+                    }
+                    is EstateViewModel.EstateEvent.NavigateToSearchScreen -> {
+                        val action = ListFragmentDirections.actionListFragmentToSearchFragment()
                         findNavController().navigate(action)
                     }
                     is EstateViewModel.EstateEvent.NavigateToDetailsScreen -> {
@@ -72,7 +76,6 @@ class ListFragment : Fragment(R.layout.fragment_list_estate), EstateAdapter.OnIt
                     is EstateViewModel.EstateEvent.ShowEstateAddedConfirmationMessage -> {
                         Snackbar.make(requireView(), event.msg, Snackbar.LENGTH_SHORT).show()
                     }
-
                 }
             }
         }
@@ -94,7 +97,7 @@ class ListFragment : Fragment(R.layout.fragment_list_estate), EstateAdapter.OnIt
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_search_estate -> {
-                Toast.makeText(requireContext(), "search click", Toast.LENGTH_SHORT).show()
+                viewModel.onSearchEstateClick()
                 true
             }
             else -> return super.onOptionsItemSelected(item)

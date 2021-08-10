@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_listFragment_to_addEditEstateFragment"
             app:destination="@id/addEditEstateFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
@@ -39,4 +42,9 @@
             app:argType="com.openclassrooms.realestatemanager.data.EstateWithPhoto"
             app:nullable="true" />
     </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.openclassrooms.realestatemanager.view.SearchFragment"
+        android:label="fragment_search_estate"
+        tools:layout="@layout/fragment_search_estate" />
 </navigation>
