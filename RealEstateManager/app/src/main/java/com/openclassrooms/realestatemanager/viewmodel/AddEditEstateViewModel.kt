@@ -188,8 +188,11 @@ class AddEditEstateViewModel @Inject constructor(
             updateEstateOnSaveClick()
             viewModelScope.launch {
                 deletePhotoOnSaveClick()
+            }
+            viewModelScope.launch {
                 updatePhotoOnSaveClick()
             }
+            //Log.d("update","update end")
         } else {
             createEstateOnSaveClick()
             viewModelScope.launch {
