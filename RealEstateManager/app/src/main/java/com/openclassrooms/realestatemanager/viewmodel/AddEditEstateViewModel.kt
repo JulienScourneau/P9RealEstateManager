@@ -11,11 +11,11 @@ import com.openclassrooms.realestatemanager.data.Photo
 import com.openclassrooms.realestatemanager.repository.EstateRepository
 import com.openclassrooms.realestatemanager.utils.ADD_ESTATE_RESULT_OK
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import java.util.ArrayList
 import javax.inject.Inject
 
 @HiltViewModel
@@ -284,7 +284,8 @@ class AddEditEstateViewModel @Inject constructor(
         }
 
     var estatePhoto =
-        state.get<ArrayList<Photo>>("estatePhoto") ?: estateWithPhoto?.photosList ?: emptyList()
+        state.get<ArrayList<Photo>>("estatePhoto") ?: estateWithPhoto?.photosList
+        ?: ArrayList<Photo>()
         set(value) {
             field = value
             state.set("estatePhoto", value)

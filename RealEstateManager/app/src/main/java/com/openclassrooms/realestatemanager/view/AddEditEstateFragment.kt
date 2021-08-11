@@ -27,9 +27,11 @@ import com.openclassrooms.realestatemanager.viewmodel.AddEditEstateViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import java.io.File
+import java.util.ArrayList
 
 @AndroidEntryPoint
-class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate), MediaAdapter.OnItemClickListener {
+class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate),
+    MediaAdapter.OnItemClickListener {
 
     private val viewModel: AddEditEstateViewModel by viewModels()
     private var images: ArrayList<Photo> = ArrayList()
@@ -94,7 +96,8 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate), Media
             bedroomEditText.setText(viewModel.estateBedroom)
             descriptionEditText.setText(viewModel.estateDescription)
             images.clear()
-            images = viewModel.estatePhoto as ArrayList<Photo>
+
+                images = viewModel.estatePhoto as ArrayList<Photo>
             setupPagerAdapter()
             addEditViewpager.adapter?.notifyDataSetChanged()
 
@@ -162,7 +165,7 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate), Media
     }
 
     private fun setupPagerAdapter() {
-        val mediaAdapter = MediaAdapter( this,viewModel.estatePhoto, false)
+        val mediaAdapter = MediaAdapter(this, viewModel.estatePhoto, false)
         binding.addEditViewpager.adapter = mediaAdapter
         setHasOptionsMenu(true)
     }
@@ -170,7 +173,7 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate), Media
     override fun onItemClick(photo: Photo) {
         images.remove(photo)
         binding.addEditViewpager.adapter?.notifyDataSetChanged()
-        Toast.makeText(requireContext(),"Click in fragment",Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), "Click in fragment", Toast.LENGTH_SHORT).show()
     }
 
     private fun clearFocusOnSaveClick() {
