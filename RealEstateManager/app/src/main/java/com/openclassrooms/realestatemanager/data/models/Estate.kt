@@ -1,4 +1,4 @@
-package com.openclassrooms.realestatemanager.data
+package com.openclassrooms.realestatemanager.data.models
 
 import androidx.room.Embedded
 import androidx.room.Entity
@@ -28,6 +28,7 @@ data class Estate(
     var bathroom: String,
     var bedroom: String,
     @Embedded var address: Address,
+    //@Embedded var poi: PointOfInterest,
     @PrimaryKey(autoGenerate = true) val id: Int = 0
 ) : Serializable
 
@@ -44,4 +45,11 @@ data class Address(
     var city: String,
     var country: String,
     var postalCode: String
+) : Serializable
+
+data class PointOfInterest(
+    var school: Boolean = false,
+    var localCommerce: Boolean = false,
+    var publicTransport: Boolean = false,
+    var park: Boolean = false
 ) : Serializable

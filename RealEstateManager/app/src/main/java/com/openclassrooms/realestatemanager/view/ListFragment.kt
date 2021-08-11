@@ -6,7 +6,6 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
@@ -16,7 +15,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.openclassrooms.realestatemanager.R
-import com.openclassrooms.realestatemanager.data.EstateWithPhoto
+import com.openclassrooms.realestatemanager.data.models.EstateWithPhoto
 import com.openclassrooms.realestatemanager.databinding.FragmentListEstateBinding
 import com.openclassrooms.realestatemanager.utils.onQueryTextChanger
 import com.openclassrooms.realestatemanager.view.adapter.EstateAdapter

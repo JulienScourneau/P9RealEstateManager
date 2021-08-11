@@ -1,11 +1,10 @@
 package com.openclassrooms.realestatemanager.data
 
-import android.content.ContentResolver
-import android.net.Uri
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.openclassrooms.realestatemanager.R
+import com.openclassrooms.realestatemanager.data.models.Estate
+import com.openclassrooms.realestatemanager.data.models.Photo
 import com.openclassrooms.realestatemanager.di.ApplicationScope
 import com.openclassrooms.realestatemanager.utils.TestList
 import kotlinx.coroutines.CoroutineScope

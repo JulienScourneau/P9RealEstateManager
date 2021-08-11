@@ -1,9 +1,9 @@
 package com.openclassrooms.realestatemanager.repository
 
 import com.openclassrooms.realestatemanager.data.EstateDao
-import com.openclassrooms.realestatemanager.data.Estate
-import com.openclassrooms.realestatemanager.data.EstateWithPhoto
-import com.openclassrooms.realestatemanager.data.Photo
+import com.openclassrooms.realestatemanager.data.models.Estate
+import com.openclassrooms.realestatemanager.data.models.EstateWithPhoto
+import com.openclassrooms.realestatemanager.data.models.Photo
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

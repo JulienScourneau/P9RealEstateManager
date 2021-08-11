@@ -5,13 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-import android.widget.Toast
-import androidx.recyclerview.widget.DiffUtil
 import androidx.viewpager.widget.PagerAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.openclassrooms.realestatemanager.data.EstateWithPhoto
-import com.openclassrooms.realestatemanager.data.Photo
+import com.openclassrooms.realestatemanager.data.models.Photo
 import com.openclassrooms.realestatemanager.databinding.MediaItemBinding
 
 class MediaAdapter(
@@ -63,6 +60,4 @@ class MediaAdapter(
     interface OnItemClickListener {
         fun onItemClick(photo: Photo)
     }
-
-
 }

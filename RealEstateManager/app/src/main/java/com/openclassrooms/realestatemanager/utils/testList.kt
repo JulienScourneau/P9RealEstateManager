@@ -1,9 +1,9 @@
 package com.openclassrooms.realestatemanager.utils
 
 import com.openclassrooms.realestatemanager.R
-import com.openclassrooms.realestatemanager.data.Address
-import com.openclassrooms.realestatemanager.data.Estate
-import com.openclassrooms.realestatemanager.data.Photo
+import com.openclassrooms.realestatemanager.data.models.Address
+import com.openclassrooms.realestatemanager.data.models.Estate
+import com.openclassrooms.realestatemanager.data.models.Photo
 import kotlin.collections.ArrayList
 
 
