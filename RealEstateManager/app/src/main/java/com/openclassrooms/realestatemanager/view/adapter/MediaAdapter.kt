@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import android.widget.Toast
+import androidx.recyclerview.widget.DiffUtil
 import androidx.viewpager.widget.PagerAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -51,6 +52,10 @@ class MediaAdapter(
         return binding.root
     }
 
+    override fun getItemPosition(`object`: Any): Int {
+        return POSITION_NONE
+    }
+
     override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
         container.removeView(`object` as View)
     }
@@ -58,4 +63,6 @@ class MediaAdapter(
     interface OnItemClickListener {
         fun onItemClick(photo: Photo)
     }
+
+
 }
