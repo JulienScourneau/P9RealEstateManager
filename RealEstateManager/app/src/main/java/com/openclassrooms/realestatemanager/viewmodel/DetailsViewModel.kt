@@ -1,7 +1,7 @@
 package com.openclassrooms.realestatemanager.viewmodel
 
 import androidx.lifecycle.*
-import com.openclassrooms.realestatemanager.data.models.EstateWithPhoto
+import com.openclassrooms.realestatemanager.data.EstateWithPhoto
 import com.openclassrooms.realestatemanager.repository.EstateRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel

@@ -1,7 +1,10 @@
 package com.openclassrooms.realestatemanager.viewmodel
 
-import androidx.lifecycle.*
-import com.openclassrooms.realestatemanager.data.models.EstateWithPhoto
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
+import com.openclassrooms.realestatemanager.data.EstateWithPhoto
 import com.openclassrooms.realestatemanager.repository.EstateRepository
 import com.openclassrooms.realestatemanager.utils.ADD_ESTATE_RESULT_OK
 import dagger.hilt.android.lifecycle.HiltViewModel

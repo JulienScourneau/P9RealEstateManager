@@ -3,8 +3,7 @@ package com.openclassrooms.realestatemanager.data
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.openclassrooms.realestatemanager.data.models.Estate
-import com.openclassrooms.realestatemanager.data.models.Photo
+
 import com.openclassrooms.realestatemanager.di.ApplicationScope
 import com.openclassrooms.realestatemanager.utils.TestList
 import kotlinx.coroutines.CoroutineScope
@@ -33,13 +32,42 @@ abstract class EstateDatabase : RoomDatabase() {
                 dao.insertEstate(TestList.getEstate1)
                 dao.insertEstate(TestList.getEstate2)
 
-                dao.insertPhoto(Photo("android.resource://com.openclassrooms.realestatemanager/drawable/house", 1))
-                dao.insertPhoto(Photo("android.resource://com.openclassrooms.realestatemanager/drawable/apartment", 2))
-                dao.insertPhoto(Photo("android.resource://com.openclassrooms.realestatemanager/drawable/house", 3))
-                dao.insertPhoto(Photo("android.resource://com.openclassrooms.realestatemanager/drawable/living_room", 1))
-                dao.insertPhoto(Photo("android.resource://com.openclassrooms.realestatemanager/drawable/bedroom", 2))
-                dao.insertPhoto(Photo("android.resource://com.openclassrooms.realestatemanager/drawable/kitchen", 3))
-
+                dao.insertPhoto(
+                    Photo(
+                        "android.resource://com.openclassrooms.realestatemanager/drawable/house",
+                        1
+                    )
+                )
+                dao.insertPhoto(
+                    Photo(
+                        "android.resource://com.openclassrooms.realestatemanager/drawable/apartment",
+                        2
+                    )
+                )
+                dao.insertPhoto(
+                    Photo(
+                        "android.resource://com.openclassrooms.realestatemanager/drawable/house",
+                        3
+                    )
+                )
+                dao.insertPhoto(
+                    Photo(
+                        "android.resource://com.openclassrooms.realestatemanager/drawable/living_room",
+                        1
+                    )
+                )
+                dao.insertPhoto(
+                    Photo(
+                        "android.resource://com.openclassrooms.realestatemanager/drawable/bedroom",
+                        2
+                    )
+                )
+                dao.insertPhoto(
+                    Photo(
+                        "android.resource://com.openclassrooms.realestatemanager/drawable/kitchen",
+                        3
+                    )
+                )
             }
         }
     }

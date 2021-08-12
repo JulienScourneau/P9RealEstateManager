@@ -5,8 +5,8 @@ import android.net.Uri;
 import android.net.wifi.WifiManager;
 import android.widget.Spinner;
 
-import com.openclassrooms.realestatemanager.data.models.Address;
-import com.openclassrooms.realestatemanager.data.models.Photo;
+import com.openclassrooms.realestatemanager.data.Address;
+import com.openclassrooms.realestatemanager.data.Photo;
 
 import java.text.DateFormat;
 import java.text.NumberFormat;

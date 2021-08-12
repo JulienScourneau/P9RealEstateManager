@@ -1,4 +1,4 @@
-package com.openclassrooms.realestatemanager.data.models
+package com.openclassrooms.realestatemanager.data
 
 import androidx.room.Embedded
 import androidx.room.Entity
@@ -9,17 +9,14 @@ import java.io.Serializable
 data class EstateWithPhoto(
     @Embedded val estate: Estate,
     @Relation(
-
         parentColumn = "id",
         entityColumn = "estateId"
     )
     val photosList: List<Photo> = emptyList()
 ) : Serializable
 
-
 @Entity(tableName = "estate_table")
 data class Estate(
-
     var category: String,
     var price: String,
     var description: String,
@@ -28,7 +25,6 @@ data class Estate(
     var bathroom: String,
     var bedroom: String,
     @Embedded var address: Address,
-    //@Embedded var poi: PointOfInterest,
     @PrimaryKey(autoGenerate = true) val id: Int = 0
 ) : Serializable
 
@@ -52,4 +48,9 @@ data class PointOfInterest(
     var localCommerce: Boolean = false,
     var publicTransport: Boolean = false,
     var park: Boolean = false
+) : Serializable
+
+data class RealEstateAgent(
+    var name: String,
+    var phoneNumber: String
 ) : Serializable

@@ -45,12 +45,12 @@
 
                 <TextView
                     android:id="@+id/details_location"
+                    tools:text="Brussels"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp"
                     android:layout_weight="1"
-                    android:text="Bruxelles"
                     android:textStyle="bold" />
 
                 <TextView

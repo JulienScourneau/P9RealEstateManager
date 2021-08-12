@@ -11,8 +11,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.openclassrooms.realestatemanager.R
-import com.openclassrooms.realestatemanager.data.models.EstateWithPhoto
-import com.openclassrooms.realestatemanager.data.models.Photo
+import com.openclassrooms.realestatemanager.data.EstateWithPhoto
+import com.openclassrooms.realestatemanager.data.Photo
 import com.openclassrooms.realestatemanager.databinding.FragmentDetailsEstateBinding
 import com.openclassrooms.realestatemanager.utils.Utils
 import com.openclassrooms.realestatemanager.view.adapter.MediaAdapter

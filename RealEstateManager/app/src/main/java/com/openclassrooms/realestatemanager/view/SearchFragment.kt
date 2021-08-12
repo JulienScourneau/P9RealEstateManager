@@ -21,11 +21,11 @@ class SearchFragment : Fragment(R.layout.fragment_search_estate) {
         binding.apply {
             arrowButton.setOnClickListener {
                 if (hiddenView.visibility == View.VISIBLE) {
-                    TransitionManager.beginDelayedTransition(baseCardview, AutoTransition())
+                    TransitionManager.beginDelayedTransition(baseCardviewSurface, AutoTransition())
                     hiddenView.visibility = View.GONE
                     arrowButton.setImageResource(R.drawable.ic_baseline_expand_more_24)
                 } else {
-                    TransitionManager.beginDelayedTransition(baseCardview, AutoTransition())
+                    TransitionManager.beginDelayedTransition(baseCardviewSurface, AutoTransition())
                     hiddenView.visibility = View.VISIBLE
                     arrowButton.setImageResource(R.drawable.ic_baseline_expand_less_24)
                 }
