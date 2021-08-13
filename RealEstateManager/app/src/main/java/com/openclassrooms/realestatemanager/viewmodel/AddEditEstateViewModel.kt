@@ -71,6 +71,10 @@ class AddEditEstateViewModel @Inject constructor(
                 publicTransport = estatePublicTransport,
                 park = estatePark
             ),
+            contact = RealEstateAgent(
+                name = estateContactName,
+                phoneNumber = estateContactPhoneNumber
+            ),
             address = Address(
                 number = estateAddressNumber,
                 street = estateAddressStreet,
@@ -98,6 +102,10 @@ class AddEditEstateViewModel @Inject constructor(
                     localCommerce = estateLocalCommerce,
                     publicTransport = estatePublicTransport,
                     park = estatePark
+                ),
+                contact = RealEstateAgent(
+                    name = estateContactName,
+                    phoneNumber = estateContactPhoneNumber
                 ),
                 address = Address(
                     number = estateAddressNumber,
@@ -337,7 +345,19 @@ class AddEditEstateViewModel @Inject constructor(
             state.set("estatePhoto", value)
         }
 
-    var estateContact = state.get<RealEstateAgent>("estateContact")
+    var estateContactName =
+        state.get<String>("estateContactName") ?: estateWithPhoto?.estate?.contact?.name ?: ""
+        set(value) {
+            field = value
+            state.set("estateContact", value)
+        }
+
+    var estateContactPhoneNumber = state.get<String>("estateContactPhoneNumber")
+        ?: estateWithPhoto?.estate?.contact?.phoneNumber ?: ""
+        set(value) {
+            field = value
+            state.set("estateContactPhoneNumber", value)
+        }
 
     sealed class AddEditEstateEvent {
         data class ShowInvalidInputMessage(val message: String) : AddEditEstateEvent()
