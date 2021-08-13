@@ -1,25 +1,10 @@
 package com.openclassrooms.realestatemanager.utils
 
-import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.data.Address
 import com.openclassrooms.realestatemanager.data.Estate
-import com.openclassrooms.realestatemanager.data.Photo
-
+import com.openclassrooms.realestatemanager.data.PointOfInterest
 
 object TestList {
-    private val photosApartment = mutableListOf(
-        R.drawable.apartment,
-        R.drawable.living_room,
-        R.drawable.kitchen,
-        R.drawable.bathroom,
-        R.drawable.bedroom
-    )
-
-    private val photosHouse = mutableListOf(
-        Photo(R.drawable.house.toString(), 0),
-        Photo(R.drawable.living_room.toString(), 0),
-        Photo(R.drawable.kitchen.toString(), 0)
-    )
 
     private val address =
         Address("100", "Fake Street", "Fake City", "Fake Country", "123456")
@@ -28,21 +13,28 @@ object TestList {
     private val address2 =
         Address("100", "Super Street", "Super City", "Super Country", "456123")
 
-    private val estate =
-        Estate("Appartement", "700000", "Fake Description", "600", "8", "1", "2", address, 1)
-    private val estate1 =
-        Estate("Maison", "800000", "Fake_Description", "800", "9", "2", "3", address1, 2)
-    private val estate2 =
-        Estate("Villa", "707000", "Fake Description", "600", "8", "1", "2", address2, 3)
-    //Estate("Fake Category 4", "990 000 €", "Fake_Description", 800, 9, 2, 3, address),
-    //Estate("Fake_category 5", "550 000 €", "Fake Description", 600, 8, 1, 2, address),
-    //Estate("Fake Category 6", "650 000 €", "Fake_Description", 800, 9, 2, 3, address),
-    //Estate("Fake_category 7", "500 000 €", "Fake Description", 600, 8, 1, 2, address),
-    //Estate("Fake Category 8", "900 000 €", "Fake_Description", 800, 9, 2, 3, address
+    private val pointOfInterest0 =
+        PointOfInterest(school = true, localCommerce = false, publicTransport = true, park = false)
+    private val pointOfInterest1 =
+        PointOfInterest(school = false, localCommerce = true, publicTransport = false, park = true)
+    private val pointOfInterest2 =
+        PointOfInterest(school = true, localCommerce = false, publicTransport = false, park = true)
 
-    //)
-    //val getTestList: ArrayList<Estate>
-    //    get() = ArrayList(estateList)
+    private val estate =
+        Estate(
+            "Appartement", "700000", "Fake Description", "600", "8", "1", "2", false,
+            pointOfInterest0, address, 1
+        )
+    private val estate1 =
+        Estate(
+            "Maison", "800000", "Fake_Description", "800", "9", "2", "3", true,
+            pointOfInterest1, address1, 2
+        )
+    private val estate2 =
+        Estate(
+            "Villa", "707000", "Fake Description", "600", "8", "1", "2", false,
+            pointOfInterest2, address2, 3
+        )
 
     val getEstate: Estate
         get() = estate
@@ -52,13 +44,6 @@ object TestList {
 
     val getEstate2: Estate
         get() = estate2
-
-    val getApartmentPhoto: ArrayList<Int>
-        get() = ArrayList(photosApartment)
-
-    val getHousePhoto: MutableList<Photo>
-        get() = photosHouse
-
 }
 
 

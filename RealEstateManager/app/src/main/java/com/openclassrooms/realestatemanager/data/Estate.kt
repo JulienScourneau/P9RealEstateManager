@@ -24,6 +24,8 @@ data class Estate(
     var room: String,
     var bathroom: String,
     var bedroom: String,
+    var isSold: Boolean,
+    @Embedded var pointOfInterest: PointOfInterest,
     @Embedded var address: Address,
     @PrimaryKey(autoGenerate = true) val id: Int = 0
 ) : Serializable

@@ -4,10 +4,7 @@ import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.openclassrooms.realestatemanager.data.Address
-import com.openclassrooms.realestatemanager.data.Estate
-import com.openclassrooms.realestatemanager.data.EstateWithPhoto
-import com.openclassrooms.realestatemanager.data.Photo
+import com.openclassrooms.realestatemanager.data.*
 import com.openclassrooms.realestatemanager.repository.EstateRepository
 import com.openclassrooms.realestatemanager.utils.ADD_ESTATE_RESULT_OK
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -66,6 +63,13 @@ class AddEditEstateViewModel @Inject constructor(
             room = estateRoom,
             bathroom = estateBathroom,
             bedroom = estateBedroom,
+            isSold = estateIsSold,
+            pointOfInterest = PointOfInterest(
+                school = estateSchool,
+                localCommerce = estateLocalCommerce,
+                publicTransport = estatePublicTransport,
+                park = estatePark
+            ),
             address = Address(
                 number = estateAddressNumber,
                 street = estateAddressStreet,
@@ -87,6 +91,13 @@ class AddEditEstateViewModel @Inject constructor(
                 room = estateRoom,
                 bathroom = estateBathroom,
                 bedroom = estateBedroom,
+                isSold = estateIsSold,
+                pointOfInterest = PointOfInterest(
+                    school = estateSchool,
+                    localCommerce = estateLocalCommerce,
+                    publicTransport = estatePublicTransport,
+                    park = estatePark
+                ),
                 address = Address(
                     number = estateAddressNumber,
                     street = estateAddressStreet,
@@ -192,7 +203,6 @@ class AddEditEstateViewModel @Inject constructor(
             viewModelScope.launch {
                 updatePhotoOnSaveClick()
             }
-            //Log.d("update","update end")
         } else {
             createEstateOnSaveClick()
             viewModelScope.launch {
@@ -281,6 +291,41 @@ class AddEditEstateViewModel @Inject constructor(
         set(value) {
             field = value
             state.set("estateDescription", value)
+        }
+
+    var estateIsSold =
+        state.get<Boolean>("estateIsSold") ?: estateWithPhoto?.estate?.isSold ?: false
+        set(value) {
+            field = value
+            state.set("estateIdSold", value)
+        }
+
+    var estateSchool =
+        state.get<Boolean>("estateSchool") ?: estateWithPhoto?.estate?.pointOfInterest?.school
+        ?: false
+        set(value) {
+            field = value
+            state.set("estateSchool", value)
+        }
+    var estateLocalCommerce =
+        state.get<Boolean>("estateLocalCommerce")
+            ?: estateWithPhoto?.estate?.pointOfInterest?.localCommerce ?: false
+        set(value) {
+            field = value
+            state.set("estateLocalCommerce", value)
+        }
+    var estatePublicTransport =
+        state.get<Boolean>("estatePublicTransport")
+            ?: estateWithPhoto?.estate?.pointOfInterest?.publicTransport ?: false
+        set(value) {
+            field = value
+            state.set("estatePublicTransport", value)
+        }
+    var estatePark =
+        state.get<Boolean>("estatePark") ?: estateWithPhoto?.estate?.pointOfInterest?.park ?: false
+        set(value) {
+            field = value
+            state.set("estatePark", value)
         }
 
     var estatePhoto =

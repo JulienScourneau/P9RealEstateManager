@@ -97,7 +97,7 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate),
             descriptionEditText.setText(viewModel.estateDescription)
             images.clear()
 
-                images = viewModel.estatePhoto as ArrayList<Photo>
+            images = viewModel.estatePhoto as ArrayList<Photo>
             setupPagerAdapter()
             addEditViewpager.adapter?.notifyDataSetChanged()
 
@@ -168,6 +168,13 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate),
         val mediaAdapter = MediaAdapter(this, viewModel.estatePhoto, false)
         binding.addEditViewpager.adapter = mediaAdapter
         setHasOptionsMenu(true)
+    }
+
+    private fun setupPointOfInterest() {
+        viewModel.estateSchool
+        viewModel.estateLocalCommerce
+        viewModel.estatePublicTransport
+        viewModel.estatePark
     }
 
     override fun onItemClick(photo: Photo) {
