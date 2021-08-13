@@ -27,7 +27,9 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".controller.MainActivity">
+        <activity
+            android:name=".controller.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
