@@ -68,10 +68,7 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate),
             R.array.category_spinner,
             android.R.layout.simple_spinner_dropdown_item
         )
-
-
         binding.apply {
-
             categorySpinner.adapter = adapter
             categorySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
@@ -83,20 +80,7 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate),
 
                 override fun onNothingSelected(p0: AdapterView<*>?) {}
             }
-            categorySpinner.setSelection(Utils.getIndex(categorySpinner, viewModel.estateCategory))
-            priceEditText.setText(viewModel.estatePrice)
-            streetEditText.setText(viewModel.estateAddressStreet)
-            numberEditText.setText(viewModel.estateAddressNumber)
-            cityEditText.setText(viewModel.estateAddressCity)
-            countryEditText.setText(viewModel.estateAddressCountry)
-            postalCodeEditText.setText(viewModel.estateAddressPostalCode)
-            areaEditText.setText(viewModel.estateArea)
-            roomEditText.setText(viewModel.estateRoom)
-            bathroomEditText.setText(viewModel.estateBathroom)
-            bedroomEditText.setText(viewModel.estateBedroom)
-            descriptionEditText.setText(viewModel.estateDescription)
             images.clear()
-
             images = viewModel.estatePhoto as ArrayList<Photo>
             setupPagerAdapter()
             addEditViewpager.adapter?.notifyDataSetChanged()
@@ -105,6 +89,9 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate),
                 viewModel.onSaveClick()
             }
         }
+        setupEditText()
+        setupPointOfInterest()
+        setupCheckboxListener()
         setupAddPhotoListener()
         addTextChangedListener()
     }
@@ -164,6 +151,23 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate),
         }
     }
 
+    private fun setupEditText() {
+        binding.apply {
+            categorySpinner.setSelection(Utils.getIndex(categorySpinner, viewModel.estateCategory))
+            priceEditText.setText(viewModel.estatePrice)
+            streetEditText.setText(viewModel.estateAddressStreet)
+            numberEditText.setText(viewModel.estateAddressNumber)
+            cityEditText.setText(viewModel.estateAddressCity)
+            countryEditText.setText(viewModel.estateAddressCountry)
+            postalCodeEditText.setText(viewModel.estateAddressPostalCode)
+            areaEditText.setText(viewModel.estateArea)
+            roomEditText.setText(viewModel.estateRoom)
+            bathroomEditText.setText(viewModel.estateBathroom)
+            bedroomEditText.setText(viewModel.estateBedroom)
+            descriptionEditText.setText(viewModel.estateDescription)
+        }
+    }
+
     private fun setupPagerAdapter() {
         val mediaAdapter = MediaAdapter(this, viewModel.estatePhoto, false)
         binding.addEditViewpager.adapter = mediaAdapter
@@ -171,10 +175,12 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate),
     }
 
     private fun setupPointOfInterest() {
-        viewModel.estateSchool
-        viewModel.estateLocalCommerce
-        viewModel.estatePublicTransport
-        viewModel.estatePark
+        binding.apply {
+            checkboxSchool.isChecked = viewModel.estateSchool
+            checkboxLocalCommerce.isChecked = viewModel.estateLocalCommerce
+            checkboxPublicTransport.isChecked = viewModel.estatePublicTransport
+            checkboxPark.isChecked = viewModel.estatePark
+        }
     }
 
     override fun onItemClick(photo: Photo) {
@@ -235,6 +241,23 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate),
                 descriptionEditText.addTextChangedListener {
                     estateDescription = it.toString()
                 }
+            }
+        }
+    }
+
+    private fun setupCheckboxListener() {
+        binding.apply {
+            checkboxSchool.setOnCheckedChangeListener { _, isChecked ->
+                viewModel.estateSchool = isChecked
+            }
+            checkboxLocalCommerce.setOnCheckedChangeListener { _, isChecked ->
+                viewModel.estateLocalCommerce = isChecked
+            }
+            checkboxPublicTransport.setOnCheckedChangeListener { _, isChecked ->
+                viewModel.estatePublicTransport = isChecked
+            }
+            checkboxPark.setOnCheckedChangeListener { _, isChecked ->
+                viewModel.estatePark = isChecked
             }
         }
     }
