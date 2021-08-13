@@ -21,6 +21,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.data.Photo
 import com.openclassrooms.realestatemanager.databinding.FragmentAddEditEstateBinding
+import com.openclassrooms.realestatemanager.utils.TestList
 import com.openclassrooms.realestatemanager.utils.Utils
 import com.openclassrooms.realestatemanager.view.adapter.MediaAdapter
 import com.openclassrooms.realestatemanager.viewmodel.AddEditEstateViewModel
@@ -90,10 +91,21 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate),
             }
         }
         setupEditText()
+        setupContactSpinner()
         setupPointOfInterest()
         setupCheckboxListener()
         setupAddPhotoListener()
         addTextChangedListener()
+    }
+
+    private fun setupContactSpinner(){
+        val contactList = TestList.getContactList
+
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item,contactList)
+        binding.apply {
+            contactSpinner.adapter = adapter
+            contactSpinner.selectedItem
+        }
     }
 
     private fun setupAddPhotoListener() {

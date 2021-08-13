@@ -45,13 +45,13 @@
 
                 <TextView
                     android:id="@+id/details_location"
-                    tools:text="Brussels"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp"
                     android:layout_weight="1"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    tools:text="Brussels" />
 
                 <TextView
                     android:id="@+id/details_price"
@@ -217,8 +217,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/details_location_text"
                         android:layout_alignStart="@+id/details_location_text"
-                        android:layout_marginStart="@dimen/icon_text_marginStart"
-                        android:text="@string/location_data" />
+                        android:layout_marginStart="@dimen/icon_text_marginStart" />
 
                     <ImageView
                         android:id="@+id/details_contact_img"
@@ -274,8 +273,7 @@
                     android:id="@+id/details_description_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/description_text_margin"
-                    android:text="@string/descriptions_text" />
+                    android:layout_margin="@dimen/description_text_margin" />
 
             </LinearLayout>
 

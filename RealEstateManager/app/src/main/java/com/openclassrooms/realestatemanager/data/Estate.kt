@@ -51,8 +51,3 @@ data class PointOfInterest(
     var publicTransport: Boolean = false,
     var park: Boolean = false
 ) : Serializable
-
-data class RealEstateAgent(
-    var name: String,
-    var phoneNumber: String
-) : Serializable

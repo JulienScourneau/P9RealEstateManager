@@ -5,6 +5,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.openclassrooms.realestatemanager.data.*
+import com.openclassrooms.realestatemanager.models.RealEstateAgent
 import com.openclassrooms.realestatemanager.repository.EstateRepository
 import com.openclassrooms.realestatemanager.utils.ADD_ESTATE_RESULT_OK
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -335,6 +336,8 @@ class AddEditEstateViewModel @Inject constructor(
             field = value
             state.set("estatePhoto", value)
         }
+
+    var estateContact = state.get<RealEstateAgent>("estateContact")
 
     sealed class AddEditEstateEvent {
         data class ShowInvalidInputMessage(val message: String) : AddEditEstateEvent()

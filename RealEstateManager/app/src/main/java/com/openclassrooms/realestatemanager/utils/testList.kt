@@ -3,6 +3,7 @@ package com.openclassrooms.realestatemanager.utils
 import com.openclassrooms.realestatemanager.data.Address
 import com.openclassrooms.realestatemanager.data.Estate
 import com.openclassrooms.realestatemanager.data.PointOfInterest
+import com.openclassrooms.realestatemanager.models.RealEstateAgent
 
 object TestList {
 
@@ -35,6 +36,16 @@ object TestList {
             "Villa", "707000", "Fake Description", "600", "8", "1", "2", false,
             pointOfInterest2, address2, 3
         )
+
+    private val contactList = mutableListOf(
+        RealEstateAgent("Sandra Eberhardt", "0548872315"),
+        RealEstateAgent("Adelajda Rutkowska", "0561049730"),
+        RealEstateAgent("Rebecca Z. McCoy", "0416869852")
+
+    )
+
+    val getContactList: ArrayList<RealEstateAgent>
+        get() = ArrayList(contactList)
 
     val getEstate: Estate
         get() = estate

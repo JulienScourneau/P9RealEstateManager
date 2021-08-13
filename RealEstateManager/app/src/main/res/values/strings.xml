@@ -8,12 +8,6 @@
     <string name="media_image">media_image</string>
 
     <!-- ESTATE DETAILS RESOURCES -->
-    <string name="descriptions_text">Anchored by a bast marble gallery with sweeping staircase, the entertaining floor includes a baronial living room facing Park Avenue,
-        handsome library with original paneling, and tremendous dining room; all of which enjoy fireplaces.
-        The state-of-the-art St. Charles designed kitchen includes a sunny breakfast room and staff quarters.
-        Upstairs, the expansive master suite overlooks Park Avenue and includes two marble baths, two dressing rooms, and two offices.
-        Additionally there are three large bedrooms with en-suite baths and a media room.</string>
-    <string name="location_data">740 Park Avenue\nApt 6/7A\nNew York\nNY 10021\nUnited States </string>
     <string name="location_text">Location</string>
     <string name="media_text">Media</string>
     <string name="description_text_details">Description</string>
@@ -36,15 +30,13 @@
     <string name="menu_search_estate">Search</string>
 
     <string-array name="category_spinner">
-        <item></item>
+        <item> </item>
         <item>Appartement</item>
         <item>Maison</item>
         <item>Villa</item>
         <item>Manoir</item>
-
     </string-array>
 
     <!-- ADD EDIT ESTATE ACTIVITY RESOURCES -->
-
 
 </resources>

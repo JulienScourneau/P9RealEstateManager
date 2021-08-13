@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -86,6 +85,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/street_text"
+                    android:importantForAutofill="no"
                     android:textSize="16sp" />
 
                 <TextView
@@ -219,6 +219,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/bathroom_text"
+                    android:importantForAutofill="no"
                     android:inputType="number"
                     android:textSize="16sp" />
 
@@ -240,30 +241,36 @@
 
             </RelativeLayout>
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
                 android:background="@drawable/rounded_corner"
+                android:orientation="vertical"
                 android:padding="12dp">
 
                 <TextView
                     android:id="@+id/description_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/add_edit_activity_description_text"
-                    android:textSize="18sp" />
+                    android:text="@string/description_text_details"
+                    android:textSize="@dimen/text_size_title"
+                    android:textStyle="bold" />
+
+                <View
+                    style="@style/Divider"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp" />
 
                 <EditText
                     android:id="@+id/description_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/description_text"
                     android:ellipsize="end"
                     android:inputType="textMultiLine"
                     android:textSize="16sp" />
 
-            </RelativeLayout>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -272,6 +279,21 @@
                 android:background="@drawable/rounded_corner"
                 android:orientation="vertical"
                 android:padding="12dp">
+
+                <TextView
+                    android:id="@+id/POI_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Point d'intérets"
+                    android:textSize="@dimen/text_size_title"
+                    android:textStyle="bold" />
+
+                <View
+                    android:id="@+id/POI_divider"
+                    style="@style/Divider"
+                    android:layout_below="@+id/address_text"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -316,6 +338,36 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:background="@drawable/rounded_corner"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:id="@+id/contact_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:text="Contact"
+                    android:textSize="@dimen/text_size_title"
+                    android:textStyle="bold" />
+
+                <View
+                    android:id="@+id/contact_spinner_divider"
+                    style="@style/Divider"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp" />
+
+                <Spinner
+                    android:id="@+id/contact_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="4dp"
@@ -332,6 +384,12 @@
                     android:text="Photo"
                     android:textSize="@dimen/text_size_title"
                     android:textStyle="bold" />
+
+                <View
+                    style="@style/Divider"
+                    android:layout_below="@+id/address_text"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
