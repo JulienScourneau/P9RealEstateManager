@@ -4,6 +4,7 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.Relation
+import com.openclassrooms.realestatemanager.models.RealEstateAgent
 import java.io.Serializable
 
 data class EstateWithPhoto(
@@ -25,6 +26,7 @@ data class Estate(
     var bathroom: String,
     var bedroom: String,
     var isSold: Boolean,
+    @Embedded var contact: RealEstateAgent,
     @Embedded var pointOfInterest: PointOfInterest,
     @Embedded var address: Address,
     @PrimaryKey(autoGenerate = true) val id: Int = 0
