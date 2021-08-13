@@ -21,6 +21,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.data.Photo
 import com.openclassrooms.realestatemanager.databinding.FragmentAddEditEstateBinding
+import com.openclassrooms.realestatemanager.models.RealEstateAgent
 import com.openclassrooms.realestatemanager.utils.TestList
 import com.openclassrooms.realestatemanager.utils.Utils
 import com.openclassrooms.realestatemanager.view.adapter.MediaAdapter
@@ -98,13 +99,25 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate),
         addTextChangedListener()
     }
 
-    private fun setupContactSpinner(){
+    private fun setupContactSpinner() {
         val contactList = TestList.getContactList
-
-        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item,contactList)
+        var contact: RealEstateAgent
+        val adapter =
+            ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, contactList)
         binding.apply {
             contactSpinner.adapter = adapter
-            contactSpinner.selectedItem
+            contactSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    adapter: AdapterView<*>?, view: View?,
+                    position: Int, id: Long
+                ) {
+                    contact = adapter?.getItemAtPosition(position) as RealEstateAgent
+                    viewModel.estateContactName = contact.name
+                    viewModel.estateContactPhoneNumber = contact.phoneNumber
+                }
+
+                override fun onNothingSelected(p0: AdapterView<*>?) {}
+            }
         }
     }
 
@@ -166,6 +179,8 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate),
     private fun setupEditText() {
         binding.apply {
             categorySpinner.setSelection(Utils.getIndex(categorySpinner, viewModel.estateCategory))
+            //Doesn't work with this Spinner
+            //contactSpinner.setSelection(Utils.getIndex(contactSpinner,viewModel.estateContactName))
             priceEditText.setText(viewModel.estatePrice)
             streetEditText.setText(viewModel.estateAddressStreet)
             numberEditText.setText(viewModel.estateAddressNumber)
@@ -177,6 +192,7 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate),
             bathroomEditText.setText(viewModel.estateBathroom)
             bedroomEditText.setText(viewModel.estateBedroom)
             descriptionEditText.setText(viewModel.estateDescription)
+
         }
     }
 
@@ -198,7 +214,6 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate),
     override fun onItemClick(photo: Photo) {
         images.remove(photo)
         binding.addEditViewpager.adapter?.notifyDataSetChanged()
-        Toast.makeText(requireContext(), "Click in fragment", Toast.LENGTH_SHORT).show()
     }
 
     private fun clearFocusOnSaveClick() {
