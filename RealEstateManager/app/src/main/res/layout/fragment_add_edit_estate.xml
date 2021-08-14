@@ -152,33 +152,62 @@
 
             </RelativeLayout>
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="4dp"
                 android:background="@drawable/rounded_corner"
+                android:orientation="vertical"
                 android:padding="12dp">
 
                 <TextView
-                    android:id="@+id/price_text"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
                     android:text="@string/add_edit_activity_price_text"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/text_size_title"
+                    android:textStyle="bold" />
+
+                <View
+                    style="@style/Divider"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp" />
+
 
                 <EditText
                     android:id="@+id/price_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/price_text"
                     android:inputType="number"
                     android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="4dp"
+                android:background="@drawable/rounded_corner"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:text="Dimensions"
+                    android:textSize="@dimen/text_size_title"
+                    android:textStyle="bold" />
+
+                <View
+                    style="@style/Divider"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp" />
 
                 <TextView
                     android:id="@+id/area_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/price_edit_text"
                     android:text="@string/add_edit_activity_area_text"
                     android:textSize="18sp" />
 
@@ -186,7 +215,6 @@
                     android:id="@+id/area_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/area_text"
                     android:inputType="number"
                     android:textSize="16sp" />
 
@@ -194,7 +222,6 @@
                     android:id="@+id/room_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/area_edit_text"
                     android:text="@string/add_edit_activity_room_text"
                     android:textSize="18sp" />
 
@@ -202,7 +229,6 @@
                     android:id="@+id/room_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/room_text"
                     android:inputType="number"
                     android:textSize="16sp" />
 
@@ -210,7 +236,6 @@
                     android:id="@+id/bathroom_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/room_edit_text"
                     android:text="@string/add_edit_activity_bathroom_text"
                     android:textSize="18sp" />
 
@@ -218,7 +243,6 @@
                     android:id="@+id/bathroom_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/bathroom_text"
                     android:importantForAutofill="no"
                     android:inputType="number"
                     android:textSize="16sp" />
@@ -227,7 +251,6 @@
                     android:id="@+id/bedroom_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/bathroom_edit_text"
                     android:text="@string/add_edit_activity_bedroom_text"
                     android:textSize="18sp" />
 
@@ -235,11 +258,10 @@
                     android:id="@+id/bedroom_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/bedroom_text"
                     android:inputType="number"
                     android:textSize="16sp" />
 
-            </RelativeLayout>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -362,7 +384,7 @@
                 <Spinner
                     android:id="@+id/contact_spinner"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 

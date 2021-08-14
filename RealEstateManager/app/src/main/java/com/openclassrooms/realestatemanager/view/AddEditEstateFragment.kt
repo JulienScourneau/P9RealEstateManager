@@ -183,17 +183,10 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate),
     private fun setupEditText() {
         binding.apply {
             categorySpinner.setSelection(
-                Utils.getCategoryIndex(
-                    categorySpinner,
-                    viewModel.estateCategory
-                )
+                Utils.getCategoryIndex(categorySpinner, viewModel.estateCategory)
             )
-            //Doesn't work with this Spinner
             contactSpinner.setSelection(
-                Utils.getContactIndex(
-                    contactSpinner,
-                    viewModel.estateWithPhoto?.estate?.contact
-                )
+                Utils.getContactIndex(contactSpinner, viewModel.estateWithPhoto?.estate?.contact)
             )
             priceEditText.setText(viewModel.estatePrice)
             streetEditText.setText(viewModel.estateAddressStreet)
