@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorSecondaryDark"
     tools:context=".view.DetailsFragment">
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/relative_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorSecondaryDark">
+        android:background="@color/colorSecondaryDark"
+        android:orientation="vertical">
 
 
         <androidx.viewpager.widget.ViewPager
@@ -18,48 +20,38 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/estate_details_viewpager" />
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/details_viewpager"
-            android:layout_margin="12dp">
+            android:layout_margin="12dp"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:id="@+id/linear_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
                 android:layout_marginBottom="@dimen/estate_details_linearlayout_margin"
                 android:background="@drawable/rounded_corner"
                 android:orientation="vertical"
                 android:padding="8dp">
 
                 <TextView
-                    android:id="@+id/details_category"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Maison"
-
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/details_location"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:layout_weight="1"
-                    android:textStyle="bold"
-                    tools:text="Brussels" />
-
-                <TextView
                     android:id="@+id/details_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:textSize="@dimen/text_size_title"
+                    android:textStyle="bold"
+                    tools:text="700 000 €" />
+
+                <TextView
+                    android:id="@+id/details_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_margin="4dp"
                     android:layout_weight="1"
-                    android:text="599 500 €"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    tools:text="Brussels" />
             </LinearLayout>
 
 
@@ -67,7 +59,6 @@
                 android:id="@+id/global_information"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/linear_layout"
                 android:layout_marginBottom="@dimen/estate_details_linearlayout_margin"
                 android:background="@drawable/rounded_corner"
                 android:baselineAligned="false"
@@ -102,7 +93,7 @@
                         android:layout_below="@id/details_area_text"
                         android:layout_alignStart="@+id/details_area_text"
                         android:layout_marginStart="@dimen/icon_text_marginStart"
-                        android:text="600 m²" />
+                        tools:text="600 m²" />
 
                     <ImageView
                         android:id="@+id/details_room_img"
@@ -130,7 +121,7 @@
                         android:layout_below="@id/details_room_text"
                         android:layout_alignStart="@+id/details_area_text"
                         android:layout_marginStart="@dimen/icon_text_marginStart"
-                        android:text="6" />
+                        tools:text="6" />
 
                     <ImageView
                         android:id="@+id/details_bathroom_img"
@@ -158,7 +149,7 @@
                         android:layout_below="@id/details_bathroom_text"
                         android:layout_alignStart="@+id/details_area_text"
                         android:layout_marginStart="@dimen/icon_text_marginStart"
-                        android:text="1" />
+                        tools:text="1" />
 
                     <ImageView
                         android:id="@+id/details_bedroom_img"
@@ -186,7 +177,7 @@
                         android:layout_below="@id/details_bedroom_text"
                         android:layout_alignStart="@+id/details_area_text"
                         android:layout_marginStart="@dimen/icon_text_marginStart"
-                        android:text="2" />
+                        tools:text="2" />
 
                 </RelativeLayout>
 
@@ -239,22 +230,29 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/details_contact_data"
+                        android:id="@+id/details_contact_name_data"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/details_contact_text"
                         android:layout_alignStart="@+id/details_contact_text"
                         android:layout_marginStart="@dimen/icon_text_marginStart"
-                        android:text="000.000.000" />
+                        tools:text="Fake Name" />
+
+                    <TextView
+                        android:id="@+id/details_contact_phone_number_data"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/details_contact_name_data"
+                        android:layout_alignStart="@+id/details_contact_text"
+                        android:layout_marginStart="@dimen/icon_text_marginStart"
+                        tools:text="000.000.000" />
                 </RelativeLayout>
 
             </LinearLayout>
 
             <LinearLayout
-                android:id="@id/details_description_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/global_information"
                 android:layout_marginBottom="@dimen/estate_details_linearlayout_margin"
                 android:background="@drawable/rounded_corner"
                 android:orientation="vertical"
@@ -269,94 +267,182 @@
                     android:textSize="@dimen/text_size_title"
                     android:textStyle="bold" />
 
+                <View
+                    style="@style/Divider"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp" />
+
                 <TextView
                     android:id="@+id/details_description_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/description_text_margin" />
+                    android:layout_margin="@dimen/description_text_margin"
+                    tools:text="Fake Description on multiple line to avoid problem with textView" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/estate_details_linearlayout_margin"
+                android:background="@drawable/rounded_corner"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/details_POI"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:text="Point d'intérêt"
+                    android:textSize="@dimen/text_size_title"
+                    android:textStyle="bold" />
+
+                <View
+                    style="@style/Divider"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/details_school_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:padding="@dimen/details_icon_padding"
+                            android:src="@drawable/ic_baseline_school_24"
+                            app:tint="@color/black" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="École"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/details_local_commerce_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/details_icon_padding"
+                            android:src="@drawable/ic_baseline_shopping_cart_24"
+                            app:tint="@color/black" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="Commerce Local"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/details_public_transport_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/details_icon_padding"
+                            android:src="@drawable/ic_baseline_directions_bus_24"
+                            app:tint="@color/black" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="Transport public"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/details_park_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/details_icon_padding"
+                            android:src="@drawable/ic_baseline_nature_people_24"
+                            app:tint="@color/black" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="Parc et espace vert"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/details_description_layout"
                 android:background="@drawable/rounded_corner"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:padding="8dp">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
+                <ImageView
+                    android:id="@+id/details_sale_img"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1">
+                    android:padding="@dimen/details_icon_padding"
+                    android:src="@drawable/baseline_event_black_24" />
 
-                    <ImageView
-                        android:id="@+id/details_sale_img"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/details_icon_padding"
-                        android:src="@drawable/baseline_event_black_24" />
-
-                    <TextView
-                        android:id="@+id/details_sale_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/estate_item_text_margin_start"
-                        android:layout_marginTop="@dimen/icon_title_text_marginTop"
-                        android:layout_toEndOf="@+id/details_sale_img"
-                        android:text="On sale since:"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/details_sale_data"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/details_sale_text"
-                        android:layout_alignStart="@+id/details_sale_text"
-                        android:layout_marginStart="@dimen/icon_text_marginStart"
-                        android:text="00/00/00" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/details_sale_text"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1">
+                    android:layout_marginStart="@dimen/estate_item_text_margin_start"
+                    android:layout_marginTop="@dimen/icon_title_text_marginTop"
+                    android:layout_toEndOf="@+id/details_sale_img"
+                    android:text="En vente depuis:"
+                    android:textStyle="bold" />
 
-                    <ImageView
-                        android:id="@+id/details_poe_img"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/details_icon_padding"
-                        android:src="@drawable/baseline_local_activity_black_24" />
+                <TextView
+                    android:id="@+id/details_sale_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/details_sale_text"
+                    android:layout_alignStart="@+id/details_sale_text"
+                    android:layout_marginStart="@dimen/icon_text_marginStart"
+                    tools:text="00/00/00" />
 
-                    <TextView
-                        android:id="@+id/details_poe_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/icon_title_text_marginStart"
-                        android:layout_marginTop="@dimen/icon_title_text_marginTop"
-                        android:layout_toEndOf="@+id/details_poe_img"
-                        android:text="Points of interest"
-                        android:textStyle="bold" />
+            </RelativeLayout>
 
-                    <TextView
-                        android:id="@+id/details_poe_data"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/details_poe_text"
-                        android:layout_alignStart="@+id/details_poe_text"
-                        android:layout_marginStart="@dimen/icon_text_marginStart"
-                        android:text="Fake point" />
+        </LinearLayout>
 
-                </RelativeLayout>
-
-
-            </LinearLayout>
-
-        </RelativeLayout>
-
-    </RelativeLayout>
+    </LinearLayout>
 
 </ScrollView>
