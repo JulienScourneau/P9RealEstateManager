@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -74,7 +75,6 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate),
     private fun updateUI(estate: EstateWithPhoto) {
         binding.apply {
             detailsCategory.text = estate.estate.category
-            detailsLocation.text = estate.estate.address.city
             detailsPrice.text = Utils.formatPrice(estate.estate.price)
             detailsAreaData.text = estate.estate.area
             detailsRoomData.text = estate.estate.room
@@ -82,6 +82,12 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate),
             detailsBedroomData.text = estate.estate.bedroom
             detailsLocationData.text = Utils.formatAddress(estate.estate.address)
             detailsDescriptionText.text = estate.estate.description
+            detailsContactNameData.text = estate.estate.contact.name
+            detailsContactPhoneNumberData.text = estate.estate.contact.phoneNumber
+
+            if (estate.estate.pointOfInterest.school){
+                detailsSchoolLayout.visibility = View.GONE
+            }
 
             images.clear()
             for (i in estate.photosList.indices) {
