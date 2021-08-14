@@ -7,6 +7,7 @@ import android.widget.Spinner;
 
 import com.openclassrooms.realestatemanager.data.Address;
 import com.openclassrooms.realestatemanager.data.Photo;
+import com.openclassrooms.realestatemanager.models.RealEstateAgent;
 
 import java.text.DateFormat;
 import java.text.NumberFormat;
@@ -54,11 +55,21 @@ public class Utils {
         return wifi.isWifiEnabled();
     }
 
-    public static int getIndex(Spinner spinner, String category) {
+    public static int getCategoryIndex(Spinner spinner, String category) {
         int index = 0;
 
         for (int i = 0; i < spinner.getCount(); i++) {
             if (spinner.getItemAtPosition(i).equals(category)) {
+                index = i;
+            }
+        }
+        return index;
+    }
+
+    public static int getContactIndex(Spinner spinner, RealEstateAgent contact) {
+        int index = 0;
+        for (int i = 0; i < spinner.getCount(); i++) {
+            if (spinner.getItemAtPosition(i).equals(contact)) {
                 index = i;
             }
         }

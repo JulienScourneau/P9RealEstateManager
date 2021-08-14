@@ -7,7 +7,6 @@ import android.os.Environment
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import androidx.core.os.bundleOf
@@ -91,19 +90,24 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate),
                 viewModel.onSaveClick()
             }
         }
-        setupEditText()
+
         setupContactSpinner()
         setupPointOfInterest()
         setupCheckboxListener()
         setupAddPhotoListener()
         addTextChangedListener()
+        setupEditText()
     }
 
     private fun setupContactSpinner() {
         val contactList = TestList.getContactList
         var contact: RealEstateAgent
         val adapter =
-            ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, contactList)
+            ArrayAdapter(
+                requireContext(),
+                android.R.layout.simple_spinner_dropdown_item,
+                contactList
+            )
         binding.apply {
             contactSpinner.adapter = adapter
             contactSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -178,9 +182,19 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate),
 
     private fun setupEditText() {
         binding.apply {
-            categorySpinner.setSelection(Utils.getIndex(categorySpinner, viewModel.estateCategory))
+            categorySpinner.setSelection(
+                Utils.getCategoryIndex(
+                    categorySpinner,
+                    viewModel.estateCategory
+                )
+            )
             //Doesn't work with this Spinner
-            //contactSpinner.setSelection(Utils.getIndex(contactSpinner,viewModel.estateContactName))
+            contactSpinner.setSelection(
+                Utils.getContactIndex(
+                    contactSpinner,
+                    viewModel.estateWithPhoto?.estate?.contact
+                )
+            )
             priceEditText.setText(viewModel.estatePrice)
             streetEditText.setText(viewModel.estateAddressStreet)
             numberEditText.setText(viewModel.estateAddressNumber)
