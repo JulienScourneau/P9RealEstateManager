@@ -85,15 +85,24 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate),
             detailsContactNameData.text = estate.estate.contact.name
             detailsContactPhoneNumberData.text = estate.estate.contact.phoneNumber
 
-            if (estate.estate.pointOfInterest.school){
+            if (!estate.estate.pointOfInterest.school) {
                 detailsSchoolLayout.visibility = View.GONE
+            }
+            if (!estate.estate.pointOfInterest.localCommerce) {
+                detailsLocalCommerceLayout.visibility = View.GONE
+            }
+            if (!estate.estate.pointOfInterest.publicTransport) {
+                detailsPublicTransportLayout.visibility = View.GONE
+            }
+            if (!estate.estate.pointOfInterest.park) {
+                detailsParkLayout.visibility = View.GONE
             }
 
             images.clear()
             for (i in estate.photosList.indices) {
                 images.add(Uri.parse(estate.photosList[i].photoReference))
             }
-            val mediaAdapter = MediaAdapter(this@DetailsFragment,estate.photosList, true)
+            val mediaAdapter = MediaAdapter(this@DetailsFragment, estate.photosList, true)
             detailsViewpager.adapter = mediaAdapter
             setHasOptionsMenu(true)
         }
