@@ -1,12 +1,10 @@
 package com.openclassrooms.realestatemanager.view
 
-import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -20,13 +18,14 @@ import com.openclassrooms.realestatemanager.view.adapter.MediaAdapter
 import com.openclassrooms.realestatemanager.viewmodel.DetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import java.util.ArrayList
 
 @AndroidEntryPoint
 class DetailsFragment : Fragment(R.layout.fragment_details_estate),
     MediaAdapter.OnItemClickListener {
 
     private val viewModel: DetailsViewModel by viewModels()
-    private var images: ArrayList<Uri> = ArrayList()
+    private var images: ArrayList<Photo> = ArrayList()
     private lateinit var binding: FragmentDetailsEstateBinding
     private lateinit var estate: EstateWithPhoto
 
@@ -97,10 +96,11 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate),
             if (!estate.estate.pointOfInterest.park) {
                 detailsParkLayout.visibility = View.GONE
             }
-
-            images.clear()
-            for (i in estate.photosList.indices) {
-                images.add(Uri.parse(estate.photosList[i].photoReference))
+            if (estate.photosList.isNotEmpty()){
+                images = estate.photosList as ArrayList<Photo>
+            } else {
+                val photo = Photo("android.resource://com.openclassrooms.realestatemanager/drawable/image_unavailable",0)
+                images.add(photo)
             }
             val mediaAdapter = MediaAdapter(this@DetailsFragment, estate.photosList, true)
             detailsViewpager.adapter = mediaAdapter
