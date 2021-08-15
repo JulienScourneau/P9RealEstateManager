@@ -99,10 +99,10 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate),
             if (estate.photosList.isNotEmpty()){
                 images = estate.photosList as ArrayList<Photo>
             } else {
-                val photo = Photo("android.resource://com.openclassrooms.realestatemanager/drawable/image_unavailable",0)
+                val photo = Photo("android.resource://com.openclassrooms.realestatemanager/drawable/no_image_available",0)
                 images.add(photo)
             }
-            val mediaAdapter = MediaAdapter(this@DetailsFragment, estate.photosList, true)
+            val mediaAdapter = MediaAdapter(this@DetailsFragment, images, true)
             detailsViewpager.adapter = mediaAdapter
             setHasOptionsMenu(true)
         }
