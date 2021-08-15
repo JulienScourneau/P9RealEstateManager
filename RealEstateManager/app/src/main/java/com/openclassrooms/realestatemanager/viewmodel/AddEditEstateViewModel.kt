@@ -152,7 +152,7 @@ class AddEditEstateViewModel @Inject constructor(
     }
 
     private suspend fun deletePhotoOnSaveClick() {
-        if (estateWithPhoto != null && estateWithPhoto.photosList.isNotEmpty()) {
+        if (estateWithPhoto != null) {
             deletePhoto(estateWithPhoto.estate.id.toLong())
         }
     }

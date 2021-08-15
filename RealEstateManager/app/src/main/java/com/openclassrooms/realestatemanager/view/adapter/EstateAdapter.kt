@@ -44,7 +44,7 @@ class EstateAdapter(private val listener: OnItemClickListener) :
             binding.apply {
                 if (estate.photosList.isEmpty()) {
                     Glide.with(itemView)
-                        .load(R.drawable.image_unavailable)
+                        .load(R.drawable.no_image_available)
                         .apply(RequestOptions.centerCropTransform())
                         .into(propertyItemImage)
                 } else {
@@ -53,11 +53,9 @@ class EstateAdapter(private val listener: OnItemClickListener) :
                         .apply(RequestOptions.centerCropTransform())
                         .into(propertyItemImage)
                 }
-
                 propertyItemCategory.text = estate.estate.category
                 propertyItemLocation.text = estate.estate.address.street
                 propertyItemPrice.text = Utils.formatPrice(estate.estate.price)
-
             }
         }
     }

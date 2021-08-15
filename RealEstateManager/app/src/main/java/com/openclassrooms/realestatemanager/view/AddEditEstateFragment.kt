@@ -220,6 +220,7 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate),
 
     override fun onItemClick(photo: Photo) {
         images.remove(photo)
+        viewModel.estatePhoto = images
         binding.addEditViewpager.adapter?.notifyDataSetChanged()
     }
 
