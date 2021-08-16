@@ -1,7 +1,6 @@
 package com.openclassrooms.realestatemanager.data
 
 import androidx.room.*
-
 import kotlinx.coroutines.flow.Flow
 
 @Dao

@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.openclassrooms.realestatemanager.R
+import com.openclassrooms.realestatemanager.data.Estate
 import com.openclassrooms.realestatemanager.data.EstateWithPhoto
 import com.openclassrooms.realestatemanager.data.Photo
 import com.openclassrooms.realestatemanager.databinding.FragmentDetailsEstateBinding
@@ -72,17 +73,8 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate),
     }
 
     private fun updateUI(estate: EstateWithPhoto) {
+        setupTextView(estate.estate)
         binding.apply {
-            detailsCategory.text = estate.estate.category
-            detailsPrice.text = Utils.formatPrice(estate.estate.price)
-            detailsAreaData.text = estate.estate.area
-            detailsRoomData.text = estate.estate.room
-            detailsBathroomData.text = estate.estate.bathroom
-            detailsBedroomData.text = estate.estate.bedroom
-            detailsLocationData.text = Utils.formatAddress(estate.estate.address)
-            detailsDescriptionText.text = estate.estate.description
-            detailsContactNameData.text = estate.estate.contact.name
-            detailsContactPhoneNumberData.text = estate.estate.contact.phoneNumber
 
             if (!estate.estate.pointOfInterest.school) {
                 detailsSchoolLayout.visibility = View.GONE
@@ -96,10 +88,13 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate),
             if (!estate.estate.pointOfInterest.park) {
                 detailsParkLayout.visibility = View.GONE
             }
-            if (estate.photosList.isNotEmpty()){
+            if (estate.photosList.isNotEmpty()) {
                 images = estate.photosList as ArrayList<Photo>
             } else {
-                val photo = Photo("android.resource://com.openclassrooms.realestatemanager/drawable/no_image_available",0)
+                val photo = Photo(
+                    "android.resource://com.openclassrooms.realestatemanager/drawable/no_image_available",
+                    0
+                )
                 images.add(photo)
             }
             val mediaAdapter = MediaAdapter(this@DetailsFragment, images, true)
@@ -107,6 +102,24 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate),
             setHasOptionsMenu(true)
         }
     }
+
+    private fun setupTextView(estate: Estate) {
+        binding.apply {
+            estate.apply {
+                detailsCategory.text = category
+                detailsLocationData.text = Utils.formatAddress(address)
+                detailsContactNameData.text = contact.name
+                detailsContactPhoneNumberData.text = contact.phoneNumber
+                detailsPrice.text = if (price.isBlank()) price else "N/A"
+                detailsAreaData.text = if (area.isBlank()) area else "N/A"
+                detailsRoomData.text = if (room.isBlank()) room else "N/A"
+                detailsBathroomData.text = if (bathroom.isBlank()) bathroom else "N/A"
+                detailsBedroomData.text = if (bedroom.isBlank()) bedroom else "N/A"
+                detailsDescriptionText.text = if (description.isBlank()) description else "N/A"
+            }
+        }
+    }
+
 
     override fun onItemClick(photo: Photo) {}
 }

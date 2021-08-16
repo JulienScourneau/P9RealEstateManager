@@ -26,6 +26,7 @@ data class Estate(
     var bathroom: String,
     var bedroom: String,
     var isSold: Boolean,
+
     @Embedded var contact: RealEstateAgent,
     @Embedded var pointOfInterest: PointOfInterest,
     @Embedded var address: Address,

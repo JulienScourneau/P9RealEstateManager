@@ -11,7 +11,6 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Provider
 
-
 @Database(entities = [Estate::class, Photo::class], version = 1, exportSchema = false)
 abstract class EstateDatabase : RoomDatabase() {
 
