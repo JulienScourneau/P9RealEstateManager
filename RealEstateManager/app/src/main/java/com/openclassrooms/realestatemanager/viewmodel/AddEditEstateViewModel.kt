@@ -159,6 +159,10 @@ class AddEditEstateViewModel @Inject constructor(
 
     fun onSaveClick() {
         when {
+            estateCategory.isBlank() -> {
+                showInvalidInputMessage("Select a category")
+                return
+            }
             estateAddressStreet.isBlank() -> {
                 showInvalidInputMessage("Street cannot be empty")
                 return
@@ -177,30 +181,6 @@ class AddEditEstateViewModel @Inject constructor(
             }
             estateAddressPostalCode.isBlank() -> {
                 showInvalidInputMessage("Postal Code cannot be empty")
-                return
-            }
-            estatePrice.isBlank() -> {
-                showInvalidInputMessage("Price cannot be empty")
-                return
-            }
-            estateArea.isBlank() -> {
-                showInvalidInputMessage("Area cannot be empty")
-                return
-            }
-            estateRoom.isBlank() -> {
-                showInvalidInputMessage("Number of room cannot be empty")
-                return
-            }
-            estateBathroom.isBlank() -> {
-                showInvalidInputMessage("Number of bathroom cannot be empty")
-                return
-            }
-            estateBedroom.isBlank() -> {
-                showInvalidInputMessage("Number of bedroom cannot be empty")
-                return
-            }
-            estateDescription.isBlank() -> {
-                showInvalidInputMessage("Description cannot be empty")
                 return
             }
         }
