@@ -3,7 +3,7 @@ package com.openclassrooms.realestatemanager.utils
 import com.openclassrooms.realestatemanager.data.Address
 import com.openclassrooms.realestatemanager.data.Estate
 import com.openclassrooms.realestatemanager.data.PointOfInterest
-import com.openclassrooms.realestatemanager.models.RealEstateAgent
+import com.openclassrooms.realestatemanager.data.RealEstateAgent
 
 object TestList {
 

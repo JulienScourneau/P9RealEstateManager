@@ -7,7 +7,7 @@ import android.widget.Spinner;
 
 import com.openclassrooms.realestatemanager.data.Address;
 import com.openclassrooms.realestatemanager.data.Photo;
-import com.openclassrooms.realestatemanager.models.RealEstateAgent;
+import com.openclassrooms.realestatemanager.data.RealEstateAgent;
 
 import java.text.DateFormat;
 import java.text.NumberFormat;

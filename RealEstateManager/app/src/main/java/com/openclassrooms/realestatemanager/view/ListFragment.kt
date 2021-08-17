@@ -15,8 +15,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.openclassrooms.realestatemanager.R
-import com.openclassrooms.realestatemanager.data.EstateWithPhoto
 import com.openclassrooms.realestatemanager.databinding.FragmentListEstateBinding
+import com.openclassrooms.realestatemanager.data.EstateWithPhoto
 import com.openclassrooms.realestatemanager.utils.onQueryTextChanger
 import com.openclassrooms.realestatemanager.view.adapter.EstateAdapter
 import com.openclassrooms.realestatemanager.viewmodel.EstateViewModel

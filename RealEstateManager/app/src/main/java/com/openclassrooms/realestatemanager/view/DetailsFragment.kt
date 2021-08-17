@@ -10,16 +10,16 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.openclassrooms.realestatemanager.R
+import com.openclassrooms.realestatemanager.databinding.FragmentDetailsEstateBinding
 import com.openclassrooms.realestatemanager.data.Estate
 import com.openclassrooms.realestatemanager.data.EstateWithPhoto
 import com.openclassrooms.realestatemanager.data.Photo
-import com.openclassrooms.realestatemanager.databinding.FragmentDetailsEstateBinding
 import com.openclassrooms.realestatemanager.utils.Utils
 import com.openclassrooms.realestatemanager.view.adapter.MediaAdapter
 import com.openclassrooms.realestatemanager.viewmodel.DetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
-import java.util.ArrayList
+import java.util.*
 
 @AndroidEntryPoint
 class DetailsFragment : Fragment(R.layout.fragment_details_estate),
@@ -110,16 +110,14 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate),
                 detailsLocationData.text = Utils.formatAddress(address)
                 detailsContactNameData.text = contact.name
                 detailsContactPhoneNumberData.text = contact.phoneNumber
-                detailsPrice.text = if (price.isBlank()) price else "N/A"
-                detailsAreaData.text = if (area.isBlank()) area else "N/A"
-                detailsRoomData.text = if (room.isBlank()) room else "N/A"
-                detailsBathroomData.text = if (bathroom.isBlank()) bathroom else "N/A"
-                detailsBedroomData.text = if (bedroom.isBlank()) bedroom else "N/A"
-                detailsDescriptionText.text = if (description.isBlank()) description else "N/A"
+                detailsPrice.text = if (price.isNotBlank()) Utils.formatPrice(price) else "N/A"
+                detailsAreaData.text = if (area.isNotBlank()) area else "N/A"
+                detailsRoomData.text = if (room.isNotBlank()) room else "N/A"
+                detailsBathroomData.text = if (bathroom.isNotBlank()) bathroom else "N/A"
+                detailsBedroomData.text = if (bedroom.isNotBlank()) bedroom else "N/A"
+                detailsDescriptionText.text = if (description.isNotBlank()) description else "N/A"
             }
         }
     }
-
-
     override fun onItemClick(photo: Photo) {}
 }

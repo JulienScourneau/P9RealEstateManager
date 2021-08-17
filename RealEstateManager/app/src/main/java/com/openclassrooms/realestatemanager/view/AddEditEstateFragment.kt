@@ -18,9 +18,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.openclassrooms.realestatemanager.R
-import com.openclassrooms.realestatemanager.data.Photo
 import com.openclassrooms.realestatemanager.databinding.FragmentAddEditEstateBinding
-import com.openclassrooms.realestatemanager.models.RealEstateAgent
+import com.openclassrooms.realestatemanager.data.Photo
+import com.openclassrooms.realestatemanager.data.RealEstateAgent
 import com.openclassrooms.realestatemanager.utils.TestList
 import com.openclassrooms.realestatemanager.utils.Utils
 import com.openclassrooms.realestatemanager.view.adapter.MediaAdapter

@@ -1,6 +1,6 @@
-package com.openclassrooms.realestatemanager.models
+package com.openclassrooms.realestatemanager.data
 
-data class search(
+data class Search(
     var category: String,
     var minPrice: String,
     var maxPrice: String,
