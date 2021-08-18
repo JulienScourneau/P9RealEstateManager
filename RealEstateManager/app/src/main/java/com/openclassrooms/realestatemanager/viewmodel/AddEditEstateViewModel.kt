@@ -64,6 +64,7 @@ class AddEditEstateViewModel @Inject constructor(
             bathroom = estateBathroom,
             bedroom = estateBedroom,
             isSold = estateIsSold,
+            date = estateDate,
             pointOfInterest = PointOfInterest(
                 school = estateSchool,
                 localCommerce = estateLocalCommerce,
@@ -96,6 +97,7 @@ class AddEditEstateViewModel @Inject constructor(
                 bathroom = estateBathroom,
                 bedroom = estateBedroom,
                 isSold = estateIsSold,
+                date = estateDate,
                 pointOfInterest = PointOfInterest(
                     school = estateSchool,
                     localCommerce = estateLocalCommerce,
@@ -336,6 +338,13 @@ class AddEditEstateViewModel @Inject constructor(
         set(value) {
             field = value
             state.set("estateContactPhoneNumber", value)
+        }
+
+    var estateDate =
+        state.get<Long>("estateDate") ?: estateWithPhoto?.estate?.date ?: System.currentTimeMillis()
+        set(value){
+            field = value
+            state.set("estateDate", value)
         }
 
     sealed class AddEditEstateEvent {
