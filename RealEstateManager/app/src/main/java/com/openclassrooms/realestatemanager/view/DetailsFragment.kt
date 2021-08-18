@@ -76,18 +76,18 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate),
         setupTextView(estate.estate)
         binding.apply {
 
-            if (!estate.estate.pointOfInterest.school) {
-                detailsSchoolLayout.visibility = View.GONE
-            }
-            if (!estate.estate.pointOfInterest.localCommerce) {
-                detailsLocalCommerceLayout.visibility = View.GONE
-            }
-            if (!estate.estate.pointOfInterest.publicTransport) {
-                detailsPublicTransportLayout.visibility = View.GONE
-            }
-            if (!estate.estate.pointOfInterest.park) {
-                detailsParkLayout.visibility = View.GONE
-            }
+            detailsSchoolLayout.visibility =
+                if (!estate.estate.pointOfInterest.school) View.GONE else View.VISIBLE
+
+            detailsLocalCommerceLayout.visibility =
+                if (!estate.estate.pointOfInterest.localCommerce) View.GONE else View.VISIBLE
+
+            detailsPublicTransportLayout.visibility =
+                if (!estate.estate.pointOfInterest.publicTransport) View.GONE else View.VISIBLE
+
+            detailsParkLayout.visibility =
+                if (!estate.estate.pointOfInterest.park) View.GONE else View.VISIBLE
+
             if (estate.photosList.isNotEmpty()) {
                 images = estate.photosList as ArrayList<Photo>
             } else {
@@ -110,6 +110,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate),
                 detailsLocationData.text = Utils.formatAddress(address)
                 detailsContactNameData.text = contact.name
                 detailsContactPhoneNumberData.text = contact.phoneNumber
+                detailsSoldData.text = "$date"
                 detailsPrice.text = if (price.isNotBlank()) Utils.formatPrice(price) else "N/A"
                 detailsAreaData.text = if (area.isNotBlank()) area else "N/A"
                 detailsRoomData.text = if (room.isNotBlank()) room else "N/A"
@@ -119,5 +120,6 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate),
             }
         }
     }
+
     override fun onItemClick(photo: Photo) {}
 }
