@@ -23,17 +23,17 @@ object TestList {
 
     private val estate =
         Estate(
-            "Appartement", "700000", "Fake Description", "600", "8", "1", "2", false,RealEstateAgent("Adelajda Rutkowska", "0561049730"),
+            "Appartement", "700000", "Fake Description", "600", "8", "1", "2", false,0,RealEstateAgent("Adelajda Rutkowska", "0561049730"),
             pointOfInterest0, address, 1
         )
     private val estate1 =
         Estate(
-            "Maison", "800000", "Fake_Description", "800", "9", "2", "3", true,RealEstateAgent("Sandra Eberhardt", "0548872315"),
+            "Maison", "800000", "Fake_Description", "800", "9", "2", "3", true,0,RealEstateAgent("Sandra Eberhardt", "0548872315"),
             pointOfInterest1, address1, 2
         )
     private val estate2 =
         Estate(
-            "Villa", "707000", "Fake Description", "600", "8", "1", "2", false,RealEstateAgent("Rebecca Z. McCoy", "0416869852"),
+            "Villa", "707000", "Fake Description", "600", "8", "1", "2", false,0,RealEstateAgent("Rebecca Z. McCoy", "0416869852"),
             pointOfInterest2, address2, 3
         )
 

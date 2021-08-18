@@ -4,6 +4,7 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.io.Serializable
+import java.text.DateFormat
 
 @Entity(tableName = "estate_table")
 data class Estate(
@@ -15,9 +16,12 @@ data class Estate(
     var bathroom: String,
     var bedroom: String,
     var isSold: Boolean,
-
+    var date: Long = System.currentTimeMillis(),
     @Embedded var contact: RealEstateAgent,
     @Embedded var pointOfInterest: PointOfInterest,
     @Embedded var address: Address,
     @PrimaryKey(autoGenerate = true) val id: Int = 0
-) : Serializable
+) : Serializable {
+    val createdDateFormatted: String
+    get() = DateFormat.getDateTimeInstance().format(date)
+}
