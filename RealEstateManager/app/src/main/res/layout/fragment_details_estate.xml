@@ -414,28 +414,28 @@
                 android:padding="8dp">
 
                 <ImageView
-                    android:id="@+id/details_sale_img"
+                    android:id="@+id/details_sold_img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/details_icon_padding"
                     android:src="@drawable/baseline_event_black_24" />
 
                 <TextView
-                    android:id="@+id/details_sale_text"
+                    android:id="@+id/details_sold_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/estate_item_text_margin_start"
                     android:layout_marginTop="@dimen/icon_title_text_marginTop"
-                    android:layout_toEndOf="@+id/details_sale_img"
+                    android:layout_toEndOf="@+id/details_sold_img"
                     android:text="En vente depuis:"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/details_sale_data"
+                    android:id="@+id/details_sold_data"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/details_sale_text"
-                    android:layout_alignStart="@+id/details_sale_text"
+                    android:layout_below="@id/details_sold_text"
+                    android:layout_alignStart="@+id/details_sold_text"
                     android:layout_marginStart="@dimen/icon_text_marginStart"
                     tools:text="00/00/00" />
 
