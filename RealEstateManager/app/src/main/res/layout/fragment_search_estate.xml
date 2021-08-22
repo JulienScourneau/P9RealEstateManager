@@ -48,8 +48,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Catégorie de bien"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/text_size_title" />
+                    android:textSize="@dimen/text_size_title"
+                    android:textStyle="bold" />
 
                 <Spinner
                     android:id="@+id/search_category_spinner"
@@ -71,8 +71,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Prix"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/text_size_title" />
+                    android:textSize="@dimen/text_size_title"
+                    android:textStyle="bold" />
 
                 <View
                     style="@style/Divider"
@@ -122,8 +122,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Surface"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/text_size_title" />
+                    android:textSize="@dimen/text_size_title"
+                    android:textStyle="bold" />
 
                 <View
                     style="@style/Divider"
@@ -172,60 +172,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pièce"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/text_size_title" />
-
-                <View
-                    style="@style/Divider"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <EditText
-                        android:id="@+id/edit_text_minimum_room"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:ellipsize="end"
-                        android:hint="Pièce minimum"
-                        android:inputType="number"
-                        android:maxLength="11"
-                        android:maxLines="1" />
-
-                    <EditText
-                        android:id="@+id/edit_text_maximum_room"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:ellipsize="end"
-                        android:hint="Pièce maximum"
-                        android:inputType="number"
-                        android:maxLength="11"
-                        android:maxLines="1" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:background="@drawable/rounded_corner"
-                android:orientation="vertical"
-                android:padding="12dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:text="Chambre"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/text_size_title" />
+                    android:textSize="@dimen/text_size_title"
+                    android:textStyle="bold" />
 
                 <View
                     style="@style/Divider"
@@ -274,9 +223,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
                     android:text="Salle de bain"
-                    android:textSize="@dimen/text_size_title" />
+                    android:textSize="@dimen/text_size_title"
+                    android:textStyle="bold" />
 
                 <View
                     style="@style/Divider"
@@ -346,29 +295,29 @@
                         android:id="@+id/checkbox_school"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
+                        android:text="École et collège"
                         app:layout_constraintBottom_toTopOf="@id/checkbox_park"
-                        android:text="École et collège" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <CheckBox
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/checkbox_school"
                         android:id="@+id/checkbox_local_commerce"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="Commerce local"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/checkbox_school"
 
-                        android:text="Commerce local" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <CheckBox
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         android:id="@+id/checkbox_park"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="Parc et espace vert"
+                        app:layout_constraintBottom_toBottomOf="parent"
 
-                        android:text="Parc et espace vert" />
+                        app:layout_constraintStart_toStartOf="parent" />
 
                     <CheckBox
                         android:id="@+id/checkbox_public_transport"
@@ -392,9 +341,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
                     android:text="Adresse"
-                    android:textSize="@dimen/text_size_title" />
+                    android:textSize="@dimen/text_size_title"
+                    android:textStyle="bold" />
 
                 <View
                     style="@style/Divider"
@@ -414,6 +363,7 @@
                         android:ellipsize="end"
                         android:hint="Ville"
                         android:inputType="text"
+                        android:maxLength="11"
                         android:maxLines="1" />
 
                     <EditText
