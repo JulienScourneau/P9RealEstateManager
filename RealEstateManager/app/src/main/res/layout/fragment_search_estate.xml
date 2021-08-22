@@ -16,24 +16,25 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
             android:orientation="vertical">
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
                 android:background="@drawable/rounded_corner"
-                android:padding="12dp">
+                android:gravity="center_horizontal"
+                android:padding="8dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Search"
-                    android:textSize="@dimen/text_size_title"
+                    android:text="Recherche de bien"
+                    android:textSize="28sp"
                     android:textStyle="bold" />
 
-            </RelativeLayout>
+            </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -47,6 +48,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Catégorie de bien"
+                    android:textStyle="bold"
                     android:textSize="@dimen/text_size_title" />
 
                 <Spinner
@@ -58,7 +60,6 @@
             </RelativeLayout>
 
             <LinearLayout
-                android:id="@+id/base_layout_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
@@ -66,66 +67,366 @@
                 android:orientation="vertical"
                 android:padding="12dp">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Prix"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/text_size_title" />
+
+                <View
+                    style="@style/Divider"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/edit_text_minimum_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:hint="Prix minimum"
+                        android:inputType="number"
+                        android:maxLength="11"
+                        android:maxLines="1" />
+
+                    <EditText
+                        android:id="@+id/edit_text_maximum_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:hint="Prix maximum"
+                        android:inputType="number"
+                        android:maxLength="11"
+                        android:maxLines="1" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:background="@drawable/rounded_corner"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Surface"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/text_size_title" />
+
+                <View
+                    style="@style/Divider"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/edit_text_minimum_area"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:hint="Surface minimum"
+                        android:inputType="number"
+                        android:maxLength="11"
+                        android:maxLines="1" />
+
+                    <EditText
+                        android:id="@+id/edit_text_maximum_area"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:hint="Surface maximum"
+                        android:inputType="number"
+                        android:maxLength="11"
+                        android:maxLines="1" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:background="@drawable/rounded_corner"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pièce"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/text_size_title" />
+
+                <View
+                    style="@style/Divider"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/edit_text_minimum_room"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:hint="Pièce minimum"
+                        android:inputType="number"
+                        android:maxLength="11"
+                        android:maxLines="1" />
+
+                    <EditText
+                        android:id="@+id/edit_text_maximum_room"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:hint="Pièce maximum"
+                        android:inputType="number"
+                        android:maxLength="11"
+                        android:maxLines="1" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:background="@drawable/rounded_corner"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chambre"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/text_size_title" />
+
+                <View
+                    style="@style/Divider"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/edit_text_minimum_bedroom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:hint="Chambre minimum"
+                        android:inputType="number"
+                        android:maxLength="11"
+                        android:maxLines="1" />
+
+                    <EditText
+                        android:id="@+id/edit_text_maximum_bedroom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:hint="Chambre maximum"
+                        android:inputType="number"
+                        android:maxLength="11"
+                        android:maxLines="1" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:background="@drawable/rounded_corner"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="Salle de bain"
+                    android:textSize="@dimen/text_size_title" />
+
+                <View
+                    style="@style/Divider"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/edit_text_minimum_bathroom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:hint="Salle de bain minimum"
+                        android:inputType="number"
+                        android:maxLength="11"
+                        android:maxLines="1" />
+
+                    <EditText
+                        android:id="@+id/edit_text_maximum_bathroom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:hint="Salle de bain maximum"
+                        android:inputType="number"
+                        android:maxLength="11"
+                        android:maxLines="1" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:background="@drawable/rounded_corner"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:id="@+id/POI_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Point d'intérets"
+                    android:textSize="@dimen/text_size_title"
+                    android:textStyle="bold" />
+
+                <View
+                    android:id="@+id/POI_divider"
+                    style="@style/Divider"
+                    android:layout_below="@+id/address_text"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp" />
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <CheckBox
+                        android:id="@+id/checkbox_school"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Prix"
-                        android:textSize="@dimen/text_size_title"
+                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintBottom_toTopOf="@id/checkbox_park"
+                        android:text="École et collège" />
 
-
-                    <ImageView
-                        android:id="@+id/arrow_button_price"
+                    <CheckBox
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/checkbox_school"
+                        android:id="@+id/checkbox_local_commerce"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="end"
-                        android:src="@drawable/ic_baseline_expand_more_24"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
 
-                    <LinearLayout
-                        android:id="@+id/price_layout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/arrow_button_price"
-                        android:orientation="horizontal"
-                        android:visibility="gone"
-                        app:layout_constraintTop_toBottomOf="@id/arrow_button_price"
+                        android:text="Commerce local" />
+
+                    <CheckBox
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent">
+                        android:id="@+id/checkbox_park"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
 
-                        <EditText
-                            android:id="@+id/edit_text_minimum_price"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:ellipsize="end"
-                            android:hint="Prix minimum"
-                            android:inputType="number"
-                            android:maxLength="11"
-                            android:maxLines="1" />
+                        android:text="Parc et espace vert" />
 
-                        <EditText
-                            android:id="@+id/edit_text_maximum_price"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:ellipsize="end"
-                            android:hint="Prix maximum"
-                            android:inputType="number"
-                            android:maxLength="11"
-                            android:maxLines="1" />
+                    <CheckBox
+                        android:id="@+id/checkbox_public_transport"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Transport en commun"
+                        app:layout_constraintBottom_toBottomOf="parent"
 
-                    </LinearLayout>
-
+                        app:layout_constraintStart_toStartOf="@id/checkbox_local_commerce" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:background="@drawable/rounded_corner"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="Adresse"
+                    android:textSize="@dimen/text_size_title" />
+
+                <View
+                    style="@style/Divider"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/edit_text_city"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:hint="Ville"
+                        android:inputType="text"
+                        android:maxLines="1" />
+
+                    <EditText
+                        android:id="@+id/edit_text_postal_code"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:hint="Code Postal"
+                        android:inputType="number"
+                        android:maxLines="1" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
