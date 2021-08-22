@@ -1,6 +1,7 @@
 package com.openclassrooms.realestatemanager.view
 
 import android.Manifest
+import android.app.DatePickerDialog
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -18,9 +19,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.openclassrooms.realestatemanager.R
-import com.openclassrooms.realestatemanager.databinding.FragmentAddEditEstateBinding
 import com.openclassrooms.realestatemanager.data.Photo
 import com.openclassrooms.realestatemanager.data.RealEstateAgent
+import com.openclassrooms.realestatemanager.databinding.FragmentAddEditEstateBinding
 import com.openclassrooms.realestatemanager.utils.TestList
 import com.openclassrooms.realestatemanager.utils.Utils
 import com.openclassrooms.realestatemanager.view.adapter.MediaAdapter
@@ -28,6 +29,7 @@ import com.openclassrooms.realestatemanager.viewmodel.AddEditEstateViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import java.io.File
+import java.text.SimpleDateFormat
 import java.util.*
 
 @AndroidEntryPoint
@@ -97,6 +99,7 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate),
         setupAddPhotoListener()
         addTextChangedListener()
         setupEditText()
+        setupDatePicker()
     }
 
     private fun setupContactSpinner() {
@@ -215,6 +218,26 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate),
             checkboxLocalCommerce.isChecked = viewModel.estateLocalCommerce
             checkboxPublicTransport.isChecked = viewModel.estatePublicTransport
             checkboxPark.isChecked = viewModel.estatePark
+        }
+    }
+
+    private fun setupDatePicker() {
+        binding.dateText.setOnClickListener {
+
+            val c = Calendar.getInstance()
+            val year = c.get(Calendar.YEAR)
+            val month = c.get(Calendar.MONTH)
+            val day = c.get(Calendar.DAY_OF_MONTH)
+
+            val dpd = DatePickerDialog(requireContext(), { view, year, monthOfYear, dayOfMonth ->
+
+                val format = "dd.MM.yyyy"
+                val dateFormat = SimpleDateFormat(format,Locale.FRENCH)
+                binding.dateText.text = dateFormat.format((c.time))
+            }, year, month, day)
+
+            dpd.show()
+
         }
     }
 
