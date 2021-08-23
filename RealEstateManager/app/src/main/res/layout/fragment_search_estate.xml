@@ -46,300 +46,6 @@
                 android:padding="12dp">
 
                 <TextView
-                    android:id="@+id/POI_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Point d'intérets"
-                    android:textSize="@dimen/text_size_title"
-                    android:textStyle="bold" />
-
-                <View
-                    android:id="@+id/POI_divider"
-                    style="@style/Divider"
-                    android:layout_below="@+id/address_text"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp" />
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/textview_school"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="École et collège"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintEnd_toStartOf="@id/expand_school"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:text="Indifférent" />
-
-                    <ImageView
-                        android:id="@+id/expand_school"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_baseline_expand_more_24"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/layout_school"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:visibility="gone"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/expand_school">
-
-                        <RadioGroup
-                            android:id="@+id/radio_group_school"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                            <RadioButton
-                                android:id="@+id/indifferent_school"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Indifférent" />
-
-                            <RadioButton
-                                android:id="@+id/with_school"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Avec" />
-
-                            <RadioButton
-                                android:id="@+id/without_school"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Sans" />
-
-                        </RadioGroup>
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Commerce local"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/textview_local_commerce"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintEnd_toStartOf="@id/expand_local_commerce"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:text="Indifférent" />
-
-                    <ImageView
-                        android:id="@+id/expand_local_commerce"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_baseline_expand_more_24"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/layout_local_commerce"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:visibility="gone"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/expand_local_commerce">
-
-                        <RadioGroup
-                            android:id="@+id/radio_group_local_commerce"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                            <RadioButton
-                                android:id="@+id/indifferent_local_commerce"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Indifférent" />
-
-                            <RadioButton
-                                android:id="@+id/with_local_commerce"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Avec" />
-
-                            <RadioButton
-                                android:id="@+id/without_local_commerce"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Sans" />
-
-                        </RadioGroup>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Parc et espace vert"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/textview_park"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintEnd_toStartOf="@id/expand_park"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:text="Indifférent" />
-
-                    <ImageView
-                        android:id="@+id/expand_park"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_baseline_expand_more_24"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/layout_park"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:visibility="gone"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/expand_park">
-
-                        <RadioGroup
-                            android:id="@+id/radio_group_park"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                            <RadioButton
-                                android:id="@+id/indifferent_park"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Indifférent" />
-
-                            <RadioButton
-                                android:id="@+id/with_park"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Avec" />
-
-                            <RadioButton
-                                android:id="@+id/without_park"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Sans" />
-
-                        </RadioGroup>
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Transport en commun"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/textview_public_transport"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintEnd_toStartOf="@id/expand_public_transport"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:text="Indifférent" />
-
-                    <ImageView
-                        android:id="@+id/expand_public_transport"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_baseline_expand_more_24"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/layout_public_transport"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:visibility="gone"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/expand_public_transport">
-
-                        <RadioGroup
-                            android:id="@+id/radio_group_public_transport"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                            <RadioButton
-                                android:id="@+id/indifferent_public_transport"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Indifférent" />
-
-                            <RadioButton
-                                android:id="@+id/with_public_transport"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Avec" />
-
-                            <RadioButton
-                                android:id="@+id/without_public_transport"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Sans" />
-
-                        </RadioGroup>
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:background="@drawable/rounded_corner"
-                android:padding="12dp">
-
-                <TextView
                     android:id="@+id/search_category"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -347,13 +53,18 @@
                     android:textSize="@dimen/text_size_title"
                     android:textStyle="bold" />
 
+                <View
+                    style="@style/Divider"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp" />
+
                 <Spinner
                     android:id="@+id/search_category_spinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/search_category"
                     android:entries="@array/category_spinner" />
-            </RelativeLayout>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -559,7 +270,297 @@
 
             </LinearLayout>
 
-            <!-- POI -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:background="@drawable/rounded_corner"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:id="@+id/POI_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Point d'intérets"
+                    android:textSize="@dimen/text_size_title"
+                    android:textStyle="bold" />
+
+                <View
+                    android:id="@+id/POI_divider"
+                    style="@style/Divider"
+                    android:layout_below="@+id/address_text"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="École et collège"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textview_school"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toStartOf="@id/expand_school"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Indifférent" />
+
+                    <ImageView
+                        android:id="@+id/expand_school"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_baseline_expand_more_24"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout_school"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/expand_school">
+
+                        <RadioGroup
+                            android:id="@+id/radio_group_school"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <RadioButton
+                                android:id="@+id/indifferent_school"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Indifférent" />
+
+                            <RadioButton
+                                android:id="@+id/with_school"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Avec" />
+
+                            <RadioButton
+                                android:id="@+id/without_school"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Sans" />
+
+                        </RadioGroup>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Commerce local"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textview_local_commerce"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toStartOf="@id/expand_local_commerce"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Indifférent" />
+
+                    <ImageView
+                        android:id="@+id/expand_local_commerce"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_baseline_expand_more_24"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout_local_commerce"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/expand_local_commerce">
+
+                        <RadioGroup
+                            android:id="@+id/radio_group_local_commerce"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <RadioButton
+                                android:id="@+id/indifferent_local_commerce"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Indifférent" />
+
+                            <RadioButton
+                                android:id="@+id/with_local_commerce"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Avec" />
+
+                            <RadioButton
+                                android:id="@+id/without_local_commerce"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Sans" />
+
+                        </RadioGroup>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Parc et espace vert"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textview_park"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toStartOf="@id/expand_park"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Indifférent" />
+
+                    <ImageView
+                        android:id="@+id/expand_park"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_baseline_expand_more_24"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout_park"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/expand_park">
+
+                        <RadioGroup
+                            android:id="@+id/radio_group_park"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <RadioButton
+                                android:id="@+id/indifferent_park"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Indifférent" />
+
+                            <RadioButton
+                                android:id="@+id/with_park"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Avec" />
+
+                            <RadioButton
+                                android:id="@+id/without_park"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Sans" />
+
+                        </RadioGroup>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Transport en commun"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textview_public_transport"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toStartOf="@id/expand_public_transport"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Indifférent" />
+
+                    <ImageView
+                        android:id="@+id/expand_public_transport"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_baseline_expand_more_24"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout_public_transport"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/expand_public_transport">
+
+                        <RadioGroup
+                            android:id="@+id/radio_group_public_transport"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <RadioButton
+                                android:id="@+id/indifferent_public_transport"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Indifférent" />
+
+                            <RadioButton
+                                android:id="@+id/with_public_transport"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Avec" />
+
+                            <RadioButton
+                                android:id="@+id/without_public_transport"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Sans" />
+
+                        </RadioGroup>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
