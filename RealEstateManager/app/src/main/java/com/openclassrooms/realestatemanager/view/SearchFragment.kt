@@ -2,11 +2,17 @@ package com.openclassrooms.realestatemanager.view
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
+import android.widget.LinearLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.transition.AutoTransition
+import androidx.transition.TransitionManager
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.databinding.FragmentSearchEstateBinding
+import com.openclassrooms.realestatemanager.utils.Utils
 import com.openclassrooms.realestatemanager.viewmodel.SearchViewModel
 
 class SearchFragment : Fragment(R.layout.fragment_search_estate) {
@@ -17,8 +23,8 @@ class SearchFragment : Fragment(R.layout.fragment_search_estate) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding = FragmentSearchEstateBinding.bind(view)
 
-        setupEditText()
-
+        // setupEditText()
+        setupExpandView()
     }
 
     private fun setupEditText() {
@@ -55,6 +61,15 @@ class SearchFragment : Fragment(R.layout.fragment_search_estate) {
                     searchPostalCode = it.toString()
                 }
             }
+        }
+    }
+
+    private fun setupExpandView() {
+        binding.apply {
+            Utils.expandAndCollapseView(expandSchool, layoutSchool, searchLayout)
+            Utils.expandAndCollapseView(expandLocalCommerce, layoutLocalCommerce, searchLayout)
+            Utils.expandAndCollapseView(expandPark, layoutPark, searchLayout)
+            Utils.expandAndCollapseView(expandPublicTransport, layoutPublicTransport, searchLayout)
         }
     }
 }
