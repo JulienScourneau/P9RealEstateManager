@@ -3,8 +3,16 @@ package com.openclassrooms.realestatemanager.utils;
 import android.content.Context;
 import android.net.Uri;
 import android.net.wifi.WifiManager;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.transition.AutoTransition;
+import androidx.transition.TransitionManager;
+
+import com.openclassrooms.realestatemanager.R;
 import com.openclassrooms.realestatemanager.data.Address;
 import com.openclassrooms.realestatemanager.data.Photo;
 import com.openclassrooms.realestatemanager.data.RealEstateAgent;
@@ -103,5 +111,19 @@ public class Utils {
 
     public static Photo uriToPhoto(Uri uri) {
         return new Photo(uri.toString(), 0, 0);
+    }
+
+    public static void expandAndCollapseView(ImageView button, ConstraintLayout hiddenView, LinearLayout baseLayout) {
+        button.setOnClickListener(view -> {
+            if (hiddenView.getVisibility() == View.VISIBLE) {
+                TransitionManager.beginDelayedTransition(baseLayout, new AutoTransition());
+                hiddenView.setVisibility(View.GONE);
+                button.setImageResource(R.drawable.ic_baseline_expand_more_24);
+            } else {
+                TransitionManager.beginDelayedTransition(baseLayout, new AutoTransition());
+                hiddenView.setVisibility(View.VISIBLE);
+                button.setImageResource(R.drawable.ic_baseline_expand_less_24);
+            }
+        });
     }
 }
