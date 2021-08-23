@@ -76,9 +76,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/expand_school"
-                        tools:text="Indifférent"/>
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Indifférent" />
 
                     <ImageView
                         android:id="@+id/expand_school"
@@ -97,23 +97,29 @@
                         app:layout_constraintTop_toBottomOf="@id/expand_school">
 
                         <RadioGroup
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
+                            android:id="@+id/radio_group_school"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
 
                             <RadioButton
+                                android:id="@+id/indifferent_school"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Indifférent"/>
+                                android:text="Indifférent" />
+
                             <RadioButton
+                                android:id="@+id/with_school"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Avec"/>
+                                android:text="Avec" />
+
                             <RadioButton
+                                android:id="@+id/without_school"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Sans"/>
+                                android:text="Sans" />
 
                         </RadioGroup>
 
@@ -138,9 +144,9 @@
                         android:id="@+id/textview_local_commerce"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/expand_local_commerce"
-                        tools:text="Indifférent"/>
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Indifférent" />
 
                     <ImageView
                         android:id="@+id/expand_local_commerce"
@@ -159,26 +165,31 @@
                         app:layout_constraintTop_toBottomOf="@id/expand_local_commerce">
 
                         <RadioGroup
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
+                            android:id="@+id/radio_group_local_commerce"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
 
                             <RadioButton
+                                android:id="@+id/indifferent_local_commerce"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Indifférent"/>
+                                android:text="Indifférent" />
+
                             <RadioButton
+                                android:id="@+id/with_local_commerce"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Avec"/>
+                                android:text="Avec" />
+
                             <RadioButton
+                                android:id="@+id/without_local_commerce"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Sans"/>
+                                android:text="Sans" />
 
                         </RadioGroup>
-
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -200,9 +211,9 @@
                         android:id="@+id/textview_park"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/expand_park"
-                        tools:text="Indifférent"/>
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Indifférent" />
 
                     <ImageView
                         android:id="@+id/expand_park"
@@ -221,23 +232,29 @@
                         app:layout_constraintTop_toBottomOf="@id/expand_park">
 
                         <RadioGroup
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
+                            android:id="@+id/radio_group_park"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
 
                             <RadioButton
+                                android:id="@+id/indifferent_park"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Indifférent"/>
+                                android:text="Indifférent" />
+
                             <RadioButton
+                                android:id="@+id/with_park"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Avec"/>
+                                android:text="Avec" />
+
                             <RadioButton
+                                android:id="@+id/without_park"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Sans"/>
+                                android:text="Sans" />
 
                         </RadioGroup>
 
@@ -262,9 +279,9 @@
                         android:id="@+id/textview_public_transport"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/expand_public_transport"
-                        tools:text="Indifférent"/>
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Indifférent" />
 
                     <ImageView
                         android:id="@+id/expand_public_transport"
@@ -283,23 +300,29 @@
                         app:layout_constraintTop_toBottomOf="@id/expand_public_transport">
 
                         <RadioGroup
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
+                            android:id="@+id/radio_group_public_transport"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
 
                             <RadioButton
+                                android:id="@+id/indifferent_public_transport"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Indifférent"/>
+                                android:text="Indifférent" />
+
                             <RadioButton
+                                android:id="@+id/with_public_transport"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Avec"/>
+                                android:text="Avec" />
+
                             <RadioButton
+                                android:id="@+id/without_public_transport"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Sans"/>
+                                android:text="Sans" />
 
                         </RadioGroup>
 
