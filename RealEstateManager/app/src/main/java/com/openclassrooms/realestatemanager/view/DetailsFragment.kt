@@ -110,7 +110,13 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate),
                 detailsLocationData.text = Utils.formatAddress(address)
                 detailsContactNameData.text = contact.name
                 detailsContactPhoneNumberData.text = contact.phoneNumber
-                detailsSoldData.text = "$date"
+                if (isSold){
+                    detailsSoldText.text = "Vendu depuis:"
+                    detailsSoldData.text = Utils.convertLongToDate(date)
+                } else {
+                    detailsSoldText.text = "En vente depuis:"
+                    detailsSoldData.text = Utils.convertLongToDate(date)
+                }
                 detailsPrice.text = if (price.isNotBlank()) Utils.formatPrice(price) else "N/A"
                 detailsAreaData.text = if (area.isNotBlank()) area else "N/A"
                 detailsRoomData.text = if (room.isNotBlank()) room else "N/A"
