@@ -427,8 +427,8 @@
                     android:layout_marginStart="@dimen/estate_item_text_margin_start"
                     android:layout_marginTop="@dimen/icon_title_text_marginTop"
                     android:layout_toEndOf="@+id/details_sold_img"
-                    android:text="En vente depuis:"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    tools:text="En vente depuis:" />
 
                 <TextView
                     android:id="@+id/details_sold_data"
