@@ -21,7 +21,4 @@ data class Estate(
     @Embedded var pointOfInterest: PointOfInterest,
     @Embedded var address: Address,
     @PrimaryKey(autoGenerate = true) val id: Int = 0
-) : Serializable {
-    val createdDateFormatted: String
-    get() = DateFormat.getDateTimeInstance().format(date)
-}
+) : Serializable
