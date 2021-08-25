@@ -225,22 +225,29 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate),
     }
 
     private fun setupDatePicker() {
-        binding.updateDateButton.setOnClickListener {
+        binding.apply {
+            checkboxIsSold.isChecked = viewModel.estateIsSold
+            checkboxIsSold.jumpDrawablesToCurrentState()
+            checkboxIsSold.setOnCheckedChangeListener { _, isChecked ->
+                viewModel.estateIsSold = isChecked
+            }
+            updateDateButton.setOnClickListener {
 
-            val c = Calendar.getInstance()
-            val y = c.get(Calendar.YEAR)
-            val m = c.get(Calendar.MONTH)
-            val d = c.get(Calendar.DAY_OF_MONTH)
+                val c = Calendar.getInstance()
+                val y = c.get(Calendar.YEAR)
+                val m = c.get(Calendar.MONTH)
+                val d = c.get(Calendar.DAY_OF_MONTH)
 
-            val dpd = DatePickerDialog(requireContext(), { _, year, month, day ->
-                val format = "dd/MM/yyyy"
-                val dateFormat = SimpleDateFormat(format, Locale.FRENCH)
-                val date = Calendar.getInstance()
-                date.set(year, month, day)
-                viewModel.estateDate = date.timeInMillis
-                binding.dateText.text = "Date: ${dateFormat.format(date.time)}"
-            }, y, m, d)
-            dpd.show()
+                val dpd = DatePickerDialog(requireContext(), { _, year, month, day ->
+                    val format = "dd/MM/yyyy"
+                    val dateFormat = SimpleDateFormat(format, Locale.FRENCH)
+                    val date = Calendar.getInstance()
+                    date.set(year, month, day)
+                    viewModel.estateDate = date.timeInMillis
+                    binding.dateText.text = "Date: ${dateFormat.format(date.time)}"
+                }, y, m, d)
+                dpd.show()
+            }
         }
     }
 
