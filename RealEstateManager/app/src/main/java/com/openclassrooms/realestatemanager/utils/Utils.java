@@ -19,6 +19,7 @@ import com.openclassrooms.realestatemanager.data.RealEstateAgent;
 
 import java.text.DateFormat;
 import java.text.NumberFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Currency;
 import java.util.Date;
@@ -47,7 +48,7 @@ public class Utils {
      * @return
      */
     public static String getTodayDate() {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         return dateFormat.format(new Date());
     }
 
@@ -109,7 +110,7 @@ public class Utils {
         return location;
     }
 
-    public static Photo uriToPhoto(Uri uri) {
+    public static Photo convertUriToPhoto(Uri uri) {
         return new Photo(uri.toString(), 0, 0);
     }
 
@@ -125,5 +126,23 @@ public class Utils {
                 button.setImageResource(R.drawable.ic_baseline_expand_less_24);
             }
         });
+    }
+
+    public static String convertLongToDate(long time){
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date(time);
+
+        return format.format(date);
+    }
+
+    public static Long convertDateToLong(String date) {
+        long dateLong = 0;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            dateLong = dateFormat.parse(date).getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return dateLong;
     }
 }
