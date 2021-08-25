@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:padding="8dp"
+        android:padding="12dp"
         tools:listitem="@layout/estate_item" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -21,7 +21,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
         android:src="@drawable/ic_baseline_add"
-        android:tint="@color/white"/>
-
+        android:tint="@color/white"
+        tools:ignore="ContentDescription" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
