@@ -91,6 +91,9 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate),
             addEditFab.setOnClickListener {
                 viewModel.onSaveClick()
             }
+
+            dateText.text = "Date: ${Utils.getTodayDate()}"
+
         }
 
         setupContactSpinner()
@@ -144,7 +147,7 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate),
             val pickImages =
                 registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
                     if (uri != null) {
-                        images.add(Utils.uriToPhoto(uri))
+                        images.add(Utils.convertUriToPhoto(uri))
                         viewModel.estatePhoto = images
                         addEditViewpager.adapter?.notifyDataSetChanged()
                     }
@@ -153,7 +156,7 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate),
             val takePicture =
                 registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
                     if (success) {
-                        images.add(Utils.uriToPhoto(imageUri))
+                        images.add(Utils.convertUriToPhoto(imageUri))
                         viewModel.estatePhoto = images
                         addEditViewpager.adapter?.notifyDataSetChanged()
                     }
@@ -222,22 +225,22 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate),
     }
 
     private fun setupDatePicker() {
-        binding.dateText.setOnClickListener {
+        binding.updateDateButton.setOnClickListener {
 
             val c = Calendar.getInstance()
-            val year = c.get(Calendar.YEAR)
-            val month = c.get(Calendar.MONTH)
-            val day = c.get(Calendar.DAY_OF_MONTH)
+            val y = c.get(Calendar.YEAR)
+            val m = c.get(Calendar.MONTH)
+            val d = c.get(Calendar.DAY_OF_MONTH)
 
-            val dpd = DatePickerDialog(requireContext(), { view, year, monthOfYear, dayOfMonth ->
-
-                val format = "dd.MM.yyyy"
-                val dateFormat = SimpleDateFormat(format,Locale.FRENCH)
-                binding.dateText.text = dateFormat.format((c.time))
-            }, year, month, day)
-
+            val dpd = DatePickerDialog(requireContext(), { _, year, month, day ->
+                val format = "dd/MM/yyyy"
+                val dateFormat = SimpleDateFormat(format, Locale.FRENCH)
+                val date = Calendar.getInstance()
+                date.set(year, month, day)
+                viewModel.estateDate = date.timeInMillis
+                binding.dateText.text = "Date: ${dateFormat.format(date.time)}"
+            }, y, m, d)
             dpd.show()
-
         }
     }
 
