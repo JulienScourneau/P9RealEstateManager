@@ -119,7 +119,7 @@ public class Utils {
             if (hiddenView.getVisibility() == View.VISIBLE) {
                 TransitionManager.beginDelayedTransition(baseLayout, new AutoTransition());
                 hiddenView.setVisibility(View.GONE);
-                button.setImageResource(R.drawable.ic_baseline_expand_more_24);
+                button.setImageResource(R.drawable.ic_baseline_expand_more_36);
             } else {
                 TransitionManager.beginDelayedTransition(baseLayout, new AutoTransition());
                 hiddenView.setVisibility(View.VISIBLE);

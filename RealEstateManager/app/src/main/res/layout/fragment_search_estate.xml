@@ -73,6 +73,114 @@
                 android:orientation="vertical"
                 android:padding="12dp">
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/address_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Adresse"
+                        android:textSize="@dimen/text_size_title"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@id/expand_address"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <TextView
+                        android:id="@+id/address_text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        app:layout_constraintBottom_toBottomOf="@id/expand_address"
+                        app:layout_constraintEnd_toStartOf="@id/expand_address"
+                        app:layout_constraintStart_toStartOf="@+id/guideline2"
+                        app:layout_constraintTop_toTopOf="@id/expand_address"
+                        android:gravity="end"
+                        tools:text="Paris, 84512354 " />
+
+                    <ImageView
+                        android:id="@+id/expand_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_baseline_expand_more_36"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/address_text">
+
+                        <View
+                            android:id="@+id/address_divider"
+                            style="@style/Divider"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
+                            app:layout_constraintBottom_toTopOf="@id/layout_address"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/address_linear_layout" />
+
+                        <LinearLayout
+                            android:id="@+id/address_linear_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <EditText
+                                android:id="@+id/edit_text_city"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:ellipsize="end"
+                                android:hint="Ville"
+                                android:inputType="text"
+                                android:maxLines="1" />
+
+                            <EditText
+                                android:id="@+id/edit_text_postal_code"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:ellipsize="end"
+                                android:hint="Code Postal"
+                                android:inputType="number"
+                                android:maxLines="1" />
+
+                        </LinearLayout>
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.55" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:background="@drawable/rounded_corner"
+                android:orientation="vertical"
+                android:padding="12dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -301,6 +409,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="École et collège"
+                        app:layout_constraintBottom_toBottomOf="@+id/expand_school"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -308,6 +417,7 @@
                         android:id="@+id/textview_school"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="@+id/expand_school"
                         app:layout_constraintEnd_toStartOf="@id/expand_school"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:text="Indifférent" />
@@ -316,7 +426,7 @@
                         android:id="@+id/expand_school"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_baseline_expand_more_24"
+                        android:src="@drawable/ic_baseline_expand_more_36"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -368,6 +478,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Commerce local"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -375,6 +486,7 @@
                         android:id="@+id/textview_local_commerce"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="@+id/expand_local_commerce"
                         app:layout_constraintEnd_toStartOf="@id/expand_local_commerce"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:text="Indifférent" />
@@ -383,7 +495,7 @@
                         android:id="@+id/expand_local_commerce"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_baseline_expand_more_24"
+                        android:src="@drawable/ic_baseline_expand_more_36"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -434,6 +546,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Parc et espace vert"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -441,6 +554,7 @@
                         android:id="@+id/textview_park"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="@+id/expand_park"
                         app:layout_constraintEnd_toStartOf="@id/expand_park"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:text="Indifférent" />
@@ -449,7 +563,7 @@
                         android:id="@+id/expand_park"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_baseline_expand_more_24"
+                        android:src="@drawable/ic_baseline_expand_more_36"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -501,6 +615,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Transport en commun"
+                        app:layout_constraintBottom_toBottomOf="@+id/expand_public_transport"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -508,6 +623,7 @@
                         android:id="@+id/textview_public_transport"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="@+id/expand_public_transport"
                         app:layout_constraintEnd_toStartOf="@id/expand_public_transport"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:text="Indifférent" />
@@ -516,7 +632,7 @@
                         android:id="@+id/expand_public_transport"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_baseline_expand_more_24"
+                        android:src="@drawable/ic_baseline_expand_more_36"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -561,10 +677,14 @@
 
             </LinearLayout>
 
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/rounded_corner"
                 android:orientation="vertical"
                 android:padding="12dp">
@@ -572,42 +692,31 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Adresse"
+                    android:text="Date"
                     android:textSize="@dimen/text_size_title"
                     android:textStyle="bold" />
 
                 <View
+                    android:id="@+id/date_divider"
                     style="@style/Divider"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/date_text"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_marginBottom="8dp"
+                    android:text="A partir du: 02/12/2021"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-                    <EditText
-                        android:id="@+id/edit_text_city"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:ellipsize="end"
-                        android:hint="Ville"
-                        android:inputType="text"
-                        android:maxLength="11"
-                        android:maxLines="1" />
-
-                    <EditText
-                        android:id="@+id/edit_text_postal_code"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:ellipsize="end"
-                        android:hint="Code Postal"
-                        android:inputType="number"
-                        android:maxLines="1" />
-
-                </LinearLayout>
+                <ImageButton
+                    android:id="@+id/update_date_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/baseline_event_24"
+                    tools:ignore="ContentDescription" />
 
             </LinearLayout>
 
