@@ -45,6 +45,7 @@ class SearchFragment : Fragment(R.layout.fragment_search_estate) {
         setupEditText()
         setupExpandView()
         setupRadioButton()
+        setupCheckBox()
     }
 
     private fun setupEditText() {
@@ -76,11 +77,29 @@ class SearchFragment : Fragment(R.layout.fragment_search_estate) {
                 }
                 editTextCity.addTextChangedListener {
                     searchCity = it.toString()
+
+                    addressText.text = Utils.setTextview(editTextCity, editTextPostalCode)
                 }
                 editTextPostalCode.addTextChangedListener {
                     searchPostalCode = it.toString()
+                    addressText.text = Utils.setTextview(editTextCity, editTextPostalCode)
+
+                    //if (editTextCity.text.isBlank()) {
+                    //    addressText.text = it.toString()
+                    //} else {
+                    //    addressText.text = "${editTextCity.text},${it.toString()}"
+                    //}
+                    //if (it!!.isEmpty()) {
+                    //    addressText.text = editTextCity.text
+                    //}
                 }
             }
+        }
+    }
+
+    private fun setupCheckBox() {
+        binding.photoCheckbox.setOnCheckedChangeListener { _, isChecked ->
+            viewModel.searchPhotoAvailable = isChecked
         }
     }
 
@@ -150,6 +169,7 @@ class SearchFragment : Fragment(R.layout.fragment_search_estate) {
             Utils.expandAndCollapseView(expandLocalCommerce, layoutLocalCommerce, searchLayout)
             Utils.expandAndCollapseView(expandPark, layoutPark, searchLayout)
             Utils.expandAndCollapseView(expandPublicTransport, layoutPublicTransport, searchLayout)
+            Utils.expandAndCollapseView(expandAddress, layoutAddress, searchLayout)
         }
     }
 }
