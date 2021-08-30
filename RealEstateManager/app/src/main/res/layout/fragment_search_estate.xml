@@ -95,12 +95,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
+                        android:gravity="end"
                         android:maxLines="1"
                         app:layout_constraintBottom_toBottomOf="@id/expand_address"
                         app:layout_constraintEnd_toStartOf="@id/expand_address"
                         app:layout_constraintStart_toStartOf="@+id/guideline2"
                         app:layout_constraintTop_toTopOf="@id/expand_address"
-                        android:gravity="end"
                         tools:text="Paris, 84512354 " />
 
                     <ImageView
@@ -677,6 +677,34 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:background="@drawable/rounded_corner"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:id="@+id/search_photo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Photo"
+                    android:textSize="@dimen/text_size_title"
+                    android:textStyle="bold" />
+
+                <View
+                    style="@style/Divider"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp" />
+
+                <CheckBox
+                    android:id="@+id/photo_checkbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Doit contenir au moins une photo" />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
