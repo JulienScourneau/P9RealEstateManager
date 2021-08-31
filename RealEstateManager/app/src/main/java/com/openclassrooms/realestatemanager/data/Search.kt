@@ -1,7 +1,7 @@
 package com.openclassrooms.realestatemanager.data
 
 data class Search(
-    var category: Int?,
+    var category: String?,
     var minPrice: Int?,
     var maxPrice: Int?,
     var minArea: Int?,
