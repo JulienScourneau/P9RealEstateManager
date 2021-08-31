@@ -54,15 +54,15 @@ class SearchViewModel @Inject constructor(
         navigationBack()
     }
 
-    var searchCategory = ""
-    var searchMinPrice = ""
-    var searchMaxPrice = ""
-    var searchMinArea = ""
-    var searchMaxArea = ""
-    var searchMinBedroom = ""
-    var searchMaxBedroom = ""
-    var searchMinBathroom = ""
-    var searchMaxBathroom = ""
+    var searchCategory: String? = null
+    var searchMinPrice: Int? = null
+    var searchMaxPrice: Int? = null
+    var searchMinArea: Int? = null
+    var searchMaxArea: Int? = null
+    var searchMinBedroom: Int? = null
+    var searchMaxBedroom: Int? = null
+    var searchMinBathroom: Int? = null
+    var searchMaxBathroom: Int? = null
     var searchCity = ""
     var searchPostalCode = ""
     var searchPhotoAvailable = false
