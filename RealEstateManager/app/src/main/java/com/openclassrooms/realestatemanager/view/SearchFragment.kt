@@ -3,14 +3,21 @@ package com.openclassrooms.realestatemanager.view
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
+import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.databinding.FragmentSearchEstateBinding
 import com.openclassrooms.realestatemanager.utils.Utils
+import com.openclassrooms.realestatemanager.viewmodel.EstateViewModel
 import com.openclassrooms.realestatemanager.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class SearchFragment : Fragment(R.layout.fragment_search_estate) {
@@ -21,6 +28,19 @@ class SearchFragment : Fragment(R.layout.fragment_search_estate) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding = FragmentSearchEstateBinding.bind(view)
         setupUI()
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.searchEvent.collect { event ->
+                when (event) {
+                    is SearchViewModel.SearchEvent.NavigateBackWithResult -> {
+                        clearFocusOnSearchClick()
+
+                        findNavController().popBackStack()
+                    }
+                }
+            }
+
+        }
     }
 
     private fun setupUI() {
@@ -93,6 +113,10 @@ class SearchFragment : Fragment(R.layout.fragment_search_estate) {
                     //    addressText.text = editTextCity.text
                     //}
                 }
+            }
+
+            searchButton.setOnClickListener {
+                viewModel.onSearchClick()
             }
         }
     }
@@ -170,6 +194,21 @@ class SearchFragment : Fragment(R.layout.fragment_search_estate) {
             Utils.expandAndCollapseView(expandPark, layoutPark, searchLayout)
             Utils.expandAndCollapseView(expandPublicTransport, layoutPublicTransport, searchLayout)
             Utils.expandAndCollapseView(expandAddress, layoutAddress, searchLayout)
+        }
+    }
+
+    private fun clearFocusOnSearchClick() {
+        binding.apply {
+            editTextMinimumPrice.clearFocus()
+            editTextMaximumPrice.clearFocus()
+            editTextMinimumArea.clearFocus()
+            editTextMaximumArea.clearFocus()
+            editTextMinimumBedroom.clearFocus()
+            editTextMaximumBedroom.clearFocus()
+            editTextMinimumBathroom.clearFocus()
+            editTextMaximumBathroom.clearFocus()
+            editTextCity.clearFocus()
+            editTextPostalCode.clearFocus()
         }
     }
 }
