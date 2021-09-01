@@ -3,12 +3,15 @@ package com.openclassrooms.realestatemanager.utils;
 import android.content.Context;
 import android.net.Uri;
 import android.net.wifi.WifiManager;
+import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.sqlite.db.SimpleSQLiteQuery;
 import androidx.transition.AutoTransition;
 import androidx.transition.TransitionManager;
 
@@ -16,13 +19,16 @@ import com.openclassrooms.realestatemanager.R;
 import com.openclassrooms.realestatemanager.data.Address;
 import com.openclassrooms.realestatemanager.data.Photo;
 import com.openclassrooms.realestatemanager.data.RealEstateAgent;
+import com.openclassrooms.realestatemanager.data.Search;
 
 import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Currency;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Philippe on 21/02/2018.
@@ -128,7 +134,9 @@ public class Utils {
         });
     }
 
-    public static String convertLongToDate(long time){
+    
+
+    public static String convertLongToDate(long time) {
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date(time);
 
@@ -144,5 +152,159 @@ public class Utils {
             e.printStackTrace();
         }
         return dateLong;
+    }
+
+    private static String getConditions(boolean conditions) {
+        String query = "";
+        if (conditions) {
+            query += " AND";
+        } else {
+            query += " WHERE";
+        }
+        return query;
+    }
+
+    public static SimpleSQLiteQuery createRawQueryString(Search search) {
+        String queryString = "";
+        List<Object> args = new ArrayList<>();
+        boolean containsConditions = false;
+
+        queryString += "SELECT * FROM estate_table";
+
+        //photoAvailable
+        //if (search.getPhotoAvailable() != null)
+        //    if (search.getPhotoAvailable()) {
+        //        queryString += " INNER JOIN estate_photo ON estate_table.id = estate_photo.estateId":
+        //        Log.d("photoAvailable", "photo: " + search.getPhotoAvailable());
+        //    }
+
+        //Price
+        if (search.getMinPrice() != null) {
+            queryString += getConditions(false);
+            queryString += " price > ?";
+            args.add(search.getMinPrice());
+            containsConditions = true;
+        }
+        if (search.getMaxPrice() != null) {
+            queryString += getConditions(containsConditions);
+            queryString += " price < ?";
+            args.add(search.getMaxPrice());
+            containsConditions = true;
+        }
+
+        //Category
+        if (search.getCategory() != null)
+            if (!search.getCategory().isEmpty()) {
+                queryString += getConditions(containsConditions);
+                queryString += " category LIKE ?";
+                args.add(search.getCategory());
+                containsConditions = true;
+            }
+
+        //Area
+        if (search.getMinArea() != null) {
+            queryString += getConditions(containsConditions);
+            queryString += " area > ?";
+            args.add(search.getMinArea());
+            containsConditions = true;
+        }
+        if (search.getMaxArea() != null) {
+            queryString += getConditions(containsConditions);
+            queryString += " area < ?";
+            args.add(search.getMaxArea());
+            containsConditions = true;
+        }
+
+        //bedroom
+        if (search.getMinBedroom() != null) {
+            queryString += getConditions(containsConditions);
+            queryString += " bedroom > ?";
+            args.add(search.getMinBedroom());
+            containsConditions = true;
+        }
+        if (search.getMaxBedroom() != null) {
+            queryString += getConditions(containsConditions);
+            queryString += " bedroom < ?";
+            args.add(search.getMaxBedroom());
+            containsConditions = true;
+        }
+
+        //bathroom
+        if (search.getMinBathroom() != null) {
+            queryString += getConditions(containsConditions);
+            queryString += " bathroom > ?";
+            args.add(search.getMinBathroom());
+            containsConditions = true;
+        }
+        if (search.getMaxBathroom() != null) {
+            queryString += getConditions(containsConditions);
+            queryString += " bathroom < ?";
+            args.add(search.getMaxBathroom());
+            containsConditions = true;
+        }
+
+        //city
+        if (search.getCity() != null)
+            if (!search.getCity().isEmpty()) {
+                queryString += getConditions(containsConditions);
+                queryString += " city LIKE ?%";
+                args.add(search.getCity());
+                containsConditions = true;
+            }
+
+        //postalCode
+        if (search.getPostalCode() != null)
+            if (!search.getPostalCode().isEmpty()) {
+                queryString += getConditions(containsConditions);
+                queryString += " postalCode LIKE ?%";
+                args.add(search.getPostalCode());
+                containsConditions = true;
+            }
+
+        //school
+        if (search.getSchool() != null)
+            if (search.getSchool()) {
+                queryString += getConditions(containsConditions);
+                queryString += " school = ?";
+                args.add(search.getSchool());
+                containsConditions = true;
+            }
+
+        //localCommerce
+        if (search.getLocalCommerce() != null)
+            if (search.getLocalCommerce()) {
+                queryString += getConditions(containsConditions);
+                queryString += " localCommerce = ?";
+                args.add(search.getLocalCommerce());
+                containsConditions = true;
+            }
+
+        //publicTransport
+        if (search.getPublicTransport() != null)
+            if (search.getPublicTransport()) {
+                queryString += getConditions(containsConditions);
+                queryString += " publicTransport = ?";
+                args.add(search.getPublicTransport());
+                containsConditions = true;
+            }
+
+        //park
+        if (search.getPark() != null)
+            if (search.getPark()) {
+                queryString += getConditions(containsConditions);
+                queryString += " park = ?";
+                args.add(search.getPark());
+                containsConditions = true;
+            }
+
+        //date
+        if (search.getDate() != null) {
+            queryString += getConditions(containsConditions);
+            queryString += " date AFTER ?";
+            args.add(search.getDate());
+        }
+
+        Log.d("searchEstate", "queryString: " + queryString);
+        return new SimpleSQLiteQuery(queryString, args.toArray());
     }
 }
