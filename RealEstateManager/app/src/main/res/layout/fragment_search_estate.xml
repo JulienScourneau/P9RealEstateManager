@@ -89,20 +89,6 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-
-                    <TextView
-                        android:id="@+id/address_text"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="end"
-                        android:gravity="end"
-                        android:maxLines="1"
-                        app:layout_constraintBottom_toBottomOf="@id/expand_address"
-                        app:layout_constraintEnd_toStartOf="@id/expand_address"
-                        app:layout_constraintStart_toStartOf="@+id/guideline2"
-                        app:layout_constraintTop_toTopOf="@id/expand_address"
-                        tools:text="Paris, 84512354 " />
-
                     <ImageView
                         android:id="@+id/expand_address"
                         android:layout_width="wrap_content"
@@ -118,7 +104,7 @@
                         android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/address_text">
+                        app:layout_constraintTop_toBottomOf="@id/address_title">
 
                         <View
                             android:id="@+id/address_divider"
@@ -709,10 +695,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="4dp"
-                android:layout_marginBottom="20dp"
+                android:layout_margin="4dp"
                 android:background="@drawable/rounded_corner"
                 android:orientation="vertical"
                 android:padding="12dp">
@@ -747,6 +730,18 @@
                     tools:ignore="ContentDescription" />
 
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/search_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/rounded_corner"
+                android:orientation="vertical"
+                android:padding="12dp" />
 
         </LinearLayout>
 
