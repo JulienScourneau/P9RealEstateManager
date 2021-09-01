@@ -63,8 +63,8 @@ class SearchViewModel @Inject constructor(
     var searchMaxBedroom: Int? = null
     var searchMinBathroom: Int? = null
     var searchMaxBathroom: Int? = null
-    var searchCity = ""
-    var searchPostalCode = ""
+    var searchCity: String? = null
+    var searchPostalCode: String? = null
     var searchPhotoAvailable = false
     var searchSchool: Boolean? = null
     var searchLocalCommerce: Boolean? = null

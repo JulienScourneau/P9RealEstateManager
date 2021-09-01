@@ -1,5 +1,6 @@
 package com.openclassrooms.realestatemanager.view
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -18,6 +19,8 @@ import com.openclassrooms.realestatemanager.viewmodel.EstateViewModel
 import com.openclassrooms.realestatemanager.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import java.text.SimpleDateFormat
+import java.util.*
 
 @AndroidEntryPoint
 class SearchFragment : Fragment(R.layout.fragment_search_estate) {
@@ -49,6 +52,7 @@ class SearchFragment : Fragment(R.layout.fragment_search_estate) {
             textviewLocalCommerce.text = indifferentLocalCommerce.text
             textviewPark.text = indifferentPark.text
             textviewPublicTransport.text = indifferentPublicTransport.text
+            dateText.text = "A partir du: ${Utils.getTodayDate()}"
 
             searchCategorySpinner.onItemSelectedListener =
                 object : AdapterView.OnItemSelectedListener {
@@ -66,34 +70,43 @@ class SearchFragment : Fragment(R.layout.fragment_search_estate) {
         setupExpandView()
         setupRadioButton()
         setupCheckBox()
+        setupDatePicker()
     }
 
     private fun setupEditText() {
         binding.apply {
             viewModel.apply {
                 editTextMinimumPrice.addTextChangedListener {
-                    searchMinPrice = it.toString().toInt()
+                    if (!it.isNullOrBlank())
+                        searchMinPrice = it.toString().toInt()
                 }
                 editTextMaximumPrice.addTextChangedListener {
-                    searchMaxPrice = it.toString().toInt()
+                    if (!it.isNullOrBlank())
+                        searchMaxPrice = it.toString().toInt()
                 }
                 editTextMinimumArea.addTextChangedListener {
-                    searchMinArea = it.toString().toInt()
+                    if (!it.isNullOrBlank())
+                        searchMinArea = it.toString().toInt()
                 }
                 editTextMaximumArea.addTextChangedListener {
-                    searchMaxArea = it.toString().toInt()
+                    if (!it.isNullOrBlank())
+                        searchMaxArea = it.toString().toInt()
                 }
                 editTextMinimumBedroom.addTextChangedListener {
-                    searchMinBedroom = it.toString().toInt()
+                    if (!it.isNullOrBlank())
+                        searchMinBedroom = it.toString().toInt()
                 }
                 editTextMaximumBedroom.addTextChangedListener {
-                    searchMaxBedroom = it.toString().toInt()
+                    if (!it.isNullOrBlank())
+                        searchMaxBedroom = it.toString().toInt()
                 }
                 editTextMinimumBathroom.addTextChangedListener {
-                    searchMinBathroom = it.toString().toInt()
+                    if (!it.isNullOrBlank())
+                        searchMinBathroom = it.toString().toInt()
                 }
                 editTextMaximumBathroom.addTextChangedListener {
-                    searchMaxBathroom = it.toString().toInt()
+                    if (!it.isNullOrBlank())
+                        searchMaxBathroom = it.toString().toInt()
                 }
                 editTextCity.addTextChangedListener {
                     searchCity = it.toString()
@@ -174,6 +187,7 @@ class SearchFragment : Fragment(R.layout.fragment_search_estate) {
             }
         }
     }
+
 
     private fun setupExpandView() {
         binding.apply {
