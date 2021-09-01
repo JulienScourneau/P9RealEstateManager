@@ -72,46 +72,34 @@ class SearchFragment : Fragment(R.layout.fragment_search_estate) {
         binding.apply {
             viewModel.apply {
                 editTextMinimumPrice.addTextChangedListener {
-                    searchMinPrice = it.toString()
+                    searchMinPrice = it.toString().toInt()
                 }
                 editTextMaximumPrice.addTextChangedListener {
-                    searchMaxPrice = it.toString()
+                    searchMaxPrice = it.toString().toInt()
                 }
                 editTextMinimumArea.addTextChangedListener {
-                    searchMinArea = it.toString()
+                    searchMinArea = it.toString().toInt()
                 }
                 editTextMaximumArea.addTextChangedListener {
-                    searchMaxArea = it.toString()
+                    searchMaxArea = it.toString().toInt()
                 }
                 editTextMinimumBedroom.addTextChangedListener {
-                    searchMinBedroom = it.toString()
+                    searchMinBedroom = it.toString().toInt()
                 }
                 editTextMaximumBedroom.addTextChangedListener {
-                    searchMaxBedroom = it.toString()
+                    searchMaxBedroom = it.toString().toInt()
                 }
                 editTextMinimumBathroom.addTextChangedListener {
-                    searchMinBathroom = it.toString()
+                    searchMinBathroom = it.toString().toInt()
                 }
                 editTextMaximumBathroom.addTextChangedListener {
-                    searchMaxBathroom = it.toString()
+                    searchMaxBathroom = it.toString().toInt()
                 }
                 editTextCity.addTextChangedListener {
                     searchCity = it.toString()
-
-                    addressText.text = Utils.setTextview(editTextCity, editTextPostalCode)
                 }
                 editTextPostalCode.addTextChangedListener {
                     searchPostalCode = it.toString()
-                    addressText.text = Utils.setTextview(editTextCity, editTextPostalCode)
-
-                    //if (editTextCity.text.isBlank()) {
-                    //    addressText.text = it.toString()
-                    //} else {
-                    //    addressText.text = "${editTextCity.text},${it.toString()}"
-                    //}
-                    //if (it!!.isEmpty()) {
-                    //    addressText.text = editTextCity.text
-                    //}
                 }
             }
 
