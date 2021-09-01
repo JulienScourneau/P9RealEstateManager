@@ -1,7 +1,9 @@
 package com.openclassrooms.realestatemanager.data
 
 import androidx.room.*
+import androidx.sqlite.db.SupportSQLiteQuery
 import kotlinx.coroutines.flow.Flow
+
 
 @Dao
 interface EstateDao {
@@ -25,5 +27,9 @@ interface EstateDao {
 
     @Query("DELETE FROM estate_photo WHERE estateId =:id")
     suspend fun deletePhoto(id: Long)
+
+    @Transaction
+    @RawQuery
+    fun getSearchEstate(query: SupportSQLiteQuery?): Flow<List<EstateWithPhoto>>
 
 }
