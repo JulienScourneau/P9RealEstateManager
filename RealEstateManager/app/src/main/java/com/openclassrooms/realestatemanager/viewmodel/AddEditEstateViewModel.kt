@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.openclassrooms.realestatemanager.data.*
 import com.openclassrooms.realestatemanager.repository.EstateRepository
 import com.openclassrooms.realestatemanager.utils.ADD_ESTATE_RESULT_OK
+import com.openclassrooms.realestatemanager.utils.EDIT_ESTATE_RESULT_OK
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.Channel
@@ -47,7 +48,16 @@ class AddEditEstateViewModel @Inject constructor(
     val addEditEstateEvent = addEditEstateChannel.receiveAsFlow()
 
     private fun navigationBack() = viewModelScope.launch {
-        addEditEstateChannel.send(AddEditEstateEvent.NavigationBackWithResult(ADD_ESTATE_RESULT_OK))
+        if (estateWithPhoto != null)
+            addEditEstateChannel.send(
+                AddEditEstateEvent.NavigationBackWithResult(
+                    ADD_ESTATE_RESULT_OK
+                )
+            ) else addEditEstateChannel.send(
+            AddEditEstateEvent.NavigationBackWithResult(
+                EDIT_ESTATE_RESULT_OK
+            )
+        )
     }
 
     private fun showInvalidInputMessage(text: String) = viewModelScope.launch {
@@ -342,7 +352,7 @@ class AddEditEstateViewModel @Inject constructor(
 
     var estateDate =
         state.get<Long>("estateDate") ?: estateWithPhoto?.estate?.date ?: System.currentTimeMillis()
-        set(value){
+        set(value) {
             field = value
             state.set("estateDate", value)
         }
