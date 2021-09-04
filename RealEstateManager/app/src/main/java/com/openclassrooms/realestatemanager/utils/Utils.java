@@ -134,7 +134,21 @@ public class Utils {
         });
     }
 
-    
+    public static String setTextview(EditText firstEdit, EditText secondEdit) {
+        String text;
+        if (firstEdit.getText().length() == 0) {
+            text = String.valueOf(secondEdit.getText());
+            Log.d("setTextview", "firstEdit: " + firstEdit.getText().length());
+        } else {
+            text = String.format("%s,%s", firstEdit.getText(), secondEdit.getText());
+            Log.d("setTextview", "first and second edit");
+        }
+        if (secondEdit.length() == 0) {
+            text = String.valueOf(firstEdit.getText());
+            Log.d("setTextview", "secondEdit: " + firstEdit.getText());
+        }
+        return text;
+    }
 
     public static String convertLongToDate(long time) {
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
@@ -262,40 +276,36 @@ public class Utils {
             }
 
         //school
-        if (search.getSchool() != null)
-            if (search.getSchool()) {
-                queryString += getConditions(containsConditions);
-                queryString += " school = ?";
-                args.add(search.getSchool());
-                containsConditions = true;
-            }
+        if (search.getSchool() != null) {
+            queryString += getConditions(containsConditions);
+            queryString += " school = ?";
+            args.add(search.getSchool());
+            containsConditions = true;
+        }
 
         //localCommerce
-        if (search.getLocalCommerce() != null)
-            if (search.getLocalCommerce()) {
-                queryString += getConditions(containsConditions);
-                queryString += " localCommerce = ?";
-                args.add(search.getLocalCommerce());
-                containsConditions = true;
-            }
+        if (search.getLocalCommerce() != null) {
+            queryString += getConditions(containsConditions);
+            queryString += " localCommerce = ?";
+            args.add(search.getLocalCommerce());
+            containsConditions = true;
+        }
 
         //publicTransport
-        if (search.getPublicTransport() != null)
-            if (search.getPublicTransport()) {
-                queryString += getConditions(containsConditions);
-                queryString += " publicTransport = ?";
-                args.add(search.getPublicTransport());
-                containsConditions = true;
-            }
+        if (search.getPublicTransport() != null) {
+            queryString += getConditions(containsConditions);
+            queryString += " publicTransport = ?";
+            args.add(search.getPublicTransport());
+            containsConditions = true;
+        }
 
         //park
-        if (search.getPark() != null)
-            if (search.getPark()) {
-                queryString += getConditions(containsConditions);
-                queryString += " park = ?";
-                args.add(search.getPark());
-                containsConditions = true;
-            }
+        if (search.getPark() != null) {
+            queryString += getConditions(containsConditions);
+            queryString += " park = ?";
+            args.add(search.getPark());
+            containsConditions = true;
+        }
 
         //date
         if (search.getDate() != null) {
@@ -304,7 +314,7 @@ public class Utils {
             args.add(search.getDate());
         }
 
-        Log.d("searchEstate", "queryString: " + queryString);
+        Log.d("searchEstate", "queryString finish: " + queryString);
         return new SimpleSQLiteQuery(queryString, args.toArray());
     }
 }
