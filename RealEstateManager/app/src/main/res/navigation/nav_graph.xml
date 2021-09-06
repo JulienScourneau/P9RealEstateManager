@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_listFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <argument
+            android:name="search"
+            app:argType="com.openclassrooms.realestatemanager.data.Search" />
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
@@ -46,5 +49,11 @@
         android:id="@+id/searchFragment"
         android:name="com.openclassrooms.realestatemanager.view.SearchFragment"
         android:label="fragment_search_estate"
-        tools:layout="@layout/fragment_search_estate" />
+        tools:layout="@layout/fragment_search_estate" >
+        <action
+            android:id="@+id/action_searchFragment_to_listFragment"
+            app:destination="@id/listFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>
