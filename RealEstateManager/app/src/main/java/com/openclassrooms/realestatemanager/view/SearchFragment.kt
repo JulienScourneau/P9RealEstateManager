@@ -4,18 +4,15 @@ import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
-import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.snackbar.Snackbar
 import com.openclassrooms.realestatemanager.R
+import com.openclassrooms.realestatemanager.data.EstateWithPhoto
 import com.openclassrooms.realestatemanager.databinding.FragmentSearchEstateBinding
 import com.openclassrooms.realestatemanager.utils.Utils
-import com.openclassrooms.realestatemanager.viewmodel.EstateViewModel
 import com.openclassrooms.realestatemanager.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -35,14 +32,13 @@ class SearchFragment : Fragment(R.layout.fragment_search_estate) {
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.searchEvent.collect { event ->
                 when (event) {
-                    is SearchViewModel.SearchEvent.NavigateBackWithResult -> {
+                    is SearchViewModel.SearchEvent.NavigateToListScreen -> {
                         clearFocusOnSearchClick()
-
-                        findNavController().popBackStack()
+                        val action = SearchFragmentDirections.actionSearchFragmentToListFragment(event.search)
+                        findNavController().navigate(action)
                     }
                 }
             }
-
         }
     }
 
@@ -117,7 +113,7 @@ class SearchFragment : Fragment(R.layout.fragment_search_estate) {
             }
 
             searchButton.setOnClickListener {
-                viewModel.onSearchClick()
+               viewModel.getSearchEstate(viewModel.onSearchClick())
             }
         }
     }
@@ -130,7 +126,7 @@ class SearchFragment : Fragment(R.layout.fragment_search_estate) {
 
     private fun setupRadioButton() {
         binding.apply {
-            radioGroupSchool.setOnCheckedChangeListener { radioGroup, id ->
+            radioGroupSchool.setOnCheckedChangeListener { _, id ->
                 when (id) {
                     R.id.indifferent_school -> {
                         textviewSchool.text = indifferentSchool.text
