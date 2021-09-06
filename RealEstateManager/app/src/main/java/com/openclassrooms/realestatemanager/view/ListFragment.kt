@@ -1,12 +1,10 @@
 package com.openclassrooms.realestatemanager.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
@@ -15,9 +13,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.openclassrooms.realestatemanager.R
-import com.openclassrooms.realestatemanager.databinding.FragmentListEstateBinding
 import com.openclassrooms.realestatemanager.data.EstateWithPhoto
-import com.openclassrooms.realestatemanager.utils.onQueryTextChanger
+import com.openclassrooms.realestatemanager.data.Search
+import com.openclassrooms.realestatemanager.databinding.FragmentListEstateBinding
+import com.openclassrooms.realestatemanager.utils.Utils
 import com.openclassrooms.realestatemanager.view.adapter.EstateAdapter
 import com.openclassrooms.realestatemanager.viewmodel.EstateViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,8 +45,15 @@ class ListFragment : Fragment(R.layout.fragment_list_estate), EstateAdapter.OnIt
             }
         }
 
-        viewModel.allEstate.observe(viewLifecycleOwner) {
-            estateAdapter.submitList(it)
+        if (viewModel.searchEstate != null) {
+            viewModel.getEstateBySearch(Utils.createRawQueryString(viewModel.searchEstate))
+                .observe(viewLifecycleOwner) {
+                    estateAdapter.submitList(it)
+                }
+        } else {
+            viewModel.allEstate.observe(viewLifecycleOwner) {
+                estateAdapter.submitList(it)
+            }
         }
 
         setFragmentResultListener("add_edit_request") { _, bundle ->
@@ -83,14 +89,6 @@ class ListFragment : Fragment(R.layout.fragment_list_estate), EstateAdapter.OnIt
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_fragment_list, menu)
-        Log.d("OptionsMenu", "createOptionsMenu")
-
-        val searchItem = menu.findItem(R.id.action_search_estate)
-        val searchView = searchItem.actionView as SearchView
-
-        searchView.onQueryTextChanger {
-
-        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
