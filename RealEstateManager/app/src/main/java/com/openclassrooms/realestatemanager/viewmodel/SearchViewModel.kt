@@ -1,12 +1,11 @@
 package com.openclassrooms.realestatemanager.viewmodel
 
-import android.util.Log
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.openclassrooms.realestatemanager.data.Estate
+import androidx.lifecycle.*
+import androidx.sqlite.db.SimpleSQLiteQuery
+import com.openclassrooms.realestatemanager.data.EstateWithPhoto
 import com.openclassrooms.realestatemanager.data.Search
 import com.openclassrooms.realestatemanager.repository.EstateRepository
-import com.openclassrooms.realestatemanager.utils.ADD_ESTATE_RESULT_OK
+import com.openclassrooms.realestatemanager.utils.Utils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -16,21 +15,17 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchViewModel @Inject constructor(
     private val repository: EstateRepository
+
 ) : ViewModel() {
-
-    private fun searchEstate(search: Search) = viewModelScope.launch {
-        repository.searchEstate(search)
-    }
-
-    private val searchEstateChannel = Channel<SearchViewModel.SearchEvent>()
+    private val searchEstateChannel = Channel<SearchEvent>()
     val searchEvent = searchEstateChannel.receiveAsFlow()
 
-    private fun navigationBack() = viewModelScope.launch {
-        searchEstateChannel.send(SearchViewModel.SearchEvent.NavigateBackWithResult)
+    fun getSearchEstate(search: Search) = viewModelScope.launch {
+        searchEstateChannel.send(SearchEvent.NavigateToListScreen(search))
     }
 
-    fun onSearchClick() {
-        val search = Search(
+    fun onSearchClick(): Search {
+        return Search(
             category = searchCategory,
             minPrice = searchMinPrice,
             maxPrice = searchMaxPrice,
@@ -49,9 +44,6 @@ class SearchViewModel @Inject constructor(
             publicTransport = searchPublicTransport,
             date = searchDate
         )
-        searchEstate(search)
-        Log.d("onSearchClick", "search: $search")
-        navigationBack()
     }
 
     var searchCategory: String? = null
@@ -73,6 +65,6 @@ class SearchViewModel @Inject constructor(
     var searchDate: Long? = null
 
     sealed class SearchEvent {
-        object NavigateBackWithResult : SearchEvent()
+        data class NavigateToListScreen(val search: Search) : SearchEvent()
     }
 }
