@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 interface EstateDao {
 
     @Transaction
-    @Query("SELECT * FROM estate_table")
+    @Query("SELECT DISTINCT estate_table.* FROM estate_table")
     fun getEstateList(): Flow<List<EstateWithPhoto>>
 
     @Transaction
