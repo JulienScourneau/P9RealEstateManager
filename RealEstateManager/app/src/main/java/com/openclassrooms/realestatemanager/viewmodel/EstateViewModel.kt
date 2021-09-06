@@ -1,12 +1,12 @@
 package com.openclassrooms.realestatemanager.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import androidx.sqlite.db.SimpleSQLiteQuery
 import com.openclassrooms.realestatemanager.data.EstateWithPhoto
+import com.openclassrooms.realestatemanager.data.Search
 import com.openclassrooms.realestatemanager.repository.EstateRepository
 import com.openclassrooms.realestatemanager.utils.ADD_ESTATE_RESULT_OK
+import com.openclassrooms.realestatemanager.utils.Utils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -15,12 +15,18 @@ import javax.inject.Inject
 
 @HiltViewModel
 class EstateViewModel @Inject constructor(
-    private val repository: EstateRepository
+    private val repository: EstateRepository,
+    state: SavedStateHandle
 ) : ViewModel() {
 
+    val searchEstate = state.get<Search>("search")
     private val estateEventChannel = Channel<EstateEvent>()
     val estateEvent = estateEventChannel.receiveAsFlow()
     val allEstate: LiveData<List<EstateWithPhoto>> = repository.allEstate.asLiveData()
+
+    fun getEstateBySearch(query: SimpleSQLiteQuery): LiveData<List<EstateWithPhoto>> {
+        return repository.getSearchEstate(query).asLiveData()
+    }
 
     fun onEstateSelected(id: Long) = viewModelScope.launch {
         estateEventChannel.send(EstateEvent.NavigateToDetailsScreen(id))
