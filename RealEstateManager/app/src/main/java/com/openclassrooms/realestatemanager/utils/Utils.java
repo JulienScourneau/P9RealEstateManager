@@ -1,6 +1,7 @@
 package com.openclassrooms.realestatemanager.utils;
 
 import android.content.Context;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.net.wifi.WifiManager;
 import android.util.Log;
@@ -15,12 +16,14 @@ import androidx.sqlite.db.SimpleSQLiteQuery;
 import androidx.transition.AutoTransition;
 import androidx.transition.TransitionManager;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.openclassrooms.realestatemanager.R;
 import com.openclassrooms.realestatemanager.data.Address;
 import com.openclassrooms.realestatemanager.data.Photo;
 import com.openclassrooms.realestatemanager.data.RealEstateAgent;
 import com.openclassrooms.realestatemanager.data.Search;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
@@ -168,6 +171,25 @@ public class Utils {
         return dateLong;
     }
 
+    public static LatLng getLocationFromAddress(String strAddress, Context context) {
+        Geocoder coder = new Geocoder(context);
+        List<android.location.Address> address;
+        LatLng p1 = null;
+
+        try {
+            // May throw an IOException
+            address = coder.getFromLocationName(strAddress, 5);
+            if (address == null) {
+                return null;
+            }
+            android.location.Address location = address.get(0);
+            p1 = new LatLng(location.getLatitude(), location.getLongitude());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return p1;
+    }
+
     private static String getConditions(boolean conditions) {
         String query = "";
         if (conditions) {
@@ -183,14 +205,14 @@ public class Utils {
         List<Object> args = new ArrayList<>();
         boolean containsConditions = false;
 
-        queryString += "SELECT * FROM estate_table";
+        queryString += "SELECT DISTINCT estate_table.* FROM estate_table";
 
         //photoAvailable
-        //if (search.getPhotoAvailable() != null)
-        //    if (search.getPhotoAvailable()) {
-        //        queryString += " INNER JOIN estate_photo ON estate_table.id = estate_photo.estateId":
-        //        Log.d("photoAvailable", "photo: " + search.getPhotoAvailable());
-        //    }
+        if (search.getPhotoAvailable() != null)
+            if (search.getPhotoAvailable()) {
+                queryString += " INNER JOIN estate_photo ON estate_table.id = estate_photo.estateId";
+                Log.d("photoAvailable", "photo: " + search.getPhotoAvailable());
+            }
 
         //Price
         if (search.getMinPrice() != null) {
