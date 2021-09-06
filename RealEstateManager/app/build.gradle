@@ -84,6 +84,9 @@ dependencies {
     // Navigation Component
     implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
+
+    //Maps
+    implementation "com.google.android.gms:play-services-maps:$mapsVersion"
 }
 
 kapt {
