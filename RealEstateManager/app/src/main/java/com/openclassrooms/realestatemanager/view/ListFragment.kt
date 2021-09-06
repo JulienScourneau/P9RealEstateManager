@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.data.EstateWithPhoto
-import com.openclassrooms.realestatemanager.data.Search
 import com.openclassrooms.realestatemanager.databinding.FragmentListEstateBinding
 import com.openclassrooms.realestatemanager.utils.Utils
 import com.openclassrooms.realestatemanager.view.adapter.EstateAdapter
@@ -31,7 +30,6 @@ class ListFragment : Fragment(R.layout.fragment_list_estate), EstateAdapter.OnIt
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         binding = FragmentListEstateBinding.bind(view)
-
         val estateAdapter = EstateAdapter(this)
 
         binding.apply {

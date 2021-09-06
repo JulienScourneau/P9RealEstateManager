@@ -91,9 +91,7 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate),
             addEditFab.setOnClickListener {
                 viewModel.onSaveClick()
             }
-
             dateText.text = "Date: ${Utils.getTodayDate()}"
-
         }
 
         setupContactSpinner()
