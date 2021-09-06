@@ -1,5 +1,7 @@
 package com.openclassrooms.realestatemanager.data
 
+import java.io.Serializable
+
 data class Search(
     var category: String?,
     var minPrice: Int?,
@@ -18,4 +20,4 @@ data class Search(
     var publicTransport: Boolean?,
     var park: Boolean?,
     var date: Long?
-    )
+) : Serializable
