@@ -56,29 +56,37 @@ class ListFragment : Fragment(R.layout.fragment_list_estate), EstateAdapter.OnIt
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.estateEvent.collect { event ->
                 when (event) {
+
                     is EstateViewModel.EstateEvent.NavigateToAddEstateScreen -> {
-                        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(
-                            false
-                        )
+                        (activity as AppCompatActivity)
+                            .supportActionBar?.setDisplayHomeAsUpEnabled(false)
                         val action =
                             ListFragmentDirections.actionListFragmentToAddEditEstateFragment(null)
                         findNavController().navigate(action)
                     }
+
                     is EstateViewModel.EstateEvent.NavigateToSearchScreen -> {
-                        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(
-                            false
-                        )
+                        (activity as AppCompatActivity)
+                            .supportActionBar?.setDisplayHomeAsUpEnabled(false)
                         val action = ListFragmentDirections.actionListFragmentToSearchFragment()
                         findNavController().navigate(action)
                     }
+
+                    is EstateViewModel.EstateEvent.NavigateToMapScreen -> {
+                        (activity as AppCompatActivity)
+                            .supportActionBar?.setDisplayHomeAsUpEnabled(false)
+                        val action = ListFragmentDirections.actionListFragmentToMapsFragment()
+                        findNavController().navigate(action)
+                    }
+
                     is EstateViewModel.EstateEvent.NavigateToDetailsScreen -> {
-                        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(
-                            false
-                        )
+                        (activity as AppCompatActivity)
+                            .supportActionBar?.setDisplayHomeAsUpEnabled(false)
                         val action =
                             ListFragmentDirections.actionListFragmentToDetailsFragment(event.id)
                         findNavController().navigate(action)
                     }
+
                     is EstateViewModel.EstateEvent.ShowEstateAddedConfirmationMessage -> {
                         Snackbar.make(requireView(), event.msg, Snackbar.LENGTH_SHORT).show()
                     }
@@ -96,6 +104,10 @@ class ListFragment : Fragment(R.layout.fragment_list_estate), EstateAdapter.OnIt
         return when (item.itemId) {
             R.id.action_search_estate -> {
                 viewModel.onSearchEstateClick()
+                true
+            }
+            R.id.action_maps -> {
+                viewModel.onMapClick()
                 true
             }
             android.R.id.home -> {
