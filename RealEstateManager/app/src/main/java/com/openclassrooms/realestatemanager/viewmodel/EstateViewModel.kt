@@ -36,8 +36,12 @@ class EstateViewModel @Inject constructor(
         estateEventChannel.send(EstateEvent.NavigateToAddEstateScreen)
     }
 
-    fun onSearchEstateClick()= viewModelScope.launch {
+    fun onSearchEstateClick() = viewModelScope.launch {
         estateEventChannel.send(EstateEvent.NavigateToSearchScreen)
+    }
+
+    fun onMapClick() = viewModelScope.launch {
+        estateEventChannel.send(EstateEvent.NavigateToMapScreen)
     }
 
     fun onAddResult(result: Int, text: String) {
@@ -53,6 +57,7 @@ class EstateViewModel @Inject constructor(
     sealed class EstateEvent {
         object NavigateToAddEstateScreen : EstateEvent()
         object NavigateToSearchScreen : EstateEvent()
+        object NavigateToMapScreen : EstateEvent()
         data class NavigateToDetailsScreen(val id: Long) : EstateEvent()
         data class ShowEstateAddedConfirmationMessage(val msg: String) : EstateEvent()
     }
