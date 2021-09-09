@@ -1,6 +1,7 @@
 package com.openclassrooms.realestatemanager.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -9,11 +10,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.openclassrooms.realestatemanager.BuildConfig
 import com.openclassrooms.realestatemanager.R
-import com.openclassrooms.realestatemanager.databinding.FragmentDetailsEstateBinding
 import com.openclassrooms.realestatemanager.data.Estate
 import com.openclassrooms.realestatemanager.data.EstateWithPhoto
 import com.openclassrooms.realestatemanager.data.Photo
+import com.openclassrooms.realestatemanager.databinding.FragmentDetailsEstateBinding
 import com.openclassrooms.realestatemanager.utils.Utils
 import com.openclassrooms.realestatemanager.view.adapter.MediaAdapter
 import com.openclassrooms.realestatemanager.viewmodel.DetailsViewModel
@@ -72,24 +76,25 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate),
         }
     }
 
-    private fun updateUI(estate: EstateWithPhoto) {
-        setupTextView(estate.estate)
+    private fun updateUI(estateWithPhoto: EstateWithPhoto) {
+        setupTextView(estateWithPhoto.estate)
+        setupMapView(estateWithPhoto.estate)
         binding.apply {
 
             detailsSchoolLayout.visibility =
-                if (!estate.estate.pointOfInterest.school) View.GONE else View.VISIBLE
+                if (!estateWithPhoto.estate.pointOfInterest.school) View.GONE else View.VISIBLE
 
             detailsLocalCommerceLayout.visibility =
-                if (!estate.estate.pointOfInterest.localCommerce) View.GONE else View.VISIBLE
+                if (!estateWithPhoto.estate.pointOfInterest.localCommerce) View.GONE else View.VISIBLE
 
             detailsPublicTransportLayout.visibility =
-                if (!estate.estate.pointOfInterest.publicTransport) View.GONE else View.VISIBLE
+                if (!estateWithPhoto.estate.pointOfInterest.publicTransport) View.GONE else View.VISIBLE
 
             detailsParkLayout.visibility =
-                if (!estate.estate.pointOfInterest.park) View.GONE else View.VISIBLE
+                if (!estateWithPhoto.estate.pointOfInterest.park) View.GONE else View.VISIBLE
 
-            if (estate.photosList.isNotEmpty()) {
-                images = estate.photosList as ArrayList<Photo>
+            if (estateWithPhoto.photosList.isNotEmpty()) {
+                images = estateWithPhoto.photosList as ArrayList<Photo>
             } else {
                 val photo = Photo(
                     "android.resource://com.openclassrooms.realestatemanager/drawable/no_image_available",
@@ -110,7 +115,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate),
                 detailsLocationData.text = Utils.formatAddress(address)
                 detailsContactNameData.text = contact.name
                 detailsContactPhoneNumberData.text = contact.phoneNumber
-                if (isSold){
+                if (isSold) {
                     detailsSoldText.text = "Vendu depuis:"
                     detailsSoldData.text = Utils.convertLongToDate(date)
                 } else {
@@ -124,6 +129,23 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate),
                 detailsBedroomData.text = if (bedroom.isNotBlank()) bedroom else "N/A"
                 detailsDescriptionText.text = if (description.isNotBlank()) description else "N/A"
             }
+        }
+    }
+
+    private fun setupMapView(estate: Estate) {
+        val latLng = Utils.getLocationFromAddress(Utils.formatAddress(estate.address), context)
+        if (latLng != null) {
+            val url =
+                "https://maps.google.com/maps/api/staticmap?center=${latLng.latitude},${latLng.longitude}&zoom=16&size=200x200&scale=2&markers=color:red%7C${latLng.latitude},${latLng.longitude}&sensor=false&key=${BuildConfig.MAP_API_KEY}"
+            Glide.with(binding.detailsMapImageView)
+                .load(url)
+                .apply(RequestOptions.centerInsideTransform())
+                .into(binding.detailsMapImageView)
+            Log.d(
+                "updateUI", "url: $url"
+            )
+        } else {
+            binding.detailsMapImageView.setImageResource(R.drawable.ic_baseline_wrong_location_24)
         }
     }
 
