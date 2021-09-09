@@ -26,8 +26,7 @@
     <string name="add_edit_activity_bathroom_text">Salle de bain</string>
     <string name="add_edit_activity_bedroom_text">Chambre</string>
     <string name="add_edit_activity_description_text">Description</string>
-    <string name="menu_edit_estate">Edit</string>
-    <string name="menu_search_estate">Search</string>
+
 
     <string-array name="category_spinner">
         <item> </item>
@@ -37,6 +36,9 @@
         <item>Manoir</item>
     </string-array>
 
-    <!-- ADD EDIT ESTATE ACTIVITY RESOURCES -->
+    <!-- MENU RESOURCES -->
+    <string name="menu_edit_estate">Edit</string>
+    <string name="menu_map">Map</string>
+    <string name="menu_search_estate">Recherche</string>
 
 </resources>
