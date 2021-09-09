@@ -137,22 +137,6 @@ public class Utils {
         });
     }
 
-    public static String setTextview(EditText firstEdit, EditText secondEdit) {
-        String text;
-        if (firstEdit.getText().length() == 0) {
-            text = String.valueOf(secondEdit.getText());
-            Log.d("setTextview", "firstEdit: " + firstEdit.getText().length());
-        } else {
-            text = String.format("%s,%s", firstEdit.getText(), secondEdit.getText());
-            Log.d("setTextview", "first and second edit");
-        }
-        if (secondEdit.length() == 0) {
-            text = String.valueOf(firstEdit.getText());
-            Log.d("setTextview", "secondEdit: " + firstEdit.getText());
-        }
-        return text;
-    }
-
     public static String convertLongToDate(long time) {
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date(time);
@@ -174,20 +158,19 @@ public class Utils {
     public static LatLng getLocationFromAddress(String strAddress, Context context) {
         Geocoder coder = new Geocoder(context);
         List<android.location.Address> address;
-        LatLng p1 = null;
+        LatLng latLng = null;
 
         try {
-            // May throw an IOException
             address = coder.getFromLocationName(strAddress, 5);
-            if (address == null) {
+            if (address.size() == 0) {
                 return null;
             }
             android.location.Address location = address.get(0);
-            p1 = new LatLng(location.getLatitude(), location.getLongitude());
+            latLng = new LatLng(location.getLatitude(), location.getLongitude());
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        return p1;
+        return latLng;
     }
 
     private static String getConditions(boolean conditions) {
