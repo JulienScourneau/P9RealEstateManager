@@ -10,7 +10,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.openclassrooms.realestatemanager.R
-import com.openclassrooms.realestatemanager.data.EstateWithPhoto
 import com.openclassrooms.realestatemanager.databinding.FragmentSearchEstateBinding
 import com.openclassrooms.realestatemanager.utils.Utils
 import com.openclassrooms.realestatemanager.viewmodel.SearchViewModel

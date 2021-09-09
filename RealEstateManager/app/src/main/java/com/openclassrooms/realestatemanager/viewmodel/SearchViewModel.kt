@@ -14,8 +14,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
-    private val repository: EstateRepository
-
 ) : ViewModel() {
     private val searchEstateChannel = Channel<SearchEvent>()
     val searchEvent = searchEstateChannel.receiveAsFlow()
