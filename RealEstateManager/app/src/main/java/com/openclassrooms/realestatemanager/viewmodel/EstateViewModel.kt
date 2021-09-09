@@ -19,7 +19,7 @@ class EstateViewModel @Inject constructor(
     state: SavedStateHandle
 ) : ViewModel() {
 
-    val searchEstate = state.get<Search>("search")
+    var searchEstate = state.get<Search>("search")
     private val estateEventChannel = Channel<EstateEvent>()
     val estateEvent = estateEventChannel.receiveAsFlow()
     val allEstate: LiveData<List<EstateWithPhoto>> = repository.allEstate.asLiveData()

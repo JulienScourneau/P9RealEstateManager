@@ -5,6 +5,8 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
@@ -20,17 +22,19 @@ import com.openclassrooms.realestatemanager.view.adapter.EstateAdapter
 import com.openclassrooms.realestatemanager.viewmodel.EstateViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import java.util.ArrayList
 
 @AndroidEntryPoint
 class ListFragment : Fragment(R.layout.fragment_list_estate), EstateAdapter.OnItemClickListener {
 
     private lateinit var binding: FragmentListEstateBinding
     private val viewModel: EstateViewModel by viewModels()
+    private var estateList: List<EstateWithPhoto> = ArrayList()
+    private val estateAdapter = EstateAdapter(this)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         binding = FragmentListEstateBinding.bind(view)
-        val estateAdapter = EstateAdapter(this)
 
         binding.apply {
             recyclerview.apply {
@@ -42,17 +46,7 @@ class ListFragment : Fragment(R.layout.fragment_list_estate), EstateAdapter.OnIt
                 viewModel.onAddNewEstateClick()
             }
         }
-
-        if (viewModel.searchEstate != null) {
-            viewModel.getEstateBySearch(Utils.createRawQueryString(viewModel.searchEstate))
-                .observe(viewLifecycleOwner) {
-                    estateAdapter.submitList(it)
-                }
-        } else {
-            viewModel.allEstate.observe(viewLifecycleOwner) {
-                estateAdapter.submitList(it)
-            }
-        }
+        displayEstateList()
 
         setFragmentResultListener("add_edit_request") { _, bundle ->
             val result = bundle.getInt("add_edit_result")
@@ -63,15 +57,24 @@ class ListFragment : Fragment(R.layout.fragment_list_estate), EstateAdapter.OnIt
             viewModel.estateEvent.collect { event ->
                 when (event) {
                     is EstateViewModel.EstateEvent.NavigateToAddEstateScreen -> {
+                        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(
+                            false
+                        )
                         val action =
                             ListFragmentDirections.actionListFragmentToAddEditEstateFragment(null)
                         findNavController().navigate(action)
                     }
                     is EstateViewModel.EstateEvent.NavigateToSearchScreen -> {
+                        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(
+                            false
+                        )
                         val action = ListFragmentDirections.actionListFragmentToSearchFragment()
                         findNavController().navigate(action)
                     }
                     is EstateViewModel.EstateEvent.NavigateToDetailsScreen -> {
+                        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(
+                            false
+                        )
                         val action =
                             ListFragmentDirections.actionListFragmentToDetailsFragment(event.id)
                         findNavController().navigate(action)
@@ -95,6 +98,11 @@ class ListFragment : Fragment(R.layout.fragment_list_estate), EstateAdapter.OnIt
                 viewModel.onSearchEstateClick()
                 true
             }
+            android.R.id.home -> {
+                viewModel.searchEstate = null
+                displayEstateList()
+                true
+            }
             else -> return super.onOptionsItemSelected(item)
         }
     }
@@ -102,4 +110,20 @@ class ListFragment : Fragment(R.layout.fragment_list_estate), EstateAdapter.OnIt
     override fun onItemClick(estate: EstateWithPhoto) {
         viewModel.onEstateSelected(estate.estate.id.toLong())
     }
+
+    private fun displayEstateList() {
+        if (viewModel.searchEstate != null) {
+            (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            viewModel.getEstateBySearch(Utils.createRawQueryString(viewModel.searchEstate))
+                .observe(viewLifecycleOwner) {
+                    estateAdapter.submitList(it)
+                }
+        } else {
+            viewModel.allEstate.observe(viewLifecycleOwner) {
+                estateList = it
+                estateAdapter.submitList(it)
+            }
+        }
+    }
+
 }
