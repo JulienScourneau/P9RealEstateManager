@@ -18,6 +18,12 @@ class MapsViewModel @Inject constructor(
 ) : ViewModel() {
 
     val allEstate: LiveData<List<EstateWithPhoto>> = repository.allEstate.asLiveData()
+    private val mapsEventChannel = Channel<MapsEvent>()
+    val mapsEvent = mapsEventChannel.receiveAsFlow()
+
+    fun onEstateSelected(id: Long) = viewModelScope.launch {
+        mapsEventChannel.send(MapsEvent.NavigateToDetailsScreen(id))
+    }
 
     sealed class MapsEvent {
         data class NavigateToDetailsScreen(val id: Long) : MapsEvent()
