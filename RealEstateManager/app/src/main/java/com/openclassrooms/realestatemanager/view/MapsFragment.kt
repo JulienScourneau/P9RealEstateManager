@@ -1,15 +1,18 @@
 package com.openclassrooms.realestatemanager.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.openclassrooms.realestatemanager.R
@@ -73,7 +76,10 @@ class MapsFragment : Fragment(R.layout.fragment_maps), GoogleMap.OnMarkerClickLi
     }
 
     override fun onMarkerClick(marker: Marker): Boolean {
-
+        if (marker.snippet?.isNotEmpty()!!) {
+            val id = marker.snippet?.toLong()!!
+            viewModel.onEstateSelected(id)
+        }
         return true
     }
 }
