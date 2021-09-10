@@ -4,38 +4,57 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.google.android.gms.maps.CameraUpdateFactory
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.Marker
 import com.openclassrooms.realestatemanager.R
+import com.openclassrooms.realestatemanager.data.EstateWithPhoto
 import com.openclassrooms.realestatemanager.viewmodel.MapsViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+
 
 @AndroidEntryPoint
-class MapsFragment : Fragment(R.layout.fragment_maps) {
+class MapsFragment : Fragment(R.layout.fragment_maps), GoogleMap.OnMarkerClickListener {
 
     private val viewModel: MapsViewModel by viewModels()
-
+    private var estateList: List<EstateWithPhoto> = ArrayList()
     private val callback = OnMapReadyCallback { googleMap ->
-        /**
-         * Manipulates the map once available.
-         * This callback is triggered when the map is ready to be used.
-         * This is where we can add markers or lines, add listeners or move the camera.
-         * In this case, we just add a marker near Sydney, Australia.
-         * If Google Play services is not installed on the device, the user will be prompted to
-         * install it inside the SupportMapFragment. This method will only be triggered once the
-         * user has installed Google Play services and returned to the app.
-         */
-        val sydney = LatLng(-34.0, 151.0)
-        googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel.allEstate.observe(viewLifecycleOwner) {
+            estateList = it
+            updateMap()
+        }
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.mapsEvent.collect { event ->
+                when (event) {
+                    is MapsViewModel.MapsEvent.NavigateToDetailsScreen -> {
+                        val action =
+                            MapsFragmentDirections.actionMapsFragmentToDetailsFragment(event.id)
+                        findNavController().navigate(action)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun updateMap() {
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
+    }
+
+    override fun onMarkerClick(marker: Marker): Boolean {
+
+        return true
     }
 }
