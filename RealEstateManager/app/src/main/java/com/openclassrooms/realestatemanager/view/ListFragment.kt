@@ -5,7 +5,6 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
@@ -22,7 +21,6 @@ import com.openclassrooms.realestatemanager.view.adapter.EstateAdapter
 import com.openclassrooms.realestatemanager.viewmodel.EstateViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
-import java.util.ArrayList
 
 @AndroidEntryPoint
 class ListFragment : Fragment(R.layout.fragment_list_estate), EstateAdapter.OnItemClickListener {
