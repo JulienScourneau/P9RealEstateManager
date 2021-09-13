@@ -110,6 +110,8 @@ class ListFragment : Fragment(R.layout.fragment_list_estate), EstateAdapter.OnIt
             }
             android.R.id.home -> {
                 viewModel.searchEstate = null
+                (activity as AppCompatActivity)
+                    .supportActionBar?.setDisplayHomeAsUpEnabled(false)
                 displayEstateList()
                 true
             }
