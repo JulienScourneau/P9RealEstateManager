@@ -8,11 +8,11 @@ import com.openclassrooms.realestatemanager.data.RealEstateAgent
 object TestList {
 
     private val address =
-        Address("100", "Fake Street", "Fake City", "Fake Country", "123456")
+        Address("118", "Rue Can Artevelde", "Bruxelles", "Belgique", "1000")
     private val address1 =
-        Address("100", "New Street", "New City", "New Country", "654321")
+        Address("17", "Rue Evezard", "Étampes", "France", "91150")
     private val address2 =
-        Address("100", "Super Street", "Super City", "Super Country", "456123")
+        Address("21", "Rue du Cerf", "Binche", "Belgique", "7130")
 
     private val pointOfInterest0 =
         PointOfInterest(school = true, localCommerce = false, publicTransport = true, park = false)
