@@ -6,6 +6,7 @@ import android.location.Location
 import android.os.Bundle
 import android.view.View
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -55,6 +56,7 @@ class MapsFragment : Fragment(R.layout.fragment_maps), GoogleMap.OnMarkerClickLi
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(userLocation))
         googleMap.animateCamera(CameraUpdateFactory.zoomTo(8f))
         googleMap.setOnMarkerClickListener(this)
+        setHomeButton()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -106,6 +108,18 @@ class MapsFragment : Fragment(R.layout.fragment_maps), GoogleMap.OnMarkerClickLi
             userLocation = LatLng(location.latitude, location.longitude)
             updateMap()
         }
+    }
+    private fun setHomeButton (){
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(), Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+
+            return
+        }
+        gMap.isMyLocationEnabled = true
     }
 
 }
