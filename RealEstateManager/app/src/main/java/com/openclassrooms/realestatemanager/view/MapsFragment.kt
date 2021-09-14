@@ -1,12 +1,17 @@
 package com.openclassrooms.realestatemanager.view
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.location.Location
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -28,15 +33,16 @@ class MapsFragment : Fragment(R.layout.fragment_maps), GoogleMap.OnMarkerClickLi
 
     private val viewModel: MapsViewModel by viewModels()
     private var estateList: List<EstateWithPhoto> = ArrayList()
+    private var userLocation: LatLng = LatLng(50.7198, 3.7707)
+    private lateinit var fusedLocation: FusedLocationProviderClient
+    private lateinit var gMap: GoogleMap
     private val callback = OnMapReadyCallback { googleMap ->
-
+        gMap = googleMap
         for (i in estateList.indices) {
             val latLng = Utils.getLocationFromAddress(
                 Utils.formatAddress(estateList[i].estate.address),
                 requireContext()
             )
-            //googleMap.moveCamera(CameraUpdateFactory.newLatLng())
-            //googleMap.animateCamera(CameraUpdateFactory.zoomTo(16f))
             if (latLng != null) {
                 val markerOptions = MarkerOptions()
                 markerOptions.position(latLng)
@@ -46,15 +52,18 @@ class MapsFragment : Fragment(R.layout.fragment_maps), GoogleMap.OnMarkerClickLi
                 googleMap.addMarker(markerOptions)
             }
         }
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(userLocation))
+        googleMap.animateCamera(CameraUpdateFactory.zoomTo(8f))
         googleMap.setOnMarkerClickListener(this)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        fusedLocation = LocationServices.getFusedLocationProviderClient(requireContext())
 
         viewModel.allEstate.observe(viewLifecycleOwner) {
             estateList = it
-            updateMap()
+            getLocation()
         }
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
@@ -82,4 +91,21 @@ class MapsFragment : Fragment(R.layout.fragment_maps), GoogleMap.OnMarkerClickLi
         }
         return true
     }
+
+    private fun getLocation() {
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(), Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            return
+        }
+        fusedLocation.lastLocation.addOnCompleteListener { task ->
+            val location: Location = task.result
+            userLocation = LatLng(location.latitude, location.longitude)
+            updateMap()
+        }
+    }
+
 }
