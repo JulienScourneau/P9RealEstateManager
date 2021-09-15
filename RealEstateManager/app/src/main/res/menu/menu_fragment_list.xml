@@ -1,16 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".controller.MainActivity">
 
     <item
         android:id="@+id/action_search_estate"
         android:icon="@drawable/ic_baseline_search_24"
-        android:title="@string/menu_search_estate" />
+        android:title="@string/menu_search_estate"
+        app:showAsAction="always|collapseActionView" />
 
     <item
         android:id="@+id/action_maps"
         android:icon="@drawable/ic_baseline_map_24"
-        android:title="@string/menu_map" />
+        android:title="@string/menu_map"
+        app:showAsAction="ifRoom|collapseActionView" />
+
+    <item
+        android:title="Convertion"
+        app:showAsAction="never">
+        <menu>
+
+            <item
+                android:id="@+id/action_sort_euro"
+                android:title="Euro" />
+            <item
+                android:id="@+id/action_sort_dollar"
+                android:title="dollar" />
+
+        </menu>
+
+    </item>
 
 </menu>
