@@ -6,7 +6,6 @@ import android.location.Location
 import android.os.Bundle
 import android.view.View
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -34,7 +33,7 @@ class MapsFragment : Fragment(R.layout.fragment_maps), GoogleMap.OnMarkerClickLi
 
     private val viewModel: MapsViewModel by viewModels()
     private var estateList: List<EstateWithPhoto> = ArrayList()
-    private var userLocation: LatLng = LatLng(50.7198, 3.7707)
+    private var userLocation: LatLng = LatLng(0.0, 0.0)
     private lateinit var fusedLocation: FusedLocationProviderClient
     private lateinit var gMap: GoogleMap
     private val callback = OnMapReadyCallback { googleMap ->
@@ -62,7 +61,6 @@ class MapsFragment : Fragment(R.layout.fragment_maps), GoogleMap.OnMarkerClickLi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         fusedLocation = LocationServices.getFusedLocationProviderClient(requireContext())
-
         viewModel.allEstate.observe(viewLifecycleOwner) {
             estateList = it
             getLocation()
@@ -109,7 +107,8 @@ class MapsFragment : Fragment(R.layout.fragment_maps), GoogleMap.OnMarkerClickLi
             updateMap()
         }
     }
-    private fun setHomeButton (){
+
+    private fun setHomeButton() {
         if (ActivityCompat.checkSelfPermission(
                 requireContext(), Manifest.permission.ACCESS_FINE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
@@ -120,6 +119,10 @@ class MapsFragment : Fragment(R.layout.fragment_maps), GoogleMap.OnMarkerClickLi
             return
         }
         gMap.isMyLocationEnabled = true
+    }
+
+    private fun setupMarker(googleMap: GoogleMap) {
+
     }
 
 }
