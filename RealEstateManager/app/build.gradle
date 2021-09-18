@@ -18,6 +18,9 @@ android {
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         multiDexEnabled true
     }
+    useLibrary 'android.test.base' // for AndroidTestCase
+    useLibrary 'android.test.runner' // for ProviderTestCase2
+    useLibrary 'android.test.mock' // for MockContentProvider
     buildFeatures {
         viewBinding = true
     }
@@ -85,6 +88,12 @@ dependencies {
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
     kapt "androidx.hilt:hilt-compiler:$hiltAndroidXVersion"
     annotationProcessor 'com.google.dagger:dagger-android-processor:2.38.1'
+    // For instrumented tests.
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.38.1")
+    // ...with Kotlin.
+    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.38.1")
+    // ...with Java.
+    androidTestAnnotationProcessor("com.google.dagger:hilt-android-compiler:2.38.1")
 
     // DataStore
     implementation "androidx.datastore:datastore-preferences:$dataStoreVersion"
