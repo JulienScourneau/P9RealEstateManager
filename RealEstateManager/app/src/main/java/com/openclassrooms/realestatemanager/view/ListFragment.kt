@@ -5,6 +5,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
@@ -115,6 +116,15 @@ class ListFragment : Fragment(R.layout.fragment_list_estate), EstateAdapter.OnIt
                 displayEstateList()
                 true
             }
+            R.id.action_sort_euro -> {
+                Toast.makeText(requireContext(), "Euro click", Toast.LENGTH_SHORT).show()
+                true
+            }
+            R.id.action_sort_dollar -> {
+                Toast.makeText(requireContext(), "Dollar click", Toast.LENGTH_SHORT).show()
+                true
+            }
+
             else -> return super.onOptionsItemSelected(item)
         }
     }
