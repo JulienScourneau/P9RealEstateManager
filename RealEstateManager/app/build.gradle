@@ -18,9 +18,7 @@ android {
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         multiDexEnabled true
     }
-    useLibrary 'android.test.base' // for AndroidTestCase
-    useLibrary 'android.test.runner' // for ProviderTestCase2
-    useLibrary 'android.test.mock' // for MockContentProvider
+
     buildFeatures {
         viewBinding = true
     }
