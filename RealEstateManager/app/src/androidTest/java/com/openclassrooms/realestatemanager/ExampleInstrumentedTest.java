@@ -1,9 +1,21 @@
 package com.openclassrooms.realestatemanager;
 
+import android.content.ContentResolver;
+import android.content.ContentUris;
+import android.database.Cursor;
+
+import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import com.openclassrooms.realestatemanager.contentprovider.RealEstateManagerContentProviderKt;
+
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -11,12 +23,21 @@ import org.junit.runner.RunWith;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 @RunWith(AndroidJUnit4.class)
-public class ExampleInstrumentedTest {
-    @Test
-    public void useAppContext() throws Exception {
-        // Context of the app under test.
-        //Context appContext = InstrumentationRegistry.getTargetContext();
+public class ExampleInstrumentedTest  {
+    private ContentResolver contentResolver;
 
-        //assertEquals("com.openclassrooms.go4lunch", appContext.getPackageName());
+    @Before
+    public void setUp(){
+
+        contentResolver = ApplicationProvider.getApplicationContext().getContentResolver();
+    }
+
+    @Test
+    public void getItemWithContentProvider() {
+        long id = 1;
+        Cursor cursor = contentResolver.query(ContentUris.withAppendedId(RealEstateManagerContentProviderKt.getUri(),id), null, null, null, null);
+        assertThat(cursor, notNullValue());
+        assertThat(cursor.getCount(), is(1));
+        cursor.close();
     }
 }
