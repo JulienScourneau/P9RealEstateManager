@@ -27,9 +27,12 @@ abstract class EstateDatabase : RoomDatabase() {
             val dao = database.get().estateDao()
 
             applicationScope.launch {
-                dao.insertEstate(TestList.getEstate)
+                dao.insertEstate(TestList.getEstate0)
                 dao.insertEstate(TestList.getEstate1)
                 dao.insertEstate(TestList.getEstate2)
+                dao.insertEstate(TestList.getEstate3)
+                dao.insertEstate(TestList.getEstate4)
+                dao.insertEstate(TestList.getEstate5)
 
                 dao.insertPhoto(
                     Photo(
@@ -65,6 +68,44 @@ abstract class EstateDatabase : RoomDatabase() {
                     Photo(
                         "android.resource://com.openclassrooms.realestatemanager/drawable/kitchen",
                         3
+                    )
+                )
+
+
+                dao.insertPhoto(
+                    Photo(
+                        "android.resource://com.openclassrooms.realestatemanager/drawable/house",
+                        4
+                    )
+                )
+                dao.insertPhoto(
+                    Photo(
+                        "android.resource://com.openclassrooms.realestatemanager/drawable/apartment",
+                        5
+                    )
+                )
+                dao.insertPhoto(
+                    Photo(
+                        "android.resource://com.openclassrooms.realestatemanager/drawable/house",
+                        6
+                    )
+                )
+                dao.insertPhoto(
+                    Photo(
+                        "android.resource://com.openclassrooms.realestatemanager/drawable/living_room",
+                        4
+                    )
+                )
+                dao.insertPhoto(
+                    Photo(
+                        "android.resource://com.openclassrooms.realestatemanager/drawable/bedroom",
+                        5
+                    )
+                )
+                dao.insertPhoto(
+                    Photo(
+                        "android.resource://com.openclassrooms.realestatemanager/drawable/kitchen",
+                        6
                     )
                 )
             }
