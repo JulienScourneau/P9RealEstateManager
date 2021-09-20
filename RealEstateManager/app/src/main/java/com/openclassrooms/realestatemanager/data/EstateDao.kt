@@ -33,7 +33,7 @@ interface EstateDao {
     @RawQuery
     fun getSearchEstate(query: SupportSQLiteQuery?): Flow<List<EstateWithPhoto>>
 
-    @Transaction
+
     @Query("SELECT DISTINCT estate_table.* FROM estate_table WHERE id = :estateId")
     fun getEstateByIdCursor(estateId: Long): Cursor?
 
