@@ -1,5 +1,7 @@
 package com.openclassrooms.realestatemanager;
 
+import com.openclassrooms.realestatemanager.utils.Utils;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -11,7 +13,16 @@ import static org.junit.Assert.*;
  */
 public class ExampleUnitTest {
     @Test
-    public void addition_isCorrect() throws Exception {
-        assertEquals(4, 2 + 2);
+    public void convertDollarToEuroIsCorrect() throws Exception {
+        int dollar = 1000;
+        dollar = Utils.convertDollarToEuro(dollar);
+        assertEquals(812,dollar);
+    }
+
+    @Test
+    public void convertEuroToDollarIsCorrect() throws Exception {
+        int euro = 1000;
+        euro = Utils.convertEuroToDollar(euro);
+        assertEquals(1232,euro);
     }
 }
