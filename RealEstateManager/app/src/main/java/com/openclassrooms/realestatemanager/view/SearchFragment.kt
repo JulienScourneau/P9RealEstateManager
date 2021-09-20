@@ -196,6 +196,7 @@ class SearchFragment : Fragment(R.layout.fragment_search_estate) {
                     val format = "dd/MM/yyyy"
                     val dateFormat = SimpleDateFormat(format, Locale.FRENCH)
                     val date = Calendar.getInstance()
+                    date.clear()
                     date.set(year, month, day)
                     viewModel.searchDate = date.timeInMillis
                     binding.dateText.text = "A partir du: ${dateFormat.format(date.time)}"
