@@ -33,7 +33,7 @@ class MapsFragment : Fragment(R.layout.fragment_maps), GoogleMap.OnMarkerClickLi
 
     private val viewModel: MapsViewModel by viewModels()
     private var estateList: List<EstateWithPhoto> = ArrayList()
-    private var userLocation: LatLng = LatLng(0.0, 0.0)
+    private var userLocation: LatLng? = null
     private lateinit var fusedLocation: FusedLocationProviderClient
     private lateinit var gMap: GoogleMap
     private val callback = OnMapReadyCallback { googleMap ->
@@ -52,8 +52,11 @@ class MapsFragment : Fragment(R.layout.fragment_maps), GoogleMap.OnMarkerClickLi
                 googleMap.addMarker(markerOptions)
             }
         }
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(userLocation))
-        googleMap.animateCamera(CameraUpdateFactory.zoomTo(8f))
+        if (userLocation != null) {
+            val user: LatLng = userLocation as LatLng
+            googleMap.moveCamera(CameraUpdateFactory.newLatLng(user))
+            googleMap.animateCamera(CameraUpdateFactory.zoomTo(8f))
+        }
         googleMap.setOnMarkerClickListener(this)
         setHomeButton()
     }
@@ -102,8 +105,11 @@ class MapsFragment : Fragment(R.layout.fragment_maps), GoogleMap.OnMarkerClickLi
             return
         }
         fusedLocation.lastLocation.addOnCompleteListener { task ->
-            val location: Location = task.result
-            userLocation = LatLng(location.latitude, location.longitude)
+            if (task.result != null) {
+                val location: Location = task.result
+                userLocation = LatLng(location.latitude, location.longitude)
+
+            }
             updateMap()
         }
     }
