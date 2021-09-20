@@ -203,13 +203,13 @@ public class Utils {
         //Price
         if (search.getMinPrice() != null) {
             queryString += getConditions(false);
-            queryString += " price > ?";
+            queryString += " price >= ?";
             args.add(search.getMinPrice());
             containsConditions = true;
         }
         if (search.getMaxPrice() != null) {
             queryString += getConditions(containsConditions);
-            queryString += " price < ?";
+            queryString += " price <= ?";
             args.add(search.getMaxPrice());
             containsConditions = true;
         }
@@ -226,13 +226,13 @@ public class Utils {
         //Area
         if (search.getMinArea() != null) {
             queryString += getConditions(containsConditions);
-            queryString += " area > ?";
+            queryString += " area >= ?";
             args.add(search.getMinArea());
             containsConditions = true;
         }
         if (search.getMaxArea() != null) {
             queryString += getConditions(containsConditions);
-            queryString += " area < ?";
+            queryString += " area <= ?";
             args.add(search.getMaxArea());
             containsConditions = true;
         }
@@ -240,13 +240,13 @@ public class Utils {
         //bedroom
         if (search.getMinBedroom() != null) {
             queryString += getConditions(containsConditions);
-            queryString += " bedroom > ?";
+            queryString += " bedroom >= ?";
             args.add(search.getMinBedroom());
             containsConditions = true;
         }
         if (search.getMaxBedroom() != null) {
             queryString += getConditions(containsConditions);
-            queryString += " bedroom < ?";
+            queryString += " bedroom <= ?";
             args.add(search.getMaxBedroom());
             containsConditions = true;
         }
@@ -254,13 +254,13 @@ public class Utils {
         //bathroom
         if (search.getMinBathroom() != null) {
             queryString += getConditions(containsConditions);
-            queryString += " bathroom > ?";
+            queryString += " bathroom >= ?";
             args.add(search.getMinBathroom());
             containsConditions = true;
         }
         if (search.getMaxBathroom() != null) {
             queryString += getConditions(containsConditions);
-            queryString += " bathroom < ?";
+            queryString += " bathroom <= ?";
             args.add(search.getMaxBathroom());
             containsConditions = true;
         }
@@ -269,7 +269,7 @@ public class Utils {
         if (search.getCity() != null)
             if (!search.getCity().isEmpty()) {
                 queryString += getConditions(containsConditions);
-                queryString += " city LIKE ?%";
+                queryString += " city LIKE '%' || ? || '%'";
                 args.add(search.getCity());
                 containsConditions = true;
             }
@@ -278,7 +278,7 @@ public class Utils {
         if (search.getPostalCode() != null)
             if (!search.getPostalCode().isEmpty()) {
                 queryString += getConditions(containsConditions);
-                queryString += " postalCode LIKE ?%";
+                queryString += " postalCode LIKE '%' || ? || '%'";
                 args.add(search.getPostalCode());
                 containsConditions = true;
             }
@@ -318,7 +318,7 @@ public class Utils {
         //date
         if (search.getDate() != null) {
             queryString += getConditions(containsConditions);
-            queryString += " date AFTER ?";
+            queryString += " date >= ?";
             args.add(search.getDate());
         }
 
