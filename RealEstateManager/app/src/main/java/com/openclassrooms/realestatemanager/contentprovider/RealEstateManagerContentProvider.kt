@@ -6,15 +6,16 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.net.Uri
+import com.openclassrooms.realestatemanager.data.Estate
 import com.openclassrooms.realestatemanager.data.EstateDao
 import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
 import dagger.hilt.android.EntryPointAccessors
 import dagger.hilt.components.SingletonComponent
 
-private const val ESTATE_TABLE = "Estate"
-private const val AUTHORITY = "com.openclassrooms.realestatemanager.provider"
-val uri = Uri.parse("content://${AUTHORITY}/${ESTATE_TABLE}")
+val ESTATE_TABLE: String = Estate::class.java.simpleName
+private const val AUTHORITY = "com.openclassrooms.realestatemanager.contentprovider"
+val uri: Uri = Uri.parse("content://${AUTHORITY}/${ESTATE_TABLE}")
 
 class RealEstateManagerContentProvider : ContentProvider() {
 
@@ -41,14 +42,14 @@ class RealEstateManagerContentProvider : ContentProvider() {
         if (context != null) {
             val userId = ContentUris.parseId(uri)
             val estateDao: EstateDao = getEstateDao(appContext)
-            val cursor: Cursor =
-                estateDao.getAllEstateCursor()
-            cursor.setNotificationUri(context!!.contentResolver, uri)
+            val cursor: Cursor? =
+                estateDao.getEstateByIdCursor(userId)
+            cursor?.setNotificationUri(context!!.contentResolver, uri)
             return cursor
 
 
             //val code: Int = matcher.match(uri)
-            //return if (code == CODE_ESTATE_DIR || code == CODE_ESTATE_ITEM) {
+            // (code == CODE_ESTATE_DIR || code == CODE_ESTATE_ITEM)
             //
             //
             //    val cursor: Cursor? = if (code == CODE_ESTATE_DIR) {
