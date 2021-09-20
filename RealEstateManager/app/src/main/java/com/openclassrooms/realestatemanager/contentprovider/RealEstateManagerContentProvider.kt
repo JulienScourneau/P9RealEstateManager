@@ -38,12 +38,11 @@ class RealEstateManagerContentProvider : ContentProvider() {
     ): Cursor? {
         val appContext = context?.applicationContext ?: throw IllegalStateException()
 
-
         if (context != null) {
-            val userId = ContentUris.parseId(uri)
+            val estateId = ContentUris.parseId(uri)
             val estateDao: EstateDao = getEstateDao(appContext)
             val cursor: Cursor? =
-                estateDao.getEstateByIdCursor(userId)
+                estateDao.getEstateByIdCursor(estateId)
             cursor?.setNotificationUri(context!!.contentResolver, uri)
             return cursor
 
