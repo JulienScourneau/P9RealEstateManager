@@ -4,7 +4,7 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.io.Serializable
-import java.text.DateFormat
+
 
 @Entity(tableName = "estate_table")
 data class Estate(
