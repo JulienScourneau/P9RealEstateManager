@@ -4,6 +4,11 @@ import com.openclassrooms.realestatemanager.utils.Utils;
 
 import org.junit.Test;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import static org.junit.Assert.*;
 
 /**
@@ -24,5 +29,15 @@ public class ExampleUnitTest {
         int euro = 1000;
         euro = Utils.convertEuroToDollar(euro);
         assertEquals(1232,euro);
+    }
+
+    @Test
+    public void getTodayDateIsCorrect() {
+        Date actualDate = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yy");
+        String formattedDate = df.format(actualDate);
+
+        String todayDate = Utils.getTodayDate();
+        assertEquals(formattedDate,todayDate);
     }
 }
