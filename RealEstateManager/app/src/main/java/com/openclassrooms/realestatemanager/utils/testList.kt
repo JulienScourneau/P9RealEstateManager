@@ -70,16 +70,6 @@ object TestList {
             poi5, address5, 6
         )
 
-    private val contactList = mutableListOf(
-        RealEstateAgent("Sandra Eberhardt", "0548872315"),
-        RealEstateAgent("Adelajda Rutkowska", "0561049730"),
-        RealEstateAgent("Rebecca Z. McCoy", "0416869852")
-
-    )
-
-    val getContactList: ArrayList<RealEstateAgent>
-        get() = ArrayList(contactList)
-
     val getEstate0: Estate
         get() = estate0
 

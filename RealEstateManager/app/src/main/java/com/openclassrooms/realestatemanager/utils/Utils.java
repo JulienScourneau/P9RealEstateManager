@@ -168,6 +168,14 @@ public class Utils {
         return latLng;
     }
 
+    public static ArrayList<RealEstateAgent> getRealEstateAgent(){
+        ArrayList<RealEstateAgent> contactList = new ArrayList<>();
+        contactList.add(new RealEstateAgent("Sandra Eberhardt", "0548872315"));
+        contactList.add(new RealEstateAgent("Adelajda Rutkowska", "0561049730"));
+        contactList.add(new RealEstateAgent("Rebecca Z. McCoy", "0416869852"));
+        return contactList;
+    }
+
     private static String getConditions(boolean conditions) {
         String query = "";
         if (conditions) {

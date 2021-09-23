@@ -104,7 +104,7 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate),
     }
 
     private fun setupContactSpinner() {
-        val contactList = TestList.getContactList
+        val contactList = Utils.getRealEstateAgent()
         var contact: RealEstateAgent
         val adapter =
             ArrayAdapter(
