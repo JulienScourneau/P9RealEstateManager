@@ -72,10 +72,14 @@ class ListFragment : Fragment(R.layout.fragment_list_estate), EstateAdapter.OnIt
                     }
 
                     is EstateViewModel.EstateEvent.NavigateToMapScreen -> {
-                        (activity as AppCompatActivity)
-                            .supportActionBar?.setDisplayHomeAsUpEnabled(false)
-                        val action = ListFragmentDirections.actionListFragmentToMapsFragment()
-                        findNavController().navigate(action)
+                        if (Utils.isInternetAvailable(requireContext())) {
+                            (activity as AppCompatActivity)
+                                .supportActionBar?.setDisplayHomeAsUpEnabled(false)
+                            val action = ListFragmentDirections.actionListFragmentToMapsFragment()
+                            findNavController().navigate(action)
+                        } else {
+                            Toast.makeText(requireContext(),"La map nécessite une connexion Internet",Toast.LENGTH_SHORT).show()
+                        }
                     }
 
                     is EstateViewModel.EstateEvent.NavigateToDetailsScreen -> {
