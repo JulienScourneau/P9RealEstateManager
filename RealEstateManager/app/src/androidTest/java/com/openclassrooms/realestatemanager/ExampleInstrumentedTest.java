@@ -8,7 +8,10 @@ import android.database.Cursor;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.openclassrooms.realestatemanager.contentprovider.RealEstateManagerContentProviderKt;
+import com.openclassrooms.realestatemanager.data.Address;
+import com.openclassrooms.realestatemanager.utils.TestList;
 import com.openclassrooms.realestatemanager.utils.Utils;
 
 import org.junit.Before;
@@ -50,5 +53,13 @@ public class ExampleInstrumentedTest {
     public void isInternetAvailable() {
         boolean internetAvailable = Utils.isInternetAvailable(context);
         assertTrue(internetAvailable);
+    }
+
+    @Test
+    public void getLocationFromAddressIsCorrect() {
+        Address address = TestList.INSTANCE.getGetEstate0().getAddress();
+        String addressString = Utils.formatAddress(address);
+        LatLng location = Utils.getLocationFromAddress(addressString, context);
+        assertEquals(new LatLng(50.8465716,4.3438595), location);
     }
 }
