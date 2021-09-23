@@ -144,21 +144,10 @@ public class Utils {
     }
 
     public static String convertLongToDate(long time) {
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.SHORT);
         Date date = new Date(time);
 
-        return format.format(date);
-    }
-
-    public static Long convertDateToLong(String date) {
-        long dateLong = 0;
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        try {
-            dateLong = dateFormat.parse(date).getTime();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return dateLong;
+        return dateFormat.format(date);
     }
 
     public static LatLng getLocationFromAddress(String strAddress, Context context) {
