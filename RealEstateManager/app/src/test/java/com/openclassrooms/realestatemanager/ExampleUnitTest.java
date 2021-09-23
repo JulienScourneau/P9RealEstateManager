@@ -62,4 +62,11 @@ public class ExampleUnitTest {
                 "Fake country");
         assertEquals(expectedAddress, formattedAddress);
     }
+
+    @Test
+    public void convertLongToDateIsCorrect() {
+        long dateLong = Long.parseLong("1630156645559");
+        String convertedDate = Utils.convertLongToDate(dateLong);
+        assertEquals("28/08/21", convertedDate);
+    }
 }
