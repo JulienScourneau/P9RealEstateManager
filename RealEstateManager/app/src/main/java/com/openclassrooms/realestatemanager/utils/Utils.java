@@ -107,7 +107,6 @@ public class Utils {
         format.setMaximumFractionDigits(0);
         format.setCurrency(Currency.getInstance("EUR"));
         return format.format(i);
-
     }
 
     public static String formatAddress(Address address) {
