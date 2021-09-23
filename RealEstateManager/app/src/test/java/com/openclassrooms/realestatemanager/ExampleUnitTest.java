@@ -1,5 +1,6 @@
 package com.openclassrooms.realestatemanager;
 
+import com.openclassrooms.realestatemanager.data.Address;
 import com.openclassrooms.realestatemanager.utils.Utils;
 
 import org.junit.Test;
@@ -46,5 +47,19 @@ public class ExampleUnitTest {
         assertEquals("100 €", formattedPrice);
     }
 
-
+    @Test
+    public void formattedAddressIsCorrect() {
+        Address address = new Address("11", "Fake street", "Fake city", "Fake country", "7777");
+        String formattedAddress = Utils.formatAddress(address);
+        String expectedAddress = ("11" +
+                System.lineSeparator() +
+                "Fake street" +
+                System.lineSeparator() +
+                "Fake city" +
+                System.lineSeparator() +
+                "7777" +
+                System.lineSeparator() +
+                "Fake country");
+        assertEquals(expectedAddress, formattedAddress);
+    }
 }
