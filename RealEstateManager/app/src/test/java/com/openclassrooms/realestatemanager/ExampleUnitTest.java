@@ -1,11 +1,13 @@
 package com.openclassrooms.realestatemanager;
 
 import com.openclassrooms.realestatemanager.data.Address;
+import com.openclassrooms.realestatemanager.data.RealEstateAgent;
 import com.openclassrooms.realestatemanager.utils.Utils;
 
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -68,5 +70,13 @@ public class ExampleUnitTest {
         long dateLong = Long.parseLong("1630156645559");
         String convertedDate = Utils.convertLongToDate(dateLong);
         assertEquals("28/08/21", convertedDate);
+    }
+
+    @Test
+    public void getRealEstateAgentListIsCorrect() {
+        ArrayList<RealEstateAgent> realEstateAgentsList = Utils.getRealEstateAgent();
+        assertEquals(3,realEstateAgentsList.size());
+        assertEquals("Sandra Eberhardt", realEstateAgentsList.get(0).getName());
+        assertEquals("0548872315", realEstateAgentsList.get(0).getPhoneNumber());
     }
 }
