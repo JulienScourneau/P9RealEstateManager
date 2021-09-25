@@ -41,11 +41,19 @@ public class ExampleInstrumentedTest {
     }
 
     @Test
-    public void getItemWithContentProvider() {
+    public void getSingleEstateWithContentProvider() {
         long id = 1;
         Cursor cursor = contentResolver.query(ContentUris.withAppendedId(RealEstateManagerContentProviderKt.getUri(), id), null, null, null, null);
         assertThat(cursor, notNullValue());
         assertThat(cursor.getCount(), is(1));
+        cursor.close();
+    }
+
+    @Test
+    public void getEstateListWithContentProvider() {
+        Cursor cursor = contentResolver.query(RealEstateManagerContentProviderKt.getUri(), null, null, null, null);
+        assertThat(cursor, notNullValue());
+        assertThat(cursor.getCount(),is(6));
         cursor.close();
     }
 
@@ -60,6 +68,6 @@ public class ExampleInstrumentedTest {
         Address address = TestList.INSTANCE.getGetEstate0().getAddress();
         String addressString = Utils.formatAddress(address);
         LatLng location = Utils.getLocationFromAddress(addressString, context);
-        assertEquals(new LatLng(50.8465716,4.3438595), location);
+        assertEquals(new LatLng(50.8465716, 4.3438595), location);
     }
 }

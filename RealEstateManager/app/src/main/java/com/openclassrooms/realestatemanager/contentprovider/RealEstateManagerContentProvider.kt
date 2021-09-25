@@ -1,9 +1,6 @@
 package com.openclassrooms.realestatemanager.contentprovider
 
-import android.content.ContentProvider
-import android.content.ContentUris
-import android.content.ContentValues
-import android.content.Context
+import android.content.*
 import android.database.Cursor
 import android.net.Uri
 import com.openclassrooms.realestatemanager.data.Estate
@@ -13,11 +10,17 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.EntryPointAccessors
 import dagger.hilt.components.SingletonComponent
 
+
 val ESTATE_TABLE: String = Estate::class.java.simpleName
 private const val AUTHORITY = "com.openclassrooms.realestatemanager.contentprovider"
 val uri: Uri = Uri.parse("content://${AUTHORITY}/${ESTATE_TABLE}")
 
 class RealEstateManagerContentProvider : ContentProvider() {
+    private val uriMatcher = UriMatcher(UriMatcher.NO_MATCH).apply {
+        addURI(AUTHORITY, ESTATE_TABLE, 1)
+        addURI(AUTHORITY, "$ESTATE_TABLE/#", 2)
+    }
+
 
     @EntryPoint
     @InstallIn(SingletonComponent::class)
@@ -41,23 +44,15 @@ class RealEstateManagerContentProvider : ContentProvider() {
         if (context != null) {
             val estateId = ContentUris.parseId(uri)
             val estateDao: EstateDao = getEstateDao(appContext)
-            val cursor: Cursor? =
+
+            val cursor: Cursor? = if (uriMatcher.match(uri) == 2) {
                 estateDao.getEstateByIdCursor(estateId)
-            cursor?.setNotificationUri(context!!.contentResolver, uri)
+            } else {
+                estateDao.getAllEstateCursor()
+            }
+            cursor?.setNotificationUri(appContext.contentResolver, uri)
             return cursor
 
-
-            //val code: Int = matcher.match(uri)
-            // (code == CODE_ESTATE_DIR || code == CODE_ESTATE_ITEM)
-            //
-            //
-            //    val cursor: Cursor? = if (code == CODE_ESTATE_DIR) {
-            //        estateDao.getAllEstateCursor()
-            //    } else {
-            //        estateDao.getEstateByIdCursor(ContentUris.parseId(uri))
-            //    }
-            //    cursor?.setNotificationUri(appContext.contentResolver, uri)
-            //    cursor
         } else {
             throw IllegalArgumentException("Unknown URI: $uri")
         }

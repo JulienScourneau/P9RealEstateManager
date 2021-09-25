@@ -21,14 +21,14 @@ import static org.junit.Assert.assertEquals;
 public class ExampleUnitTest {
 
     @Test
-    public void convertDollarToEuroIsCorrect() throws Exception {
+    public void convertDollarToEuroIsCorrect() {
         int dollar = 1000;
         dollar = Utils.convertDollarToEuro(dollar);
         assertEquals(812, dollar);
     }
 
     @Test
-    public void convertEuroToDollarIsCorrect() throws Exception {
+    public void convertEuroToDollarIsCorrect() {
         int euro = 1000;
         euro = Utils.convertEuroToDollar(euro);
         assertEquals(1232, euro);
@@ -75,7 +75,7 @@ public class ExampleUnitTest {
     @Test
     public void getRealEstateAgentListIsCorrect() {
         ArrayList<RealEstateAgent> realEstateAgentsList = Utils.getRealEstateAgent();
-        assertEquals(3,realEstateAgentsList.size());
+        assertEquals(3, realEstateAgentsList.size());
         assertEquals("Sandra Eberhardt", realEstateAgentsList.get(0).getName());
         assertEquals("0548872315", realEstateAgentsList.get(0).getPhoneNumber());
     }
