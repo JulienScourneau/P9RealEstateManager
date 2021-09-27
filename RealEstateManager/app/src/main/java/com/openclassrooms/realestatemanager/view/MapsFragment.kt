@@ -74,7 +74,10 @@ class MapsFragment : Fragment(R.layout.fragment_maps), GoogleMap.OnMarkerClickLi
                 when (event) {
                     is MapsViewModel.MapsEvent.NavigateToDetailsScreen -> {
                         val action =
-                            MapsFragmentDirections.actionMapsFragmentToDetailsFragment(event.id)
+                            MapsFragmentDirections.actionMapsFragmentToDetailsFragment(
+                                event.id,
+                                R.string.toolbar_details.toString()
+                            )
                         findNavController().navigate(action)
                     }
                 }
@@ -125,10 +128,6 @@ class MapsFragment : Fragment(R.layout.fragment_maps), GoogleMap.OnMarkerClickLi
             return
         }
         gMap.isMyLocationEnabled = true
-    }
-
-    private fun setupMarker(googleMap: GoogleMap) {
-
     }
 
 }
