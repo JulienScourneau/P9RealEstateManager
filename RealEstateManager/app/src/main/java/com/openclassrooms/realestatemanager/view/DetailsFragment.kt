@@ -5,11 +5,13 @@ import android.util.Log
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.google.android.material.snackbar.Snackbar
 import com.openclassrooms.realestatemanager.BuildConfig
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.data.EstateWithPhoto
@@ -18,6 +20,7 @@ import com.openclassrooms.realestatemanager.databinding.FragmentDetailsEstateBin
 import com.openclassrooms.realestatemanager.utils.Utils
 import com.openclassrooms.realestatemanager.view.adapter.MediaAdapter
 import com.openclassrooms.realestatemanager.viewmodel.DetailsViewModel
+import com.openclassrooms.realestatemanager.viewmodel.EstateViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import java.util.*
@@ -40,6 +43,11 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate),
             estate = it
             updateUI()
         }
+        setFragmentResultListener("add_edit_request") { _, bundle ->
+            val result = bundle.getInt("add_edit_result")
+            viewModel.onEditResult(result, "Estate Updated")
+        }
+
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.estateEvent.collect { event ->
                 when (event) {
@@ -49,6 +57,9 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate),
                                 event.estate, resources.getString(R.string.toolbar_edit_estate)
                             )
                         findNavController().navigate(action)
+                    }
+                    is DetailsViewModel.DetailsEstateEvent.ShowEstateUpdatedConfirmationMessage -> {
+                        Snackbar.make(requireView(), event.msg, Snackbar.LENGTH_SHORT).show()
                     }
                 }
             }
