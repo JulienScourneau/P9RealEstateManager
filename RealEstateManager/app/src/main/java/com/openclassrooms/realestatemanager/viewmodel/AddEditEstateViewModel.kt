@@ -49,7 +49,7 @@ class AddEditEstateViewModel @Inject constructor(
     val addEditEstateEvent = addEditEstateChannel.receiveAsFlow()
 
     private fun navigationBack() = viewModelScope.launch {
-        if (estateWithPhoto != null)
+        if (estateWithPhoto == null)
             addEditEstateChannel.send(
                 AddEditEstateEvent.NavigationBackWithResult(
                     ADD_ESTATE_RESULT_OK
