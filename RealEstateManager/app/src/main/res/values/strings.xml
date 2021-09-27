@@ -43,6 +43,7 @@
     <string name="menu_search_estate">Recherche</string>
 
     <!-- TOOLBAR RESOURCES -->
+    <string name="toolbar_estate">Real Estate Manager</string>
     <string name="toolbar_details">Bien immobilier</string>
     <string name="toolbar_add_estate">Ajout</string>
     <string name="toolbar_edit_estate">Édition</string>
