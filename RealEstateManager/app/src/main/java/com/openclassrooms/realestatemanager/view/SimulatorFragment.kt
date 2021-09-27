@@ -16,6 +16,32 @@ class SimulatorFragment : Fragment(R.layout.fragment_simulator) {
         (activity as AppCompatActivity?)!!.supportActionBar!!.title =
             resources.getString(R.string.toolbar_simulator)
         binding = FragmentSimulatorBinding.bind(view)
+        setupUI()
+    }
+
+    private fun setupUI() {
+        var duration = 2
+        binding.apply {
+
+
+            durationText.text = "$duration ans"
+            if (duration != 1) {
+                btnLeft.setOnClickListener {
+                    duration--
+                    updateDuration(duration)
+                }
+            } else {
+                btnLeft.isClickable = false
+            }
+            btnRight.setOnClickListener {
+                duration++
+                updateDuration(duration)
+            }
+        }
+    }
+
+    private fun updateDuration(duration: Int) {
+        binding.durationText.text = "$duration ans"
     }
 
 }
