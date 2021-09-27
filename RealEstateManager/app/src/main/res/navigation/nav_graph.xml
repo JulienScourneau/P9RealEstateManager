@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_listFragment_to_mapsFragment"
             app:destination="@id/mapsFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_simulatorFragment"
+            app:destination="@id/simulatorFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
@@ -68,4 +71,9 @@
             android:id="@+id/action_mapsFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/simulatorFragment"
+        android:name="com.openclassrooms.realestatemanager.view.SimulatorFragment"
+        android:label="fragment_simulator"
+        tools:layout="@layout/fragment_simulator" />
 </navigation>
