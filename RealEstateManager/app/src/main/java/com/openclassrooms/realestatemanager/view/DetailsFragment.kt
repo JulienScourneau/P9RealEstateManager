@@ -38,13 +38,9 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate),
 
         binding = FragmentDetailsEstateBinding.bind(view)
 
-        viewModel.estateId?.let {
-            viewModel.getEstateById(it).observe(viewLifecycleOwner) { estateWithPhoto ->
-                if (estateWithPhoto != null) {
-                    updateUI(estateWithPhoto)
-                    estate = estateWithPhoto
-                }
-            }
+        viewModel.estateWithPhoto.observe(viewLifecycleOwner) {
+            estate = it
+            updateUI()
         }
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.estateEvent.collect { event ->
@@ -76,31 +72,32 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate),
         }
     }
 
-    private fun updateUI(estateWithPhoto: EstateWithPhoto) {
-        setupTextView(estateWithPhoto.estate)
-        setupMapView(estateWithPhoto.estate)
+    private fun updateUI() {
+        setupTextView()
+        setupMapView()
         binding.apply {
+            estate.apply {
+                detailsSchoolLayout.visibility =
+                    if (estate.pointOfInterest.school) View.GONE else View.VISIBLE
 
-            detailsSchoolLayout.visibility =
-                if (!estateWithPhoto.estate.pointOfInterest.school) View.GONE else View.VISIBLE
+                detailsLocalCommerceLayout.visibility =
+                    if (estate.pointOfInterest.localCommerce) View.GONE else View.VISIBLE
 
-            detailsLocalCommerceLayout.visibility =
-                if (!estateWithPhoto.estate.pointOfInterest.localCommerce) View.GONE else View.VISIBLE
+                detailsPublicTransportLayout.visibility =
+                    if (estate.pointOfInterest.publicTransport) View.GONE else View.VISIBLE
 
-            detailsPublicTransportLayout.visibility =
-                if (!estateWithPhoto.estate.pointOfInterest.publicTransport) View.GONE else View.VISIBLE
+                detailsParkLayout.visibility =
+                    if (estate.pointOfInterest.park) View.GONE else View.VISIBLE
 
-            detailsParkLayout.visibility =
-                if (!estateWithPhoto.estate.pointOfInterest.park) View.GONE else View.VISIBLE
-
-            if (estateWithPhoto.photosList.isNotEmpty()) {
-                images = estateWithPhoto.photosList as ArrayList<Photo>
-            } else {
-                val photo = Photo(
-                    "android.resource://com.openclassrooms.realestatemanager/drawable/no_image_available",
-                    0
-                )
-                images.add(photo)
+                if (photosList.isNotEmpty()) {
+                    images = photosList as ArrayList<Photo>
+                } else {
+                    val photo = Photo(
+                        "android.resource://com.openclassrooms.realestatemanager/drawable/no_image_available",
+                        0
+                    )
+                    images.add(photo)
+                }
             }
             val mediaAdapter = MediaAdapter(this@DetailsFragment, images, true)
             detailsViewpager.adapter = mediaAdapter
@@ -108,9 +105,9 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate),
         }
     }
 
-    private fun setupTextView(estate: Estate) {
+    private fun setupTextView() {
         binding.apply {
-            estate.apply {
+            estate.estate.apply {
                 detailsCategory.text = category
                 detailsLocationData.text = Utils.formatAddress(address)
                 detailsContactNameData.text = contact.name
@@ -132,18 +129,22 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate),
         }
     }
 
-    private fun setupMapView(estate: Estate) {
-        val latLng = Utils.getLocationFromAddress(Utils.formatAddress(estate.address), context)
-        if (latLng != null) {
-            val url =
-                "https://maps.google.com/maps/api/staticmap?center=${latLng.latitude},${latLng.longitude}&zoom=16&size=200x200&scale=2&markers=color:red%7C${latLng.latitude},${latLng.longitude}&sensor=false&key=${BuildConfig.MAP_API_KEY}"
-            Glide.with(binding.detailsMapImageView)
-                .load(url)
-                .apply(RequestOptions.centerInsideTransform())
-                .into(binding.detailsMapImageView)
-            Log.d(
-                "updateUI", "url: $url"
-            )
+    private fun setupMapView() {
+        if (Utils.isInternetAvailable(requireContext())) {
+            val latLng =
+                Utils.getLocationFromAddress(Utils.formatAddress(estate.estate.address), context)
+            if (latLng != null) {
+
+                val url =
+                    "https://maps.google.com/maps/api/staticmap?center=${latLng.latitude},${latLng.longitude}&zoom=16&size=200x200&scale=2&markers=color:red%7C${latLng.latitude},${latLng.longitude}&sensor=false&key=${BuildConfig.MAP_API_KEY}"
+                Glide.with(binding.detailsMapImageView)
+                    .load(url)
+                    .apply(RequestOptions.centerInsideTransform())
+                    .into(binding.detailsMapImageView)
+                Log.d(
+                    "updateUI", "url: $url"
+                )
+            }
         } else {
             binding.detailsMapImageView.setImageResource(R.drawable.ic_baseline_wrong_location_24)
         }
