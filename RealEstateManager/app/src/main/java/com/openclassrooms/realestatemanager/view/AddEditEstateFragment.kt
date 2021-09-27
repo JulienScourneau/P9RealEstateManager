@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
@@ -22,7 +23,6 @@ import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.data.Photo
 import com.openclassrooms.realestatemanager.data.RealEstateAgent
 import com.openclassrooms.realestatemanager.databinding.FragmentAddEditEstateBinding
-import com.openclassrooms.realestatemanager.utils.TestList
 import com.openclassrooms.realestatemanager.utils.Utils
 import com.openclassrooms.realestatemanager.view.adapter.MediaAdapter
 import com.openclassrooms.realestatemanager.viewmodel.AddEditEstateViewModel
@@ -31,6 +31,7 @@ import kotlinx.coroutines.flow.collect
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 @AndroidEntryPoint
 class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate),
@@ -42,6 +43,7 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as AppCompatActivity?)!!.supportActionBar!!.title = viewModel.title
         binding = FragmentAddEditEstateBinding.bind(view)
 
         setupUI()

@@ -23,6 +23,7 @@ class AddEditEstateViewModel @Inject constructor(
 ) : ViewModel() {
 
     val estateWithPhoto = state.get<EstateWithPhoto>("estate")
+    val title = state.get<String>("title")
     private var newId: Long = 0
     private var job: Job? = null
 

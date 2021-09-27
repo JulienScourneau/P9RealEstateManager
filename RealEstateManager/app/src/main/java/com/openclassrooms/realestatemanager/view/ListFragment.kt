@@ -64,7 +64,7 @@ class ListFragment : Fragment(R.layout.fragment_list_estate), EstateAdapter.OnIt
                         val action =
                             ListFragmentDirections.actionListFragmentToAddEditEstateFragment(
                                 null,
-                                resources.getString(R.string.toolbar_edit_estate)
+                                resources.getString(R.string.toolbar_add_estate)
                             )
                         findNavController().navigate(action)
                     }
