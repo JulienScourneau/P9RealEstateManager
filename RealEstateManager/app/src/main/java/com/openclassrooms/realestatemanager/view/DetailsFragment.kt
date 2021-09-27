@@ -52,7 +52,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate),
                     is DetailsViewModel.DetailsEstateEvent.NavigateToEditEstateScreen -> {
                         val action =
                             DetailsFragmentDirections.actionDetailsFragmentToAddEditEstateFragment(
-                                event.estate
+                                event.estate, R.string.toolbar_edit_estate.toString()
                             )
                         findNavController().navigate(action)
                     }
