@@ -78,7 +78,11 @@ class ListFragment : Fragment(R.layout.fragment_list_estate), EstateAdapter.OnIt
                             val action = ListFragmentDirections.actionListFragmentToMapsFragment()
                             findNavController().navigate(action)
                         } else {
-                            Toast.makeText(requireContext(),"La map nécessite une connexion Internet",Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                requireContext(),
+                                "La map nécessite une connexion Internet",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     }
 
@@ -87,6 +91,13 @@ class ListFragment : Fragment(R.layout.fragment_list_estate), EstateAdapter.OnIt
                             .supportActionBar?.setDisplayHomeAsUpEnabled(false)
                         val action =
                             ListFragmentDirections.actionListFragmentToDetailsFragment(event.id)
+                        findNavController().navigate(action)
+                    }
+
+                    is EstateViewModel.EstateEvent.NavigateToSimulatorScreen -> {
+                        (activity as AppCompatActivity)
+                            .supportActionBar?.setDisplayHomeAsUpEnabled(false)
+                        val action = ListFragmentDirections.actionListFragmentToSimulatorFragment()
                         findNavController().navigate(action)
                     }
 
@@ -118,6 +129,10 @@ class ListFragment : Fragment(R.layout.fragment_list_estate), EstateAdapter.OnIt
                 (activity as AppCompatActivity)
                     .supportActionBar?.setDisplayHomeAsUpEnabled(false)
                 displayEstateList()
+                true
+            }
+            R.id.action_simulator -> {
+                viewModel.onSimulatorClick()
                 true
             }
             R.id.action_sort_euro -> {
