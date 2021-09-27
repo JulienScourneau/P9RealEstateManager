@@ -40,6 +40,9 @@
         <argument
             android:name="id"
             app:argType="long" />
+        <argument
+            android:name="title"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/addEditEstateFragment"
@@ -50,6 +53,9 @@
             android:name="estate"
             app:argType="com.openclassrooms.realestatemanager.data.EstateWithPhoto"
             app:nullable="true" />
+        <argument
+            android:name="title"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -61,6 +67,9 @@
             app:destination="@id/listFragment"
             app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="title"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"
@@ -70,10 +79,17 @@
         <action
             android:id="@+id/action_mapsFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
+        <argument
+            android:name="title"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/simulatorFragment"
         android:name="com.openclassrooms.realestatemanager.view.SimulatorFragment"
         android:label="fragment_simulator"
-        tools:layout="@layout/fragment_simulator" />
+        tools:layout="@layout/fragment_simulator" >
+        <argument
+            android:name="title"
+            app:argType="string" />
+    </fragment>
 </navigation>
