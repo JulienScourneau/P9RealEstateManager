@@ -32,6 +32,8 @@ class ListFragment : Fragment(R.layout.fragment_list_estate), EstateAdapter.OnIt
     private val estateAdapter = EstateAdapter(this)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        (activity as AppCompatActivity?)!!.supportActionBar!!.title =
+            resources.getString(R.string.toolbar_estate)
 
         binding = FragmentListEstateBinding.bind(view)
 
@@ -62,7 +64,7 @@ class ListFragment : Fragment(R.layout.fragment_list_estate), EstateAdapter.OnIt
                         val action =
                             ListFragmentDirections.actionListFragmentToAddEditEstateFragment(
                                 null,
-                                R.string.toolbar_add_estate.toString()
+                                resources.getString(R.string.toolbar_edit_estate)
                             )
                         findNavController().navigate(action)
                     }
@@ -71,7 +73,7 @@ class ListFragment : Fragment(R.layout.fragment_list_estate), EstateAdapter.OnIt
                         (activity as AppCompatActivity)
                             .supportActionBar?.setDisplayHomeAsUpEnabled(false)
                         val action =
-                            ListFragmentDirections.actionListFragmentToSearchFragment(R.string.toolbar_search.toString())
+                            ListFragmentDirections.actionListFragmentToSearchFragment()
                         findNavController().navigate(action)
                     }
 
@@ -80,7 +82,7 @@ class ListFragment : Fragment(R.layout.fragment_list_estate), EstateAdapter.OnIt
                             (activity as AppCompatActivity)
                                 .supportActionBar?.setDisplayHomeAsUpEnabled(false)
                             val action =
-                                ListFragmentDirections.actionListFragmentToMapsFragment(R.string.toolbar_maps.toString())
+                                ListFragmentDirections.actionListFragmentToMapsFragment()
                             findNavController().navigate(action)
                         } else {
                             Toast.makeText(
@@ -95,10 +97,7 @@ class ListFragment : Fragment(R.layout.fragment_list_estate), EstateAdapter.OnIt
                         (activity as AppCompatActivity)
                             .supportActionBar?.setDisplayHomeAsUpEnabled(false)
                         val action =
-                            ListFragmentDirections.actionListFragmentToDetailsFragment(
-                                event.id,
-                                R.string.toolbar_details.toString()
-                            )
+                            ListFragmentDirections.actionListFragmentToDetailsFragment(event.id)
                         findNavController().navigate(action)
                     }
 
@@ -106,7 +105,7 @@ class ListFragment : Fragment(R.layout.fragment_list_estate), EstateAdapter.OnIt
                         (activity as AppCompatActivity)
                             .supportActionBar?.setDisplayHomeAsUpEnabled(false)
                         val action =
-                            ListFragmentDirections.actionListFragmentToSimulatorFragment(R.string.toolbar_simulator.toString())
+                            ListFragmentDirections.actionListFragmentToSimulatorFragment()
                         findNavController().navigate(action)
                     }
 

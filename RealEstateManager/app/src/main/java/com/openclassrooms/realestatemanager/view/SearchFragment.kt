@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -25,6 +26,8 @@ class SearchFragment : Fragment(R.layout.fragment_search_estate) {
     private lateinit var binding: FragmentSearchEstateBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        (activity as AppCompatActivity?)!!.supportActionBar!!.title =
+            resources.getString(R.string.toolbar_search)
         binding = FragmentSearchEstateBinding.bind(view)
         setupUI()
 
@@ -33,7 +36,8 @@ class SearchFragment : Fragment(R.layout.fragment_search_estate) {
                 when (event) {
                     is SearchViewModel.SearchEvent.NavigateToListScreen -> {
                         clearFocusOnSearchClick()
-                        val action = SearchFragmentDirections.actionSearchFragmentToListFragment(event.search)
+                        val action =
+                            SearchFragmentDirections.actionSearchFragmentToListFragment(event.search)
                         findNavController().navigate(action)
                     }
                 }
@@ -112,7 +116,7 @@ class SearchFragment : Fragment(R.layout.fragment_search_estate) {
             }
 
             searchButton.setOnClickListener {
-               viewModel.getSearchEstate(viewModel.onSearchClick())
+                viewModel.getSearchEstate(viewModel.onSearchClick())
             }
         }
     }

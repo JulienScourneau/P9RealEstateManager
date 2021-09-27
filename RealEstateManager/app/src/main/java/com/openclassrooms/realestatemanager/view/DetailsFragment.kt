@@ -2,10 +2,8 @@ package com.openclassrooms.realestatemanager.view
 
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
+import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -14,7 +12,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.openclassrooms.realestatemanager.BuildConfig
 import com.openclassrooms.realestatemanager.R
-import com.openclassrooms.realestatemanager.data.Estate
 import com.openclassrooms.realestatemanager.data.EstateWithPhoto
 import com.openclassrooms.realestatemanager.data.Photo
 import com.openclassrooms.realestatemanager.databinding.FragmentDetailsEstateBinding
@@ -35,7 +32,8 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate),
     private lateinit var estate: EstateWithPhoto
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
+        (activity as AppCompatActivity?)!!.supportActionBar!!.title =
+            resources.getString(R.string.toolbar_details)
         binding = FragmentDetailsEstateBinding.bind(view)
 
         viewModel.estateWithPhoto.observe(viewLifecycleOwner) {
@@ -48,7 +46,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate),
                     is DetailsViewModel.DetailsEstateEvent.NavigateToEditEstateScreen -> {
                         val action =
                             DetailsFragmentDirections.actionDetailsFragmentToAddEditEstateFragment(
-                                event.estate, R.string.toolbar_edit_estate.toString()
+                                event.estate, resources.getString(R.string.toolbar_edit_estate)
                             )
                         findNavController().navigate(action)
                     }

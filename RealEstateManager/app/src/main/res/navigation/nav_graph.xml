@@ -9,7 +9,7 @@
         android:id="@+id/listFragment"
         android:name="com.openclassrooms.realestatemanager.view.ListFragment"
         android:label="fragment_list_estate"
-        tools:layout="@layout/fragment_list_estate" >
+        tools:layout="@layout/fragment_list_estate">
         <action
             android:id="@+id/action_listFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
@@ -33,22 +33,19 @@
         android:id="@+id/detailsFragment"
         android:name="com.openclassrooms.realestatemanager.view.DetailsFragment"
         android:label="fragment_details_estate"
-        tools:layout="@layout/fragment_details_estate" >
+        tools:layout="@layout/fragment_details_estate">
         <action
             android:id="@+id/action_detailsFragment_to_addEditEstateFragment"
             app:destination="@id/addEditEstateFragment" />
         <argument
             android:name="id"
             app:argType="long" />
-        <argument
-            android:name="title"
-            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/addEditEstateFragment"
         android:name="com.openclassrooms.realestatemanager.view.AddEditEstateFragment"
         android:label="fragment_add_edit_estate"
-        tools:layout="@layout/fragment_add_edit_estate" >
+        tools:layout="@layout/fragment_add_edit_estate">
         <argument
             android:name="estate"
             app:argType="com.openclassrooms.realestatemanager.data.EstateWithPhoto"
@@ -61,35 +58,25 @@
         android:id="@+id/searchFragment"
         android:name="com.openclassrooms.realestatemanager.view.SearchFragment"
         android:label="fragment_search_estate"
-        tools:layout="@layout/fragment_search_estate" >
+        tools:layout="@layout/fragment_search_estate">
         <action
             android:id="@+id/action_searchFragment_to_listFragment"
             app:destination="@id/listFragment"
             app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="true" />
-        <argument
-            android:name="title"
-            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"
         android:name="com.openclassrooms.realestatemanager.view.MapsFragment"
         android:label="fragment_maps"
-        tools:layout="@layout/fragment_maps" >
+        tools:layout="@layout/fragment_maps">
         <action
             android:id="@+id/action_mapsFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
-        <argument
-            android:name="title"
-            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/simulatorFragment"
         android:name="com.openclassrooms.realestatemanager.view.SimulatorFragment"
         android:label="fragment_simulator"
-        tools:layout="@layout/fragment_simulator" >
-        <argument
-            android:name="title"
-            app:argType="string" />
-    </fragment>
+        tools:layout="@layout/fragment_simulator" />
 </navigation>

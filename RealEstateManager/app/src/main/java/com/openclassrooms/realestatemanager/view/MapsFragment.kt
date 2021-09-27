@@ -5,6 +5,7 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -63,6 +64,8 @@ class MapsFragment : Fragment(R.layout.fragment_maps), GoogleMap.OnMarkerClickLi
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as AppCompatActivity?)!!.supportActionBar!!.title =
+            resources.getString(R.string.toolbar_maps)
         fusedLocation = LocationServices.getFusedLocationProviderClient(requireContext())
         viewModel.allEstate.observe(viewLifecycleOwner) {
             estateList = it
@@ -74,10 +77,7 @@ class MapsFragment : Fragment(R.layout.fragment_maps), GoogleMap.OnMarkerClickLi
                 when (event) {
                     is MapsViewModel.MapsEvent.NavigateToDetailsScreen -> {
                         val action =
-                            MapsFragmentDirections.actionMapsFragmentToDetailsFragment(
-                                event.id,
-                                R.string.toolbar_details.toString()
-                            )
+                            MapsFragmentDirections.actionMapsFragmentToDetailsFragment(event.id)
                         findNavController().navigate(action)
                     }
                 }
