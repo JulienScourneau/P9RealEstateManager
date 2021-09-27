@@ -2,6 +2,7 @@ package com.openclassrooms.realestatemanager.viewmodel
 
 import androidx.lifecycle.*
 import androidx.sqlite.db.SimpleSQLiteQuery
+import com.openclassrooms.realestatemanager.data.Estate
 import com.openclassrooms.realestatemanager.data.EstateWithPhoto
 import com.openclassrooms.realestatemanager.data.Search
 import com.openclassrooms.realestatemanager.repository.EstateRepository
@@ -44,6 +45,10 @@ class EstateViewModel @Inject constructor(
         estateEventChannel.send(EstateEvent.NavigateToMapScreen)
     }
 
+    fun onSimulatorClick() = viewModelScope.launch {
+        estateEventChannel.send(EstateEvent.NavigateToSimulatorScreen)
+    }
+
     fun onAddResult(result: Int, text: String) {
         when (result) {
             ADD_ESTATE_RESULT_OK -> showEstateAddedConfirmationMessage(text)
@@ -58,6 +63,7 @@ class EstateViewModel @Inject constructor(
         object NavigateToAddEstateScreen : EstateEvent()
         object NavigateToSearchScreen : EstateEvent()
         object NavigateToMapScreen : EstateEvent()
+        object NavigateToSimulatorScreen : EstateEvent()
         data class NavigateToDetailsScreen(val id: Long) : EstateEvent()
         data class ShowEstateAddedConfirmationMessage(val msg: String) : EstateEvent()
     }
