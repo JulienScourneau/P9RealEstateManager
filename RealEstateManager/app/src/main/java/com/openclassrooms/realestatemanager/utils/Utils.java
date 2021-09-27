@@ -5,7 +5,6 @@ import android.location.Geocoder;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.net.wifi.WifiManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -27,8 +26,6 @@ import com.openclassrooms.realestatemanager.data.Search;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.NumberFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Currency;
 import java.util.Date;
@@ -77,7 +74,7 @@ public class Utils {
         ConnectivityManager cm =
                 (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
-        return netInfo != null && netInfo.isConnectedOrConnecting();
+        return netInfo != null && netInfo.isConnected();
     }
 
     public static int getCategoryIndex(Spinner spinner, String category) {
@@ -168,7 +165,7 @@ public class Utils {
         return latLng;
     }
 
-    public static ArrayList<RealEstateAgent> getRealEstateAgent(){
+    public static ArrayList<RealEstateAgent> getRealEstateAgent() {
         ArrayList<RealEstateAgent> contactList = new ArrayList<>();
         contactList.add(new RealEstateAgent("Sandra Eberhardt", "0548872315"));
         contactList.add(new RealEstateAgent("Adelajda Rutkowska", "0561049730"));
