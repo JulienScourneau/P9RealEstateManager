@@ -60,14 +60,18 @@ class ListFragment : Fragment(R.layout.fragment_list_estate), EstateAdapter.OnIt
                         (activity as AppCompatActivity)
                             .supportActionBar?.setDisplayHomeAsUpEnabled(false)
                         val action =
-                            ListFragmentDirections.actionListFragmentToAddEditEstateFragment(null)
+                            ListFragmentDirections.actionListFragmentToAddEditEstateFragment(
+                                null,
+                                R.string.toolbar_add_estate.toString()
+                            )
                         findNavController().navigate(action)
                     }
 
                     is EstateViewModel.EstateEvent.NavigateToSearchScreen -> {
                         (activity as AppCompatActivity)
                             .supportActionBar?.setDisplayHomeAsUpEnabled(false)
-                        val action = ListFragmentDirections.actionListFragmentToSearchFragment()
+                        val action =
+                            ListFragmentDirections.actionListFragmentToSearchFragment(R.string.toolbar_search.toString())
                         findNavController().navigate(action)
                     }
 
@@ -75,7 +79,8 @@ class ListFragment : Fragment(R.layout.fragment_list_estate), EstateAdapter.OnIt
                         if (Utils.isInternetAvailable(requireContext())) {
                             (activity as AppCompatActivity)
                                 .supportActionBar?.setDisplayHomeAsUpEnabled(false)
-                            val action = ListFragmentDirections.actionListFragmentToMapsFragment()
+                            val action =
+                                ListFragmentDirections.actionListFragmentToMapsFragment(R.string.toolbar_maps.toString())
                             findNavController().navigate(action)
                         } else {
                             Toast.makeText(
@@ -90,14 +95,18 @@ class ListFragment : Fragment(R.layout.fragment_list_estate), EstateAdapter.OnIt
                         (activity as AppCompatActivity)
                             .supportActionBar?.setDisplayHomeAsUpEnabled(false)
                         val action =
-                            ListFragmentDirections.actionListFragmentToDetailsFragment(event.id)
+                            ListFragmentDirections.actionListFragmentToDetailsFragment(
+                                event.id,
+                                R.string.toolbar_details.toString()
+                            )
                         findNavController().navigate(action)
                     }
 
                     is EstateViewModel.EstateEvent.NavigateToSimulatorScreen -> {
                         (activity as AppCompatActivity)
                             .supportActionBar?.setDisplayHomeAsUpEnabled(false)
-                        val action = ListFragmentDirections.actionListFragmentToSimulatorFragment()
+                        val action =
+                            ListFragmentDirections.actionListFragmentToSimulatorFragment(R.string.toolbar_simulator.toString())
                         findNavController().navigate(action)
                     }
 
