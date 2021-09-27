@@ -40,22 +40,28 @@ class EstateAdapter(private val listener: OnItemClickListener) :
             }
         }
 
-        fun bind(estate: EstateWithPhoto) {
+        fun bind(estateWithPhoto: EstateWithPhoto) {
             binding.apply {
-                if (estate.photosList.isEmpty()) {
-                    Glide.with(itemView)
-                        .load(R.drawable.no_image_available)
-                        .apply(RequestOptions.centerCropTransform())
-                        .into(propertyItemImage)
-                } else {
-                    Glide.with(itemView)
-                        .load(estate.photosList[0].photoReference)
-                        .apply(RequestOptions.centerCropTransform())
-                        .into(propertyItemImage)
+                estateWithPhoto.apply {
+                    if (estateWithPhoto.photosList.isEmpty()) {
+                        Glide.with(itemView)
+                            .load(R.drawable.no_image_available)
+                            .apply(RequestOptions.centerCropTransform())
+                            .into(propertyItemImage)
+                    } else {
+                        Glide.with(itemView)
+                            .load(estateWithPhoto.photosList[0].photoReference)
+                            .apply(RequestOptions.centerCropTransform())
+                            .into(propertyItemImage)
+                    }
+                    estate.apply {
+                        propertyItemCategory.text = if (category.isNotBlank()) category else "N/A"
+                        propertyItemLocation.text =
+                            if (address.street.isNotBlank()) address.street else "N/A"
+                        propertyItemPrice.text =
+                            if (price.isNotBlank()) Utils.formatPrice(price) else "N/A"
+                    }
                 }
-                propertyItemCategory.text = estate.estate.category
-                propertyItemLocation.text = estate.estate.address.street
-                propertyItemPrice.text = Utils.formatPrice(estate.estate.price)
             }
         }
     }
