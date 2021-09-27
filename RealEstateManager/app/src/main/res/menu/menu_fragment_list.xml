@@ -17,6 +17,11 @@
         app:showAsAction="ifRoom|collapseActionView" />
 
     <item
+        android:id="@+id/action_simulator"
+        android:title="Simulateur"
+        app:showAsAction="never"/>
+
+    <item
         android:title="Convertion"
         app:showAsAction="never">
         <menu>
