@@ -49,7 +49,8 @@
             <EditText
                 android:id="@+id/amount_borrowed_edit_test"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="number"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -61,19 +62,22 @@
             <EditText
                 android:id="@+id/bring_edit_text"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="number"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Taux"
                 android:textSize="@dimen/text_size_title"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                />
 
             <EditText
                 android:id="@+id/rate_edit_text"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -100,11 +104,11 @@
                     android:id="@+id/duration_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="2 ans"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/btn_right"
                     app:layout_constraintStart_toEndOf="@+id/btn_left"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="2 ans" />
 
                 <ImageButton
                     android:id="@+id/btn_right"
@@ -136,9 +140,9 @@
 
             <TextView
                 android:id="@+id/result_text"
-                android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 tools:text="Coût total: 000 000 €" />
 
         </LinearLayout>
