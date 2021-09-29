@@ -3,6 +3,7 @@ package com.openclassrooms.realestatemanager.view
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.databinding.FragmentSimulatorBinding
@@ -21,14 +22,17 @@ class SimulatorFragment : Fragment(R.layout.fragment_simulator) {
 
     private fun setupUI() {
         var duration = 2
+        var amount = 0
+        var bring = 0
+        var rate = 0.0
         binding.apply {
-
 
             durationText.text = "$duration ans"
             if (duration != 1) {
                 btnLeft.setOnClickListener {
                     duration--
                     updateDuration(duration)
+                    //displayResult(duration, amount, bring, rate)
                 }
             } else {
                 btnLeft.isClickable = false
@@ -36,6 +40,19 @@ class SimulatorFragment : Fragment(R.layout.fragment_simulator) {
             btnRight.setOnClickListener {
                 duration++
                 updateDuration(duration)
+                //displayResult(duration, amount, bring, rate)
+            }
+
+            amountBorrowedEditTest.addTextChangedListener {
+                amount = it.toString().toInt()
+            }
+
+            bringEditText.addTextChangedListener {
+                bring = it.toString().toInt()
+            }
+
+            rateEditText.addTextChangedListener {
+                rate = it.toString().toDouble()
             }
         }
     }
