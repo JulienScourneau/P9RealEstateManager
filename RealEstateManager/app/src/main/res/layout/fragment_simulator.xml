@@ -42,7 +42,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Montant emprunter"
+                android:text="Montant total"
                 android:textSize="@dimen/text_size_title"
                 android:textStyle="bold" />
 
@@ -50,12 +50,13 @@
                 android:id="@+id/amount_borrowed_edit_test"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"/>
+                android:inputType="number"
+                tools:hint="200 000 €"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Apport"
+                android:text="Apport du client"
                 android:textSize="@dimen/text_size_title"
                 android:textStyle="bold" />
 
@@ -63,21 +64,22 @@
                 android:id="@+id/bring_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"/>
+                android:inputType="number"
+                tools:hint="50 000 €"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Taux"
                 android:textSize="@dimen/text_size_title"
-                android:textStyle="bold"
-                />
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/rate_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal"/>
+                android:inputType="numberDecimal"
+                tools:hint="2.2%"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -86,40 +88,12 @@
                 android:textSize="@dimen/text_size_title"
                 android:textStyle="bold" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <EditText
+                android:id="@+id/duration_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageButton
-                    android:id="@+id/btn_left"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_arrow_left_24"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/duration_text"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <TextView
-                    android:id="@+id/duration_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/btn_right"
-                    app:layout_constraintStart_toEndOf="@+id/btn_left"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="2 ans" />
-
-                <ImageButton
-                    android:id="@+id/btn_right"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_arrow_right_24"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/duration_text" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                android:inputType="number"
+                tools:hint="10 ans"/>
 
         </LinearLayout>
 
@@ -143,7 +117,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                tools:text="Coût total: 000 000 €" />
+                android:textSize="18sp"
+                tools:text="Mensualité de 1 000 € par mois" />
 
         </LinearLayout>
 
