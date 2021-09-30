@@ -7,6 +7,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.databinding.FragmentSimulatorBinding
+import kotlin.math.pow
 
 class SimulatorFragment : Fragment(R.layout.fragment_simulator) {
 
@@ -27,38 +28,52 @@ class SimulatorFragment : Fragment(R.layout.fragment_simulator) {
         var rate = 0.0
         binding.apply {
 
-            durationText.text = "$duration ans"
-            if (duration != 1) {
-                btnLeft.setOnClickListener {
-                    duration--
-                    updateDuration(duration)
-                    //displayResult(duration, amount, bring, rate)
-                }
-            } else {
-                btnLeft.isClickable = false
-            }
-            btnRight.setOnClickListener {
-                duration++
-                updateDuration(duration)
-                //displayResult(duration, amount, bring, rate)
-            }
-
             amountBorrowedEditTest.addTextChangedListener {
-                amount = it.toString().toInt()
+                if (it.toString().isNotBlank()) {
+                    amount = it.toString().toInt()
+                    displayResult(duration, amount, bring, rate)
+                } else {
+                    amount = 0
+                }
             }
 
             bringEditText.addTextChangedListener {
-                bring = it.toString().toInt()
+                if (it.toString().isNotBlank()) {
+                    bring = it.toString().toInt()
+                    displayResult(duration, amount, bring, rate)
+                } else {
+                    bring = 0
+                    displayResult(duration, amount, bring, rate)
+                }
             }
 
             rateEditText.addTextChangedListener {
-                rate = it.toString().toDouble()
+                if (it.toString().isNotBlank()) {
+                    rate = it.toString().toDouble()
+                    displayResult(duration, amount, bring, rate)
+                } else {
+                    rate = 0.0
+                }
             }
+
+            durationEditText.addTextChangedListener {
+                if (it.toString().isNotBlank()) {
+                    duration = it.toString().toInt()
+                    displayResult(duration, amount, bring, rate)
+                } else {
+                    duration = 0
+                }
+            }
+
         }
     }
 
-    private fun updateDuration(duration: Int) {
-        binding.durationText.text = "$duration ans"
+    private fun displayResult(duration: Int, amount: Int, bring: Int, rate: Double) {
+        val monthlyRate = (1 + (rate / 100)).pow( 0.0833) - 1
+        val totalAmount = ((amount - bring) * monthlyRate * ((1 + monthlyRate).pow(duration * 12)))
+        val division = ((1 + monthlyRate).pow(duration * 12)) - 1
+        val monthlyPayment = totalAmount / division
+        //var monthlyPayment = ((amount - bring) * monthlyRate * ((1 + monthlyRate) * (duration * 12))) / ((1 + monthlyRate) * (duration * 12)) - 1
+        binding.resultText.text = "Mensualité ${monthlyPayment.toInt()} par mois"
     }
-
 }
