@@ -69,11 +69,14 @@ class SimulatorFragment : Fragment(R.layout.fragment_simulator) {
     }
 
     private fun displayResult(duration: Int, amount: Int, bring: Int, rate: Double) {
-        val monthlyRate = (1 + (rate / 100)).pow( 0.0833) - 1
-        val totalAmount = ((amount - bring) * monthlyRate * ((1 + monthlyRate).pow(duration * 12)))
-        val division = ((1 + monthlyRate).pow(duration * 12)) - 1
-        val monthlyPayment = totalAmount / division
-        //var monthlyPayment = ((amount - bring) * monthlyRate * ((1 + monthlyRate) * (duration * 12))) / ((1 + monthlyRate) * (duration * 12)) - 1
-        binding.resultText.text = "Mensualité ${monthlyPayment.toInt()} par mois"
+        if (duration != 0 || amount != 0 || rate.toInt() != 0) {
+            val monthlyRate = (1 + (rate / 100)).pow(0.0833) - 1
+            val totalAmount =
+                ((amount - bring) * monthlyRate * ((1 + monthlyRate).pow(duration * 12)))
+            val division = ((1 + monthlyRate).pow(duration * 12)) - 1
+            val monthlyPayment = totalAmount / division
+            val formatted = String.format("%.2f", monthlyPayment)
+            binding.resultText.text = "Mensualité: $formatted € par mois"
+        }
     }
 }
