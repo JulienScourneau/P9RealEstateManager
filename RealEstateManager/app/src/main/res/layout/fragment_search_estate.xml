@@ -24,23 +24,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
                 android:background="@drawable/rounded_corner"
-                android:gravity="center_horizontal"
-                android:padding="8dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Recherche de bien"
-                    android:textSize="28sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:background="@drawable/rounded_corner"
                 android:orientation="vertical"
                 android:padding="12dp">
 
@@ -48,8 +31,8 @@
                     android:id="@+id/search_category"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Catégorie de bien"
-                    android:textSize="@dimen/text_size_title"
+                    android:text="@string/search_category_text"
+                    android:textSize="@dimen/estate_title_text_size"
                     android:textStyle="bold" />
 
                 <View
@@ -82,8 +65,8 @@
                         android:id="@+id/address_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Adresse"
-                        android:textSize="@dimen/text_size_title"
+                        android:text="@string/search_address_text"
+                        android:textSize="@dimen/estate_title_text_size"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="@id/expand_address"
                         app:layout_constraintStart_toStartOf="parent"
@@ -95,7 +78,8 @@
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_baseline_expand_more_36"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/layout_address"
@@ -129,7 +113,8 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:ellipsize="end"
-                                android:hint="Ville"
+                                android:hint="@string/search_city_edit_text"
+                                android:importantForAutofill="no"
                                 android:inputType="text"
                                 android:maxLines="1" />
 
@@ -139,12 +124,12 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:ellipsize="end"
-                                android:hint="Code Postal"
+                                android:hint="@string/search_postal_code_edit_text"
+                                android:importantForAutofill="no"
                                 android:inputType="number"
                                 android:maxLines="1" />
 
                         </LinearLayout>
-
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -163,8 +148,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Prix"
-                    android:textSize="@dimen/text_size_title"
+                    android:text="@string/search_price_text"
+                    android:textSize="@dimen/estate_title_text_size"
                     android:textStyle="bold" />
 
                 <View
@@ -183,7 +168,8 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:ellipsize="end"
-                        android:hint="Prix minimum"
+                        android:hint="@string/search_min_price_edit_text"
+                        android:importantForAutofill="no"
                         android:inputType="number"
                         android:maxLength="11"
                         android:maxLines="1" />
@@ -194,7 +180,8 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:ellipsize="end"
-                        android:hint="Prix maximum"
+                        android:hint="@string/search_max_price_edit_text"
+                        android:importantForAutofill="no"
                         android:inputType="number"
                         android:maxLength="11"
                         android:maxLines="1" />
@@ -214,8 +201,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Surface"
-                    android:textSize="@dimen/text_size_title"
+                    android:text="@string/search_area_text"
+                    android:textSize="@dimen/estate_title_text_size"
                     android:textStyle="bold" />
 
                 <View
@@ -234,7 +221,8 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:ellipsize="end"
-                        android:hint="Surface minimum"
+                        android:hint="@string/search_min_area_edit_text"
+                        android:importantForAutofill="no"
                         android:inputType="number"
                         android:maxLength="11"
                         android:maxLines="1" />
@@ -245,7 +233,8 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:ellipsize="end"
-                        android:hint="Surface maximum"
+                        android:hint="@string/search_max_area_edit_text"
+                        android:importantForAutofill="no"
                         android:inputType="number"
                         android:maxLength="11"
                         android:maxLines="1" />
@@ -265,8 +254,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Chambre"
-                    android:textSize="@dimen/text_size_title"
+                    android:text="@string/search_bedroom_text"
+                    android:textSize="@dimen/estate_title_text_size"
                     android:textStyle="bold" />
 
                 <View
@@ -285,7 +274,8 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:ellipsize="end"
-                        android:hint="Chambre minimum"
+                        android:hint="@string/search_min_bedroom_edit_text"
+                        android:importantForAutofill="no"
                         android:inputType="number"
                         android:maxLength="11"
                         android:maxLines="1" />
@@ -296,7 +286,8 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:ellipsize="end"
-                        android:hint="Chambre maximum"
+                        android:hint="@string/search_max_bedroom_edit_text"
+                        android:importantForAutofill="no"
                         android:inputType="number"
                         android:maxLength="11"
                         android:maxLines="1" />
@@ -316,8 +307,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Salle de bain"
-                    android:textSize="@dimen/text_size_title"
+                    android:text="@string/search_bathroom_text"
+                    android:textSize="@dimen/estate_title_text_size"
                     android:textStyle="bold" />
 
                 <View
@@ -336,7 +327,8 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:ellipsize="end"
-                        android:hint="Salle de bain minimum"
+                        android:hint="@string/search_min_bathroom_edit_text"
+                        android:importantForAutofill="no"
                         android:inputType="number"
                         android:maxLength="11"
                         android:maxLines="1" />
@@ -347,7 +339,8 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:ellipsize="end"
-                        android:hint="Salle de bain maximum"
+                        android:importantForAutofill="no"
+                        android:hint="@string/search_max_bathroom_edit_text"
                         android:inputType="number"
                         android:maxLength="11"
                         android:maxLines="1" />
@@ -368,14 +361,13 @@
                     android:id="@+id/POI_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Point d'intérets"
-                    android:textSize="@dimen/text_size_title"
+                    android:text="@string/search_poi_text"
+                    android:textSize="@dimen/estate_title_text_size"
                     android:textStyle="bold" />
 
                 <View
                     android:id="@+id/POI_divider"
                     style="@style/Divider"
-                    android:layout_below="@+id/address_text"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp" />
 
@@ -387,7 +379,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="École et collège"
+                        android:text="@string/search_school_text"
                         app:layout_constraintBottom_toBottomOf="@+id/expand_school"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -407,7 +399,8 @@
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_baseline_expand_more_36"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/layout_school"
@@ -428,19 +421,19 @@
                                 android:id="@+id/indifferent_school"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Indifférent" />
+                                android:text="@string/search_indifferent_text" />
 
                             <RadioButton
                                 android:id="@+id/with_school"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Avec" />
+                                android:text="@string/search_with_text" />
 
                             <RadioButton
                                 android:id="@+id/without_school"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Sans" />
+                                android:text="@string/search_without_text" />
 
                         </RadioGroup>
 
@@ -456,7 +449,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Commerce local"
+                        android:text="@string/search_local_commerce_text"
                         app:layout_constraintBottom_toBottomOf="@id/expand_local_commerce"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -476,7 +469,8 @@
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_baseline_expand_more_36"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/layout_local_commerce"
@@ -497,19 +491,19 @@
                                 android:id="@+id/indifferent_local_commerce"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Indifférent" />
+                                android:text="@string/search_indifferent_text" />
 
                             <RadioButton
                                 android:id="@+id/with_local_commerce"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Avec" />
+                                android:text="@string/search_with_text" />
 
                             <RadioButton
                                 android:id="@+id/without_local_commerce"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Sans" />
+                                android:text="@string/search_without_text" />
 
                         </RadioGroup>
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -524,7 +518,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Parc et espace vert"
+                        android:text="@string/search_park_text"
                         app:layout_constraintBottom_toBottomOf="@id/expand_park"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -544,7 +538,8 @@
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_baseline_expand_more_36"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/layout_park"
@@ -565,19 +560,19 @@
                                 android:id="@+id/indifferent_park"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Indifférent" />
+                                android:text="@string/search_indifferent_text" />
 
                             <RadioButton
                                 android:id="@+id/with_park"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Avec" />
+                                android:text="@string/search_with_text" />
 
                             <RadioButton
                                 android:id="@+id/without_park"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Sans" />
+                                android:text="@string/search_without_text" />
 
                         </RadioGroup>
 
@@ -593,7 +588,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Transport en commun"
+                        android:text="@string/search_public_transport_text"
                         app:layout_constraintBottom_toBottomOf="@+id/expand_public_transport"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -613,7 +608,8 @@
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_baseline_expand_more_36"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/layout_public_transport"
@@ -634,19 +630,19 @@
                                 android:id="@+id/indifferent_public_transport"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Indifférent" />
+                                android:text="@string/search_indifferent_text" />
 
                             <RadioButton
                                 android:id="@+id/with_public_transport"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Avec" />
+                                android:text="@string/search_with_text" />
 
                             <RadioButton
                                 android:id="@+id/without_public_transport"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Sans" />
+                                android:text="@string/search_without_text" />
 
                         </RadioGroup>
 
@@ -662,14 +658,15 @@
                 android:layout_margin="4dp"
                 android:background="@drawable/rounded_corner"
                 android:orientation="vertical"
-                android:padding="12dp">
+                android:padding="12dp"
+                tools:ignore="TooManyViews">
 
                 <TextView
                     android:id="@+id/search_photo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Photo"
-                    android:textSize="@dimen/text_size_title"
+                    android:text="@string/search_photo_text"
+                    android:textSize="@dimen/estate_title_text_size"
                     android:textStyle="bold" />
 
                 <View
@@ -681,7 +678,7 @@
                     android:id="@+id/photo_checkbox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Doit contenir au moins une photo" />
+                    android:text="@string/search_min_photo_text" />
 
             </LinearLayout>
 
@@ -696,8 +693,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Date"
-                    android:textSize="@dimen/text_size_title"
+                    android:text="@string/search_date_text"
+                    android:textSize="@dimen/estate_title_text_size"
                     android:textStyle="bold" />
 
                 <View
@@ -711,7 +708,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="A partir du: 02/12/2021"
+                    android:text="@string/search_since_text"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                 <ImageButton
@@ -740,8 +737,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Recherche"
-                    android:textSize="@dimen/text_size_title"
+                    android:text="@string/search_button_text"
+                    android:textSize="@dimen/estate_title_text_size"
                     android:textStyle="bold" />
 
             </LinearLayout>
