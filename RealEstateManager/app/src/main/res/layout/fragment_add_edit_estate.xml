@@ -38,8 +38,8 @@
                     android:id="@+id/category_spinner_divider"
                     style="@style/Divider"
                     android:layout_below="@+id/category_text"
-                    android:layout_marginTop="@dimen/add_edit_estate_divider_margin"
-                    android:layout_marginBottom="@dimen/add_edit_estate_divider_margin" />
+                    android:layout_marginTop="@dimen/estate_divider_margin"
+                    android:layout_marginBottom="@dimen/estate_divider_margin" />
 
                 <Spinner
                     android:id="@+id/category_spinner"
@@ -70,8 +70,8 @@
                     android:id="@+id/top_address_divider"
                     style="@style/Divider"
                     android:layout_below="@+id/address_text"
-                    android:layout_marginTop="@dimen/add_edit_estate_divider_margin"
-                    android:layout_marginBottom="@dimen/add_edit_estate_divider_margin" />
+                    android:layout_marginTop="@dimen/estate_divider_margin"
+                    android:layout_marginBottom="@dimen/estate_divider_margin" />
 
                 <TextView
                     android:id="@+id/street_text"
@@ -183,8 +183,8 @@
 
                 <View
                     style="@style/Divider"
-                    android:layout_marginTop="@dimen/add_edit_estate_divider_margin"
-                    android:layout_marginBottom="@dimen/add_edit_estate_divider_margin" />
+                    android:layout_marginTop="@dimen/estate_divider_margin"
+                    android:layout_marginBottom="@dimen/estate_divider_margin" />
 
                 <EditText
                     android:id="@+id/price_edit_text"
@@ -215,8 +215,8 @@
 
                 <View
                     style="@style/Divider"
-                    android:layout_marginTop="@dimen/add_edit_estate_divider_margin"
-                    android:layout_marginBottom="@dimen/add_edit_estate_divider_margin" />
+                    android:layout_marginTop="@dimen/estate_divider_margin"
+                    android:layout_marginBottom="@dimen/estate_divider_margin" />
 
                 <TextView
                     android:id="@+id/area_text"
@@ -303,8 +303,8 @@
 
                 <View
                     style="@style/Divider"
-                    android:layout_marginTop="@dimen/add_edit_estate_divider_margin"
-                    android:layout_marginBottom="@dimen/add_edit_estate_divider_margin" />
+                    android:layout_marginTop="@dimen/estate_divider_margin"
+                    android:layout_marginBottom="@dimen/estate_divider_margin" />
 
                 <EditText
                     android:id="@+id/description_edit_text"
@@ -337,8 +337,8 @@
                 <View
                     android:id="@+id/POI_divider"
                     style="@style/Divider"
-                    android:layout_marginTop="@dimen/add_edit_estate_divider_margin"
-                    android:layout_marginBottom="@dimen/add_edit_estate_divider_margin" />
+                    android:layout_marginTop="@dimen/estate_divider_margin"
+                    android:layout_marginBottom="@dimen/estate_divider_margin" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -400,8 +400,8 @@
 
                 <View
                     style="@style/Divider"
-                    android:layout_marginTop="@dimen/add_edit_estate_divider_margin"
-                    android:layout_marginBottom="@dimen/add_edit_estate_divider_margin" />
+                    android:layout_marginTop="@dimen/estate_divider_margin"
+                    android:layout_marginBottom="@dimen/estate_divider_margin" />
 
                 <Spinner
                     android:id="@+id/contact_spinner"
@@ -431,8 +431,8 @@
                 <View
                     android:id="@+id/date_divider"
                     style="@style/Divider"
-                    android:layout_marginTop="@dimen/add_edit_estate_divider_margin"
-                    android:layout_marginBottom="@dimen/add_edit_estate_divider_margin"
+                    android:layout_marginTop="@dimen/estate_divider_margin"
+                    android:layout_marginBottom="@dimen/estate_divider_margin"
                     app:layout_constraintBottom_toTopOf="@id/date_text"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/date_title" />
@@ -505,8 +505,8 @@
 
                 <View
                     style="@style/Divider"
-                    android:layout_marginTop="@dimen/add_edit_estate_divider_margin"
-                    android:layout_marginBottom="@dimen/add_edit_estate_divider_margin" />
+                    android:layout_marginTop="@dimen/estate_divider_margin"
+                    android:layout_marginBottom="@dimen/estate_divider_margin" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -536,8 +536,8 @@
                 <View
                     android:id="@+id/photo_divider"
                     style="@style/Divider"
-                    android:layout_marginTop="@dimen/add_edit_estate_divider_margin"
-                    android:layout_marginBottom="@dimen/add_edit_estate_divider_margin" />
+                    android:layout_marginTop="@dimen/estate_divider_margin"
+                    android:layout_marginBottom="@dimen/estate_divider_margin" />
 
                 <androidx.viewpager.widget.ViewPager
                     android:id="@+id/add_edit_viewpager"
