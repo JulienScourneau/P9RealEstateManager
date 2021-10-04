@@ -30,7 +30,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
-                    android:text="@string/add_edit_activity_category_text"
+                    android:text="@string/add_edit_fragment_category_text"
                     android:textSize="@dimen/estate_title_text_size"
                     android:textStyle="bold" />
 
@@ -61,7 +61,7 @@
                     android:id="@+id/address_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/add_edit_activity_address_text"
+                    android:text="@string/add_edit_fragment_address_text"
                     android:textSize="@dimen/estate_title_text_size"
                     android:textStyle="bold" />
 
@@ -78,7 +78,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/top_address_divider"
-                    android:text="@string/add_edit_activity_street_text"
+                    android:text="@string/add_edit_fragment_street_text"
                     android:textSize="@dimen/estate_text_size" />
 
                 <EditText
@@ -87,14 +87,16 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/street_text"
                     android:importantForAutofill="no"
-                    android:textSize="@dimen/estate_edit_text_size" />
+                    android:inputType="text"
+                    android:textSize="@dimen/estate_edit_text_size"
+                    tools:ignore="LabelFor" />
 
                 <TextView
                     android:id="@+id/number_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/street_edit_text"
-                    android:text="@string/add_edit_activity_number_text"
+                    android:text="@string/add_edit_fragment_number_text"
                     android:textSize="@dimen/estate_text_size" />
 
                 <EditText
@@ -102,15 +104,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/number_text"
+                    android:autofillHints="no"
                     android:inputType="number"
-                    android:textSize="@dimen/estate_edit_text_size" />
+                    android:textSize="@dimen/estate_edit_text_size"
+                    tools:ignore="LabelFor" />
 
                 <TextView
                     android:id="@+id/city_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/number_edit_text"
-                    android:text="@string/add_edit_activity_city_text"
+                    android:text="@string/add_edit_fragment_city_text"
                     android:textSize="@dimen/estate_text_size" />
 
                 <EditText
@@ -118,14 +122,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/city_text"
-                    android:textSize="@dimen/estate_edit_text_size" />
+                    android:autofillHints="no"
+                    android:inputType="text"
+                    android:textSize="@dimen/estate_edit_text_size"
+                    tools:ignore="LabelFor" />
 
                 <TextView
                     android:id="@+id/country_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/city_edit_text"
-                    android:text="@string/add_edit_activity_country_text"
+                    android:text="@string/add_edit_fragment_country_text"
                     android:textSize="@dimen/estate_text_size" />
 
                 <EditText
@@ -133,14 +140,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/country_text"
-                    android:textSize="@dimen/estate_edit_text_size" />
+                    android:autofillHints="no"
+                    android:inputType="text"
+                    android:textSize="@dimen/estate_edit_text_size"
+                    tools:ignore="LabelFor" />
 
                 <TextView
                     android:id="@+id/postal_code_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/country_edit_text"
-                    android:text="@string/add_edit_activity_postal_code_text"
+                    android:text="@string/add_edit_fragment_postal_code_text"
                     android:textSize="@dimen/estate_text_size" />
 
                 <EditText
@@ -148,8 +158,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/postal_code_text"
+                    android:autofillHints="no"
                     android:inputType="number"
-                    android:textSize="@dimen/estate_edit_text_size" />
+                    android:textSize="@dimen/estate_edit_text_size"
+                    tools:ignore="LabelFor" />
 
             </RelativeLayout>
 
@@ -165,7 +177,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/add_edit_estate_layout_margin"
-                    android:text="@string/add_edit_activity_price_text"
+                    android:text="@string/add_edit_fragment_price_text"
                     android:textSize="@dimen/estate_title_text_size"
                     android:textStyle="bold" />
 
@@ -174,13 +186,14 @@
                     android:layout_marginTop="@dimen/add_edit_estate_divider_margin"
                     android:layout_marginBottom="@dimen/add_edit_estate_divider_margin" />
 
-
                 <EditText
                     android:id="@+id/price_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:autofillHints="no"
                     android:inputType="number"
-                    android:textSize="@dimen/estate_edit_text_size" />
+                    android:textSize="@dimen/estate_edit_text_size"
+                    tools:ignore="LabelFor" />
 
             </LinearLayout>
 
@@ -196,7 +209,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/add_edit_estate_layout_margin"
-                    android:text="Dimensions"
+                    android:text="@string/add_edit_fragment_dimension_text"
                     android:textSize="@dimen/estate_title_text_size"
                     android:textStyle="bold" />
 
@@ -209,58 +222,66 @@
                     android:id="@+id/area_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/add_edit_activity_area_text"
+                    android:text="@string/add_edit_fragment_area_text"
                     android:textSize="@dimen/estate_text_size" />
 
                 <EditText
                     android:id="@+id/area_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:autofillHints="no"
                     android:inputType="number"
-                    android:textSize="@dimen/estate_edit_text_size" />
+                    android:textSize="@dimen/estate_edit_text_size"
+                    tools:ignore="LabelFor" />
 
                 <TextView
                     android:id="@+id/room_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/add_edit_activity_room_text"
+                    android:text="@string/add_edit_fragment_room_text"
                     android:textSize="@dimen/estate_text_size" />
 
                 <EditText
                     android:id="@+id/room_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:autofillHints="no"
                     android:inputType="number"
-                    android:textSize="@dimen/estate_edit_text_size" />
+                    android:textSize="@dimen/estate_edit_text_size"
+                    tools:ignore="LabelFor" />
 
                 <TextView
                     android:id="@+id/bathroom_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/add_edit_activity_bathroom_text"
+                    android:text="@string/add_edit_fragment_bathroom_text"
                     android:textSize="@dimen/estate_text_size" />
 
                 <EditText
                     android:id="@+id/bathroom_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:autofillHints="no"
                     android:importantForAutofill="no"
                     android:inputType="number"
-                    android:textSize="@dimen/estate_edit_text_size" />
+                    android:textSize="@dimen/estate_edit_text_size"
+                    tools:ignore="LabelFor" />
 
                 <TextView
                     android:id="@+id/bedroom_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/add_edit_activity_bedroom_text"
+                    android:text="@string/add_edit_fragment_bedroom_text"
                     android:textSize="@dimen/estate_text_size" />
 
                 <EditText
                     android:id="@+id/bedroom_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:autofillHints="no"
                     android:inputType="number"
-                    android:textSize="@dimen/estate_edit_text_size" />
+                    android:textSize="@dimen/estate_edit_text_size"
+                    tools:ignore="LabelFor" />
 
             </LinearLayout>
 
@@ -276,7 +297,7 @@
                     android:id="@+id/description_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/description_text_details"
+                    android:text="@string/details_description_text"
                     android:textSize="@dimen/estate_title_text_size"
                     android:textStyle="bold" />
 
@@ -289,9 +310,11 @@
                     android:id="@+id/description_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:autofillHints="no"
                     android:ellipsize="end"
                     android:inputType="textMultiLine"
-                    android:textSize="@dimen/estate_edit_text_size" />
+                    android:textSize="@dimen/estate_edit_text_size"
+                    tools:ignore="LabelFor" />
 
             </LinearLayout>
 
@@ -307,14 +330,13 @@
                     android:id="@+id/POI_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Point d'intérets"
+                    android:text="@string/add_edit_fragment_poi_text"
                     android:textSize="@dimen/estate_title_text_size"
                     android:textStyle="bold" />
 
                 <View
                     android:id="@+id/POI_divider"
                     style="@style/Divider"
-                    android:layout_below="@+id/address_text"
                     android:layout_marginTop="@dimen/add_edit_estate_divider_margin"
                     android:layout_marginBottom="@dimen/add_edit_estate_divider_margin" />
 
@@ -328,14 +350,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="10"
-                        android:text="School" />
+                        android:text="@string/add_edit_fragment_school_text" />
 
                     <CheckBox
                         android:id="@+id/checkbox_local_commerce"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
-                        android:text="Local commerce" />
+                        android:text="@string/add_edit_fragment_local_commerce_text" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -348,14 +370,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="10"
-                        android:text="Park" />
+                        android:text="@string/add_edit_fragment_park_text" />
 
                     <CheckBox
                         android:id="@+id/checkbox_public_transport"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
-                        android:text="Public transport" />
+                        android:text="@string/add_edit_fragment_public_transport_text" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -372,7 +394,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/add_edit_estate_layout_margin"
-                    android:text="Contact"
+                    android:text="@string/add_edit_fragment_contact"
                     android:textSize="@dimen/estate_title_text_size"
                     android:textStyle="bold" />
 
@@ -400,7 +422,7 @@
                     android:id="@+id/date_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Mise en vente/ Vente"
+                    android:text="@string/add_edit_fragment_up_for_sale_text"
                     android:textSize="@dimen/estate_title_text_size"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
@@ -420,11 +442,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="Date: 02/12/2021"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     app:layout_constraintBottom_toTopOf="@id/update_date_button"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/date_divider" />
+                    app:layout_constraintTop_toBottomOf="@id/date_divider"
+                    tools:text="Date: 02/12/2021" />
 
                 <ImageButton
                     android:id="@+id/update_date_button"
@@ -448,7 +470,7 @@
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Vendu"
+                    android:text="@string/add_edit_fragment_sold_text"
                     app:layout_constraintBottom_toBottomOf="@id/checkbox_is_sold"
                     app:layout_constraintEnd_toStartOf="@id/checkbox_is_sold"
                     app:layout_constraintTop_toTopOf="@id/checkbox_is_sold" />
@@ -477,7 +499,7 @@
                     android:id="@+id/photo_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Photo"
+                    android:text="@string/add_edit_fragment_photo"
                     android:textSize="@dimen/estate_title_text_size"
                     android:textStyle="bold" />
 
@@ -520,8 +542,8 @@
                 <androidx.viewpager.widget.ViewPager
                     android:id="@+id/add_edit_viewpager"
                     android:layout_width="match_parent"
-                    android:visibility="gone"
-                    android:layout_height="@dimen/estate_details_viewpager" />
+                    android:layout_height="@dimen/estate_details_viewpager"
+                    android:visibility="gone" />
 
             </LinearLayout>
 
