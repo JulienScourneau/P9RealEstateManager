@@ -10,9 +10,9 @@
         android:id="@+id/media_item_img"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:contentDescription="@string/media_image"
         android:scaleType="centerCrop"
-        tools:src="@drawable/house" />
+        tools:src="@drawable/house"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:layout_margin="12dp"
@@ -22,6 +22,7 @@
         android:layout_gravity="top|end"
         android:src="@drawable/ic_baseline_delete_24"
         android:background="@color/white"
-        tools:viewBindingIgnore="true" />
+        tools:viewBindingIgnore="true"
+        tools:ignore="ContentDescription" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
