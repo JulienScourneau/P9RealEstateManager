@@ -34,7 +34,7 @@
             android:gravity="center_vertical"
             android:maxLines="1"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="@dimen/estate_text_size"
             tools:text="Fake_category" />
 
         <TextView
@@ -51,7 +51,7 @@
             android:gravity="center_vertical"
             android:maxLines="1"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="@dimen/estate_text_size"
             tools:text="Fake_location" />
 
         <TextView
@@ -68,7 +68,7 @@
             android:gravity="center_vertical"
             android:maxLines="1"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="@dimen/estate_item_price_text_size"
             android:textStyle="bold"
             tools:text="Fake_price" />
 
