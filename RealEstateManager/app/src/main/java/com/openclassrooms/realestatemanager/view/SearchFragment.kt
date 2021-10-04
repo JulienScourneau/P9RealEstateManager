@@ -51,7 +51,7 @@ class SearchFragment : Fragment(R.layout.fragment_search_estate) {
             textviewLocalCommerce.text = indifferentLocalCommerce.text
             textviewPark.text = indifferentPark.text
             textviewPublicTransport.text = indifferentPublicTransport.text
-            dateText.text = "A partir du: ${Utils.getTodayDate()}"
+            dateText.text = "A partir du: "
 
             searchCategorySpinner.onItemSelectedListener =
                 object : AdapterView.OnItemSelectedListener {
