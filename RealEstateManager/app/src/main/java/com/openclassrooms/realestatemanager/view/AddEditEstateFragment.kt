@@ -147,6 +147,7 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate),
             val pickImages =
                 registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
                     if (uri != null) {
+                        binding.addEditViewpager.visibility = View.VISIBLE
                         images.add(Utils.convertUriToPhoto(uri))
                         viewModel.estatePhoto = images
                         addEditViewpager.adapter?.notifyDataSetChanged()
@@ -156,6 +157,8 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate),
             val takePicture =
                 registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
                     if (success) {
+                        if (images.isEmpty())
+                            binding.addEditViewpager.visibility = View.VISIBLE
                         images.add(Utils.convertUriToPhoto(imageUri))
                         viewModel.estatePhoto = images
                         addEditViewpager.adapter?.notifyDataSetChanged()
@@ -210,6 +213,8 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate),
     }
 
     private fun setupPagerAdapter() {
+        if (viewModel.estatePhoto.isNotEmpty())
+            binding.addEditViewpager.visibility = View.VISIBLE
         val mediaAdapter = MediaAdapter(this, viewModel.estatePhoto, false)
         binding.addEditViewpager.adapter = mediaAdapter
         setHasOptionsMenu(true)
@@ -255,6 +260,8 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate),
         images.remove(photo)
         viewModel.estatePhoto = images
         binding.addEditViewpager.adapter?.notifyDataSetChanged()
+        if (images.isEmpty())
+            binding.addEditViewpager.visibility = View.GONE
     }
 
     private fun clearFocusOnSaveClick() {
