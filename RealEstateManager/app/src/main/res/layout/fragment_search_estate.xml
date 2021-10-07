@@ -15,17 +15,17 @@
             android:id="@+id/search_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="12dp"
+            android:layout_margin="@dimen/estate_details_main_layout_margin"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
+                android:layout_margin="@dimen/estate_details_layout_margin"
                 android:background="@drawable/rounded_corner"
                 android:orientation="vertical"
-                android:padding="12dp">
+                android:padding="@dimen/estate_details_main_layout_margin">
 
                 <TextView
                     android:id="@+id/search_category"
@@ -37,8 +37,8 @@
 
                 <View
                     style="@style/Divider"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp" />
+                    android:layout_marginTop="@dimen/estate_divider_margin"
+                    android:layout_marginBottom="@dimen/estate_divider_margin" />
 
                 <Spinner
                     android:id="@+id/search_category_spinner"
@@ -51,10 +51,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
+                android:layout_margin="@dimen/estate_details_layout_margin"
                 android:background="@drawable/rounded_corner"
                 android:orientation="vertical"
-                android:padding="12dp">
+                android:padding="@dimen/estate_details_main_layout_margin">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -93,8 +93,8 @@
                         <View
                             android:id="@+id/address_divider"
                             style="@style/Divider"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginBottom="8dp"
+                            android:layout_marginTop="@dimen/estate_divider_margin"
+                            android:layout_marginBottom="@dimen/estate_divider_margin"
                             app:layout_constraintBottom_toTopOf="@id/layout_address"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/address_linear_layout" />
@@ -140,10 +140,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
+                android:layout_margin="@dimen/estate_details_layout_margin"
                 android:background="@drawable/rounded_corner"
                 android:orientation="vertical"
-                android:padding="12dp">
+                android:padding="@dimen/estate_details_main_layout_margin">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -154,8 +154,8 @@
 
                 <View
                     style="@style/Divider"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp" />
+                    android:layout_marginTop="@dimen/estate_divider_margin"
+                    android:layout_marginBottom="@dimen/estate_divider_margin" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -193,10 +193,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
+                android:layout_margin="@dimen/estate_details_layout_margin"
                 android:background="@drawable/rounded_corner"
                 android:orientation="vertical"
-                android:padding="12dp">
+                android:padding="@dimen/estate_details_main_layout_margin">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -207,8 +207,8 @@
 
                 <View
                     style="@style/Divider"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp" />
+                    android:layout_marginTop="@dimen/estate_divider_margin"
+                    android:layout_marginBottom="@dimen/estate_divider_margin" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -246,10 +246,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
+                android:layout_margin="@dimen/estate_details_layout_margin"
                 android:background="@drawable/rounded_corner"
                 android:orientation="vertical"
-                android:padding="12dp">
+                android:padding="@dimen/estate_details_main_layout_margin">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -260,8 +260,8 @@
 
                 <View
                     style="@style/Divider"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp" />
+                    android:layout_marginTop="@dimen/estate_divider_margin"
+                    android:layout_marginBottom="@dimen/estate_divider_margin" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -299,10 +299,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
+                android:layout_margin="@dimen/estate_details_layout_margin"
                 android:background="@drawable/rounded_corner"
                 android:orientation="vertical"
-                android:padding="12dp">
+                android:padding="@dimen/estate_details_main_layout_margin">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -313,8 +313,8 @@
 
                 <View
                     style="@style/Divider"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp" />
+                    android:layout_marginTop="@dimen/estate_divider_margin"
+                    android:layout_marginBottom="@dimen/estate_divider_margin" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -352,10 +352,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
+                android:layout_margin="@dimen/estate_details_layout_margin"
                 android:background="@drawable/rounded_corner"
                 android:orientation="vertical"
-                android:padding="12dp">
+                android:padding="@dimen/estate_details_main_layout_margin">
 
                 <TextView
                     android:id="@+id/POI_text"
@@ -368,8 +368,8 @@
                 <View
                     android:id="@+id/POI_divider"
                     style="@style/Divider"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp" />
+                    android:layout_marginTop="@dimen/estate_divider_margin"
+                    android:layout_marginBottom="@dimen/estate_divider_margin" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -655,10 +655,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
+                android:layout_margin="@dimen/estate_details_layout_margin"
                 android:background="@drawable/rounded_corner"
                 android:orientation="vertical"
-                android:padding="12dp"
+                android:padding="@dimen/estate_details_main_layout_margin"
                 tools:ignore="TooManyViews">
 
                 <TextView
@@ -671,8 +671,8 @@
 
                 <View
                     style="@style/Divider"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp" />
+                    android:layout_marginTop="@dimen/estate_divider_margin"
+                    android:layout_marginBottom="@dimen/estate_divider_margin" />
 
                 <CheckBox
                     android:id="@+id/photo_checkbox"
@@ -685,10 +685,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
+                android:layout_margin="@dimen/estate_details_layout_margin"
                 android:background="@drawable/rounded_corner"
                 android:orientation="vertical"
-                android:padding="12dp">
+                android:padding="@dimen/estate_details_main_layout_margin">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -700,14 +700,14 @@
                 <View
                     android:id="@+id/date_divider"
                     style="@style/Divider"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp" />
+                    android:layout_marginTop="@dimen/estate_divider_margin"
+                    android:layout_marginBottom="@dimen/estate_divider_margin" />
 
                 <TextView
                     android:id="@+id/date_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="@dimen/estate_divider_margin"
                     android:text="@string/search_since_text"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
@@ -725,14 +725,14 @@
                 android:id="@+id/search_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="4dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginStart="@dimen/estate_details_layout_margin"
+                android:layout_marginTop="@dimen/estate_details_layout_margin"
+                android:layout_marginEnd="@dimen/estate_details_layout_margin"
+                android:layout_marginBottom="@dimen/estate_bottom_margin"
                 android:background="@drawable/rounded_corner"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
-                android:padding="12dp">
+                android:padding="@dimen/estate_details_main_layout_margin">
 
                 <TextView
                     android:layout_width="wrap_content"
