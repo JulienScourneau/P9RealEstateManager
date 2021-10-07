@@ -71,7 +71,7 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate),
         val adapter = ArrayAdapter.createFromResource(
             requireContext(),
             R.array.category_spinner,
-            android.R.layout.simple_spinner_dropdown_item
+            R.layout.spinner_item
         )
         binding.apply {
             categorySpinner.adapter = adapter
@@ -111,7 +111,7 @@ class AddEditEstateFragment : Fragment(R.layout.fragment_add_edit_estate),
         val adapter =
             ArrayAdapter(
                 requireContext(),
-                android.R.layout.simple_spinner_dropdown_item,
+                R.layout.spinner_item,
                 contactList
             )
         binding.apply {

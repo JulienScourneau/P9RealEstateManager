@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
@@ -52,7 +53,12 @@ class SearchFragment : Fragment(R.layout.fragment_search_estate) {
             textviewPark.text = indifferentPark.text
             textviewPublicTransport.text = indifferentPublicTransport.text
             dateText.text = "A partir du: "
-
+            val adapter = ArrayAdapter.createFromResource(
+                requireContext(),
+                R.array.category_spinner,
+                R.layout.spinner_item
+            )
+            searchCategorySpinner.adapter = adapter
             searchCategorySpinner.onItemSelectedListener =
                 object : AdapterView.OnItemSelectedListener {
                     override fun onItemSelected(
