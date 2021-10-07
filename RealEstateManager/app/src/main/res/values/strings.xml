@@ -2,32 +2,30 @@
     <string name="app_name">Real Estate Manager</string>
     <!-- TODO: Add string resources -->
 
-    <!-- PROPERTY ITEM RESOURCES -->
-    <string name="property_image">property_image</string>
-
-    <!-- MEDIA ITEM RESOURCES -->
-    <string name="media_image">media_image</string>
-
-    <!-- ESTATE DETAILS RESOURCES -->
-    <string name="location_text">Location</string>
-    <string name="media_text">Media</string>
-    <string name="description_text_details">Description</string>
-
     <!-- ADD EDIT ESTATE ACTIVITY RESOURCES -->
-    <string name="add_edit_activity_address_text">Adresse</string>
-    <string name="add_edit_activity_category_text">Catégorie</string>
-    <string name="add_edit_activity_street_text">Rue</string>
-    <string name="add_edit_activity_number_text">Numéro</string>
-    <string name="add_edit_activity_city_text">Ville</string>
-    <string name="add_edit_activity_country_text">Pays</string>
-    <string name="add_edit_activity_postal_code_text">Code Postal</string>
-    <string name="add_edit_activity_price_text">Prix</string>
-    <string name="add_edit_activity_area_text">Surface</string>
-    <string name="add_edit_activity_room_text">Pièce</string>
-    <string name="add_edit_activity_bathroom_text">Salle de bain</string>
-    <string name="add_edit_activity_bedroom_text">Chambre</string>
-    <string name="add_edit_activity_description_text">Description</string>
-
+    <string name="add_edit_fragment_address_text">Adresse</string>
+    <string name="add_edit_fragment_category_text">Catégorie</string>
+    <string name="add_edit_fragment_street_text">Rue</string>
+    <string name="add_edit_fragment_number_text">Numéro</string>
+    <string name="add_edit_fragment_city_text">Ville</string>
+    <string name="add_edit_fragment_country_text">Pays</string>
+    <string name="add_edit_fragment_postal_code_text">Code Postal</string>
+    <string name="add_edit_fragment_price_text">Prix</string>
+    <string name="add_edit_fragment_area_text">Surface</string>
+    <string name="add_edit_fragment_room_text">Pièce</string>
+    <string name="add_edit_fragment_bathroom_text">Salle de bain</string>
+    <string name="add_edit_fragment_bedroom_text">Chambre</string>
+    <string name="add_edit_fragment_description_text">Description</string>
+    <string name="add_edit_fragment_dimension_text">Dimension</string>
+    <string name="add_edit_fragment_poi_text">Point d\'intérets</string>
+    <string name="add_edit_fragment_school_text">School</string>
+    <string name="add_edit_fragment_local_commerce_text">Local commerce</string>
+    <string name="add_edit_fragment_park_text">Park</string>
+    <string name="add_edit_fragment_public_transport_text">Public transport</string>
+    <string name="add_edit_fragment_contact">Contact</string>
+    <string name="add_edit_fragment_up_for_sale_text">Mise en vente/ Vente</string>
+    <string name="add_edit_fragment_sold_text">Vendu</string>
+    <string name="add_edit_fragment_photo">Photo</string>
 
     <string-array name="category_spinner">
         <item> </item>
@@ -53,5 +51,60 @@
 
     <!-- SIMULATOR FRAGMENT RESOURCES -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- ESTATE DETAILS RESOURCES -->
+    <string name="details_address_text">Adresse</string>
+    <string name="details_media_text">Media</string>
+    <string name="details_description_text">Description</string>
+    <string name="details_area_text">Surface</string>
+    <string name="details_room_text">Pièce</string>
+    <string name="details_bathroom_text">Salle de bain</string>
+    <string name="details_bedroom_text">Chambre</string>
+    <string name="details_contact_text">Contact</string>
+    <string name="details_poi_text">Point d\'intérêt</string>
+    <string name="details_school_text">École</string>
+    <string name="details_local_commerce_text">Commerce Local</string>
+    <string name="details_public_transport_text">Transport en commun</string>
+    <string name="details_park_text">Parc et espace vert</string>
+    <string name="details_map_text">Carte</string>
+
+    <!-- ESTATE SEARCH RESOURCES -->
+    <string name="search_category_text">Catégorie de bien</string>
+    <string name="search_address_text">Adresse</string>
+    <string name="search_city_edit_text">Ville</string>
+    <string name="search_postal_code_edit_text">Code Postal</string>
+    <string name="search_price_text">Prix</string>
+    <string name="search_min_price_edit_text">Prix minimum</string>
+    <string name="search_max_price_edit_text">Prix maximum</string>
+    <string name="search_area_text">Surface</string>
+    <string name="search_min_area_edit_text">Surface minimum</string>
+    <string name="search_max_area_edit_text">Surface maximum</string>
+    <string name="search_bedroom_text">Chambre</string>
+    <string name="search_min_bedroom_edit_text">Chambre minimum</string>
+    <string name="search_max_bedroom_edit_text">Chambre maximum</string>
+    <string name="search_bathroom_text">Salle de bain</string>
+    <string name="search_min_bathroom_edit_text">Salle de bain minimum</string>
+    <string name="search_max_bathroom_edit_text">Salle de bain maximum</string>
+    <string name="search_poi_text">Point d\'intérets</string>
+    <string name="search_school_text">École et collège</string>
+    <string name="search_local_commerce_text">Commerce local</string>
+    <string name="search_park_text">Parc et espace vert</string>
+    <string name="search_public_transport_text">Transport en commun</string>
+    <string name="search_indifferent_text">Indifférent</string>
+    <string name="search_with_text">Avec</string>
+    <string name="search_without_text">Sans</string>
+    <string name="search_photo_text">Photo</string>
+    <string name="search_min_photo_text">Doit contenir au moins une photo</string>
+    <string name="search_date_text">Date</string>
+    <string name="search_button_text">Recherche</string>
+    <string name="search_since_text">A partir du:</string>
+
+    <!-- ESTATE SEARCH RESOURCES -->
+    <string name="simulation_title_text">Simulation de prêt</string>
+    <string name="simulation_total_amount_text">Montant total</string>
+    <string name="simulation_customer_bring_text">Apport du client</string>
+    <string name="simulation_rate_text">Taux</string>
+    <string name="simulation_duration_text">Durée</string>
+    <string name="simulation_result_text">Resultat</string>
 
 </resources>
