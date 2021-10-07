@@ -50,6 +50,7 @@
                     android:layout_height="0dp"
                     android:layout_margin="@dimen/estate_details_layout_margin"
                     android:layout_weight="1"
+                    android:textSize="@dimen/estate_text_size"
                     android:textStyle="bold"
                     tools:text="Apartments" />
             </LinearLayout>
@@ -84,6 +85,7 @@
                         android:layout_marginStart="@dimen/estate_details_icon_title_text_marginStart"
                         android:layout_toEndOf="@+id/details_area_img"
                         android:text="@string/details_area_text"
+                        android:textSize="@dimen/estate_text_size"
                         android:textStyle="bold" />
 
                     <TextView
@@ -93,6 +95,7 @@
                         android:layout_below="@id/details_area_text"
                         android:layout_alignStart="@+id/details_area_text"
                         android:layout_marginStart="@dimen/estate_details_layout_margin"
+                        android:textSize="@dimen/estate_details_text_size"
                         tools:text="600 m²" />
 
                     <ImageView
@@ -113,6 +116,7 @@
                         android:layout_marginTop="@dimen/estate_details_layout_margin"
                         android:layout_toEndOf="@+id/details_area_img"
                         android:text="@string/details_room_text"
+                        android:textSize="@dimen/estate_text_size"
                         android:textStyle="bold" />
 
                     <TextView
@@ -122,6 +126,7 @@
                         android:layout_below="@id/details_room_text"
                         android:layout_alignStart="@+id/details_area_text"
                         android:layout_marginStart="@dimen/estate_details_layout_margin"
+                        android:textSize="@dimen/estate_details_text_size"
                         tools:text="6" />
 
                     <ImageView
@@ -142,6 +147,7 @@
                         android:layout_marginTop="@dimen/estate_details_layout_margin"
                         android:layout_toEndOf="@+id/details_area_img"
                         android:text="@string/details_bathroom_text"
+                        android:textSize="@dimen/estate_text_size"
                         android:textStyle="bold" />
 
                     <TextView
@@ -151,6 +157,7 @@
                         android:layout_below="@id/details_bathroom_text"
                         android:layout_alignStart="@+id/details_area_text"
                         android:layout_marginStart="@dimen/estate_details_layout_margin"
+                        android:textSize="@dimen/estate_details_text_size"
                         tools:text="1" />
 
                     <ImageView
@@ -171,6 +178,7 @@
                         android:layout_marginTop="4dp"
                         android:layout_toEndOf="@+id/details_area_img"
                         android:text="@string/details_bedroom_text"
+                        android:textSize="@dimen/estate_text_size"
                         android:textStyle="bold" />
 
                     <TextView
@@ -180,6 +188,7 @@
                         android:layout_below="@id/details_bedroom_text"
                         android:layout_alignStart="@+id/details_area_text"
                         android:layout_marginStart="@dimen/estate_details_layout_margin"
+                        android:textSize="@dimen/estate_details_text_size"
                         tools:text="2" />
 
                 </RelativeLayout>
@@ -204,6 +213,7 @@
                         android:layout_marginStart="@dimen/estate_details_icon_title_text_marginStart"
                         android:layout_toEndOf="@+id/details_location_img"
                         android:text="@string/details_address_text"
+                        android:textSize="@dimen/estate_text_size"
                         android:textStyle="bold" />
 
                     <TextView
@@ -212,7 +222,9 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/details_location_text"
                         android:layout_alignStart="@+id/details_location_text"
-                        android:layout_marginStart="@dimen/estate_details_layout_margin" />
+                        android:layout_marginStart="@dimen/estate_details_layout_margin"
+                        android:textSize="@dimen/estate_details_text_size"
+                        tools:text="Fake address" />
 
                     <ImageView
                         android:id="@+id/details_contact_img"
@@ -232,6 +244,7 @@
                         android:layout_marginTop="@dimen/estate_details_layout_margin"
                         android:layout_toEndOf="@+id/details_contact_img"
                         android:text="@string/details_contact_text"
+                        android:textSize="@dimen/estate_text_size"
                         android:textStyle="bold" />
 
                     <TextView
@@ -241,6 +254,7 @@
                         android:layout_below="@id/details_contact_text"
                         android:layout_alignStart="@+id/details_contact_text"
                         android:layout_marginStart="@dimen/estate_details_layout_margin"
+                        android:textSize="@dimen/estate_details_text_size"
                         tools:text="Fake Name" />
 
                     <TextView
@@ -250,6 +264,7 @@
                         android:layout_below="@id/details_contact_name_data"
                         android:layout_alignStart="@+id/details_contact_text"
                         android:layout_marginStart="@dimen/estate_details_layout_margin"
+                        android:textSize="@dimen/estate_details_text_size"
                         tools:text="000.000.000" />
                 </RelativeLayout>
 
@@ -282,6 +297,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/estate_details_layout_margin"
+                    android:textSize="@dimen/estate_details_text_size"
                     tools:text="Fake Description on multiple line to avoid problem with textView" />
 
             </LinearLayout>
@@ -336,6 +352,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/estate_details_layout_margin"
                             android:text="@string/details_school_text"
+                            android:textSize="@dimen/estate_details_text_size"
                             android:textStyle="bold" />
                     </LinearLayout>
 
@@ -360,6 +377,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/estate_details_layout_margin"
                             android:text="@string/details_local_commerce_text"
+                            android:textSize="@dimen/estate_details_text_size"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
@@ -391,6 +409,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/estate_details_layout_margin"
                             android:text="@string/details_public_transport_text"
+                            android:textSize="@dimen/estate_details_text_size"
                             android:textStyle="bold" />
                     </LinearLayout>
 
@@ -415,6 +434,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/estate_details_layout_margin"
                             android:text="@string/details_park_text"
+                            android:textSize="@dimen/estate_details_text_size"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
@@ -444,6 +464,7 @@
                     android:layout_marginStart="@dimen/estate_item_text_margin_start"
                     android:layout_marginTop="@dimen/estate_details_layout_margin"
                     android:layout_toEndOf="@+id/details_sold_img"
+                    android:textSize="@dimen/estate_details_text_size"
                     android:textStyle="bold"
                     tools:text="En vente depuis:" />
 

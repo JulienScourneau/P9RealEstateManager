@@ -7,6 +7,7 @@
     <dimen name="estate_divider_margin">8dp</dimen>
     <dimen name="estate_list_padding">12dp</dimen>
     <dimen name="estate_bottom_margin">20dp</dimen>
+    <dimen name="estate_details_text_size">14sp</dimen>
 
     <!-- MEDIA ITEM RESOURCES -->
     <dimen name="media_item">60dp</dimen>
@@ -26,6 +27,8 @@
     <dimen name="margin_image_details">8dp</dimen>
     <dimen name="estate_details_icon_title_text_marginStart">8dp</dimen>
 
+
+
     <!-- ESTATE ITEM RESOURCES -->
     <dimen name="estate_item_margin">4dp</dimen>
     <dimen name="estate_item_image_height">120dp</dimen>
@@ -38,5 +41,4 @@
     <dimen name="add_edit_estate_main_layout_padding">12dp</dimen>
     <dimen name="add_edit_estate_layout_margin">4dp</dimen>
     <dimen name="add_edit_estate_bottom_margin">20dp</dimen>
-
 </resources>

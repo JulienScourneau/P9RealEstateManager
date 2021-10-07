@@ -7,6 +7,7 @@
     <dimen name="estate_divider_margin">12dp</dimen>
     <dimen name="estate_list_padding">16dp</dimen>
     <dimen name="estate_bottom_margin">30dp</dimen>
+    <dimen name="estate_details_text_size">18sp</dimen>
 
     <!-- MEDIA ITEM RESOURCES -->
     <dimen name="media_item">240dp</dimen>
@@ -17,7 +18,7 @@
     <dimen name="floating_action_button_margin">20dp</dimen>
 
     <!-- ESTATE DETAILS RESOURCES -->
-    <dimen name="estate_details_viewpager">240dp</dimen>
+    <dimen name="estate_details_viewpager">360dp</dimen>
     <dimen name="estate_details_main_layout_margin">12dp</dimen>
     <dimen name="estate_details_layout_margin">4dp</dimen>
     <dimen name="estate_details_layout_padding">12dp</dimen>
@@ -28,7 +29,7 @@
 
     <!-- ESTATE ITEM RESOURCES -->
     <dimen name="estate_item_margin">4dp</dimen>
-    <dimen name="estate_item_image_height">120dp</dimen>
+    <dimen name="estate_item_image_height">280dp</dimen>
     <dimen name="estate_item_text_margin_start">8dp</dimen>
     <dimen name="estate_item_text_margin_top_bottom">4dp</dimen>
     <dimen name="estate_item_price_text_size">20sp</dimen>
