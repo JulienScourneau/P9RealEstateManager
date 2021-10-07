@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:padding="12dp"
+        android:padding="@dimen/estate_list_padding"
         tools:listitem="@layout/estate_item" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
+        android:layout_margin="@dimen/floating_action_button_margin"
         android:src="@drawable/ic_baseline_add"
         android:tint="@color/white"
         tools:ignore="ContentDescription" />
