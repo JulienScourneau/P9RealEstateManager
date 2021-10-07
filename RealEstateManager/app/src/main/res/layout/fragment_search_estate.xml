@@ -116,7 +116,8 @@
                                 android:hint="@string/search_city_edit_text"
                                 android:importantForAutofill="no"
                                 android:inputType="text"
-                                android:maxLines="1" />
+                                android:maxLines="1"
+                                android:textSize="@dimen/estate_edit_text_size" />
 
                             <EditText
                                 android:id="@+id/edit_text_postal_code"
@@ -127,7 +128,8 @@
                                 android:hint="@string/search_postal_code_edit_text"
                                 android:importantForAutofill="no"
                                 android:inputType="number"
-                                android:maxLines="1" />
+                                android:maxLines="1"
+                                android:textSize="@dimen/estate_edit_text_size" />
 
                         </LinearLayout>
 
@@ -172,7 +174,8 @@
                         android:importantForAutofill="no"
                         android:inputType="number"
                         android:maxLength="11"
-                        android:maxLines="1" />
+                        android:maxLines="1"
+                        android:textSize="@dimen/estate_edit_text_size" />
 
                     <EditText
                         android:id="@+id/edit_text_maximum_price"
@@ -184,7 +187,8 @@
                         android:importantForAutofill="no"
                         android:inputType="number"
                         android:maxLength="11"
-                        android:maxLines="1" />
+                        android:maxLines="1"
+                        android:textSize="@dimen/estate_edit_text_size" />
 
                 </LinearLayout>
 
@@ -225,7 +229,8 @@
                         android:importantForAutofill="no"
                         android:inputType="number"
                         android:maxLength="11"
-                        android:maxLines="1" />
+                        android:maxLines="1"
+                        android:textSize="@dimen/estate_edit_text_size" />
 
                     <EditText
                         android:id="@+id/edit_text_maximum_area"
@@ -237,7 +242,8 @@
                         android:importantForAutofill="no"
                         android:inputType="number"
                         android:maxLength="11"
-                        android:maxLines="1" />
+                        android:maxLines="1"
+                        android:textSize="@dimen/estate_edit_text_size" />
 
                 </LinearLayout>
 
@@ -277,8 +283,8 @@
                         android:hint="@string/search_min_bedroom_edit_text"
                         android:importantForAutofill="no"
                         android:inputType="number"
-                        android:maxLength="11"
-                        android:maxLines="1" />
+                        android:maxLines="1"
+                        android:textSize="@dimen/estate_edit_text_size" />
 
                     <EditText
                         android:id="@+id/edit_text_maximum_bedroom"
@@ -290,7 +296,8 @@
                         android:importantForAutofill="no"
                         android:inputType="number"
                         android:maxLength="11"
-                        android:maxLines="1" />
+                        android:maxLines="1"
+                        android:textSize="@dimen/estate_edit_text_size" />
 
                 </LinearLayout>
 
@@ -331,7 +338,8 @@
                         android:importantForAutofill="no"
                         android:inputType="number"
                         android:maxLength="11"
-                        android:maxLines="1" />
+                        android:maxLines="1"
+                        android:textSize="@dimen/estate_edit_text_size" />
 
                     <EditText
                         android:id="@+id/edit_text_maximum_bathroom"
@@ -339,11 +347,12 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:ellipsize="end"
-                        android:importantForAutofill="no"
                         android:hint="@string/search_max_bathroom_edit_text"
+                        android:importantForAutofill="no"
                         android:inputType="number"
                         android:maxLength="11"
-                        android:maxLines="1" />
+                        android:maxLines="1"
+                        android:textSize="@dimen/estate_edit_text_size" />
 
                 </LinearLayout>
 
@@ -380,6 +389,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/search_school_text"
+                        android:textSize="@dimen/estate_details_text_size"
                         app:layout_constraintBottom_toBottomOf="@+id/expand_school"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -388,6 +398,7 @@
                         android:id="@+id/textview_school"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="@dimen/estate_details_text_size"
                         app:layout_constraintBottom_toBottomOf="@+id/expand_school"
                         app:layout_constraintEnd_toStartOf="@id/expand_school"
                         app:layout_constraintTop_toTopOf="parent"
@@ -450,6 +461,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/search_local_commerce_text"
+                        android:textSize="@dimen/estate_details_text_size"
                         app:layout_constraintBottom_toBottomOf="@id/expand_local_commerce"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -458,6 +470,7 @@
                         android:id="@+id/textview_local_commerce"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="@dimen/estate_details_text_size"
                         app:layout_constraintBottom_toBottomOf="@+id/expand_local_commerce"
                         app:layout_constraintEnd_toStartOf="@id/expand_local_commerce"
                         app:layout_constraintTop_toTopOf="parent"
@@ -519,6 +532,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/search_park_text"
+                        android:textSize="@dimen/estate_details_text_size"
                         app:layout_constraintBottom_toBottomOf="@id/expand_park"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -527,6 +541,7 @@
                         android:id="@+id/textview_park"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="@dimen/estate_details_text_size"
                         app:layout_constraintBottom_toBottomOf="@+id/expand_park"
                         app:layout_constraintEnd_toStartOf="@id/expand_park"
                         app:layout_constraintTop_toTopOf="parent"
@@ -589,6 +604,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/search_public_transport_text"
+                        android:textSize="@dimen/estate_details_text_size"
                         app:layout_constraintBottom_toBottomOf="@+id/expand_public_transport"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -597,6 +613,7 @@
                         android:id="@+id/textview_public_transport"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="@dimen/estate_details_text_size"
                         app:layout_constraintBottom_toBottomOf="@+id/expand_public_transport"
                         app:layout_constraintEnd_toStartOf="@id/expand_public_transport"
                         app:layout_constraintTop_toTopOf="parent"
@@ -677,6 +694,7 @@
                 <CheckBox
                     android:id="@+id/photo_checkbox"
                     android:layout_width="wrap_content"
+                    android:textSize="@dimen/estate_details_text_size"
                     android:layout_height="wrap_content"
                     android:text="@string/search_min_photo_text" />
 
@@ -709,6 +727,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/estate_divider_margin"
                     android:text="@string/search_since_text"
+                    android:textSize="@dimen/estate_text_size"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                 <ImageButton

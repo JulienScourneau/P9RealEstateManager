@@ -5,7 +5,7 @@
     <dimen name="estate_title_text_size">24sp</dimen>
     <dimen name="estate_edit_text_size">20sp</dimen>
     <dimen name="estate_divider_margin">12dp</dimen>
-    <dimen name="estate_list_padding">16dp</dimen>
+    <dimen name="estate_list_padding">12dp</dimen>
     <dimen name="estate_bottom_margin">30dp</dimen>
     <dimen name="estate_details_text_size">18sp</dimen>
 
