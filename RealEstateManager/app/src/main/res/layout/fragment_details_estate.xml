@@ -469,7 +469,7 @@
                     android:id="@+id/details_map_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
+                    android:layout_margin="@dimen/estate_details_layout_margin"
                     android:text="@string/details_map_text"
                     android:textSize="@dimen/estate_title_text_size"
                     android:textStyle="bold" />
