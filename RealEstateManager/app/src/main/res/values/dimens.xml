@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- REAL ESTATE MANAGER RESOURCES -->
+    <dimen name="estate_text_size">18sp</dimen>
+    <dimen name="estate_title_text_size">20sp</dimen>
+    <dimen name="estate_edit_text_size">16sp</dimen>
+    <dimen name="estate_divider_margin">8dp</dimen>
+    <dimen name="estate_list_padding">12dp</dimen>
+    <dimen name="estate_bottom_margin">20dp</dimen>
+
     <!-- MEDIA ITEM RESOURCES -->
     <dimen name="media_item">60dp</dimen>
     <dimen name="padding_linear_layout">8dp</dimen>
@@ -10,27 +18,25 @@
 
     <!-- ESTATE DETAILS RESOURCES -->
     <dimen name="estate_details_viewpager">200dp</dimen>
-    <dimen name="estate_details_linearlayout_margin">12dp</dimen>
-
-    <dimen name="text_size_title">20sp</dimen>
-    <dimen name="details_icon_padding">2dp</dimen>
+    <dimen name="estate_details_main_layout_margin">12dp</dimen>
+    <dimen name="estate_details_layout_margin">4dp</dimen>
+    <dimen name="estate_details_layout_padding">12dp</dimen>
+    <dimen name="estate_details_icon_padding">2dp</dimen>
     <dimen name="padding_layout_details">8dp</dimen>
     <dimen name="margin_image_details">8dp</dimen>
-    <dimen name="margin_media_text">4dp</dimen>
-    <dimen name="scrollView_width">0dp</dimen>
-    <dimen name="scrollView_height">80dp</dimen>
-    <dimen name="scrollView_media_margin">4dp</dimen>
-    <dimen name="description_text_margin">4dp</dimen>
-    <dimen name="icon_title_text_marginStart">8dp</dimen>
-    <dimen name="icon_text_marginStart">4dp</dimen>
-    <dimen name="icon_title_text_marginTop">4dp</dimen>
+    <dimen name="estate_details_icon_title_text_marginStart">8dp</dimen>
 
     <!-- ESTATE ITEM RESOURCES -->
     <dimen name="estate_item_margin">4dp</dimen>
     <dimen name="estate_item_image_height">120dp</dimen>
     <dimen name="estate_item_text_margin_start">8dp</dimen>
     <dimen name="estate_item_text_margin_top_bottom">4dp</dimen>
+    <dimen name="estate_item_price_text_size">20sp</dimen>
 
-
+    <!-- ADD EDIT ESTATE RESOURCES -->
+    <dimen name="add_edit_estate_main_layout_margin">12dp</dimen>
+    <dimen name="add_edit_estate_main_layout_padding">12dp</dimen>
+    <dimen name="add_edit_estate_layout_margin">4dp</dimen>
+    <dimen name="add_edit_estate_bottom_margin">20dp</dimen>
 
 </resources>
