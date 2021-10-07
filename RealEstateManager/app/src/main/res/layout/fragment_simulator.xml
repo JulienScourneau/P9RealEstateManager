@@ -10,17 +10,17 @@
         android:id="@+id/relative_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="12dp"
+        android:layout_margin="@dimen/estate_details_main_layout_margin"
         android:background="@color/colorSecondaryDark"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
+            android:layout_margin="@dimen/estate_details_layout_margin"
             android:background="@drawable/rounded_corner"
             android:gravity="center_horizontal"
-            android:padding="8dp">
+            android:padding="@dimen/estate_divider_margin">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -28,15 +28,16 @@
                 android:text="@string/simulation_title_text"
                 android:textSize="28sp"
                 android:textStyle="bold" />
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
+            android:layout_margin="@dimen/estate_details_layout_margin"
             android:background="@drawable/rounded_corner"
             android:orientation="vertical"
-            android:padding="8dp">
+            android:padding="@dimen/estate_divider_margin">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -51,6 +52,7 @@
                 android:layout_height="wrap_content"
                 android:autofillHints="no"
                 android:inputType="number"
+                android:textSize="@dimen/estate_edit_text_size"
                 tools:hint="200 000 €"
                 tools:ignore="LabelFor" />
 
@@ -67,6 +69,7 @@
                 android:layout_height="wrap_content"
                 android:autofillHints="no"
                 android:inputType="number"
+                android:textSize="@dimen/estate_edit_text_size"
                 tools:hint="50 000 €"
                 tools:ignore="LabelFor" />
 
@@ -83,6 +86,7 @@
                 android:layout_height="wrap_content"
                 android:autofillHints="no"
                 android:inputType="numberDecimal"
+                android:textSize="@dimen/estate_edit_text_size"
                 tools:hint="2.2%"
                 tools:ignore="LabelFor" />
 
@@ -99,6 +103,7 @@
                 android:layout_height="wrap_content"
                 android:autofillHints="no"
                 android:inputType="number"
+                android:textSize="@dimen/estate_edit_text_size"
                 tools:hint="10 ans"
                 tools:ignore="LabelFor" />
 
@@ -107,10 +112,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
+            android:layout_marginStart="@dimen/estate_details_layout_margin"
+            android:layout_marginTop="@dimen/estate_details_layout_margin"
+            android:layout_marginEnd="@dimen/estate_details_layout_margin"
+            android:layout_marginBottom="@dimen/estate_bottom_margin"
             android:background="@drawable/rounded_corner"
             android:orientation="vertical"
-            android:padding="8dp">
+            android:padding="@dimen/estate_divider_margin">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -124,7 +132,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textSize="18sp"
+                android:textSize="@dimen/estate_text_size"
                 tools:text="Mensualité de 1 000 € par mois" />
 
         </LinearLayout>
