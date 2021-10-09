@@ -432,18 +432,21 @@
                                 android:id="@+id/indifferent_school"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:textSize="@dimen/estate_search_radio_btn_text"
                                 android:text="@string/search_indifferent_text" />
 
                             <RadioButton
                                 android:id="@+id/with_school"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:textSize="@dimen/estate_search_radio_btn_text"
                                 android:text="@string/search_with_text" />
 
                             <RadioButton
                                 android:id="@+id/without_school"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:textSize="@dimen/estate_search_radio_btn_text"
                                 android:text="@string/search_without_text" />
 
                         </RadioGroup>
@@ -503,18 +506,21 @@
                             <RadioButton
                                 android:id="@+id/indifferent_local_commerce"
                                 android:layout_width="wrap_content"
+                                android:textSize="@dimen/estate_search_radio_btn_text"
                                 android:layout_height="wrap_content"
                                 android:text="@string/search_indifferent_text" />
 
                             <RadioButton
                                 android:id="@+id/with_local_commerce"
                                 android:layout_width="wrap_content"
+                                android:textSize="@dimen/estate_search_radio_btn_text"
                                 android:layout_height="wrap_content"
                                 android:text="@string/search_with_text" />
 
                             <RadioButton
                                 android:id="@+id/without_local_commerce"
                                 android:layout_width="wrap_content"
+                                android:textSize="@dimen/estate_search_radio_btn_text"
                                 android:layout_height="wrap_content"
                                 android:text="@string/search_without_text" />
 
@@ -575,17 +581,20 @@
                                 android:id="@+id/indifferent_park"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:textSize="@dimen/estate_search_radio_btn_text"
                                 android:text="@string/search_indifferent_text" />
 
                             <RadioButton
                                 android:id="@+id/with_park"
                                 android:layout_width="wrap_content"
+                                android:textSize="@dimen/estate_search_radio_btn_text"
                                 android:layout_height="wrap_content"
                                 android:text="@string/search_with_text" />
 
                             <RadioButton
                                 android:id="@+id/without_park"
                                 android:layout_width="wrap_content"
+                                android:textSize="@dimen/estate_search_radio_btn_text"
                                 android:layout_height="wrap_content"
                                 android:text="@string/search_without_text" />
 
@@ -647,18 +656,21 @@
                                 android:id="@+id/indifferent_public_transport"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:textSize="@dimen/estate_search_radio_btn_text"
                                 android:text="@string/search_indifferent_text" />
 
                             <RadioButton
                                 android:id="@+id/with_public_transport"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:textSize="@dimen/estate_search_radio_btn_text"
                                 android:text="@string/search_with_text" />
 
                             <RadioButton
                                 android:id="@+id/without_public_transport"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:textSize="@dimen/estate_search_radio_btn_text"
                                 android:text="@string/search_without_text" />
 
                         </RadioGroup>

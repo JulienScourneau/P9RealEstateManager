@@ -8,6 +8,7 @@
     <dimen name="estate_list_padding">12dp</dimen>
     <dimen name="estate_bottom_margin">20dp</dimen>
     <dimen name="estate_details_text_size">14sp</dimen>
+    <dimen name="estate_search_radio_btn_text">12sp</dimen>
 
     <!-- MEDIA ITEM RESOURCES -->
     <dimen name="media_item">60dp</dimen>
