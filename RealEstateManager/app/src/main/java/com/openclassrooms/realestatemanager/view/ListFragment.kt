@@ -143,14 +143,6 @@ class ListFragment : Fragment(R.layout.fragment_list_estate), EstateAdapter.OnIt
                 viewModel.onSimulatorClick()
                 true
             }
-            R.id.action_sort_euro -> {
-                Toast.makeText(requireContext(), "Euro click", Toast.LENGTH_SHORT).show()
-                true
-            }
-            R.id.action_sort_dollar -> {
-                Toast.makeText(requireContext(), "Dollar click", Toast.LENGTH_SHORT).show()
-                true
-            }
 
             else -> return super.onOptionsItemSelected(item)
         }

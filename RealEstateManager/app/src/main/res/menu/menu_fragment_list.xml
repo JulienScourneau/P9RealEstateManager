@@ -18,23 +18,7 @@
 
     <item
         android:id="@+id/action_simulator"
-        android:title="Simulateur"
-        app:showAsAction="never"/>
-
-    <item
-        android:title="Convertion"
-        app:showAsAction="never">
-        <menu>
-
-            <item
-                android:id="@+id/action_sort_euro"
-                android:title="Euro" />
-            <item
-                android:id="@+id/action_sort_dollar"
-                android:title="Dollar" />
-
-        </menu>
-
-    </item>
+        android:title="@string/menu_simulator"
+        app:showAsAction="never" />
 
 </menu>

@@ -39,6 +39,7 @@
     <string name="menu_edit_estate">Edit</string>
     <string name="menu_map">Map</string>
     <string name="menu_search_estate">Recherche</string>
+    <string name="menu_simulator">Simulateur</string>
 
     <!-- TOOLBAR RESOURCES -->
     <string name="toolbar_estate">Real Estate Manager</string>
