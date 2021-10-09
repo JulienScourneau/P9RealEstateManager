@@ -27,8 +27,6 @@
     <dimen name="margin_image_details">8dp</dimen>
     <dimen name="estate_details_icon_title_text_marginStart">8dp</dimen>
 
-
-
     <!-- ESTATE ITEM RESOURCES -->
     <dimen name="estate_item_margin">4dp</dimen>
     <dimen name="estate_item_image_height">120dp</dimen>

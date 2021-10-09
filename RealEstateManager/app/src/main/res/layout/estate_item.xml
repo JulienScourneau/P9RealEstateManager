@@ -5,7 +5,7 @@
     android:id="@+id/property_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="8dp"
+    android:layout_marginBottom="@dimen/estate_list_padding"
     app:cardCornerRadius="12dp">
 
     <RelativeLayout
