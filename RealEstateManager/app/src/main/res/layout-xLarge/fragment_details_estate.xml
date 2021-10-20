@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorSecondaryDark"
+    tools:context=".view.DetailsFragment">
+
+    <LinearLayout
+        android:id="@+id/relative_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorSecondaryDark"
+        android:orientation="vertical">
+
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/details_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/estate_details_viewpager" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/estate_details_main_layout_margin"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/linear_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/estate_details_main_layout_margin"
+                android:background="@drawable/rounded_corner"
+                android:orientation="vertical"
+                android:padding="@dimen/estate_details_layout_padding">
+
+                <TextView
+                    android:id="@+id/details_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/estate_details_layout_margin"
+                    android:textSize="@dimen/estate_title_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="700 000 €" />
+
+                <TextView
+                    android:id="@+id/details_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_margin="@dimen/estate_details_layout_margin"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/estate_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/details_price"
+                    tools:text="Apartments" />
+
+                <ImageView
+                    android:id="@+id/details_sold_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:padding="@dimen/estate_details_icon_padding"
+                    android:src="@drawable/baseline_event_black_24"
+                    app:layout_constraintStart_toStartOf="@id/price_guide_line"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/details_sold_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/estate_item_text_margin_start"
+                    android:textSize="@dimen/estate_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/details_sold_img"
+                    app:layout_constraintStart_toEndOf="@id/details_sold_img"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="En vente depuis:" />
+
+                <TextView
+                    android:id="@+id/details_sold_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/details_sold_text"
+                    android:layout_alignStart="@+id/details_sold_text"
+                    android:layout_marginStart="@dimen/estate_details_layout_margin"
+                    android:textSize="@dimen/estate_details_text_size"
+                    app:layout_constraintStart_toStartOf="@id/details_sold_text"
+                    app:layout_constraintTop_toBottomOf="@id/details_sold_text"
+                    tools:text="00/00/00" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/price_guide_line"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.50" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/global_information"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/estate_details_main_layout_margin"
+                android:background="@drawable/rounded_corner"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:padding="@dimen/padding_layout_details">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/details_area_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/estate_details_icon_padding"
+                        android:src="@drawable/baseline_settings_overscan_black_24"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/details_area_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/estate_details_icon_title_text_marginStart"
+                        android:layout_toEndOf="@+id/details_area_img"
+                        android:text="@string/details_area_text"
+                        android:textSize="@dimen/estate_text_size"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/details_area_data"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/details_area_text"
+                        android:layout_alignStart="@+id/details_area_text"
+                        android:layout_marginStart="@dimen/estate_details_layout_margin"
+                        android:textSize="@dimen/estate_details_text_size"
+                        tools:text="600 m²" />
+
+                    <ImageView
+                        android:id="@+id/details_room_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/details_area_data"
+                        android:padding="@dimen/estate_details_icon_padding"
+                        android:src="@drawable/baseline_home_black_24"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/details_room_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/details_area_data"
+                        android:layout_alignStart="@+id/details_area_text"
+                        android:layout_marginTop="@dimen/estate_details_layout_margin"
+                        android:layout_toEndOf="@+id/details_area_img"
+                        android:text="@string/details_room_text"
+                        android:textSize="@dimen/estate_text_size"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/details_room_data"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/details_room_text"
+                        android:layout_alignStart="@+id/details_area_text"
+                        android:layout_marginStart="@dimen/estate_details_layout_margin"
+                        android:textSize="@dimen/estate_details_text_size"
+                        tools:text="6" />
+
+                    <ImageView
+                        android:id="@+id/details_bathroom_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/details_room_data"
+                        android:padding="@dimen/estate_details_icon_padding"
+                        android:src="@drawable/baseline_hot_tub_black_24"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/details_bathroom_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/details_room_data"
+                        android:layout_alignStart="@+id/details_area_text"
+                        android:layout_marginTop="@dimen/estate_details_layout_margin"
+                        android:layout_toEndOf="@+id/details_area_img"
+                        android:text="@string/details_bathroom_text"
+                        android:textSize="@dimen/estate_text_size"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/details_bathroom_data"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/details_bathroom_text"
+                        android:layout_alignStart="@+id/details_area_text"
+                        android:layout_marginStart="@dimen/estate_details_layout_margin"
+                        android:textSize="@dimen/estate_details_text_size"
+                        tools:text="1" />
+
+                    <ImageView
+                        android:id="@+id/details_bedroom_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/details_bathroom_data"
+                        android:padding="@dimen/estate_details_icon_padding"
+                        android:src="@drawable/baseline_hotel_black_24"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/details_bedroom_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/details_bathroom_data"
+                        android:layout_alignStart="@+id/details_area_text"
+                        android:layout_marginTop="4dp"
+                        android:layout_toEndOf="@+id/details_area_img"
+                        android:text="@string/details_bedroom_text"
+                        android:textSize="@dimen/estate_text_size"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/details_bedroom_data"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/details_bedroom_text"
+                        android:layout_alignStart="@+id/details_area_text"
+                        android:layout_marginStart="@dimen/estate_details_layout_margin"
+                        android:textSize="@dimen/estate_details_text_size"
+                        tools:text="2" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/details_location_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/estate_details_icon_padding"
+                        android:src="@drawable/baseline_place_black_24"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/details_location_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/estate_details_icon_title_text_marginStart"
+                        android:layout_toEndOf="@+id/details_location_img"
+                        android:text="@string/details_address_text"
+                        android:textSize="@dimen/estate_text_size"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/details_location_data"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/details_location_text"
+                        android:layout_alignStart="@+id/details_location_text"
+                        android:layout_marginStart="@dimen/estate_details_layout_margin"
+                        android:textSize="@dimen/estate_details_text_size"
+                        tools:text="Fake address" />
+
+                    <ImageView
+                        android:id="@+id/details_contact_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/details_location_data"
+                        android:padding="@dimen/estate_details_icon_padding"
+                        android:src="@drawable/baseline_person_black_24"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/details_contact_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/details_location_data"
+                        android:layout_marginStart="@dimen/estate_details_icon_title_text_marginStart"
+                        android:layout_marginTop="@dimen/estate_details_layout_margin"
+                        android:layout_toEndOf="@+id/details_contact_img"
+                        android:text="@string/details_contact_text"
+                        android:textSize="@dimen/estate_text_size"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/details_contact_name_data"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/details_contact_text"
+                        android:layout_alignStart="@+id/details_contact_text"
+                        android:layout_marginStart="@dimen/estate_details_layout_margin"
+                        android:textSize="@dimen/estate_details_text_size"
+                        tools:text="Fake Name" />
+
+                    <TextView
+                        android:id="@+id/details_contact_phone_number_data"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/details_contact_name_data"
+                        android:layout_alignStart="@+id/details_contact_text"
+                        android:layout_marginStart="@dimen/estate_details_layout_margin"
+                        android:textSize="@dimen/estate_details_text_size"
+                        tools:text="000.000.000" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/estate_details_main_layout_margin"
+                android:background="@drawable/rounded_corner"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/details_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:text="@string/details_description_text"
+                    android:textSize="@dimen/estate_title_text_size"
+                    android:textStyle="bold" />
+
+                <View
+                    style="@style/Divider"
+                    android:layout_marginTop="@dimen/estate_divider_margin"
+                    android:layout_marginBottom="@dimen/estate_divider_margin" />
+
+                <TextView
+                    android:id="@+id/details_description_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/estate_details_layout_margin"
+                    android:textSize="@dimen/estate_details_text_size"
+                    tools:text="Fake Description on multiple line to avoid problem with textView" />
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/estate_details_main_layout_margin"
+                android:background="@drawable/rounded_corner"
+                android:orientation="vertical"
+                android:padding="@dimen/estate_divider_margin">
+
+                <TextView
+                    android:id="@+id/details_POI"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/estate_details_layout_margin"
+                    android:text="@string/details_poi_text"
+                    android:textSize="@dimen/estate_title_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:id="@+id/details_school_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/details_map_divider"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:padding="@dimen/estate_details_icon_padding"
+                        android:src="@drawable/ic_baseline_school_24"
+                        app:tint="@color/black"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/estate_details_layout_margin"
+                        android:text="@string/details_school_text"
+                        android:textSize="@dimen/estate_details_text_size"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/details_local_commerce_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/details_school_layout"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/estate_details_icon_padding"
+                        android:src="@drawable/ic_baseline_shopping_cart_24"
+                        app:tint="@color/black"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/estate_details_layout_margin"
+                        android:text="@string/details_local_commerce_text"
+                        android:textSize="@dimen/estate_details_text_size"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/details_public_transport_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/details_local_commerce_layout"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/estate_details_icon_padding"
+                        android:src="@drawable/ic_baseline_directions_bus_24"
+                        app:tint="@color/black"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/estate_details_layout_margin"
+                        android:text="@string/details_public_transport_text"
+                        android:textSize="@dimen/estate_details_text_size"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/details_park_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/details_public_transport_layout"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/estate_details_icon_padding"
+                        android:src="@drawable/ic_baseline_nature_people_24"
+                        app:tint="@color/black"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/estate_details_layout_margin"
+                        android:text="@string/details_park_text"
+                        android:textSize="@dimen/estate_details_text_size"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/details_map_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/estate_details_layout_margin"
+                    android:text="@string/details_map_text"
+                    android:textSize="@dimen/estate_title_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@id/poe_guide_line"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+
+                    android:id="@+id/details_map_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/poe_guide_line"
+                    app:layout_constraintTop_toBottomOf="@id/details_map_divider"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/ic_baseline_wrong_location_24" />
+
+                <View
+                    app:layout_constraintBottom_toTopOf="@id/details_map_image_view"
+                    android:layout_marginBottom="@dimen/estate_divider_margin"
+                    android:id="@+id/details_map_divider"
+                    style="@style/Divider"
+                    android:layout_marginTop="@dimen/estate_divider_margin"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/details_map_text" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/poe_guide_line"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.50" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
