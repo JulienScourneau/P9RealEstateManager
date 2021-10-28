@@ -35,6 +35,7 @@ class AddEditEstateViewModel @Inject constructor(
 
     private suspend fun createPhoto(photo: Photo) = viewModelScope.launch {
         repository.insertPhoto(photo)
+        Log.d("createPhoto","estateId: ${photo.estateId}")
     }
 
     private fun updateEstate(estate: Estate) = viewModelScope.launch {
@@ -132,15 +133,21 @@ class AddEditEstateViewModel @Inject constructor(
     }
 
     private suspend fun createPhotoOnSaveClick() {
-        if (estatePhoto.isNotEmpty()) {
-            job?.join()
-            for (i in estatePhoto.indices) {
-                val newPhoto = Photo(
-                    estateId = newId.toInt(),
-                    photoReference = estatePhoto[i].photoReference
-                )
-                createPhoto(newPhoto)
+        try {
+            if (estatePhoto.isNotEmpty()) {
+                job?.join()
+                for (i in estatePhoto.indices) {
+                    val newPhoto = Photo(
+                        estateId = newId.toInt(),
+                        photoReference = estatePhoto[i].photoReference
+                    )
+                    Log.d("createPhotoOnSaveClick","estateId: $newId")
+                    createPhoto(newPhoto)
+                }
             }
+        } catch (e: Exception) {
+            e.stackTrace
+            Log.d("createPhotoException", "$e")
         }
     }
 
@@ -207,6 +214,7 @@ class AddEditEstateViewModel @Inject constructor(
         } else {
             createEstateOnSaveClick()
             viewModelScope.launch {
+                job?.join()
                 createPhotoOnSaveClick()
             }
         }
