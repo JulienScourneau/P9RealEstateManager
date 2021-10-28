@@ -22,7 +22,7 @@ class SimulatorFragment : Fragment(R.layout.fragment_simulator) {
     }
 
     private fun setupUI() {
-        var duration = 2
+        var duration = 0
         var amount = 0
         var bring = 0
         var rate = 0.0

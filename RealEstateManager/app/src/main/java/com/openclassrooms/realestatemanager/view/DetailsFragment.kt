@@ -143,7 +143,6 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate),
             val latLng =
                 Utils.getLocationFromAddress(Utils.formatAddress(estate.estate.address), context)
             if (latLng != null) {
-
                 val url =
                     "https://maps.google.com/maps/api/staticmap?center=${latLng.latitude},${latLng.longitude}&zoom=16&size=200x200&scale=2&markers=color:red%7C${latLng.latitude},${latLng.longitude}&sensor=false&key=${BuildConfig.MAP_API_KEY}"
                 Glide.with(binding.detailsMapImageView)
@@ -151,9 +150,12 @@ class DetailsFragment : Fragment(R.layout.fragment_details_estate),
                     .apply(RequestOptions.centerInsideTransform())
                     .into(binding.detailsMapImageView)
                 Log.d(
-                    "updateUI", "url: $url"
+                    "setupMapView", "url: $url"
                 )
+            } else {
+                binding.detailsMapImageView.setImageResource(R.drawable.ic_baseline_wrong_location_24)
             }
+
         } else {
             binding.detailsMapImageView.setImageResource(R.drawable.ic_baseline_wrong_location_24)
         }
