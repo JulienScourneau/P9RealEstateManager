@@ -1,6 +1,7 @@
 package com.openclassrooms.realestatemanager.viewmodel
 
 import android.util.Log
+import androidx.datastore.preferences.protobuf.Empty
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,10 +10,9 @@ import com.openclassrooms.realestatemanager.repository.EstateRepository
 import com.openclassrooms.realestatemanager.utils.ADD_ESTATE_RESULT_OK
 import com.openclassrooms.realestatemanager.utils.EDIT_ESTATE_RESULT_OK
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
-import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
 
@@ -28,14 +28,16 @@ class AddEditEstateViewModel @Inject constructor(
     private var job: Job? = null
 
     private fun createEstate(estate: Estate) {
-        job = viewModelScope.launch {
+        job = GlobalScope.launch {
             newId = repository.insertEstate(estate)
         }
     }
 
-    private suspend fun createPhoto(photo: Photo) = viewModelScope.launch {
-        repository.insertPhoto(photo)
-        Log.d("createPhoto","estateId: ${photo.estateId}")
+    private fun createPhoto(photo: Photo) {
+        job = GlobalScope.launch {
+            repository.insertPhoto(photo)
+        }
+        Log.d("createPhoto", "estateId: ${photo.estateId}")
     }
 
     private fun updateEstate(estate: Estate) = viewModelScope.launch {
@@ -133,22 +135,18 @@ class AddEditEstateViewModel @Inject constructor(
     }
 
     private suspend fun createPhotoOnSaveClick() {
-        try {
-            if (estatePhoto.isNotEmpty()) {
-                job?.join()
-                for (i in estatePhoto.indices) {
-                    val newPhoto = Photo(
-                        estateId = newId.toInt(),
-                        photoReference = estatePhoto[i].photoReference
-                    )
-                    Log.d("createPhotoOnSaveClick","estateId: $newId")
-                    createPhoto(newPhoto)
-                }
+        if (estatePhoto.isNotEmpty()) {
+            job?.join()
+            for (i in estatePhoto.indices) {
+                val newPhoto = Photo(
+                    estateId = newId.toInt(),
+                    photoReference = estatePhoto[i].photoReference
+                )
+                Log.d("createPhotoOnSaveClick", "estateId: $newId")
+                viewModelScope.launch { createPhoto(newPhoto) }
             }
-        } catch (e: Exception) {
-            e.stackTrace
-            Log.d("createPhotoException", "$e")
         }
+        Log.d("createPhotoOnSaveClick", "finish")
     }
 
     private suspend fun updatePhotoOnSaveClick() {
@@ -211,12 +209,14 @@ class AddEditEstateViewModel @Inject constructor(
             viewModelScope.launch {
                 updatePhotoOnSaveClick()
             }
+
         } else {
             createEstateOnSaveClick()
-            viewModelScope.launch {
-                job?.join()
+            Log.d("OnSaveClick", "Add photo begin")
+            GlobalScope.launch {
                 createPhotoOnSaveClick()
             }
+            Log.d("OnSaveClick", "Add photo end")
         }
         navigationBack()
     }
