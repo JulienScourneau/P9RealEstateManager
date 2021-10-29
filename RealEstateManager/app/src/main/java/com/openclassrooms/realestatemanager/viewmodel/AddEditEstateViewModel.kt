@@ -28,16 +28,16 @@ class AddEditEstateViewModel @Inject constructor(
     private var job: Job? = null
 
     private fun createEstate(estate: Estate) {
-        job = GlobalScope.launch {
+        runBlocking {
             newId = repository.insertEstate(estate)
         }
     }
 
     private fun createPhoto(photo: Photo) {
-        job = GlobalScope.launch {
+        runBlocking {
             repository.insertPhoto(photo)
+            Log.d("createPhoto", "estateId: ${photo.estateId}")
         }
-        Log.d("createPhoto", "estateId: ${photo.estateId}")
     }
 
     private fun updateEstate(estate: Estate) = viewModelScope.launch {
@@ -134,17 +134,21 @@ class AddEditEstateViewModel @Inject constructor(
         }
     }
 
-    private suspend fun createPhotoOnSaveClick() {
-        if (estatePhoto.isNotEmpty()) {
-            job?.join()
-            for (i in estatePhoto.indices) {
-                val newPhoto = Photo(
-                    estateId = newId.toInt(),
-                    photoReference = estatePhoto[i].photoReference
-                )
-                Log.d("createPhotoOnSaveClick", "estateId: $newId")
-                viewModelScope.launch { createPhoto(newPhoto) }
+    private fun createPhotoOnSaveClick() {
+        try {
+            if (estatePhoto.isNotEmpty()) {
+                for (i in estatePhoto.indices) {
+                    val newPhoto = Photo(
+                        estateId = newId.toInt(),
+                        photoReference = estatePhoto[i].photoReference
+                    )
+                    Log.d("createPhotoOnSaveClick", "estateId: $newId")
+                    viewModelScope.launch { createPhoto(newPhoto) }
+                }
             }
+        } catch (e: Exception) {
+            e.stackTrace
+            Log.d("createPhotoException", "$e")
         }
         Log.d("createPhotoOnSaveClick", "finish")
     }
@@ -213,7 +217,10 @@ class AddEditEstateViewModel @Inject constructor(
         } else {
             createEstateOnSaveClick()
             Log.d("OnSaveClick", "Add photo begin")
-            GlobalScope.launch {
+            viewModelScope.launch(Dispatchers.Main) {
+
+            }
+            viewModelScope.launch {
                 createPhotoOnSaveClick()
             }
             Log.d("OnSaveClick", "Add photo end")
